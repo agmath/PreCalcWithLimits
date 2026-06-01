@@ -1338,7 +1338,7 @@ $\left(c\right)$ Since $x = -5$ satisfies $x < -2$, we use the first piece:
 
 </div>
 
-## Piecewise Functions Practice
+## Functions Practice
 
 <div style="font-size:17pt">
 
@@ -1368,6 +1368,40 @@ Try each of the following practice problems.
 
 </div>
 
+## Applied Problem
+
+:::{.fragment}
+
+**Problem:** The amount of garbage $G$ (in tons per week) produced by a city with population $p$ (in thousands of people) is given by $G = f\left(p\right)$.
+
+:::
+
+:::{.fragment}
+
+$\left(a\right)$ The town of Tola has a population of $40{,}000$ and produces $13$ tons of garbage per week. Express this information using function notation.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Since $p$ is measured in thousands, $40{,}000$ people corresponds to $p = 40$. We have:
+
+$$\boxed{~f\left(40\right) = 13~}$$
+
+:::
+
+:::{.fragment}
+
+$\left(b\right)$ Explain the meaning of the statement $f\left(5\right) = 2$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* A city with a population of $5{,}000$ people produces $2$ tons of garbage per week.
+
+:::
+
 ## Exit Ticket Task
 
 ::::{.columns}
@@ -1378,7 +1412,7 @@ Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAI
 
 <br/>
 
-*Note.* Today's discussion is listed as `1. Algebra Foundation`
+*Note.* Today's discussion is listed as `2. Interval Notation and Functions`
 
 :::
 
@@ -1392,7 +1426,7 @@ Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAI
 
 <div style="font-size:17pt">
 
-**Task:** What can I do to best help you (i) feel more comfortable with me. (ii) feel more comfortable in class, and (iii) ultimately find success in this course and beyond?
+**Task:** Consider the function $f\left(x\right) = 3x^2 - x + 5$. Evaluate $f\left(0\right)$, $f\left(-2\right)$, and $f\left(x + h\right)$.
 
 </div>
 
@@ -1406,39 +1440,39 @@ Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAI
 
 :::{.column width="50%"}
 
-<center>**General Comments**</center>
+<center>**Ideas From Today**</center>
 
-+ We covered a lot of ground today, and the topics we worked with are genuinely difficult. 
-+ Factoring and working with rational expressions are two of the most common places mistakes are made. 
-+ Please know that I want to work with you and I want you to be successful in this course.
-+ I'm looking forward to working with you in office hours.
++ Read landmarks from a function graph: roots, $y$-intercept, local maxima/minima, increasing/decreasing intervals.
++ Use **interval notation** $\left(a, b\right)$, $\left[a, b\right]$, $\cup$ to describe sets of real numbers.
++ A **function** assigns exactly one output to each input -- check with the Vertical Line Test.
++ **Function notation** $f\left(x\right)$ replaces $y$ and describes the transformation explicitly.
++ Evaluate functions by substituting the input for every $x$, including symbolic inputs like $x + h$.
++ **Piecewise functions** apply different rules on different intervals.
 
 :::
 
 :::{.column width="50%"}
 
-<center>**Resources for Today's Conent**</center>
+<center>**Resources**</center>
 
-+ [Factoring strategies](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}
-+ [Rational expressions and common denominators](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"}
-+ [Simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
-+ [Factoring and simplifying rational expression](https://youtu.be/7Uos1ED3KHI?si=2jUtaKinE0KPiAao){target="_blank"}
++ [Interval notation review](https://youtu.be/Ww7xtG2S7IM?si=ZfCjHsayj5U6vKYr){target="_blank"} -- The Organic Chemistry Tutor
 
 :::
 
 ::::
 
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Domains and Ranges of Functions</center>
 
 :::
 
 :::{.fragment}
 
-<center> **Next Time:** <br/> Describing Intervals of Real Numbers, Function Notation, and Function Evaluation</center>
+<center> **Homework:** <br/> Start Homework 2 on MyOpenMath</center>
 
 :::
 
-:::{.fragment}
-
-<center> **Homework:** <br/> Complete Homework 1 on MyOpenMath</center>
-
-:::
+</div>

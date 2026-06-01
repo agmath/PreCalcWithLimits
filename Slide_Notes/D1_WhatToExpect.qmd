@@ -1,0 +1,2459 @@
+---
+title: "MAT 142: PreCalculus with Limits"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+
+x_vals <- seq(-5, 5, length.out = 500)
+
+y_lin <- 1.5*x_vals - 2.25
+y_quad <- (x_vals + 4)*(x_vals - 3)
+y_quin <- (x_vals + 4)*(x_vals + 2)*x_vals*(x_vals - 1)*(x_vals - 3)
+
+x_rat_1 <- x_vals[x_vals < -1]
+x_rat_2 <- x_vals[between(x_vals, -0.99, 2.49)]
+x_rat_3 <- x_vals[x_vals > 2.5]
+y_rat_1 <- (x_rat_1 + 3)*(x_rat_1 - 3)/((x_rat_1 + 1)*(x_rat_1 - 2.5))
+y_rat_2 <- (x_rat_2 + 3)*(x_rat_2 - 3)/((x_rat_2 + 1)*(x_rat_2 - 2.5))
+y_rat_3 <- (x_rat_3 + 3)*(x_rat_3 - 3)/((x_rat_3 + 1)*(x_rat_3 - 2.5))
+
+y_exp <- exp(x_vals/3)
+x_log <- x_vals[x_vals > 0.1]
+y_log <- log(x_log)
+y_sin <- sin(x_vals)
+y_cos <- cos(x_vals)
+
+x_tan_1 <- seq(-3*pi/2 + 0.1, -pi/2 - 0.1, length.out = 100)
+x_tan_2 <- seq(-pi/2 + 0.1, pi/2 - 0.1, length.out = 100)
+x_tan_3 <- seq(pi/2 + 0.1, 3*pi/2 - 0.1, length.out = 100)
+y_tan_1 <- tan(x_tan_1)
+y_tan_2 <- tan(x_tan_2)
+y_tan_3 <- tan(x_tan_3)
+
+p_lin <- ggplot() + 
+    geom_line(aes(x = x_vals, y = y_lin), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = min(y_lin), yend = max(y_lin),
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Linear")
+
+p_quad <- ggplot() + 
+    geom_line(aes(x = x_vals, y = y_quad), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = min(y_quad), yend = max(y_quad),
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Quadratic")
+
+p_poly <- ggplot() + 
+    geom_line(aes(x = x_vals, y = y_quin), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -100, yend = 100,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+  coord_cartesian(ylim = c(-100, 100)) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Higher-Order Polynomial")
+
+p_rat <- ggplot() + 
+    geom_line(aes(x = x_rat_1, y = y_rat_1), color = "blue") + 
+    geom_line(aes(x = x_rat_2, y = y_rat_2), color = "blue") +
+  geom_line(aes(x = x_rat_3, y = y_rat_3), color = "blue") + 
+    annotate("segment",
+             x = min(x_rat_1), xend = max(x_rat_3), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -10, yend = 10,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Rational") +
+  coord_cartesian(ylim = c(-10, 10))
+
+p_exp <- ggplot() + 
+    geom_line(aes(x = x_vals, y = y_exp), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = 0, yend = max(y_exp),
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Exponential")
+
+p_log <- ggplot() + 
+    geom_line(aes(x = x_log, y = y_log), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = min(y_log), yend = max(y_log),
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Logarithmic")
+
+p_cosine <- ggplot() + 
+    geom_line(aes(x = x_vals, y = y_cos), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -2, yend = 2,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Cosine") + 
+  coord_cartesian(ylim = c(-2, 2))
+
+p_sine <- ggplot() + 
+    geom_line(aes(x = x_vals, y = y_sin), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -2, yend = 2,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Sine") + 
+  coord_cartesian(ylim = c(-2, 2))
+
+p_tan <- ggplot() + 
+    geom_line(aes(x = x_tan_1, y = y_tan_1), color = "blue") + 
+  geom_line(aes(x = x_tan_2, y = y_tan_2), color = "blue") + 
+  geom_line(aes(x = x_tan_3, y = y_tan_3), color = "blue") + 
+    annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -10, yend = 10,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+  coord_cartesian(ylim = c(-5, 5)) +
+    theme(
+      axis.line = element_blank(),
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank()
+    ) + 
+    labs(title = "Tangent") + 
+  coord_cartesian(ylim = c(-10, 10))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## What Are We Here For?
+
+:::{.fragment}
+
+Primarily, we're here to prepare for you all to successfully complete Calculus I next semester.
+
+:::
+
+:::{.fragment}
+
+In order to do that, we'll...
+
+:::
+
++ Build a strong algebra foundation
++ Examine many different function classes
++ Explore function *geography*
+    + Domains
+    + Ranges
+    + Positivity/Negativity
+    + Roots
+    + Increasing/Decreasing behaviors
+    + Asymptotes
++ Develop the notion of invertibility, construct inverse functions, and apply inverses
+
+## What Are We Here For? 
+
+:::{.fragment}
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+:::
+
+:::{.fragment}
+
+First, the function families we'll encounter...
+
+:::
+
+:::{.fragment}
+
+```{r}
+p_lin
+```
+
+:::
+
+
+## What Are We Here For? 
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+First, the function families we'll encounter...
+
+```{r}
+p_quad
+```
+
+## What Are We Here For? 
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+First, the function families we'll encounter...
+
+```{r}
+p_poly
+```
+
+## What Are We Here For? 
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+First, the function families we'll encounter...
+
+```{r}
+p_rat
+```
+
+## What Are We Here For? 
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+First, the function families we'll encounter...
+
+```{r}
+p_exp
+```
+
+## What Are We Here For? 
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+First, the function families we'll encounter...
+
+```{r}
+p_log
+```
+
+## What Are We Here For? 
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+First, the function families we'll encounter...
+
+```{r}
+p_sine + p_cosine + p_tan
+```
+
+## What Are We Here For? 
+
+We'll start shoring up that algebra foundation later today, but we'll start with a preview and course overview first.
+
+First, the function families we'll encounter...
+
+```{r}
+(p_lin + p_quad + p_poly) / (p_rat + p_exp + p_log) / (p_sine + p_cosine + p_tan)
+```
+
+:::{.fragment}
+
+and more...
+
+:::
+
+## What Are We Here For?
+
+:::{.fragment}
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+:::
+
+:::{.fragment}
+
+```{r}
+p_poly +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+:::
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -1.1, xmax = 0.48, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -0.25, y = 110, label = "Increasing", size = 5) +
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -1.1, xmax = 0.48, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -0.25, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = 2.42, xmax = 10, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = 4, y = 110, label = "Increasing", size = 5) +
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -1.1, xmax = 0.48, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -0.25, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = 2.42, xmax = 10, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = 4, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -3.25, xmax = -1.25, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -1.1, xmax = 0.48, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -0.25, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = 2.42, xmax = 10, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = 4, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -3.25, xmax = -1.25, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = -2.25, y = -105, label = "Decreasing", size = 5) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -1.1, xmax = 0.48, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -0.25, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = 2.42, xmax = 10, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = 4, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -3.25, xmax = -1.25, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = -2.25, y = -105, label = "Decreasing", size = 5) + 
+  geom_rect(aes(xmin = 0.6, xmax = 2.3, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = 1.4, y = -105, label = "Decreasing", size = 5) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+## What Are We Here For?
+
+We'll take a look at those function geography items, but first we'll motivate their importance by a preview of your goals in calculus.
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -1.1, xmax = 0.48, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -0.25, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = 2.42, xmax = 10, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = 4, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -3.25, xmax = -1.25, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = -2.25, y = -105, label = "Decreasing", size = 5) + 
+  geom_rect(aes(xmin = 0.6, xmax = 2.3, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = 1.4, y = -105, label = "Decreasing", size = 5) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110))
+```
+
+:::
+
+:::{.column width="40%"}
+
++ You'll spend lots of time *optimizing* functions -- finding *minima* and *maxima*.
++ Doing that requires you to identify where a function is *increasing* or *decreasing* -- and finding when it is doing neither.
++ This requires knowledge of functions and strategies for solving a variety of equations -- we'll build that foundation here in PreCalculus.
+
+:::
+
+::::
+
+## What Are We Here For?
+
+:::{.fragment}
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+:::
+
+:::{.fragment}
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+:::
+
+:::{.fragment}
+
+```{r}
+p_rat + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+:::
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -0.9, xmax = 2.46, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 0.75, y = 10, label = "Positive", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -0.9, xmax = 2.46, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 0.75, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = 3.06, xmax = 10, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 4.25, y = 10, label = "Positive", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -0.9, xmax = 2.46, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 0.75, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = 3.06, xmax = 10, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 4.25, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -2.95, xmax = -1.025, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = -2, y = -10, label = "Negative", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -0.9, xmax = 2.46, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 0.75, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = 3.06, xmax = 10, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 4.25, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -2.95, xmax = -1.025, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = -2, y = -10, label = "Negative", size = 5) + 
+  geom_rect(aes(xmin = 2.54, xmax = 2.94, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = 2.75, y = -10, label = "Neg.", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -0.9, xmax = 2.46, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 0.75, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = 3.06, xmax = 10, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 4.25, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -2.95, xmax = -1.025, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = -2, y = -10, label = "Negative", size = 5) + 
+  geom_rect(aes(xmin = 2.54, xmax = 2.94, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = 2.75, y = -10, label = "Neg.", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_vline(aes(xintercept = -1),
+             lwd = 0.5, linetype = "dashed") + 
+  geom_vline(aes(xintercept = 2.5),
+             lwd = 0.5, linetype = "dashed") + 
+  annotate("text", x = 0.75, y = -5.5, label = "Domain Restrictions / \n Vertical Asymptotes", size = 4) + 
+  annotate("curve",
+           x = -0.1, y = -5.5, xend = -0.95, yend = -0.3,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.6, y = -5.5, xend = 2.45, yend = -0.3,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For?
+
+We won't have the tools to find *minima* or *maxima* of many functions in PreCalculus.
+
+Instead, we'll focus on foundational knowledge, relationships, and procedures that will be helpful to you when you get to Calculus.
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -0.9, xmax = 2.46, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 0.75, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = 3.06, xmax = 10, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 4.25, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -2.95, xmax = -1.025, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = -2, y = -10, label = "Negative", size = 5) + 
+  geom_rect(aes(xmin = 2.54, xmax = 2.94, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = 2.75, y = -10, label = "Neg.", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_vline(aes(xintercept = -1),
+             lwd = 0.5, linetype = "dashed") + 
+  geom_vline(aes(xintercept = 2.5),
+             lwd = 0.5, linetype = "dashed") + 
+  annotate("text", x = 0.75, y = -5.5, label = "Domain Restrictions / \n Vertical Asymptotes", size = 4) + 
+  annotate("curve",
+           x = -0.1, y = -5.5, xend = -0.95, yend = -0.3,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.6, y = -5.5, xend = 2.45, yend = -0.3,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  geom_hline(aes(yintercept = 1.5),
+             lwd = 0.5, linetype = "dashed") + 
+  annotate("text", x = -4, y = 5.5, label = "Range Restriction / \n Horizontal Asymptote", size = 4) + 
+  annotate("curve",
+           x = -3, y = 5.5, xend = -1.5, yend = 1.7,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
+```
+
+## What Are We Here For
+
+:::{.fragment}
+
+<div style="font-size:16pt">
+
+Let's compare the goals from our current course (PreCalculus) to the look-ahead in Calculus and see how these ideas will align or benefit us moving forward.
+
+</div>
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+```{r}
+p_rat + 
+  geom_rect(aes(xmin = -10, xmax = -3.05, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = -4.5, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -0.9, xmax = 2.46, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 0.75, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = 3.06, xmax = 10, ymin = -20, ymax = 20),
+            color = NA, fill = "darkgreen",
+            alpha = 0.25) +
+  annotate("text", x = 4.25, y = 10, label = "Positive", size = 5) + 
+  geom_rect(aes(xmin = -2.95, xmax = -1.025, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = -2, y = -10, label = "Negative", size = 5) + 
+  geom_rect(aes(xmin = 2.54, xmax = 2.94, ymin = -20, ymax = 20),
+            color = NA, fill = "purple",
+            alpha = 0.25) +
+  annotate("text", x = 2.75, y = -10, label = "Neg.", size = 5) + 
+  geom_point(aes(x = 0, y = 9/2.5),
+             color = "black", size = 3) + 
+  annotate("text", x = 1, y = 6, label = "y-intercept", size = 5) + 
+  annotate("curve",
+           x = 0.75, y = 5.25, xend = 0.1, yend = 9/2.5 + 0.1,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_point(aes(x = -3, y = 0),
+             color = "black", size =3) + 
+  annotate("text", x = -3.5, y = -4.5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = -3.5, y = -3.5, xend = -3.05, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) +
+  geom_point(aes(x = 3, y = 0),
+             color = "black", size = 3) + 
+  annotate("text", x = 4, y = -5, label = "x-intercept / \n root", size = 5) + 
+  annotate("curve",
+           x = 4, y = -4, xend = 3.1, yend = -0.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0, alpha = 0.6) + 
+  geom_vline(aes(xintercept = -1),
+             lwd = 0.5, linetype = "dashed") + 
+  geom_vline(aes(xintercept = 2.5),
+             lwd = 0.5, linetype = "dashed") + 
+  annotate("text", x = 0.75, y = -5.5, label = "Domain Restrictions / \n Vertical Asymptotes", size = 4) + 
+  annotate("curve",
+           x = -0.1, y = -5.5, xend = -0.95, yend = -0.3,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.6, y = -5.5, xend = 2.45, yend = -0.3,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  geom_hline(aes(yintercept = 1.5),
+             lwd = 0.5, linetype = "dashed") + 
+  annotate("text", x = -4, y = 5.5, label = "Range Restriction / \n Horizontal Asymptote", size = 4) + 
+  annotate("curve",
+           x = -3, y = 5.5, xend = -1.5, yend = 1.7,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10)) + 
+  labs(title = "PreCalculus: Functions and their *Geography*")
+```
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+p_poly + 
+  geom_point(aes(x = -3.3123, y = 81.3689), 
+             color = "black", size = 3) + 
+  geom_point(aes(x = 0.526481, y = 7.052),
+             color = "black", size = 3) + 
+  geom_point(aes(x = -1.1689, y = -24.8683),
+             color = "black", size = 3) + 
+  geom_point(aes(x = 2.35476, y = -56.9631),
+             color = "black", size = 3) + 
+  geom_rect(aes(xmin = -10, xmax = -3.4, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -4.75, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -1.1, xmax = 0.48, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = -0.25, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = 2.42, xmax = 10, ymin = -150, ymax = 150),
+            color = NA, fill = "darkgreen", alpha = 0.25) + 
+  annotate("text", x = 4, y = 110, label = "Increasing", size = 5) +
+  geom_rect(aes(xmin = -3.25, xmax = -1.25, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = -2.25, y = -105, label = "Decreasing", size = 5) + 
+  geom_rect(aes(xmin = 0.6, xmax = 2.3, ymin = -150, ymax = 150), 
+            color = NA, fill = "purple", alpha = 0.25) + 
+  annotate("text", x = 1.4, y = -105, label = "Decreasing", size = 5) + 
+  annotate("text", x = -1, y = 55, label = "Local Maxima", size = 4) +
+  annotate("curve",
+           x = -1.25, y = 60, xend = -3.2, yend = 82,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.3, alpha = 0.6) +
+  annotate("curve",
+           x = -0.4, y = 55, xend = 0.52, yend = 12.5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.4, alpha = 0.6) + 
+  annotate("text", x = 0.75, y = -75, label = "Local Minima", size = 4) +
+  annotate("curve",
+           x = 0.15, y = -75, xend = -1.16, yend = -30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = -0.3, alpha = 0.6) +
+  annotate("curve",
+           x = 1.3, y = -75, xend = 2.3, yend = -60,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           curvature = 0.2, alpha = 0.6) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-110, 110)) + 
+  labs(title = "Calculus: Functions and Their *Extrema*")
+```
+
+:::
+
+::::
+
+:::
+
+<div style="font-size:16pt">
+
++ In Calculus, those extreme values occur when a function stops increasing and starts decreasing (or vice-versa).
+    + This is where the function's *slope* is zero (or undefined).
++ In PreCalculus, functions transition from positive to negative at *roots* / x-intercepts or at domain restrictions.
+    + This is where the function's output values are $0$ or *undefined*.
++ Being able to identify intervals of *positivity* or *negativity* in PreCalculus will prepare you to identify intervals where functions are *increasing* or *decreasing* in Calculus.
++ *Limits* are tools that will aid you in defining the "slope" of a non-linear function in Calculus -- we'll use them to examine function behavior in PreCalculus.
+
+</div>
+
+## Syllabus
+
+**Major Highlights from the Syllabus**: I'll ask you to read the syllabus, but the most important items are on the following slides.
+
+## Instructor and Office Hours
+
+  + Instructor: Dr. Adam Gilbert
+  
+    + e-mail address: [a.gilbert1@snhu.edu](mailto:a.gilbert1@snhu.edu)
+    + Office: Robert Frost Hall, Room 311
+    + Office Hours (please visit!): 
+    
+      + Mondays 9:00am - 10:30am
+      + Thursdays 9:00am - 10:30am
+      + Fridays 11:00am - 1:00pm
+
+## Required Resources
+
+First and foremost...everything is free!
+
++ **Optional Textbook:** I won't use a textbook explicitly, but the [OpenStax *PreCalculus*](https://openstax.org/books/precalculus-2e/pages/1-introduction-to-functions) text is a great resource for when you want additional or alternative explanations.
++ [Online Homework at MyOpenMath](https://www.myopenmath.com/) is a required component of this course
+    + The CourseID and Enrollment Key are available in the *Welcome!* announcement on BrightSpace.
+
+## Grading Scheme
+
+  <center> 
+  Grade Item                     | Value
+  -------------------------------|---------
+  Homework (~12)                 | 20%
+  Exams (x3)                     | 60%
+  Final Exam (2)                 | 20%
+  </center>
+
+## Explanations of Grade Items
+
+<div style="font-size:18pt">
+
++ **Homework:** Practicing is critical to your success in PreCalculus. You'll get unlimited attempts (unpenalized) at all problems on each assignment, and you'll be graded 50% on completion and 50% on correctness.
+    + Assignments due on Sundays at 11:59pm
+    + *Late Passes*: You get three free (no penalty) late passes to open up assignments again until the end of the semester. No additional late passes will be provided though. Please plan ahead.
++ **Exams:** We'll have three exams during the semester. Unfortunately, time does not permit for us to have dedicated *review* class meetings, but I'm always happy to review with people during office hours.
+    + $\bigstar$ I Need to Miss an Exam! $\bigstar$ Thigs come up -- you may be sick, have an emergency, or simply not feel ready to take an exam. In any of these cases, you'll notify me that you are unable to complete the exam. That exam weight will be shifted to the final exam, where you'll be required to complete the corresponding optional component of the final exam. No make-up exams will be given.
++ **Final Exam:** The final exam will occur in parts during the last week of the semester. The first part is required and all subsequent parts are optional (see scenarios above, under missing exams). The final exam can be used to improve earlier exam grades.
+
+
+</div>
+
+## Brightspace
+
++ Weekly Announcements
++ Gradebook
++ Go to [the webpage](https://agmath.github.io/Precalculus.html) for everything else
+
+## Course Webpage
+
+I've built a [webpage to organize our course content](https://agmath.github.io/Precalculus.html).
+
++ Syllabus
++ Tentative timeline
+  
+  + Links to full *notes* (in Jupyter/Colab notebook format)
+  + Links to the *discussion slide* versions of those notes
+  + Assignment reminders
+
+## What's Class Like?
+
++ Some lecture is going to be necessary here
++ I have complete sets of notes for you and will attempt to keep up with building slides if you want them
++ I hope to spend significant class time on collaborative discussion and problem-solving
+
+## A Note on Approach to Class
+
++ I'm open to change in all of my courses.
++ If the structure isn't working for you, let's chat and see what changes we can make to improve your experience.
++ If you don't want to tell me in person, leave an anonymous note under my office door.
+
+:::{.fragment}
+
+My goal in this course is for all of you to leave with the foundation and skills necessary to be successful in Calculus I next semester. We can't achieve that if you don't feel like you are benefiting from our class meetings.
+
+:::
+
+## A Road Map to Our Semester
+
+<div style="font-size:16pt">
+
++ We'll begin with foundational algebra skills.
++ We'll develop the notion of a function.
++ We'll define and use the *limit* so that we can use it to discuss continuity and analyse function behavior.
++ The remainder of our course will be quite repetitive.
+    i. Introduce a function class.
+    ii. Describe its domain, including any domain restrictions.
+    iii. Find the $y$-intercept.
+    iv. Find any *roots* ($x$-intercepts).
+    v. Use limits to analyse behavior near domain restrictions. 
+    vi. Use limits to analyse end behavior.
+    vii. Synthesize results from the analyses above to describe the range and graph the function.
+
+</div>
+
+## Foundational Algebra Review
+
+<div style="font-size:16pt">
+
+:::{.fragment fragment-index=1}
+
+I've posted a library of foundational algebra videos to BrightSpace -- please be sure to review those as needed.
+
+:::
+
+:::{.fragment fragment-index=2}
+
+$\bigstar$ In my experience, a lack of foundational algebra skills is really what prevents students from being successful in their higher level mathematics coursework. Any time you spend shoring up your algebra skills is time well-spent. $\bigstar$
+
+:::
+
+:::{.fragment fragment-index=3}
+
+**[Common Mistakes to Avoid:](https://youtu.be/97hJ2SSXlz0?si=It9C-81oO0B3FB5G){target="_blank"}** Some of the most common mistakes (and what to do instead) are below.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment fragment-index=5}
+
+<center>**Don't**</center>
+
+:::
+
+:::{.fragment fragment-index=6}
+
+Cancel terms $\require{cancel}\displaystyle{\frac{\cancel{3x^2} + 6x^3}{\cancel{3x^2}}}$ ✗
+
+:::
+
+:::{.fragment fragment-index=7}
+
+Sloppy, disorganized work ✗
+
+:::
+
+:::{.fragment fragment-index=8}
+
+Unclear, ambiguous notation $\frac{2~+~}{2} \stackrel{6x}{}$ ✗
+
+:::
+
+:::{.fragment fragment-index=9}
+
+"Distribute" functions and exponents $\sin\left(a + b\right) \neq \sin\left(a\right) + \sin\left(b\right)$ and $\left(x + y\right)^2 \neq x^2 + y^2$ ✗
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment fragment-index=5}
+
+<center>**Do**</center>
+
+:::
+
+:::{.fragment fragment-index=6}
+
+Cancel factors $\require{cancel}\displaystyle{\frac{\cancel{3x^2}\left(1 + 2x\right)}{\cancel{3x^2}}}$ ✓
+
+:::
+
+:::{.fragment fragment-index=7}
+
+Organized, clear work ✓
+
+:::
+
+:::{.fragment fragment-index=8}
+
+Clear notation with parentheses when helpful $\frac{\left(2 + 6x\right)}{2}$ ✓
+
+:::
+
+:::{.fragment fragment-index=9}
+
+Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with exponents $\left(x + y\right)^2 = \left(x + y\right)\left(x + y\right)$ ✓
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Like Terms and Order of Operations
+
+:::{.fragment}
+
+**Problem 1:** Use distribution to expand the expression $5\left(2x^2 + 3x -8\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+\begin{align} 5\left(2x^2 + 3x - 8\right)
+\end{align}
+
+:::
+
+## Like Terms and Order of Operations
+
+**Problem 1:** Use distribution to expand the expression $5\left(2x^2 + 3x -8\right)$.
+
+*Solution.* 
+
+\begin{align} \color{blue}{5}\left(2x^2 + 3x - 8\right) &= \color{blue}{5}\left(2x^2\right) + \color{blue}{5}\left(3x\right) - \color{blue}{5}\left(8\right)
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 1:** Use distribution to expand the expression $5\left(2x^2 + 3x -8\right)$.
+
+*Solution.* 
+
+\begin{align} 5\left(2x^2 + 3x - 8\right) &= 5\left(2x^2\right) + 5\left(3x\right) - 5\left(8\right)\\
+&= \boxed{~10x^2 + 15x - 40~}
+\end{align}
+
+## Like Terms and Order of Operations
+
+:::{.fragment}
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)
+\end{align}
+
+:::
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3 - x^5 + 5x^4\right)
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3 - x^5 + 5x^4\right)\\
+&= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3\right) + \color{blue}{\left(-3\right)}\left(-x^5\right) + \color{blue}{\left(-3\right)}\left(5x^4\right)
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+&= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3\right) + \color{blue}{\left(-3\right)}\left(-x^5\right) + \color{blue}{\left(-3\right)}\left(5x^4\right)\\
+&= 3x^5 - 5x^3 \color{blue}{- 6x^3 + 3x^5 - 15x^4}
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+&= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
+&= \color{blue}{3x^5} - 5x^3 - 6x^3 + \color{blue}{3x^5} - 15x^4
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+&= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
+&= \color{blue}{3x^5} - 5x^3 - 6x^3 + \color{blue}{3x^5} - 15x^4\\
+&= \color{blue}{6x^5} -5x^3 - 6x^3 - 15x^4
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+&= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
+&= 3x^5 - 5x^3 - 6x^3 + 3x^5 - 15x^4\\
+&= 6x^5 \color{blue}{- 5x^3 - 6x^3} - 15x^4
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+&= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
+&= 3x^5 - 5x^3 - 6x^3 + 3x^5 - 15x^4\\
+&= 6x^5 \color{blue}{- 5x^3 - 6x^3} - 15x^4\\
+&= 6x^5 \color{blue}{- 11x^3} - 15x^4
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 2:** Simplify the expression $3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+&= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
+&= 3x^5 - 5x^3 - 6x^3 + 3x^5 - 15x^4\\
+&= 6x^5 - 5x^3 - 6x^3 - 15x^4\\
+&= 6x^5 - 11x^3 - 15x^4\\
+&= \boxed{~6x^5 - 15x^4 - 11x^3~}
+\end{align}
+
+## Like Terms and Order of Operations
+
+:::{.fragment}
+
+**Problem 3:** Simplify the expression $2\left(3x + 4y\right) - 5\left(x - 2y\right)$ to include as few terms as possible.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right)
+\end{align}
+
+:::
+
+## Like Terms and Order of Operations
+
+**Problem 3:** Simplify the expression $2\left(3x + 4y\right) - 5\left(x - 2y\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 3:** Simplify the expression $2\left(3x + 4y\right) - 5\left(x - 2y\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
+&= 6x + 8y + \left(-5x\right) - \left(-10y\right)
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 3:** Simplify the expression $2\left(3x + 4y\right) - 5\left(x - 2y\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
+&= 6x + 8y + \left(-5x\right) - \left(-10y\right)\\
+&= 6x + 8y - 5x - 10y
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 3:** Simplify the expression $2\left(3x + 4y\right) - 5\left(x - 2y\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
+&= 6x + 8y + \left(-5x\right) - \left(-10y\right)\\
+&= 6x + 8y - 5x - 10y\\
+&= x + 8y - 10y
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 3:** Simplify the expression $2\left(3x + 4y\right) - 5\left(x - 2y\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
+&= 6x + 8y + \left(-5x\right) - \left(-10y\right)\\
+&= 6x + 8y - 5x - 10y\\
+&= x + 8y - 10y\\
+&= \boxed{~x - 2y~}
+\end{align}
+
+## Evaluating Expressions
+
+:::{.fragment}
+
+We'll often have need to evaluate expressions for given values of variables. 
+
+:::
+
+:::{.fragment}
+
+We'll try just a single example here, but you can [see more examples in this video](https://youtu.be/k-KiWkV81fQ?si=fp83eYrJFqOaGolf) and also [this one](https://youtu.be/k-KiWkV81fQ?si=zh86gpZWGhS4CmhR) that includes evaluating algebraic expressions with exponents.
+
+:::
+
+:::{.fragment}
+
+**Problem 4:** Evaluate the expression $x^2 - 2x + 1$ for $x = 5$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} x^2 - 2x + 1 
+\end{align}
+
+:::
+
+## Evaluating Expressions
+
+We'll often have need to evaluate expressions for given values of variables. 
+
+We'll try just a single example here, but you can [see more examples in this video](https://youtu.be/k-KiWkV81fQ?si=fp83eYrJFqOaGolf) and also [this one](https://youtu.be/k-KiWkV81fQ?si=zh86gpZWGhS4CmhR) that includes evaluating algebraic expressions with exponents.
+
+**Problem 4:** Evaluate the expression $x^2 - 2x + 1$ for $x = 5$.
+
+*Solution.*
+
+\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1
+\end{align}
+
+## Evaluating Expressions
+
+We'll often have need to evaluate expressions for given values of variables. 
+
+We'll try just a single example here, but you can [see more examples in this video](https://youtu.be/k-KiWkV81fQ?si=fp83eYrJFqOaGolf) and also [this one](https://youtu.be/k-KiWkV81fQ?si=zh86gpZWGhS4CmhR) that includes evaluating algebraic expressions with exponents.
+
+**Problem 4:** Evaluate the expression $x^2 - 2x + 1$ for $x = 5$.
+
+*Solution.*
+
+\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
+&= 25 - 10 + 1
+\end{align}
+
+## Evaluating Expressions
+
+We'll often have need to evaluate expressions for given values of variables. 
+
+We'll try just a single example here, but you can [see more examples in this video](https://youtu.be/k-KiWkV81fQ?si=fp83eYrJFqOaGolf) and also [this one](https://youtu.be/k-KiWkV81fQ?si=zh86gpZWGhS4CmhR) that includes evaluating algebraic expressions with exponents.
+
+**Problem 4:** Evaluate the expression $x^2 - 2x + 1$ for $x = 5$.
+
+*Solution.*
+
+\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
+&= 25 - 10 + 1\\
+&= 15 + 1
+\end{align}
+
+## Evaluating Expressions
+
+We'll often have need to evaluate expressions for given values of variables. 
+
+We'll try just a single example here, but you can [see more examples in this video](https://youtu.be/k-KiWkV81fQ?si=fp83eYrJFqOaGolf) and also [this one](https://youtu.be/k-KiWkV81fQ?si=zh86gpZWGhS4CmhR) that includes evaluating algebraic expressions with exponents.
+
+**Problem 4:** Evaluate the expression $x^2 - 2x + 1$ for $x = 5$.
+
+*Solution.*
+
+\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
+&= 25 - 10 + 1\\
+&= 15 + 1\\ 
+&= \boxed{~16~}
+\end{align}
+
+## Working with Exponents
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+We'll encounter exponents often in this course and we'll rely on an ability to work with, and simplify, expressions involving exponents.
+
+:::
+
+:::{.fragment}
+
+As with evaluating expressions, we'll see just a single example here, but you can [see additional examples here](https://youtu.be/7X0gTNvkEPg?si=mRRBDR_ROy7ZWccQ&t=770).
+
+:::
+
+:::{.fragment}
+
+**Problem 5:** Simplify the expression $\displaystyle{\frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2}}$ using your knowledge on properties of exponents.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2}
+\end{align}
+
+:::
+
+</div>
+
+## Working with Exponents
+
+<div style="font-size:16pt">
+
+We'll encounter exponents often in this course and we'll rely on an ability to work with, and simplify, expressions involving exponents.
+
+As with evaluating expressions, we'll see just a single example here, but you can [see additional examples here](https://youtu.be/7X0gTNvkEPg?si=mRRBDR_ROy7ZWccQ&t=770).
+
+**Problem 5:** Simplify the expression $\displaystyle{\frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2}}$ usings your knowledge on properties of exponents.
+
+*Solution.*
+
+\begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2} &= \frac{x^2 y^{-3}z^5 y^2}{x^6y^2z^6}
+\end{align}
+
+</div>
+
+## Working with Exponents
+
+<div style="font-size:16pt">
+
+We'll encounter exponents often in this course and we'll rely on an ability to work with, and simplify, expressions involving exponents.
+
+As with evaluating expressions, we'll see just a single example here, but you can [see additional examples here](https://youtu.be/7X0gTNvkEPg?si=mRRBDR_ROy7ZWccQ&t=770).
+
+**Problem 5:** Simplify the expression $\displaystyle{\frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2}}$ usings your knowledge on properties of exponents.
+
+*Solution.*
+
+\begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2} &= \frac{x^2 y^{-3}z^5 y^2}{x^6y^2z^6}\\
+&= \frac{x^2z^5y^2}{y^3\left(x^6y^2z^6\right)}
+\end{align}
+
+</div>
+
+## Working with Exponents
+
+<div style="font-size:16pt">
+
+We'll encounter exponents often in this course and we'll rely on an ability to work with, and simplify, expressions involving exponents.
+
+As with evaluating expressions, we'll see just a single example here, but you can [see additional examples here](https://youtu.be/7X0gTNvkEPg?si=mRRBDR_ROy7ZWccQ&t=770).
+
+**Problem 5:** Simplify the expression $\displaystyle{\frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2}}$ usings your knowledge on properties of exponents.
+
+*Solution.*
+
+\begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2} &= \frac{x^2 y^{-3}z^5 y^2}{x^6y^2z^6}\\
+&= \frac{x^2z^5y^2}{y^3\left(x^6y^2z^6\right)}\\
+&= \frac{x^2z^5y^2}{x^6y^5z^6}
+\end{align}
+
+</div>
+
+## Working with Exponents
+
+<div style="font-size:16pt">
+
+We'll encounter exponents often in this course and we'll rely on an ability to work with, and simplify, expressions involving exponents.
+
+As with evaluating expressions, we'll see just a single example here, but you can [see additional examples here](https://youtu.be/7X0gTNvkEPg?si=mRRBDR_ROy7ZWccQ&t=770).
+
+**Problem 5:** Simplify the expression $\displaystyle{\frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2}}$ usings your knowledge on properties of exponents.
+
+*Solution.*
+
+\begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2} &= \frac{x^2 y^{-3}z^5 y^2}{x^6y^2z^6}\\
+&= \frac{x^2z^5y^2}{y^3\left(x^6y^2z^6\right)}\\
+&= \frac{x^2z^5y^2}{x^6y^5z^6}\\
+&= \frac{x^2z^5y^2}{x^2z^5y^2\left(x^2zy^3\right)}
+\end{align}
+
+</div>
+
+## Working with Exponents
+
+<div style="font-size:16pt">
+
+We'll encounter exponents often in this course and we'll rely on an ability to work with, and simplify, expressions involving exponents.
+
+As with evaluating expressions, we'll see just a single example here, but you can [see additional examples here](https://youtu.be/7X0gTNvkEPg?si=mRRBDR_ROy7ZWccQ&t=770).
+
+**Problem 5:** Simplify the expression $\displaystyle{\frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2}}$ usings your knowledge on properties of exponents.
+
+*Solution.*
+
+\begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2} &= \frac{x^2 y^{-3}z^5 y^2}{x^6y^2z^6}\\
+&= \frac{x^2z^5y^2}{y^3\left(x^6y^2z^6\right)}\\
+&= \frac{x^2z^5y^2}{x^6y^5z^6}\\
+&= \frac{x^2z^5y^2}{x^2z^5y^2\left(x^2zy^3\right)}\\
+&= \boxed{~\frac{1}{\left(x^2zy^3\right)}~}
+\end{align}
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+:::
+
+:::{.fragment}
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+:::
+
+:::{.fragment}
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+:::
+
+:::{.fragment}
+
+**Problem 6:** Compute the product $\left(x + y\right)^2$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+\begin{align} \left(x + y\right)^2
+\end{align}
+
+:::
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+**Problem 6:** Compute the product $\left(x + y\right)^2$.
+
+*Solution.* 
+
+\begin{align} \left(x + y\right)^2 &= \left(x + y\right)\left(x + y\right)
+\end{align}
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+**Problem 6:** Compute the product $\left(x + y\right)^2$.
+
+*Solution.* 
+
+\begin{align} \left(x + y\right)^2 &= \left(x + y\right)\left(x + y\right)\\
+&= x^2 + xy + yx + y^2
+\end{align}
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+**Problem 6:** Compute the product $\left(x + y\right)^2$.
+
+*Solution.* 
+
+\begin{align} \left(x + y\right)^2 &= \left(x + y\right)\left(x + y\right)\\
+&= x^2 + xy + yx + y^2\\
+&= \boxed{~x^2 + 2xy + y^2~}
+\end{align}
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+:::{.fragment}
+
+**Problem 7:** Compute the product $\left(x + 2\right)\left(x^2 -4x + 8\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+\begin{align} \left(x + 2\right)\left(x^2 -4x + 8\right)
+\end{align}
+
+:::
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+**Problem 7:** Compute the product $\left(x + 2\right)\left(x^2 -4x + 8\right)$.
+
+*Solution.* 
+
+\begin{align} \left(x + 2\right)\left(x^2 -4x + 8\right) &= x\left(x^2\right) - x\left(4x\right) + x\left(8\right) + 2\left(x^2\right) - 2\left(4x\right) + 2\left(8\right)
+\end{align}
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+**Problem 7:** Compute the product $\left(x + 2\right)\left(x^2 -4x + 8\right)$.
+
+*Solution.* 
+
+\begin{align} \left(x + 2\right)\left(x^2 -4x + 8\right) &= x\left(x^2\right) - x\left(4x\right) + x\left(8\right) + 2\left(x^2\right) - 2\left(4x\right) + 2\left(8\right)\\
+&= x^3 -4x^2 + 8x + 2x^2 - 8x + 16
+\end{align}
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+**Problem 7:** Compute the product $\left(x + 2\right)\left(x^2 -4x + 8\right)$.
+
+*Solution.* 
+
+\begin{align} \left(x + 2\right)\left(x^2 -4x + 8\right) &= x\left(x^2\right) - x\left(4x\right) + x\left(8\right) + 2\left(x^2\right) - 2\left(4x\right) + 2\left(8\right)\\
+&= x^3 -4x^2 + 8x + 2x^2 - 8x + 16\\
+&= x^3 + \left(-4x^2 + 2x^2\right) + \left(8x - 8x\right) + 16
+\end{align}
+
+</div>
+
+## Multiplying Variable Expressions
+
+<div style="font-size:16pt">
+
+Computing products of variable expressions is something we'll do often in PreCalculus, and it's also a common stumbling block for people.
+
+We'll do a couple of examples now, but you can [find additional examples here](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265).
+
+**Note:** You've almost surely heard the FOIL acronym before, but I'd encourage you not to lean on it. That acronym only works when you're multiplying two *binomials* (two-term expressions) together. Instead, you should remember to *multiply everything in one factor by everything in the other*.
+
+**Problem 7:** Compute the product $\left(x + 2\right)\left(x^2 -4x + 8\right)$.
+
+*Solution.* 
+
+\begin{align} \left(x + 2\right)\left(x^2 -4x + 8\right) &= x\left(x^2\right) - x\left(4x\right) + x\left(8\right) + 2\left(x^2\right) - 2\left(4x\right) + 2\left(8\right)\\
+&= x^3 -4x^2 + 8x + 2x^2 - 8x + 16\\
+&= x^3 + \left(-4x^2 + 2x^2\right) + \left(8x - 8x\right) + 16\\
+&= \boxed{~x^3 -2x^2 + 16~}
+\end{align}
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `0. Introduction and What to Expect`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Expand and simplify $10x + 3 - \left(x + 2\right)^2$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:18pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**About Our Course**</center>
+
++ PreCalculus $\to$ Prep for Calculus
++ Function Families
++ Geography of Functions
++ Inverses of Functions
++ Solving Equations
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ Avoid [common mistakes](https://youtu.be/97hJ2SSXlz0?si=It9C-81oO0B3FB5G){target="_blank"}.
++ Respect [*order of operations*](https://youtu.be/1MmhAq-XVN0?si=MH_XcZqlrNm-5_he){target="_blank"}.
++ [Combine *like* terms](https://youtu.be/eNv4fHb7OvU?si=MzVBmHlbhDm4GxTF){target="_blank"}.
++ Evaluate expressions by plugging a known value in for a variable ([Part I](https://youtu.be/k-KiWkV81fQ?si=fp83eYrJFqOaGolf){target="_blank"} and [Part II](https://youtu.be/k-KiWkV81fQ?si=zh86gpZWGhS4CmhR){target="_blank"}).
++ Use [rules for exponents](https://youtu.be/7X0gTNvkEPg?si=mRRBDR_ROy7ZWccQ&t=770){target="_blank"} to simplify expressions.
++ When [multiplying variable expressions](https://youtu.be/6NmKjMvDHLA?si=UftG__s4VHMmgP3N&t=265){target="_blank"}, multiply everything in one factor by everything in the other.
+:::
+
+::::
+
+
+:::
+
+:::{.fragment}
+
+<center> **Next Time:** <br/> Continued Algebra Foundations Review: <br/> Factoring, Rational Expressions, and Simplifying Rational Expressions</center>
+
+:::

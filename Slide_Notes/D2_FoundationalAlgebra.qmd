@@ -1,0 +1,1097 @@
+---
+title: "MAT 142: Day 2 -- Foundational Algebra"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ Order of operations and combining like terms.
++ Evaluating expressions by plugging in values for variables.
++ Expanding products of variable expressions.
++ Using rules for exponents.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**Problem 1:** Simplify $4x^2 - 3x + 7 - 2\left(x^2 + 5x -1\right)$
+
+**Problem 4:** Simplify $\displaystyle{\frac{\left(x^3 y^2 z^{-1}\right)^2}{\left(x^2y^{-1}\right)^{-3}}}$
+
+:::
+
+:::{.column width="30%"}
+
+**Problem 2:** Evaluate $2x^3 - x + 4$ for $x = -2$
+
+**Problem 5:** Expand and Simplify $\left(x + 3\right)^2 - \left(x - 3\right)^2$
+
+:::
+
+:::{.column width="33%"}
+
+**Problem 3:** Expand and simplify $\left(2x - 3\right)\left(x^2 + x - 4\right)$
+
+**Problem 6:** Simplify $\displaystyle{\frac{3x^4y^2 - 6x^2y^3}{3x^2y^2}}$
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today, we'll focus on factoring, rational expressions, and simplification.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify the greatest common factor from a collection of terms.
++ Factor the greatest common factor out of a collection of terms.
++ Factor a quadratic expression.
++ Factor a difference of squares. 
++ Use a common denominator to add or subtract two rational expressions.
++ Simplify complex fractions.
++ Use factoring to reduce complex fractions.
+
+## Factoring: Greatest Common Factor
+
+:::{.fragment}
+
+Factoring will be a main strategy for us as we seek to find roots and solve equations. As with last class meeting, we'll do a few problems for review but, if you need a more comprehensive review, [check out this video](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Rewrite the expression $6x^4 + 8x^3 - 10x^2$ by factoring out the greatest common factor.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} 6x^4 + 8x^3 -10x^2
+\end{align}
+
+:::
+
+## Factoring: Greatest Common Factor
+
+Factoring will be a main strategy for us as we seek to find roots and solve equations. As with last class meeting, we'll do a few problems for review but, if you need a more comprehensive review, [check out this video](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}.
+
+**Problem 1:** Rewrite the expression $6x^4 + 8x^3 - 10x^2$ by factoring out the greatest common factor.
+
+*Solution.*
+
+\begin{align} \color{blue}{6}x^4 + \color{blue}{8}x^3 - \color{blue}{10}x^2
+\end{align}
+
+
+## Factoring: Greatest Common Factor
+
+Factoring will be a main strategy for us as we seek to find roots and solve equations. As with last class meeting, we'll do a few problems for review but, if you need a more comprehensive review, [check out this video](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}.
+
+**Problem 1:** Rewrite the expression $6x^4 + 8x^3 - 10x^2$ by factoring out the greatest common factor.
+
+*Solution.*
+
+\begin{align} \color{blue}{6}x^4 + \color{blue}{8}x^3 - \color{blue}{10}x^2 &= \color{blue}{2}\left(3x^4 + 4x^3 - 5x^2\right)
+\end{align}
+
+## Factoring: Greatest Common Factor
+
+Factoring will be a main strategy for us as we seek to find roots and solve equations. As with last class meeting, we'll do a few problems for review but, if you need a more comprehensive review, [check out this video](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}.
+
+**Problem 1:** Rewrite the expression $6x^4 + 8x^3 - 10x^2$ by factoring out the greatest common factor.
+
+*Solution.*
+
+\begin{align} 6x^4 + 8x^3 - 10x^2 &= 2\left(3\color{blue}{x^4} + 4\color{blue}{x^3} - 5\color{blue}{x^2}\right)
+\end{align}
+
+## Factoring: Greatest Common Factor
+
+Factoring will be a main strategy for us as we seek to find roots and solve equations. As with last class meeting, we'll do a few problems for review but, if you need a more comprehensive review, [check out this video](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}.
+
+**Problem 1:** Rewrite the expression $6x^4 + 8x^3 - 10x^2$ by factoring out the greatest common factor.
+
+*Solution.*
+
+\begin{align} 6x^4 + 8x^3 - 10x^2 &= 2\left(3\color{blue}{x^4} + 4\color{blue}{x^3} - 5\color{blue}{x^2}\right)\\
+&= 2\color{blue}{x^2}\left(3x^2 + 4x - 5\right)
+\end{align}
+
+## Factoring: Greatest Common Factor
+
+Factoring will be a main strategy for us as we seek to find roots and solve equations. As with last class meeting, we'll do a few problems for review but, if you need a more comprehensive review, [check out this video](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}.
+
+**Problem 1:** Rewrite the expression $6x^4 + 8x^3 - 10x^2$ by factoring out the greatest common factor.
+
+*Solution.*
+
+\begin{align} 6x^4 + 8x^3 - 10x^2 &= 2\left(3\color{blue}{x^4} + 4\color{blue}{x^3} - 5\color{blue}{x^2}\right)\\
+&= \boxed{~2x^2\left(3x^2 + 4x - 5\right)~}
+\end{align}
+
+:::{.fragment}
+
+**Try It 1:** Rewrite the expression $12x^3y^2 - 8x^2y^3 + 4xy$ by factoring out the greatest common factor.
+
+:::
+
+:::{.fragment}
+
+**Try It 2:** Rewrite the expression $3x\left(x+2\right) - 7\left(x+2\right)$ by factoring out the greatest common factor.
+
+:::
+
+## Factoring: Quadratics I 
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem 2:** Factor the quadratic $x^2 - 7x + 12$, if possible.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
++ Start by looking at the leading/quadratic term (that's the one with $x^2$)
+    + Since the leading term is just $x^2$, your factors will take the form $\left(x ~?~ \text{___}\right)\left(x ~?~ \text{____}\right)$
++ Next, look at the sign in front of the constant term (that's the one with no variables in it)
+    + If the sign is positive, then both constant terms in the factors will have the same sign
+    + If the sign is negative, then the constant terms in the factors will have different signs
+    + Here, they'll have the same sign!
++ Now, the sign on the linear term (the one having $x^1$) will tell us what the sign on those constant terms will be
+    + We'll have $\left(x - \text{___}\right)\left(x - \text{___}\right)$
++ To finish off, we'll need two factors that multiply together to give us $12$, but add together to give us $-7$
+    + This means $x^2 - 7x + 12 = \boxed{~\left(x - 4\right)\left(x - 3\right)~}$
+
+:::
+
+</div>
+
+## Factoring: Quadratics II
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem 3:** Factor the quadratic $x^2 + 9x - 36$, if possible.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
++ Start by looking at the leading/quadratic term (that's the one with $x^2$).
+    + Since the leading term is just $x^2$ again, your factors will take the form $\left(x ~?~ \text{___}\right)\left(x ~?~ \text{____}\right)$.
++ Next, look at the sign in front of the constant term (that's the one with no variables in it)
+    + If the sign is positive, then both constant terms in the factors will have the same sign.
+    + If the sign is negative, then the constant terms in the factors will have different signs.
+    + Here, they'll have different signs!
+    + We'll have $\left(x + \text{___}\right)\left(x - \text{___}\right)$
++ Now the sign in front of the linear term (that's the one with $x^1$) will tell us what sign the dominant (bigger) number must have
+    + Here, the bigger number will be positive
++ To finish off, we'll need two factors that multiply together to give us $-36$, but add together to give us $9$
+    + This means $x^2 + 9x - 36 = \boxed{~\left(x + 12\right)\left(x - 3\right)~}$
+
+:::
+
+</div>
+
+## Factoring: Quadratics III
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem 4:** Factor the quadratic $6x^2 + x - 15$, if possible.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
++ Start by looking at the leading/quadratic term (that's the one with $x^2$ in it)
+    + This time the coefficient is not $1$, so it's less clear how to move forward.
+    + The leading term in each factor will be a linear term in $x$ -- that is, it will be a constant times $x$, and those two leading terms must multiply together to give us $6x^2$.
+    + Our factors will be of the form $\left(\text{___}x ~?~\text{___}\right)\left(\text{___}x ~?~\text{___}\right)$
++ Next, look at the sign in front of the constant term (that's the one with no variables in it)
+    + If the sign is positive, then both constant terms in the factors will have the same sign.
+    + If the sign is negative, then the constant terms in the factors will have different signs.
+    + Here, they'll have different signs!
+    + We'll have $\left(\text{___}x + \text{___}\right)\left(\text{___}x - \text{___}\right)$
++ Now, we need to fill in $\left(ax + b\right)\left(cx - d\right)$ so that $ac = 6$, $bd = 15$, and $bc - ad = 1$.
+    + This means $6x^2 + x - 15 = \boxed{~\left(3x + 5\right)\left(2x - 3\right)~}$
+
+:::
+
+:::{.fragment}
+
+**Note:** This one was quite difficult and we'll have opportunities to avoid this type of factoring if we want. You should, however, work to become comfortable with the strategies from **Problem 2** and **Problem 3**.
+
+:::
+
+</div>
+
+## Factoring: Quadratics IV
+
+:::{.fragment}
+
+The next scenario can be handled with the same strategy we used for the previous three examples.
+
+:::
+
+:::{.fragment}
+
+It is a special case though, which warrants becoming familiar with.
+
+:::
+
+:::{.fragment}
+
+**Definition (Difference of Squares):** An expression of the form $a^2 - b^2$ is known as a *difference of squares* and it factors nicely into $\left(a + b\right)\left(a - b\right)$.
+
+:::
+
+:::{.fragment}
+
+**Problem 5:** Factor the difference of squares $x^2 - 16$, if possible.
+
+:::
+
+:::{.fragment}
+
+*Solution.* $x^2 - 16 = \boxed{~\left(x + 4\right)\left(x - 4\right)}$
+
+:::
+
+:::{.fragment}
+
+**Problem 6:** Factor the difference of squares $9x^2 - 25$, if possible.
+
+:::
+
+:::{.fragment}
+
+*Solution.* $9x^2 - 25 = \boxed{~\left(3x + 5\right)\left(3x - 5\right)}$
+
+:::
+
+:::{.fragment}
+
+**Note:** While the difference of squares factors nicely, a sum of squares will not.
+
+:::
+
+## Factoring: Quadratics Practice
+
+:::{.fragment}
+
+Try each of the following practice problems.
+
+:::
+
+:::{.fragment}
+
+**Try It 3:** Factor the quadratic $x^2 + 3x - 18$, if possible.
+
+**Try It 4:** Factor the quadratic $x^2 - 5x - 24$, if possible.
+
+**Try It 5:** Factor the quadratic $6x^2 + 18x - 24$, if possible.
+
+**Try It 6:** Factor the quadratic $4x^2 -9$, if possible.
+
+**Try It 7:** Factor the quadratic $x^2 + 36$, if possible.
+
+**Try It 8:** Factor the quadratic $2x^2 + 7x + 3$, if possible.
+
+**Try It 9:** Factor the quadratic $4x^2 - 4x - 3$, if possible.
+
+:::
+
+## Rational Expressions I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Rational expressions are expressions of the form $\displaystyle{\frac{\left(\text{First Expression}\right)}{\left(\text{Second Expression}\right)}}$
+
+:::
+
+:::{.fragment}
+
+You might think of these expressions as "fractions" which may contain variables.
+
+:::
+
+:::{.fragment}
+
+As with previous review topics, we'll work through a couple of examples. If you want a more comprehensive review, stop by office hours and check out [this video on adding and subtracting rational expressions](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"} and [this one on simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
+
+:::
+
+:::{.fragment}
+
+**Problem 7:** Add the two rational expressions $\displaystyle{\frac{x}{6} + \frac{x}{15}}$
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \frac{x}{6} + \frac{x}{15}
+\end{align}
+
+:::
+
+</div>
+
+## Rational Expressions I
+
+<div style="font-size:17pt">
+
+Rational expressions are expressions of the form $\displaystyle{\frac{\left(\text{First Expression}\right)}{\left(\text{Second Expression}\right)}}$
+
+You might think of these expressions as "fractions" which may contain variables.
+
+As with previous review topics, we'll work through a couple of examples. If you want a more comprehensive review, stop by office hours and check out [this video on adding and subtracting rational expressions](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"} and [this one on simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
+
+**Problem 7:** Add the two rational expressions $\displaystyle{\frac{x}{6} + \frac{x}{15}}$
+
+*Solution.*
+
+\begin{align} \frac{x}{\color{blue}{6}} + \frac{x}{\color{blue}{15}} &= \frac{x}{\color{blue}{2\left(3\right)}} + \frac{x}{\color{blue}{5\left(3\right)}}
+\end{align}
+
+</div>
+
+## Rational Expressions I
+
+<div style="font-size:17pt">
+
+Rational expressions are expressions of the form $\displaystyle{\frac{\left(\text{First Expression}\right)}{\left(\text{Second Expression}\right)}}$
+
+You might think of these expressions as "fractions" which may contain variables.
+
+As with previous review topics, we'll work through a couple of examples. If you want a more comprehensive review, stop by office hours and check out [this video on adding and subtracting rational expressions](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"} and [this one on simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
+
+**Problem 7:** Add the two rational expressions $\displaystyle{\frac{x}{6} + \frac{x}{15}}$
+
+*Solution.*
+
+\begin{align} \frac{x}{6} + \frac{x}{15} &= \frac{x}{\color{blue}{2}\left(3\right)} + \frac{x}{\color{blue}{5}\left(3\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions I
+
+<div style="font-size:17pt">
+
+Rational expressions are expressions of the form $\displaystyle{\frac{\left(\text{First Expression}\right)}{\left(\text{Second Expression}\right)}}$
+
+You might think of these expressions as "fractions" which may contain variables.
+
+As with previous review topics, we'll work through a couple of examples. If you want a more comprehensive review, stop by office hours and check out [this video on adding and subtracting rational expressions](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"} and [this one on simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
+
+**Problem 7:** Add the two rational expressions $\displaystyle{\frac{x}{6} + \frac{x}{15}}$
+
+*Solution.*
+
+\begin{align} \frac{x}{6} + \frac{x}{15} &= \frac{x}{\color{blue}{2}\left(3\right)} + \frac{x}{\color{blue}{5}\left(3\right)}\\
+&= \frac{\color{blue}{5}x}{\color{blue}{5\left(2\right)}\left(3\right)} + \frac{\color{blue}{2}x}{\color{blue}{2\left(5\right)}\left(3\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions I
+
+<div style="font-size:17pt">
+
+Rational expressions are expressions of the form $\displaystyle{\frac{\left(\text{First Expression}\right)}{\left(\text{Second Expression}\right)}}$
+
+You might think of these expressions as "fractions" which may contain variables.
+
+As with previous review topics, we'll work through a couple of examples. If you want a more comprehensive review, stop by office hours and check out [this video on adding and subtracting rational expressions](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"} and [this one on simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
+
+**Problem 7:** Add the two rational expressions $\displaystyle{\frac{x}{6} + \frac{x}{15}}$
+
+*Solution.*
+
+\begin{align} \frac{x}{6} + \frac{x}{15} &= \frac{x}{2\left(3\right)} + \frac{x}{5\left(3\right)}\\
+&= \frac{5x}{5\left(2\right)\left(3\right)} + \frac{2x}{2\left(5\right)\left(3\right)}\\
+&= \frac{5x}{30} + \frac{2x}{30}
+\end{align}
+
+</div>
+
+## Rational Expressions I
+
+<div style="font-size:17pt">
+
+Rational expressions are expressions of the form $\displaystyle{\frac{\left(\text{First Expression}\right)}{\left(\text{Second Expression}\right)}}$
+
+You might think of these expressions as "fractions" which may contain variables.
+
+As with previous review topics, we'll work through a couple of examples. If you want a more comprehensive review, stop by office hours and check out [this video on adding and subtracting rational expressions](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"} and [this one on simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
+
+**Problem 7:** Add the two rational expressions $\displaystyle{\frac{x}{6} + \frac{x}{15}}$
+
+*Solution.*
+
+\begin{align} \frac{x}{6} + \frac{x}{15} &= \frac{x}{2\left(3\right)} + \frac{x}{5\left(3\right)}\\
+&= \frac{5x}{5\left(2\right)\left(3\right)} + \frac{2x}{2\left(5\right)\left(3\right)}\\
+&= \frac{5x}{30} + \frac{2x}{30}\\
+&= \frac{5x + 2x}{30}
+\end{align}
+
+</div>
+
+## Rational Expressions I
+
+<div style="font-size:17pt">
+
+Rational expressions are expressions of the form $\displaystyle{\frac{\left(\text{First Expression}\right)}{\left(\text{Second Expression}\right)}}$
+
+You might think of these expressions as "fractions" which may contain variables.
+
+As with previous review topics, we'll work through a couple of examples. If you want a more comprehensive review, stop by office hours and check out [this video on adding and subtracting rational expressions](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"} and [this one on simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
+
+**Problem 7:** Add the two rational expressions $\displaystyle{\frac{x}{6} + \frac{x}{15}}$
+
+*Solution.*
+
+\begin{align} \frac{x}{6} + \frac{x}{15} &= \frac{x}{2\left(3\right)} + \frac{x}{5\left(3\right)}\\
+&= \frac{5x}{5\left(2\right)\left(3\right)} + \frac{2x}{2\left(5\right)\left(3\right)}\\
+&= \frac{5x}{30} + \frac{2x}{30}\\
+&= \frac{5x + 2x}{30}\\
+&= \boxed{~\frac{7x}{30}~}
+\end{align}
+
+</div>
+
+## Rational Expressions II
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem 8:** Simplify the following rational expression $\displaystyle{\frac{x + 5}{x+1} - \frac{x - 2}{x + 3}}$
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \frac{x + 5}{x+1} - \frac{x - 2}{x + 3}
+\end{align}
+
+:::
+
+</div>
+
+## Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 8:** Simplify the following rational expression $\displaystyle{\frac{x + 5}{x+1} - \frac{x - 2}{x + 3}}$
+
+*Solution.*
+
+\begin{align} \frac{x + 5}{x+1} - \frac{x - 2}{x + 3} &= \frac{\color{blue}{\left(x + 3\right)}\left(x + 5\right)}{\color{blue}{\left(x + 3\right)}\left(x + 1\right)} - \frac{\color{blue}{\left(x + 1\right)}\left(x - 2\right)}{\color{blue}{\left(x + 1\right)}\left(x + 3\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 8:** Simplify the following rational expression $\displaystyle{\frac{x + 5}{x+1} - \frac{x - 2}{x + 3}}$
+
+*Solution.*
+
+\begin{align} \frac{x + 5}{x+1} - \frac{x - 2}{x + 3} &= \frac{\left(x + 3\right)\left(x + 5\right)}{\left(x + 3\right)\left(x + 1\right)} - \frac{\left(x + 1\right)\left(x - 2\right)}{\left(x + 1\right)\left(x + 3\right)}\\
+&= \frac{x^2 + 8x + 15}{\left(x + 3\right)\left(x + 1\right)} - \frac{x^2 - x - 2}{\left(x + 1\right)\left(x + 3\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 8:** Simplify the following rational expression $\displaystyle{\frac{x + 5}{x+1} - \frac{x - 2}{x + 3}}$
+
+*Solution.*
+
+\begin{align} \frac{x + 5}{x+1} - \frac{x - 2}{x + 3} &= \frac{\left(x + 3\right)\left(x + 5\right)}{\left(x + 3\right)\left(x + 1\right)} - \frac{\left(x + 1\right)\left(x - 2\right)}{\left(x + 1\right)\left(x + 3\right)}\\
+&= \frac{x^2 + 8x + 15}{\left(x + 3\right)\left(x + 1\right)} - \frac{x^2 - x - 2}{\left(x + 1\right)\left(x + 3\right)}\\
+&= \frac{\left(x^2 + 8x + 15\right) - \left(x^2 - x - 2\right)}{\left(x + 3\right)\left(x + 1\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 8:** Simplify the following rational expression $\displaystyle{\frac{x + 5}{x+1} - \frac{x - 2}{x + 3}}$
+
+*Solution.*
+
+\begin{align} \frac{x + 5}{x+1} - \frac{x - 2}{x + 3} &= \frac{\left(x + 3\right)\left(x + 5\right)}{\left(x + 3\right)\left(x + 1\right)} - \frac{\left(x + 1\right)\left(x - 2\right)}{\left(x + 1\right)\left(x + 3\right)}\\
+&= \frac{x^2 + 8x + 15}{\left(x + 3\right)\left(x + 1\right)} - \frac{x^2 - x - 2}{\left(x + 1\right)\left(x + 3\right)}\\
+&= \frac{\left(x^2 + 8x + 15\right) - \left(x^2 - x - 2\right)}{\left(x + 3\right)\left(x + 1\right)}\\
+&= \boxed{~\frac{9x + 17}{\left(x + 3\right)\left(x + 1\right)}~}
+\end{align}
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2}
+\end{align}
+
+:::
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2} &= \frac{\left(\frac{1}{x + 2} - \frac{1}{x}\right)}{\left(\frac{2}{1}\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2} &= \frac{\left(\frac{1}{x + 2} - \frac{1}{x}\right)}{\left(\frac{2}{1}\right)}\\
+&= \left(\frac{1}{x + 2} - \frac{1}{x}\right)\left(\frac{1}{2}\right)
+\end{align}
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2} &= \frac{\left(\frac{1}{x + 2} - \frac{1}{x}\right)}{\left(\frac{2}{1}\right)}\\
+&= \left(\frac{1}{x + 2} - \frac{1}{x}\right)\left(\frac{1}{2}\right)\\
+&= \frac{1}{2\left(x + 2\right)} - \frac{1}{2x}
+\end{align}
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2} &= \frac{\left(\frac{1}{x + 2} - \frac{1}{x}\right)}{\left(\frac{2}{1}\right)}\\
+&= \left(\frac{1}{x + 2} - \frac{1}{x}\right)\left(\frac{1}{2}\right)\\
+&= \frac{1}{2\left(x + 2\right)} - \frac{1}{2x}\\
+&= \frac{x}{2x\left(x + 2\right)} - \frac{\left(x + 2\right)}{2x\left(x + 2\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2} &= \frac{\left(\frac{1}{x + 2} - \frac{1}{x}\right)}{\left(\frac{2}{1}\right)}\\
+&= \left(\frac{1}{x + 2} - \frac{1}{x}\right)\left(\frac{1}{2}\right)\\
+&= \frac{1}{2\left(x + 2\right)} - \frac{1}{2x}\\
+&= \frac{x}{2x\left(x + 2\right)} - \frac{\left(x + 2\right)}{2x\left(x + 2\right)}\\
+&= \frac{x - \left(x + 2\right)}{2x\left(x + 2\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2} &= \frac{\left(\frac{1}{x + 2} - \frac{1}{x}\right)}{\left(\frac{2}{1}\right)}\\
+&= \left(\frac{1}{x + 2} - \frac{1}{x}\right)\left(\frac{1}{2}\right)\\
+&= \frac{1}{2\left(x + 2\right)} - \frac{1}{2x}\\
+&= \frac{x}{2x\left(x + 2\right)} - \frac{\left(x + 2\right)}{2x\left(x + 2\right)}\\
+&= \frac{x - \left(x + 2\right)}{2x\left(x + 2\right)}\\
+&= \frac{-2}{2x\left(x + 2\right)}
+\end{align}
+
+</div>
+
+## Rational Expressions III
+
+<div style="font-size:17pt">
+
+**Problem 9:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + 2} - \frac{1}{x}}{2}}$
+
+*Solution.*
+
+\begin{align} \frac{\frac{1}{x + 2} - \frac{1}{x}}{2} &= \frac{\left(\frac{1}{x + 2} - \frac{1}{x}\right)}{\left(\frac{2}{1}\right)}\\
+&= \left(\frac{1}{x + 2} - \frac{1}{x}\right)\left(\frac{1}{2}\right)\\
+&= \frac{1}{2\left(x + 2\right)} - \frac{1}{2x}\\
+&= \frac{x}{2x\left(x + 2\right)} - \frac{\left(x + 2\right)}{2x\left(x + 2\right)}\\
+&= \frac{x - \left(x + 2\right)}{2x\left(x + 2\right)}\\
+&= \frac{-2}{2x\left(x + 2\right)}\\
+&= \boxed{~\frac{-1}{x\left(x + 2\right)}~}
+\end{align}
+
+</div>
+
+## Rational Expressions Practice
+
+:::{.fragment}
+
+Try each of the following practice problems.
+
+:::
+
+:::{.fragment}
+
+**Try It 10:** Add the rational expressions $\displaystyle{\frac{x}{4} + \frac{x}{6}}$
+
+**Try It 11:** Subtract the rational expressions $\displaystyle{\frac{2x}{9} - \frac{x}{6}}$
+
+**Try It 12:** Simplify the rational expression $\displaystyle{\frac{x - 4}{x + 2} - \frac{x + 1}{x - 3}}$
+
+**Try It 13:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x} + \frac{1}{x + 3}}{2x}}$
+
+**Try It 14:** Simplify the following rational expression $\displaystyle{\frac{\frac{1}{x + h} - \frac{1}{x}}{h}}$
+
+:::
+
+## Factoring and Reducing Rational Expressions I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+One of the reasons factoring is such a critical skill is because it allows us to simplify expressions significantly and gives great insight into the expressions.
+
+:::
+
+:::{.fragment}
+
+Nearly every time we see an expression with exponents in it, we'll want to factor it because the factored form allows us to immediately see when that expression is $0$.
+
+:::
+
+:::{.fragment}
+
+Again, we'll look at a few examples, but for more comprehensive discussions please stop by office hours and check out [this video covering simplification of rational expressions](https://youtu.be/7Uos1ED3KHI?si=2jUtaKinE0KPiAao){target="_blank"}.
+
+:::
+
+:::{.fragment}
+
+**Problem 10:** Simplify the expression $\displaystyle{\frac{8x}{2x^3 - 8x}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+\begin{align} \frac{8x}{2x^3 - 8x}
+\end{align}
+
+:::
+
+</div>
+
+## Factoring and Reducing Rational Expressions I
+
+<div style="font-size:17pt">
+
+One of the reasons factoring is such a critical skill is because it allows us to simplify expressions significantly and gives great insight into the expressions.
+
+Nearly every time we see an expression with exponents in it, we'll want to factor it because the factored form allows us to immediately see when that expression is $0$.
+
+Again, we'll look at a few examples, but for more comprehensive discussions please stop by office hours and check out [this video covering simplification of rational expressions](https://youtu.be/7Uos1ED3KHI?si=2jUtaKinE0KPiAao){target="_blank"}.
+
+**Problem 10:** Simplify the expression $\displaystyle{\frac{8x}{2x^3 - 8x}}$.
+
+*Solution.* 
+
+\begin{align} \frac{8x}{2x^3 - 8x} &= \frac{8x}{2x\left(x^2 - 4\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions I
+
+<div style="font-size:17pt">
+
+One of the reasons factoring is such a critical skill is because it allows us to simplify expressions significantly and gives great insight into the expressions.
+
+Nearly every time we see an expression with exponents in it, we'll want to factor it because the factored form allows us to immediately see when that expression is $0$.
+
+Again, we'll look at a few examples, but for more comprehensive discussions please stop by office hours and check out [this video covering simplification of rational expressions](https://youtu.be/7Uos1ED3KHI?si=2jUtaKinE0KPiAao){target="_blank"}.
+
+**Problem 10:** Simplify the expression $\displaystyle{\frac{8x}{2x^3 - 8x}}$.
+
+*Solution.* 
+
+\begin{align} \frac{8x}{2x^3 - 8x} &= \frac{8x}{2x\left(x^2 - 4\right)}\\
+&= \frac{4}{x^2 - 4}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions I
+
+<div style="font-size:17pt">
+
+One of the reasons factoring is such a critical skill is because it allows us to simplify expressions significantly and gives great insight into the expressions.
+
+Nearly every time we see an expression with exponents in it, we'll want to factor it because the factored form allows us to immediately see when that expression is $0$.
+
+Again, we'll look at a few examples, but for more comprehensive discussions please stop by office hours and check out [this video covering simplification of rational expressions](https://youtu.be/7Uos1ED3KHI?si=2jUtaKinE0KPiAao){target="_blank"}.
+
+**Problem 10:** Simplify the expression $\displaystyle{\frac{8x}{2x^3 - 8x}}$.
+
+*Solution.* 
+
+\begin{align} \frac{8x}{2x^3 - 8x} &= \frac{8x}{2x\left(x^2 - 4\right)}\\
+&= \frac{4}{x^2 - 4}\\
+&= \boxed{~\frac{4}{\left(x + 2\right)\left(x - 2\right)}~}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21}
+\end{align}
+
+:::
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(\text{___}~?~\text{___}\right)\left(\text{___}~?~\text{___}\right)}{\left(\text{___}~?~\text{___}\right)\left(\text{___}~?~\text{___}\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(x~?~\text{___}\right)\left(x~?~\text{___}\right)}{\left(\text{___}~?~\text{___}\right)\left(\text{___}~?~\text{___}\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(x - \text{___}\right)\left(x - \text{___}\right)}{\left(\text{___}~?~\text{___}\right)\left(\text{___}~?~\text{___}\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(x - 7\right)\left(x - 2\right)}{\left(\text{___}~?~\text{___}\right)\left(\text{___}~?~\text{___}\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(x - 7\right)\left(x - 2\right)}{\left(x~?~\text{___}\right)\left(x~?~\text{___}\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(x - 7\right)\left(x - 2\right)}{\left(x + \text{___}\right)\left(x - \text{___}\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(x - 7\right)\left(x - 2\right)}{\left(x + 3\right)\left(x - 7\right)}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions II
+
+<div style="font-size:17pt">
+
+**Problem 11:** Simplify the expression $\displaystyle{\frac{x^2 - 9x + 14}{x^2 -4x - 21}}$.
+
+*Solution.*
+
+\begin{align} \frac{x^2 - 9x + 14}{x^2 -4x - 21} &= \frac{\left(x - 7\right)\left(x - 2\right)}{\left(x + 3\right)\left(x - 7\right)}\\
+&= \boxed{~\frac{x - 2}{x + 3}~}
+\end{align}
+
+</div>
+
+## Factoring and Reducing Rational Expressions Practice
+
+:::{.fragment}
+
+Try each of the following practice problems.
+
+:::
+
+:::{.fragment}
+
+**Try It 15:** Simplify the expression $\displaystyle{\frac{6x^2}{3x^3 - 12x^2}}$.
+
+**Try It 16:** Simplify the expression $\displaystyle{\frac{4x + 8}{2x^2 + 8x + 8}}$.
+
+**Try It 17:** Simplify the expression $\displaystyle{\frac{x^2 - 16}{3x^2 - 12x}}$.
+
+**Try It 18:** Simplify the expression $\displaystyle{\frac{x^2 - x - 6}{x^2 + x - 12}}$.
+
+**Try It 19:** Simplify the expression $\displaystyle{\frac{2x^2 + 5x - 3}{2x^2 - 7x + 3}}$.
+
+:::
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `1. Algebra Foundation`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** What can I do to best help you (i) feel more comfortable with me. (ii) feel more comfortable in class, and (iii) ultimately find success in this course and beyond?
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**General Comments**</center>
+
++ We covered a lot of ground today, and the topics we worked with are genuinely difficult. 
++ Factoring and working with rational expressions are two of the most common places mistakes are made. 
++ Please know that I want to work with you and I want you to be successful in this course.
++ I'm looking forward to working with you in office hours.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Resources for Today's Conent**</center>
+
++ [Factoring strategies](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}
++ [Rational expressions and common denominators](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"}
++ [Simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
++ [Factoring and simplifying rational expression](https://youtu.be/7Uos1ED3KHI?si=2jUtaKinE0KPiAao){target="_blank"}
+
+:::
+
+::::
+
+
+:::
+
+:::{.fragment}
+
+<center> **Next Time:** <br/> Describing Intervals of Real Numbers, Function Notation, and Function Evaluation</center>
+
+:::
+
+:::{.fragment}
+
+<center> **Homework:** <br/> Complete Homework 1 on MyOpenMath</center>
+
+:::

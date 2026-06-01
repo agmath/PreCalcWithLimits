@@ -1,0 +1,1444 @@
+---
+title: "MAT 142: Day 3 -- Intervals and Introduction to Functions"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ Factoring out a greatest common factor.
++ Factoring quadratic expressions, including differences of squares.
++ Adding and subtracting rational expressions using a common denominator.
++ Simplifying complex rational expressions.
++ Using factoring to reduce rational expressions.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Problem 1:** Expand and simplify $\left(x^2 - 5x + 2\right)\left(2x - 3x^2\right)$
+
+**Problem 2:** Simplify $\displaystyle{\frac{x^3 - 7x^2 + 12x}{3x - x^2}}$
+
+:::
+
+:::{.column width="50%"}
+
+**Problem 3:** Simplify $\displaystyle{\frac{5}{x + 3} - \frac{x - 8}{x + 2}}$
+
+**Problem 4:** Simplify $\displaystyle{\frac{x - \frac{1}{4}}{\frac{1}{x} + 2}}$
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today, we'll work with two main topics: describing intervals of real numbers, and an introduction to functions and function notation.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify important landmarks from the graph of a function -- roots, $y$-intercept, local maxima/minima, and intervals of increase/decrease.
++ Use interval notation to describe intervals of real numbers.
++ Define what is meant by a *function*.
++ Identify and use function notation.
++ Evaluate a function at a given input, including symbolic inputs.
++ Evaluate a piecewise-defined function.
+
+## Intervals of Real Numbers
+
+:::{.fragment}
+
+Before diving into interval notation, we'll build some intuition by reading information directly from function graphs.
+
+:::
+
+:::{.fragment}
+
+For any function we study, we'll want to be able to identify the following **landmarks**:
+
+:::
+
++ **Roots** ($x$-intercepts): points on the graph where $y = 0$
++ **$y$-intercept**: the point on the graph where $x = 0$
++ **Local Maxima/Minima**: the $x$-coordinates of peaks and valleys
++ **Intervals of Increase**: where the graph is rising (left to right)
++ **Intervals of Decrease**: where the graph is falling (left to right)
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Consider the function graphed on the right. Answer each of the following.
+
++ Identify the locations of all roots ($x$-intercepts).
++ Identify the $y$-intercept.
++ Identify the $x$-coordinates of any local minima or maxima.
++ Describe the interval(s) over which the function is increasing.
++ Describe the interval(s) over which the function is decreasing.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+
+:::
+
+:::{.fragment}
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+Consider the function graphed on the right. Answer each of the following.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ Identify the $y$-intercept.
++ Identify the $x$-coordinates of any local minima or maxima.
++ Describe the interval(s) over which the function is increasing.
++ Describe the interval(s) over which the function is decreasing.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_point(aes(x = -5, y = 0), size = 3) + 
+  geom_point(aes(x = 1, y = 0), size = 3) + 
+  geom_point(aes(x = 3, y = 0), size = 3) + 
+  geom_point(aes(x = 7, y = 0), size = 3) + 
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+Consider the function graphed on the right. Answer each of the following.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ **$y$-intercept:** approximately $\left(0, -10\right)$
++ Identify the $x$-coordinates of any local minima or maxima.
++ Describe the interval(s) over which the function is increasing.
++ Describe the interval(s) over which the function is decreasing.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_point(aes(x = 0, y = -10), size = 3) + 
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+Consider the function graphed on the right. Answer each of the following.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ **$y$-intercept:** approximately $\left(0, -10\right)$
++ **Local minima** near $x \approx -3$ and $x \approx 5.5$; **local maximum** near $x \approx 2$
++ Describe the interval(s) over which the function is increasing.
++ Describe the interval(s) over which the function is decreasing.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_vline(aes(xintercept = -3), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 2), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 5.5), lwd = 0.5, linetype = "dashed") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+Consider the function graphed on the right. Answer each of the following.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ **$y$-intercept:** approximately $\left(0, -10\right)$
++ **Local minima** near $x \approx -3$ and $x \approx 5.5$; **local maximum** near $x \approx 2$
++ **Increasing** between approximately $x = -3$ and $x = 2$ and also beyond $x = 5.5$
++ Describe the interval(s) over which the function is decreasing.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_vline(aes(xintercept = -3), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 2), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 5.5), lwd = 0.5, linetype = "dashed") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+Consider the function graphed on the right. Answer each of the following.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ **$y$-intercept:** approximately $\left(0, -10\right)$
++ **Local minima** near $x \approx -3$ and $x \approx 5.5$; **local maximum** near $x \approx 2$
++ **Increasing** between approximately $x = -3$ and $x = 2$ and also beyond $x = 5.5$
++ **Decreasing** prior to $x = -3$ as well as between $x = 2$ and $x = 5.5$.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_vline(aes(xintercept = -3), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 2), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 5.5), lwd = 0.5, linetype = "dashed") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Try It! 1
+
+Consider the function graphed below. Answer each of the following.
+
++ Identify the locations of all roots ($x$-intercepts).
++ Identify the $y$-intercept.
++ Identify the $x$-coordinates of any local minima or maxima.
++ Describe the interval(s) over which the function is increasing.
++ Describe the interval(s) over which the function is decreasing.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(-0.1*(x + 7)*(x + 4)*(x)*(x - 2)*(x - 5)*(x - 8))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -2000, yend = 1500,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-2000, 1500))
+```
+
+## Interval Notation
+
+<div style="font-size:18pt">
+
+:::{.fragment}
+
+It is useful to have a standard mathematical notation for describing intervals of real numbers. We'll make use of the following conventions.
+
+:::
+
+:::{.fragment}
+
+**Open intervals** use parentheses and exclude the endpoints:
+
+$$\left(a, b\right) = \text{all real numbers strictly between } a \text{ and } b$$
+
+:::
+
+:::{.fragment}
+
+**Closed intervals** use square brackets and include the endpoints:
+
+$$\left[a, b\right] = \text{all real numbers between } a \text{ and } b, \text{ including } a \text{ and } b$$
+
+:::
+
+:::{.fragment}
+
+**Half-open intervals** mix the two:
+
+$$\left(a, b\right] = \text{includes } b \text{ but not } a \qquad \left[a, b\right) = \text{includes } a \text{ but not } b$$
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Overloaded Notation
+The notation $\left(a, b\right)$ is overloaded -- it can mean an open interval *or* a point in the coordinate plane. Context makes the meaning clear.
+:::
+
+:::
+
+## Interval Notation (Cont'd)
+
+<div style="font-size:18pt">
+
+:::{.fragment}
+
+The **union** operator $\cup$ lets us describe a collection of disjoint intervals:
+
+$$\left(a, b\right) \cup \left(c, d\right) = \text{all real numbers in } \left(a,b\right) \text{ or in } \left(c, d\right)$$
+
+:::
+
+:::{.fragment}
+
+We can chain as many unions together as needed.
+
+:::
+
+:::{.fragment}
+
+For unbounded intervals, we use $\infty$ and $-\infty$. The unbounded end of an interval is always accompanied by parentheses (never brackets), since infinity is not a number that can be reached.
+
+$$\begin{array}{ccccc}
+\left(-\infty, a\right) & & \left(a, \infty\right) & & \left(-\infty, \infty\right)\\[6pt]
+\left(-\infty, a\right] & & \left[a, \infty\right) & & \end{array}$$
+
+:::
+
+:::{.fragment}
+
+For a comprehensive review of interval notation, check out this [video from The Organic Chemistry Tutor](https://youtu.be/Ww7xtG2S7IM?si=ZfCjHsayj5U6vKYr){target="_blank"}.
+
+:::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+Rewrite your answers below, using interval notation where appropriate.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ **$y$-intercept:** approximately $\left(0, -10\right)$
++ **Local minima** near $x \approx -3$ and $x \approx 5.5$; **local maximum** near $x \approx 2$
++ **Increasing** between approximately $x = -3$ and $x = 2$ and also beyond $x = 5.5$
++ **Decreasing** prior to $x = -3$ as well as between $x = 2$ and $x = 5.5$.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_vline(aes(xintercept = -3), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 2), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 5.5), lwd = 0.5, linetype = "dashed") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+Rewrite your answers below, using interval notation where appropriate.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ **$y$-intercept:** approximately $\left(0, -10\right)$
++ **Local minima** near $x \approx -3$ and $x \approx 5.5$; **local maximum** near $x \approx 2$
++ **Increasing:** $\left(-3, 2\right)\cup \left(5.5, \infty\right)$
++ **Decreasing** prior to $x = -3$ as well as between $x = 2$ and $x = 5.5$.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_vline(aes(xintercept = -3), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 2), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 5.5), lwd = 0.5, linetype = "dashed") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+Rewrite your answers below, using interval notation where appropriate.
+
+:::{.nonincremental}
+
++ **Roots:** approximately $\left(-5, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, and $\left(7, 0\right)$
++ **$y$-intercept:** approximately $\left(0, -10\right)$
++ **Local minima** near $x \approx -3$ and $x \approx 5.5$; **local maximum** near $x \approx 2$
++ **Increasing:** $\left(-3, 2\right)\cup \left(5.5, \infty\right)$
++ **Decreasing:** $\left(-\infty, -3\right)\cup \left(2, 5.5\right)$
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(0.1*(x + 5)*(x - 1)*(x - 3)*(x - 7))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  geom_vline(aes(xintercept = -3), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 2), lwd = 0.5, linetype = "dashed") +
+  geom_vline(aes(xintercept = 5.5), lwd = 0.5, linetype = "dashed") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -50, yend = 50,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-50, 50))
+```
+
+*Solutions.* By inspecting the graph (we'll develop exact methods later in the course).
+
+</div>
+
+## Try It! 2
+
+Rewrite your answers, using interval notation where appropriate.
+
++ Identify the locations of all roots ($x$-intercepts).
++ Identify the $y$-intercept.
++ Identify the $x$-coordinates of any local minima or maxima.
++ Describe the interval(s) over which the function is increasing.
++ Describe the interval(s) over which the function is decreasing.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+my_func <- function(x){
+  return(-0.1*(x + 7)*(x + 4)*(x)*(x - 2)*(x - 5)*(x - 8))
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+             color = "blue") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -2000, yend = 1500,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-2000, 1500))
+```
+
+## Introduction to Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Function):** A *function* is a rule that assigns **exactly one output** for any given input value from its *domain*.
+
+:::
+
+:::{.fragment}
+
+In PreCalculus, we'll be interested in functions that take a real-valued input $x$ and assign a real-valued output $y$.
+
+:::
+
+:::{.fragment}
+
+The key phrase is *exactly one*. For any input we plug in, there can only be one corresponding output.
+
+:::
+
+:::{.fragment}
+
+The graphs below illustrate the difference between a function and a non-function:
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+<center>**A Function**</center>
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+
+my_func <- function(x){
+  return(x^2)
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -5, yend = 30,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-5, 5, by = 1))
+```
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+<center>**Not A Function**</center>
+
+```{r}
+x_vals <- seq(0, 5, length.out = 500)
+
+my_func <- function(x){
+  return(sqrt(x))
+}
+
+y_vals_1 <- my_func(x_vals)
+y_vals_2 <- -my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals_1),
+            color = "blue") +
+  geom_line(aes(x = x_vals, y = y_vals_2),
+            color = "blue") +
+  annotate("segment",
+             x = -5, xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -5, yend = 5,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-5, 5, by = 1))
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Introduction to Functions
+
+<div style="font-size:17pt">
+
+**Definition (Function):** A *function* is a rule that assigns **exactly one output** for any given input value from its *domain*.
+
+In PreCalculus, we'll be interested in functions that take a real-valued input $x$ and assign a real-valued output $y$.
+
+The key phrase is *exactly one*. For any input we plug in, there can only be one corresponding output.
+
+The graphs below illustrate the difference between a function and a non-function:
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**A Function**</center>
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+
+my_func <- function(x){
+  return(x^2)
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -5, yend = 30,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-5, 5, by = 1))
+```
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Not A Function**</center>
+
+```{r}
+x_vals <- seq(0, 5, length.out = 500)
+
+my_func <- function(x){
+  return(sqrt(x))
+}
+
+y_vals_1 <- my_func(x_vals)
+y_vals_2 <- -my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals_1),
+            color = "blue") +
+  geom_line(aes(x = x_vals, y = y_vals_2),
+            color = "blue") +
+  annotate("segment",
+             x = -5, xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -5, yend = 5,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-5, 5, by = 1))
+```
+
+:::
+
+::::
+
+:::{.fragment}
+
+A common method for testing whether a graph corresponds to a function is called the **vertical line test**. A graph passes (and is a function) if any vertical line drawn intersects the function at most once.
+
+:::
+
+</div>
+
+## Introduction to Functions
+
+<div style="font-size:17pt">
+
+**Definition (Function):** A *function* is a rule that assigns **exactly one output** for any given input value from its *domain*.
+
+In PreCalculus, we'll be interested in functions that take a real-valued input $x$ and assign a real-valued output $y$.
+
+The key phrase is *exactly one*. For any input we plug in, there can only be one corresponding output.
+
+The graphs below illustrate the difference between a function and a non-function:
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**A Function**</center>
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+
+my_func <- function(x){
+  return(x^2)
+}
+
+y_vals <- my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") +
+  geom_vline(aes(xintercept = seq(-5, 5, length.out = 25)),
+             alpha = 0.75) +
+  annotate("segment",
+             x = min(x_vals), xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -5, yend = 30,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-5, 5, by = 1))
+```
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Not A Function**</center>
+
+```{r}
+x_vals <- seq(0, 5, length.out = 500)
+
+my_func <- function(x){
+  return(sqrt(x))
+}
+
+y_vals_1 <- my_func(x_vals)
+y_vals_2 <- -my_func(x_vals)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals_1),
+            color = "blue") +
+  geom_line(aes(x = x_vals, y = y_vals_2),
+            color = "blue") +
+  geom_vline(aes(xintercept = seq(-5, 5, length.out = 25)),
+             alpha = 0.75) +
+  annotate("segment",
+             x = -5, xend = max(x_vals), y = 0, yend = 0,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    annotate("segment",
+             x = 0, xend = 0, y = -5, yend = 5,
+             arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+             linewidth = 0.5) +
+    theme(
+      axis.line = element_blank(),
+      axis.title = element_blank(),
+      base.size = 20
+    ) + 
+  scale_x_continuous(breaks = seq(-5, 5, by = 1))
+```
+
+:::
+
+::::
+
+A common method for testing whether a graph corresponds to a function is called the **vertical line test**. A graph passes (and is a function) if any vertical line drawn intersects the function at most once.
+
+</div>
+
+## Function Notation
+
+:::{.fragment}
+
+**Definition (Function Notation):** We use *function notation* $f\left(x\right)$ to denote functions. This replaces "$y =$" with "$f\left(x\right) =$".
+
+:::
+
+:::{.fragment}
+
+For example, we can write $y = 5x + 4$ as $f\left(x\right) = 5x + 4$.
+
+:::
+
+:::{.fragment}
+
+This notation is compact and informative -- $f\left(x\right) = 5x + 4$ tells us exactly what happens to the input: *multiply by 5, then add 4*.
+
+:::
+
+:::{.fragment}
+
+You can think of the function name $f$ as the name of a machine, and $f\left(x\right)$ as the output of that machine when you feed it $x$:
+
+$$\text{Input: } x \longrightarrow \boxed{~~f~~} \longrightarrow \text{Output: } f\left(x\right)$$
+
+:::
+
+:::{.fragment}
+
+We're not limited to the name $f$ -- we can use $g$, $h$, $j$, $k$, or any other letter we like. The name is just a label for the rule.
+
+:::
+
+## Completed Example 3
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Consider the function $f\left(x\right) = x^2 - 4x + 3$. Evaluate each of the following.
+
+$$\left(a\right)~f\left(2\right) \qquad \left(b\right)~f\left(0\right) \qquad \left(c\right)~f\left(-3\right) \qquad \left(d\right)~f\left(\pi\right) \qquad \left(e\right)~f\left(\heartsuit\right) \qquad \left(f\right)~f\left(x + h\right)$$
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(2\right) &= \left(2\right)^2 - 4\left(2\right) + 3 = 4 - 8 + 3 = \boxed{~-1~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(0\right) &= \left(0\right)^2 - 4\left(0\right) + 3 = \boxed{~3~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(-3\right) &= \left(-3\right)^2 - 4\left(-3\right) + 3 = 9 + 12 + 3 = \boxed{~24~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(\pi\right) &= \left(\pi\right)^2 - 4\left(\pi\right) + 3 = \boxed{~\pi^2 - 4\pi + 3~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(\heartsuit\right) &= \left(\heartsuit\right)~^2 - 4\left(\heartsuit\right) + 3 = \boxed{~\heartsuit~^2 - 4\heartsuit + 3~}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider the function $f\left(x\right) = x^2 - 4x + 3$. Evaluate $f\left(x + h\right)$.
+
+:::{.fragment}
+
+*Solution.* Replace every $x$ with $\left(x + h\right)$:
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(x + h\right) &= \left(x + h\right)^2 - 4\left(x + h\right) + 3
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider the function $f\left(x\right) = x^2 - 4x + 3$. Evaluate $f\left(x + h\right)$.
+
+*Solution.* Replace every $x$ with $\left(x + h\right)$:
+
+\begin{align} f\left(x + h\right) &= \left(x + h\right)^2 - 4\left(x + h\right) + 3\\
+&= \left(x + h\right)\left(x + h\right) - 4x - 4h + 3
+\end{align}
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider the function $f\left(x\right) = x^2 - 4x + 3$. Evaluate $f\left(x + h\right)$.
+
+*Solution.* Replace every $x$ with $\left(x + h\right)$:
+
+\begin{align} f\left(x + h\right) &= \left(x + h\right)^2 - 4\left(x + h\right) + 3\\
+&= \left(x + h\right)\left(x + h\right) - 4x - 4h + 3\\
+&= x^2 + 2xh + h^2 - 4x - 4h + 3
+\end{align}
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider the function $f\left(x\right) = x^2 - 4x + 3$. Evaluate $f\left(x + h\right)$.
+
+*Solution.* Replace every $x$ with $\left(x + h\right)$:
+
+\begin{align} f\left(x + h\right) &= \left(x + h\right)^2 - 4\left(x + h\right) + 3\\
+&= \left(x + h\right)\left(x + h\right) - 4x - 4h + 3\\
+&= \boxed{~x^2 + 2xh + h^2 - 4x - 4h + 3~}
+\end{align}
+
+:::{.fragment}
+
+:::{.callout-note}
+## Importance of $f\left(x + h\right)$
+
+You'll see $f\left(x + h\right)$ often because it shows up in an extremely important quantity called the *difference quotient* in Calculus. Developing an ability to plug "$x + h$" into a function, expand it, and simplify will be critical to your success.
+
+We'll preview the *difference quotient* later in our course.
+
+:::
+
+:::
+
+</div>
+
+## Piecewise-Defined Functions
+
+:::{.fragment}
+
+Some functions behave differently on different intervals. We call these **piecewise-defined functions**.
+
+:::
+
+:::{.fragment}
+
+**Definition (Piecewise-Defined Function):** A piecewise-defined function is defined by different rules on different pieces of its domain:
+
+$$f\left(x\right) = \left\{\begin{array}{rcl} f_1\left(x\right) & ; & x \text{ in Interval 1}\\ f_2\left(x\right) & ; & x \text{ in Interval 2}\\ \vdots & & \vdots \\ f_k\left(x\right) & ; & x \text{ in Interval } k \end{array}\right.$$
+
+:::
+
+:::{.fragment}
+
+To evaluate a piecewise-defined function at a given input: **first determine which interval the input falls in, then apply the corresponding rule.**
+
+:::
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Consider the piecewise-defined function
+
+$$f\left(x\right) = \left\{\begin{array}{rcl} x^2 - 4 & ; & x < -2\\ x + 5 & ; & -2 \leq x < 7\\ \sqrt{\left(x - 7\right)} + 12 & ; & x \geq 7 \end{array}\right.$$
+
+Evaluate $\left(a\right)~f\left(0\right)$, $\quad\left(b\right)~f\left(11\right)$, $\quad\left(c\right)~f\left(-5\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+$\left(a\right)$ Since $x = 0$ satisfies the inequality $-2 \leq x < 7$, we use the second piece:
+
+\begin{align} f\left(0\right) &= 0 + 5 = \boxed{~5~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+$\left(b\right)$ Since $x = 11$ satisfies $x \geq 7$, we use the third piece:
+
+\begin{align} f\left(11\right) &= \sqrt{\left(11 - 7\right)} + 12 = \sqrt{4} + 12 = 2 + 12 = \boxed{~14~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+$\left(c\right)$ Since $x = -5$ satisfies $x < -2$, we use the first piece:
+
+\begin{align} f\left(-5\right) &= \left(-5\right)^2 - 4 = 25 - 4 = \boxed{~21~}
+\end{align}
+
+:::
+
+</div>
+
+## Piecewise Functions Practice
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Try each of the following practice problems.
+
+:::
+
+:::{.fragment}
+
+**Try It! 3:** Consider $g\left(x\right) = 8 - 2x^3$. Describe in words how $g$ transforms its input. Then evaluate $g\left(-1\right)$, $g\left(0\right)$, $g\left(2\right)$, $g\left(\sqrt{2}\right)$, $g\left(\heartsuit\right)$, $g\left(\heartsuit + \diamondsuit\right)$, and $g\left(x + h\right)$.
+
+<br/>
+
+**Try It! 4:** Consider $h\left(x\right) = \sqrt{x^2 + 9}$. Describe in words how $h$ transforms its input. Then evaluate $h\left(5\right)$, $h\left(0\right)$, $h\left(-1\right)$, $h\left(\sqrt{2}\right)$, $h\left(\heartsuit\right)$, and $h\left(x + h\right)$.
+
+<br/>
+
+**Try It! 5:** Consider $\displaystyle{j\left(x\right) = \frac{2x}{x^2 - 9}}$. Describe in words how $j$ transforms its input. Then evaluate $j\left(0\right)$, $j\left(5\right)$, $j\left(-3\right)$, $j\left(\sqrt{3}\right)$, $j\left(\heartsuit\right)$, and $j\left(x + h\right)$.
+
+<br/>
+
+**Try It! 6:** Consider $k\left(x\right) = \left\{\begin{array}{rcl} 8 - x^3 & ; & x \leq 2\\ x & ; & x > 2\end{array}\right.$. Evaluate $k\left(5\right)$, $k\left(0\right)$, and $k\left(2\right)$.
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `1. Algebra Foundation`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** What can I do to best help you (i) feel more comfortable with me. (ii) feel more comfortable in class, and (iii) ultimately find success in this course and beyond?
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**General Comments**</center>
+
++ We covered a lot of ground today, and the topics we worked with are genuinely difficult. 
++ Factoring and working with rational expressions are two of the most common places mistakes are made. 
++ Please know that I want to work with you and I want you to be successful in this course.
++ I'm looking forward to working with you in office hours.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Resources for Today's Conent**</center>
+
++ [Factoring strategies](https://youtu.be/9MUDAr1PnlE?si=WbizeMZeQh6zeibf){target="_blank"}
++ [Rational expressions and common denominators](https://youtu.be/6uJx7PE_ths?si=dKBL6OtoffKzBOYQ){target="_blank"}
++ [Simplification of complex rational expressions](https://youtu.be/ifDEetTq8bM?si=GqKva_upOAsje37l){target="_blank"}
++ [Factoring and simplifying rational expression](https://youtu.be/7Uos1ED3KHI?si=2jUtaKinE0KPiAao){target="_blank"}
+
+:::
+
+::::
+
+
+:::
+
+:::{.fragment}
+
+<center> **Next Time:** <br/> Describing Intervals of Real Numbers, Function Notation, and Function Evaluation</center>
+
+:::
+
+:::{.fragment}
+
+<center> **Homework:** <br/> Complete Homework 1 on MyOpenMath</center>
+
+:::

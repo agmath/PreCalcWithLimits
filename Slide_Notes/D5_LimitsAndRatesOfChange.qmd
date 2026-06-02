@@ -1,0 +1,1574 @@
+---
+title: "MAT 142: Limits and Rates of Change"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ The domain of a function as the collection of all its permissible inputs.
++ Domain restrictions resulting from denominators and even-index radicals.
+    + Determining a function's domain algebraically.
++ Identifying domain and range from a graph.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Problem 1:** Write the domain of the function $\displaystyle{f\left(x\right) = \frac{x^2 - 6x + 5}{x - 1}}$ using interval notation
+
+**Problem 3:** Evaluate $h\left(5\right)$ for $\displaystyle{f\left(x\right) = \frac{x^2 - 6x + 5}{x - 1}}$
+
+**Problem 5:** Evaluate $k\left(0\right)$ and $k\left(2\right)$ for $\displaystyle{k\left(x\right) = \frac{x^2 - 6x + 5}{x - 1}}$.
+
+Can you approximate the rate of change of $k\left(x\right)$ between $x = 0$ and $x = 2$?
+
+:::
+
+:::{.column width="50%"}
+
+**Problem 2:** Write the domain of the function $\displaystyle{g\left(x\right) = \frac{x}{\sqrt{\left(x^2 - 25\right)}}}$ using interval notation.
+
+**Problem 4:** Evaluate $f\left(1\right)$ for $\displaystyle{j\left(x\right) = \frac{x^2 - 6x + 5}{x - 1}}$
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Motivating Application
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Near the surface of the moon, the distance a falling object travels is given by
+
+$$d\left(t\right) = 2.6667t^2$$
+
+where $t$ is in seconds and $d\left(t\right)$ is in feet.
+
+:::
+
+:::{.fragment}
+
+Approximate the **velocity** of the object at time $t = 1.5$ seconds by using the average velocity from $t = 1$ to $t = 2$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+:::{.fragment}
+
+Before we work through this, consider the following questions:
+
++ Does this object fall at a constant rate?
++ You've discussed slopes of *linear* functions before. Do non-linear functions have slope?
++ What strategy might help us approximate an "instantaneous" rate of change?
+
+:::
+
+:::
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+```{r}
+x_vals <- seq(0, 4, length.out = 500)
+y_vals <- 2.6667*(x_vals^2)
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") + 
+  labs(x = "time (seconds)", y = "distance (feet)") +
+  scale_x_continuous(breaks = seq(0, 4, by = 1)) + 
+  theme_bw(base_size = 24)
+```
+
+:::
+
+:::
+
+::::
+
+:::{.fragment}
+
+We'll revisit this application at the end of today's class.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today's class has two connected halves.
+
+:::
+
+:::{.fragment}
+
+**First half -- Limits:**
+
+:::
+
++ Develop the notion of the *limit* as a generalization of function evaluation.
++ Use limits to examine function behavior at points of discontinuity.
++ Use limits to examine end behavior as $x \to \infty$ or $x \to -\infty$.
+
+:::{.fragment}
+
+**Second half -- Rates of Change:**
+
+:::
+
++ Use the slope of the *secant line* to approximate the rate of change of a function at a point.
++ Connect limits to the secant line approximation to preview the *derivative* from Calculus.
+
+## Limits of Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Limit):** We say that the limit of $f\left(x\right)$ as $x$ approaches $a$ is equal to $L$, and write
+
+$$\lim_{x \to a}{f\left(x\right)} = L$$
+
+if the output values of $f\left(x\right)$ get **arbitrarily close to $L$** as $x$ gets close to $a$.
+
+:::
+
+:::{.fragment}
+
+A key feature of limits: we care about what the function is *approaching*, not what it equals *exactly* at $x = a$.
+
+:::
+
+:::{.fragment}
+
+Check out these interactive Desmos plots for the definition in action. 
+
+:::{.nonincremental}
+
++ [Demo 1](https://www.desmos.com/calculator/fsgqhvkfyr){target="_blank"} 
++ [Demo 2](https://www.desmos.com/calculator/50xkwjskpg){target="_blank"}
++ [Demo 3](https://www.desmos.com/calculator/cgwjrfioxm){target="_blank"} 
++ [Demo 4](https://www.desmos.com/calculator/qutkiy3ouy){target="_blank"}
+
+:::
+
+Shrink the value of "epsilon" ($E$) and notice whether the function output values (the $y$-values) stay within the horizontal tube.
+
+Demo 4 shows what it looks like when a limit does not exist.
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:16pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to -2}{f\left(x\right)}}~~\boxed{~\text{Does Not Exist}~}$ -- as $x \to -2$ from the left, $f\left(x\right) \to 3$; from the right, $f\left(x\right) \to 0$. These disagree.
++ $\displaystyle{\lim_{x\to 0}{f\left(x\right)} = \boxed{~4~}}$ -- no different than evaluating $f\left(0\right)$.
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:16pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)} = \boxed{~7~}}$ -- as $x \to 3$ from either side, $f\left(x\right) \to 7$, even though $f\left(3\right)$ is undefined. If we could assign $f\left(3\right) = 7$, the function would be *fixed* there.
++ $\displaystyle{\lim_{x\to 5}{f\left(x\right)} = \boxed{~-1~}}$ -- as $x \to 5$ from either side, $f\left(x\right) \to -1$, even though $f\left(5\right) = 4$. The limit does not ask what happens *at* $x = 5$, only *near* it.
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:16pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+
+</div>
+
+:::{.callout-note}
+## Key Takeaway
+
+Limits provide a way to evaluate functions *near* a point, not necessarily *at* it. If a limit exists at a point of discontinuity, the discontinuity is **removable** -- it could be fixed by simply reassigning the function value at that one point. If the limit does not exist, the discontinuity is more severe.
+
+:::
+
+## Limits from Graphs Practice I
+
+<div style="font-size:16pt">
+
+**Try It! 1:** Consider the function $g\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -3}{g\left(x\right)} \qquad \left(b\right)~\lim_{x\to 0}{g\left(x\right)} \qquad \left(c\right)~\lim_{x\to 3}{g\left(x\right)} \qquad \left(d\right)~\lim_{x\to 6}{g\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x1 <- seq(-7,   -3.05, length.out = 300)
+x2 <- seq(-2.95, -0.05, length.out = 300)
+x3 <- seq( 0.05,  2.95, length.out = 300)
+x4 <- seq( 3.05,  5.95, length.out = 300)
+x5 <- seq( 6.05,  8,    length.out = 300)
+
+f1 <- function(x) x + 4
+f2 <- function(x) (x + 1)^2 - 2
+f3 <- function(x) x - 1
+f4 <- function(x) -(x - 4)^2 + 3
+f5 <- function(x) rep(1, length(x))
+
+open_pts <- data.frame(
+  x = c(-3, -3,  0,  0,  6),
+  y = c(f1(-3), f2(-3), f2(0), f3(0), f5(6))
+)
+closed_pts <- data.frame(
+  x = c(-7,  0,  3, 6),
+  y = c(f1(-7), 2, f3(3), f4(6))
+)
+
+ggplot() +
+  geom_line(aes(x = x1, y = f1(x1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x2, y = f2(x2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x3, y = f3(x3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x4, y = f4(x4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x5, y = f5(x5)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment", x = -8, xend = 8, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 6,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-8, 8, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 6, by = 1)) +
+  coord_cartesian(xlim = c(-8, 8), ylim = c(-4, 6)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+</div>
+
+## One-Sided Limits
+
+:::{.fragment}
+
+**Definition (One-Sided Limits):** We can approach a limiting value from a single direction.
+
+:::
+
++ The **left-hand limit** $\displaystyle{\lim_{x\to a^{-}}{f\left(x\right)}}$ describes what $f\left(x\right)$ approaches as $x$ approaches $a$ from values *less than* $a$.
++ The **right-hand limit** $\displaystyle{\lim_{x\to a^{+}}{f\left(x\right)}}$ describes what $f\left(x\right)$ approaches as $x$ approaches $a$ from values *greater than* $a$.
+
+:::{.fragment}
+
+**Key connection:** The two-sided limit $\displaystyle{\lim_{x\to a}{f\left(x\right)}}$ exists if and only if the left- and right-hand limits both exist *and are equal*.
+
+:::
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** Using the same graph of $f\left(x\right)$, determine each of the following one-sided limits.
+
+$$\left(a\right)~\lim_{x\to -6^{+}}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2^{-}}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to -2^{+}}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 5^{-}}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5^{+}}{f\left(x\right)} \qquad \left(f\right)~\lim_{x\to 6^{-}}{f\left(x\right)}$$
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Using the same graph of $f\left(x\right)$, determine each of the following one-sided limits.
+
+$$\left(a\right)~\lim_{x\to -6^{+}}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2^{-}}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to -2^{+}}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 5^{-}}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5^{+}}{f\left(x\right)} \qquad \left(f\right)~\lim_{x\to 6^{-}}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.5
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
++ $\displaystyle{\lim_{x\to -6^{+}}{f\left(x\right)} = \boxed{~9~}}$ -- approaching from the right, heights grow toward $9$.
++ $\displaystyle{\lim_{x\to -2^{-}}{f\left(x\right)} = \boxed{~3~}}$ -- approaching from the left, heights drop toward $3$.
++ $\displaystyle{\lim_{x\to -2^{+}}{f\left(x\right)} = \boxed{~0~}}$ -- approaching from the right, heights approach $0$. Since $3 \neq 0$, $\displaystyle{\lim_{x\to -2}{f\left(x\right)}}$ does not exist.
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Using the same graph of $f\left(x\right)$, determine each of the following one-sided limits.
+
+$$\left(a\right)~\lim_{x\to -6^{+}}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2^{-}}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to -2^{+}}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 5^{-}}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5^{+}}{f\left(x\right)} \qquad \left(f\right)~\lim_{x\to 6^{-}}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.5
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
++ $\displaystyle{\lim_{x\to 5^{-}}{f\left(x\right)} = \boxed{~-1~}}$ and $\displaystyle{\lim_{x\to 5^{+}}{f\left(x\right)} = \boxed{~-1~}}$ -- since these agree, $\displaystyle{\lim_{x\to 5}{f\left(x\right)} = -1}$.
++ $\displaystyle{\lim_{x\to 6^{-}}{f\left(x\right)} = \boxed{~8~}}$.
+
+</div>
+
+## Limits from Graphs Practice II
+
+<div style="font-size:16pt">
+
+**Try It! 2:** Consider the function $g\left(x\right)$ whose graph appears below. Determine each of the following one-sided limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -7^{+}}{g\left(x\right)} \qquad \left(b\right)~\lim_{x\to -3^{-}}{g\left(x\right)} \qquad \left(c\right)~\lim_{x\to -3^{+}}{g\left(x\right)} \qquad \left(d\right)~\lim_{x\to 6^{-}}{g\left(x\right)} \qquad \left(e\right)~\lim_{x\to 6^{+}}{g\left(x\right)} \qquad \left(f\right)~\lim_{x\to 8^{-}}{g\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x1 <- seq(-7,   -3.05, length.out = 300)
+x2 <- seq(-2.95, -0.05, length.out = 300)
+x3 <- seq( 0.05,  2.95, length.out = 300)
+x4 <- seq( 3.05,  5.95, length.out = 300)
+x5 <- seq( 6.05,  8,    length.out = 300)
+
+f1 <- function(x) x + 4
+f2 <- function(x) (x + 1)^2 - 2
+f3 <- function(x) x - 1
+f4 <- function(x) -(x - 4)^2 + 3
+f5 <- function(x) rep(1, length(x))
+
+open_pts <- data.frame(
+  x = c(-3, -3,  0,  0,  6),
+  y = c(f1(-3), f2(-3), f2(0), f3(0), f5(6))
+)
+closed_pts <- data.frame(
+  x = c(-7,  0,  3, 6),
+  y = c(f1(-7), 2, f3(3), f4(6))
+)
+
+ggplot() +
+  geom_line(aes(x = x1, y = f1(x1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x2, y = f2(x2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x3, y = f3(x3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x4, y = f4(x4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x5, y = f5(x5)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment", x = -8, xend = 8, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 6,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-8, 8, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 6, by = 1)) +
+  coord_cartesian(xlim = c(-8, 8), ylim = c(-4, 6)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+</div>
+
+## Evaluating Limits Algebraically
+
+:::{.fragment}
+
+**Strategy:** To evaluate $\displaystyle{\lim_{x\to a}{f\left(x\right)}}$ algebraically (for non-piecewise functions).
+
+:::
+
+1. **Try direct substitution.** Plug $x = a$ into $f\left(x\right)$. If the result is defined, that's the limit.
+2. **If substitution gives $\frac{0}{0}$**, try factoring and reducing to eliminate the discontinuity.
+    + If this works, $f$ has a **removable discontinuity** (a hole) at $x = a$, and the limit equals the reduced form evaluated at $x = a$.
+    + If factoring doesn't help, more tools are needed (we'll develop them later).
+
+## Completed Example 3
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Evaluate the following limits.
+
+$$\left(a\right)~\lim_{x\to 3}{2x + 8} \qquad \left(b\right)~\lim_{x\to 0}{\frac{x - 5}{x^2 - 25}} \qquad \left(c\right)~\lim_{x\to -2}{x^3 + 2x^2}$$
+
+$$\left(d\right)~\lim_{x\to 5}{\frac{x - 5}{x^2 - 25}} \qquad \left(e\right)~\lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}} \qquad \left(f\right)~\lim_{x\to 7}{\frac{x}{x - 7}}$$
+
+:::
+
+:::{.fragment}
+
+*Solution.* Parts $\left(a\right)$, $\left(b\right)$, and $\left(c\right)$ can be evaluated by direct substitution.
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to 3}{2x + 8} &= 2\left(3\right) + 8 = 6 + 8 = \boxed{~14~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to 0}{\frac{x - 5}{x^2 - 25}} &= \frac{0 - 5}{0^2 - 25} = \frac{-5}{-25} = \boxed{~\frac{1}{5}~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to -2}{x^3 + 2x^2} &= \left(-2\right)^3 + 2\left(-2\right)^2 = -8 + 8 = \boxed{~0~}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 5}{\frac{x - 5}{x^2 - 25}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we must factor and reduce.
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to 5}{\frac{x - 5}{x^2 - 25}} &= \lim_{x\to 5}{\frac{x - 5}{\left(x - 5\right)\left(x + 5\right)}}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 5}{\frac{x - 5}{x^2 - 25}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we must factor and reduce.
+
+\begin{align} \lim_{x\to 5}{\frac{x - 5}{x^2 - 25}} &= \lim_{x\to 5}{\frac{x - 5}{\left(x - 5\right)\left(x + 5\right)}}\\
+&= \lim_{x\to 5}{\frac{1}{x + 5}}
+\end{align}
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 5}{\frac{x - 5}{x^2 - 25}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we'll try to factor and reduce again.
+
+\begin{align} \lim_{x\to 5}{\frac{x - 5}{x^2 - 25}} &= \lim_{x\to 5}{\frac{x - 5}{\left(x - 5\right)\left(x + 5\right)}}\\
+&= \lim_{x\to 5}{\frac{1}{x + 5}}\\
+&= \frac{1}{5 + 5} = \boxed{~\frac{1}{10}~}
+\end{align}
+
+:::{.fragment}
+
+The function $\displaystyle{f\left(x\right) = \frac{x-5}{x^2-25}}$ has a **removable discontinuity** (hole) at $x = 5$.
+
+:::
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we'll try to factor and reduce again.
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}} &= \lim_{x\to 2}{\frac{\left(x + 5\right)\left(x - 2\right)}{\left(x - 3\right)\left(x - 2\right)}}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we'll try to factor and reduce again.
+
+\begin{align} \lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}} &= \lim_{x\to 2}{\frac{\left(x + 5\right)\left(x - 2\right)}{\left(x - 3\right)\left(x - 2\right)}}\\
+&= \lim_{x\to 2}{\frac{x + 5}{x - 3}}
+\end{align}
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we'll try to factor and reduce again.
+
+\begin{align} \lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}} &= \lim_{x\to 2}{\frac{\left(x + 5\right)\left(x - 2\right)}{\left(x - 3\right)\left(x - 2\right)}}\\
+&= \lim_{x\to 2}{\frac{x + 5}{x - 3}}\\
+&= \frac{2 + 5}{2 - 3}
+\end{align}
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we'll try to factor and reduce again.
+
+\begin{align} \lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}} &= \lim_{x\to 2}{\frac{\left(x + 5\right)\left(x - 2\right)}{\left(x - 3\right)\left(x - 2\right)}}\\
+&= \lim_{x\to 2}{\frac{x + 5}{x - 3}}\\
+&= \frac{2 + 5}{2 - 3}\\
+& = \frac{7}{-1}
+\end{align}
+
+</div>
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}}}$.
+
+*Solution.* Direct substitution gives $\frac{0}{0}$, so we'll try to factor and reduce again.
+
+\begin{align} \lim_{x\to 2}{\frac{x^2 + 3x - 10}{x^2 - 5x + 6}} &= \lim_{x\to 2}{\frac{\left(x + 5\right)\left(x - 2\right)}{\left(x - 3\right)\left(x - 2\right)}}\\
+&= \lim_{x\to 2}{\frac{x + 5}{x - 3}}\\
+&= \frac{2 + 5}{2 - 3}\\
+&= \frac{7}{-1}\\
+&= \boxed{~-7~}
+\end{align}
+
+</div>
+
+
+
+## Completed Example 3 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Evaluate $\displaystyle{\lim_{x\to 7}{\frac{x}{x - 7}}}$.
+
+*Solution.* Direct substitution gives $\frac{7}{0}$, which is undefined. Factoring offers no help -- there is no factor of $\left(x - 7\right)$ in the numerator to cancel.
+
+:::{.fragment}
+
+We don't yet have the tools to evaluate this limit. Graphing $\displaystyle{f\left(x\right) = \frac{x}{x-7}}$ near $x = 7$ reveals that the function escapes to $\pm\infty$ -- this is a **non-removable discontinuity** (a vertical asymptote).
+
+:::
+
+:::{.fragment}
+
+:::{.callout-note}
+## Recap
+
+:::{.nonincremental}
+
++ Direct substitution works when $f$ is well-behaved at $x = a$.
++ When substitution gives $\frac{0}{0}$, factor and reduce -- this reveals a removable discontinuity.
++ When the denominator is $0$ but the numerator is not, we have a non-removable discontinuity. More tools will come later in our course.
+
+:::
+
+:::
+
+:::
+
+</div>
+
+## Computing Limits Practice
+
+<div style="font-size:17pt">
+
+Compute the following limits using algebraic techniques, if possible.
+
+**Try It! 3:** $\displaystyle{\lim_{x\to 2}{3x^2 - x + 5}}$
+
+<br/>
+
+**Try It! 4:** $\displaystyle{\lim_{x\to -1}{\frac{x + 3}{x^2 + 1}}}$
+
+<br/>
+
+**Try It! 5:** $\displaystyle{\lim_{x\to 4}{\sqrt{\left(x^2 - 16\right)}}}$
+
+<br/>
+
+**Try It! 6:** $\displaystyle{\lim_{x\to 3}{\frac{x^2 - 9}{x - 3}}}$
+
+<br/>
+
+**Try It! 7:** $\displaystyle{\lim_{x\to -2}{\frac{x^2 + 5x + 6}{x^2 - x - 6}}}$
+
+</div>
+
+## Rates of Change
+
+:::{.fragment}
+
+**Recall:** The slope of a line through $\left(x_1, y_1\right)$ and $\left(x_2, y_2\right)$ is $\displaystyle{m = \frac{y_2 - y_1}{x_2 - x_1}}$.
+
+:::
+
+:::{.fragment}
+
+**Definition (Secant Line):** Given a function $f\left(x\right)$, the *secant line* through the points $\left(x_1, f\left(x_1\right)\right)$ and $\left(x_2, f\left(x_2\right)\right)$ has slope:
+
+$$m = \frac{f\left(x_2\right) - f\left(x_1\right)}{x_2 - x_1}$$
+
+:::
+
+:::{.fragment}
+
+The slope of the secant line gives the **average rate of change** of $f$ between $x_1$ and $x_2$.
+
+:::
+
+. . .
+
+Check out [this interactive Desmos plot](https://www.desmos.com/calculator/tlgj1efdki){target="_blank"} -- a function is graphed in blue and the secant line as a dashed black line.
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Compute the slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ at $x_1 = 1$ and $x_2 = 4$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* First, find the two points the secant line passes through.
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(1\right) &= -\left(1 - 3\right)^2 + 2 = -4 + 2 = -2\\
+f\left(4\right) &= -\left(4 - 3\right)^2 + 2 = -1 + 2 = 1
+\end{align}
+
+:::
+
+:::{.fragment}
+
+The secant line passes through $\left(1, -2\right)$ and $\left(4, 1\right)$. 
+
+:::
+
+:::{.fragment}
+
+Now apply the slope formula.
+
+:::
+
+:::{.fragment}
+
+\begin{align} m &= \frac{f\left(x_2\right) - f\left(x_1\right)}{x_2 - x_1}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Problem:** Compute the slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ at $x_1 = 1$ and $x_2 = 4$.
+
+*Solution.* First, find the two points the secant line passes through.
+
+\begin{align} f\left(1\right) &= -\left(1 - 3\right)^2 + 2 = -4 + 2 = -2\\
+f\left(4\right) &= -\left(4 - 3\right)^2 + 2 = -1 + 2 = 1
+\end{align}
+
+The secant line passes through $\left(1, -2\right)$ and $\left(4, 1\right)$. 
+
+Now apply the slope formula.
+
+\begin{align} m &= \frac{f\left(x_2\right) - f\left(x_1\right)}{x_2 - x_1}\\
+&= \frac{1 - \left(-2\right)}{4 - 1}
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Problem:** Compute the slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ at $x_1 = 1$ and $x_2 = 4$.
+
+*Solution.* First, find the two points the secant line passes through.
+
+\begin{align} f\left(1\right) &= -\left(1 - 3\right)^2 + 2 = -4 + 2 = -2\\
+f\left(4\right) &= -\left(4 - 3\right)^2 + 2 = -1 + 2 = 1
+\end{align}
+
+The secant line passes through $\left(1, -2\right)$ and $\left(4, 1\right)$. 
+
+Now apply the slope formula.
+
+\begin{align} m &= \frac{f\left(x_2\right) - f\left(x_1\right)}{x_2 - x_1}\\
+&= \frac{1 - \left(-2\right)}{4 - 1}\\
+&= \frac{3}{3} = \boxed{~1~}
+\end{align}
+
+:::{.fragment}
+
+The slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ between $x = 1$ and $x = 4$ is $1$.
+
+:::
+
+</div>
+
+## The Secant Line Near $x = a$
+
+:::{.fragment}
+
+We get more flexibility by writing $x_1 = a$ and $x_2 = a + h$ for some small step size $h$. Then:
+
+:::
+
+:::{.fragment}
+
+\begin{align} m &= \frac{f\left(x_2\right) - f\left(x_1\right)}{x_2 - x_1}
+\end{align}
+
+:::
+
+## The Secant Line Near $x = a$
+
+We get more flexibility by writing $x_1 = a$ and $x_2 = a + h$ for some small step size $h$. Then:
+
+\begin{align} m &= \frac{f\left(x_2\right) - f\left(x_1\right)}{x_2 - x_1}\\
+&= \frac{f\left(a + h\right) - f\left(a\right)}{\left(a + h\right) - a}
+\end{align}
+
+## The Secant Line Near $x = a$
+
+We get more flexibility by writing $x_1 = a$ and $x_2 = a + h$ for some small step size $h$. Then:
+
+\begin{align} m &= \frac{f\left(x_2\right) - f\left(x_1\right)}{x_2 - x_1}\\
+&= \frac{f\left(a + h\right) - f\left(a\right)}{\left(a + h\right) - a}\\
+&= \frac{f\left(a + h\right) - f\left(a\right)}{h}
+\end{align}
+
+:::{.fragment}
+
+This expression is called the **difference quotient** -- you've already practiced computing $f\left(a + h\right)$.
+
+:::
+
+## Completed Example 5
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Compute the slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ near $x = 2$, using a step size of $h = 1$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} m &= \frac{f\left(a + h\right) - f\left(a\right)}{h}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 5
+
+<div style="font-size:17pt">
+
+**Problem:** Compute the slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ near $x = 2$, using a step size of $h = 1$.
+
+*Solution.*
+
+\begin{align} m &= \frac{f\left(a + h\right) - f\left(a\right)}{h}\\
+&= \frac{f\left(2 + 1\right) - f\left(2\right)}{1}
+\end{align}
+
+</div>
+
+## Completed Example 5
+
+<div style="font-size:17pt">
+
+**Problem:** Compute the slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ near $x = 2$, using a step size of $h = 1$.
+
+*Solution.*
+
+\begin{align} m &= \frac{f\left(a + h\right) - f\left(a\right)}{h}\\
+&= \frac{f\left(2 + 1\right) - f\left(2\right)}{1}\\
+&= \frac{f\left(3\right) - f\left(2\right)}{1}
+\end{align}
+
+</div>
+
+## Completed Example 5
+
+<div style="font-size:17pt">
+
+**Problem:** Compute the slope of the secant line to $f\left(x\right) = -\left(x - 3\right)^2 + 2$ near $x = 2$, using a step size of $h = 1$.
+
+*Solution.*
+
+\begin{align} m &= \frac{f\left(a + h\right) - f\left(a\right)}{h}\\
+&= \frac{f\left(2 + 1\right) - f\left(2\right)}{1}\\
+&= \frac{f\left(3\right) - f\left(2\right)}{1}\\
+&= \frac{2 - 1}{1} = \boxed{~1~}
+\end{align}
+
+</div>
+
+## Connecting Limits to Rates of Change
+
+:::{.fragment}
+
+**Question:** What happens as we take $h$ smaller and smaller in the secant line formula?
+
+:::
+
+:::{.fragment}
+
+Use [this interactive Desmos plot](https://www.desmos.com/calculator/tlgj1efdki){target="_blank"} -- grab the $h$ slider and shrink it toward $0$. What do you notice about the secant line as $h \to 0$?
+
+:::
+
+:::{.fragment}
+
+As $h \to 0$, the secant line approaches the *tangent line* to the curve at $x = a$. This is a line that just "touches" the function at the single point $\left(A, f\left(a\right)\right)$. Its slope is the *instantaneous rate of change*, or *derivative*, of $f$ at $x = a$.
+
+:::
+
+:::{.fragment}
+
+$$\text{Derivative of } f \text{ at } x = a: \quad m = \lim_{h \to 0}{\frac{f\left(a + h\right) - f\left(a\right)}{h}}$$
+
+:::
+
+:::{.fragment}
+
+The *derivative* of a function is a central object of study in a first-semester course in Calculus.
+
+:::
+
+## Completed Example 6
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Use the limit definition to find the derivative of $f\left(x\right) = 4x + 7$ at $x = 5$.
+
+(*Note.* You might recognize that $f$ is *linear* with slope $4$, so our answer should be $4$.)
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} m &= \lim_{h\to 0}{\frac{f\left(5 + h\right) - f\left(5\right)}{h}}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 6
+
+<div style="font-size:17pt">
+
+**Problem:** Use the limit definition to find the derivative of $f\left(x\right) = 4x + 7$ at $x = 5$.
+
+(*Note.* You might recognize that $f$ is *linear* with slope $4$, so our answer should be $4$.)
+
+*Solution.*
+
+\begin{align} m &= \lim_{h\to 0}{\frac{f\left(5 + h\right) - f\left(5\right)}{h}}\\
+&= \lim_{h\to 0}{\frac{\left[4\left(5 + h\right) + 7\right] - \left[4\left(5\right) + 7\right]}{h}}
+\end{align}
+
+</div>
+
+## Completed Example 6
+
+<div style="font-size:17pt">
+
+**Problem:** Use the limit definition to find the derivative of $f\left(x\right) = 4x + 7$ at $x = 5$.
+
+(*Note.* You might recognize that $f$ is *linear* with slope $4$, so our answer should be $4$.)
+
+*Solution.*
+
+\begin{align} m &= \lim_{h\to 0}{\frac{f\left(5 + h\right) - f\left(5\right)}{h}}\\
+&= \lim_{h\to 0}{\frac{\left[4\left(5 + h\right) + 7\right] - \left[4\left(5\right) + 7\right]}{h}}\\
+&= \lim_{h\to 0}{\frac{20 + 4h + 7 - 20 - 7}{h}}
+\end{align}
+
+</div>
+
+## Completed Example 6
+
+<div style="font-size:17pt">
+
+**Problem:** Use the limit definition to find the derivative of $f\left(x\right) = 4x + 7$ at $x = 5$.
+
+(*Note.* You might recognize that $f$ is *linear* with slope $4$, so our answer should be $4$.)
+
+*Solution.*
+
+\begin{align} m &= \lim_{h\to 0}{\frac{f\left(5 + h\right) - f\left(5\right)}{h}}\\
+&= \lim_{h\to 0}{\frac{\left[4\left(5 + h\right) + 7\right] - \left[4\left(5\right) + 7\right]}{h}}\\
+&= \lim_{h\to 0}{\frac{20 + 4h + 7 - 20 - 7}{h}}\\
+&= \lim_{h\to 0}{\frac{4h}{h}}
+\end{align}
+
+</div>
+
+## Completed Example 6
+
+<div style="font-size:17pt">
+
+**Problem:** Use the limit definition to find the derivative of $f\left(x\right) = 4x + 7$ at $x = 5$.
+
+(*Note.* You might recognize that $f$ is *linear* with slope $4$, so our answer should be $4$.)
+
+*Solution.*
+
+\begin{align} m &= \lim_{h\to 0}{\frac{f\left(5 + h\right) - f\left(5\right)}{h}}\\
+&= \lim_{h\to 0}{\frac{\left[4\left(5 + h\right) + 7\right] - \left[4\left(5\right) + 7\right]}{h}}\\
+&= \lim_{h\to 0}{\frac{20 + 4h + 7 - 20 - 7}{h}}\\
+&= \lim_{h\to 0}{\frac{4h}{h}}\\
+&= \lim_{h\to 0}{4} = \boxed{~4~}
+\end{align}
+
+As expected, the derivative of the linear function $f\left(x\right) = 4x + 7$ is its slope, $m = 4$.
+
+</div>
+
+## Slope, Secant, and Derivative Practice
+
+<div style="font-size:17pt">
+
+**Try It! 8:** Compute the slope of the secant line to $\displaystyle{f\left(x\right) = \sqrt{\left(x + 1\right)}}$ at $x = 3$ and $x = 8$.
+
+<br/>
+
+**Try It! 9:** Compute the slope of the secant line to $f\left(x\right) = -x^2 + 5$ near $x = 1$ using a step size of $h = 1$.
+
+<br/>
+
+**Try It! 10:** Use the limit definition of the derivative to find the slope of $f\left(x\right) = 10 - 8x$ near $x = 2$ as $h \to 0$.
+
+</div>
+
+## Applied Problems
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Applied Problem 1:** A driver stopped at a gas station at exactly 3:40 p.m. and began pumping gas. At exactly 3:44 p.m. the tank was full -- they had pumped $10.7$ gallons. What is the average rate of flow of gasoline into the tank?
+
+:::
+
+:::{.fragment}
+
+**Applied Problem 2:** Near the surface of the moon, the distance an object falls is given by $d\left(t\right) = 2.6667t^2$, where $t$ is in seconds and $d\left(t\right)$ is in feet.
+
+:::
+
+:::{.fragment}
+
+$\left(a\right)$ Find the average velocity of the object from $t = 1$ to $t = 2$.
+
+:::
+
+:::{.fragment}
+
+$\left(b\right)$ Use your answer to approximate the velocity at $t = 1.5$ seconds. Is this a good approximation? How could you find a better one?
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `4. Limits and Rates of Change`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Evaluate $\displaystyle{\lim_{x\to 3}{\frac{x^2 - 9}{x - 3}}}$ and describe what the result tells you about the function $\displaystyle{f\left(x\right) = \frac{x^2 - 9}{x - 3}}$ near $x = 3$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ $\displaystyle{\lim_{x\to a}{f\left(x\right)} = L}$ means $f\left(x\right)$ approaches $L$ as $x$ approaches $a$ -- the limit doesn't care what happens exactly *at* $a$.
++ Left- and right-hand limits must agree for a two-sided limit to exist.
++ **Direct substitution** works when $f$ is well-behaved. **Factor and reduce** when substitution gives $\frac{0}{0}$.
++ A removable discontinuity (hole) can be detected and "fixed" via limits. A non-removable discontinuity cannot.
++ The **secant line slope** $\displaystyle{\frac{f\left(a+h\right)-f\left(a\right)}{h}}$ gives the average rate of change over an interval.
++ As $h\to 0$, this becomes the **derivative** -- the instantaneous rate of change. You'll use this constantly in Calculus.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Resources**</center>
+
++ [Demo 1](https://www.desmos.com/calculator/fsgqhvkfyr){target="_blank"}, [Demo 2](https://www.desmos.com/calculator/50xkwjskpg){target="_blank"}, [Demo 3](https://www.desmos.com/calculator/cgwjrfioxm){target="_blank"}, [Demo 4](https://www.desmos.com/calculator/qutkiy3ouy){target="_blank"} -- limit definition in action (Desmos)
++ [Secant line explorer](https://www.desmos.com/calculator/tlgj1efdki){target="_blank"} -- secant line and $h \to 0$ (Desmos)
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Linear Functions and Their Properties</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 3 on MyOpenMath</center>
+
+:::
+
+:::
+
+::::
+
+:::
+
+
+
+</div>

@@ -1,5 +1,5 @@
 ---
-title: "MAT 142: Day 3 -- Intervals and Introduction to Functions"
+title: "MAT 142: Intervals and Introduction to Functions"
 author: Dr. Gilbert
 format: 
   revealjs:

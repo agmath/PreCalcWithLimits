@@ -1,5 +1,5 @@
 ---
-title: "MAT 142: Day 2 -- Foundational Algebra"
+title: "MAT 142: Foundational Algebra Review"
 author: Dr. Gilbert
 format: 
   revealjs:

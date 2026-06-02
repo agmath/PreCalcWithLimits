@@ -1,0 +1,1602 @@
+---
+title: "MAT 142: Composition of Functions"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ The limit of a function as a generalization of function evaluation.
++ Reading limits from a graph, including one-sided limits.
++ Evaluating limits algebraically via direct substitution and the factor-and-reduce technique, when possible.
++ The slope of the secant line as an average rate of change.
++ The derivative as the limit of the difference quotient.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Consider $f\left(x\right) = 8 - x^2$. Find $f\left(0\right)$, $f\left(5\right)$, $f\left(-2\right)$, $f\left(x + h\right)$, and $f\left(x^2 - 5\right)$.
+
+<br/>
+
+**Problem 2:** Consider $\displaystyle{g\left(x\right) = \frac{x^2 + x}{x + 1}}$. Find $g\left(0\right)$, $g\left(5\right)$, $g\left(-2\right)$, $g\left(x + h\right)$, and $g\left(2 - x\right)$.
+
+:::
+
+</div>
+
+## Motivating Application
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+A forest fire leaves behind an area of burned grass in an expanding circular pattern. The radius of the circle is increasing with time according to
+
+$$r\left(t\right) = 2t + 1$$
+
+where $t$ is in minutes and $r$ is in feet.
+
+:::
+
+:::{.fragment}
+
+Express the **area burned** as a function of **time** $t$. Find the total area burned after 10 minutes.
+
+:::
+
+:::{.fragment}
+
+Before we work through this, consider the following:
+
+:::
+
++ What is the formula for the burned area in terms of the radius?
++ Is the radius truly the *independent* variable for the area function?
++ What is the radius of the burn after 5 minutes? What is the area burned at that point?
+
+:::{.fragment}
+
+We'll return to this application at the end of today's class.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today we introduce a powerful new way to combine functions.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Understand what it means to compose two functions.
++ Construct the algebraic definition of a composed function $\left(f \circ g\right)\left(x\right)$.
++ Evaluate a composed function at a given input value.
++ Read composed function values from graphs.
++ Recognize when composition arises naturally in applied settings.
+
+## Composition of Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Composition of Functions):** Given two functions $f\left(x\right)$ and $g\left(x\right)$, as long as the range of $g$ is a subset of the domain of $f$, we define the **composition** of $f$ and $g$ as:
+
+$$\left(f \circ g\right)\left(x\right) = f\left(g\left(x\right)\right)$$
+
+:::
+
+:::{.fragment}
+
+The input $x$ is first transformed by $g$, and then the output of $g$ becomes the input for $f$.
+
+:::
+
+:::{.fragment}
+
+Think of it as a two-stage machine:
+
+$$x \longrightarrow \boxed{~~g~~} \longrightarrow g\left(x\right) \longrightarrow \boxed{~~f~~} \longrightarrow f\left(g\left(x\right)\right)$$
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Order of Composition Matters
+
+Order matters. $\left(f \circ g\right)\left(x\right)$ and $\left(g \circ f\right)\left(x\right)$ are generally *not* equal -- applying $g$ first then $f$ is different from applying $f$ first then $g$.
+
+:::
+
+:::
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Consider $f\left(x\right) = x + 4$ and $g\left(x\right) = x^2$.
+
+$\left(a\right)$ Determine $\left(f \circ g\right)\left(-7\right)$ by first computing $g\left(-7\right)$, then using the result as the input to $f$.
+
+$\left(b\right)$ Find the algebraic definition of $\left(f \circ g\right)\left(x\right)$ by simplifying $f\left(g\left(x\right)\right)$, then evaluate $\left(f \circ g\right)\left(-7\right)$ directly.
+
+:::
+
+:::{.fragment}
+
+*Solution to $\left(a\right)$.*  First, evaluate $g$ at $-7$:
+
+\begin{align} g\left(-7\right) &= \left(-7\right)^2 = 49
+\end{align}
+
+:::
+
+:::{.fragment}
+
+Now use $49$ as the input to $f$:
+
+\begin{align} f\left(49\right) &= 49 + 4 = \boxed{~53~}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 1 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $f\left(x\right) = x + 4$ and $g\left(x\right) = x^2$. Find $\left(f \circ g\right)\left(x\right)$ algebraically, then evaluate at $x = -7$.
+
+*Solution to $\left(b\right)$.* Substitute $g\left(x\right)$ in place of every $x$ in $f\left(x\right)$:
+
+:::{.fragment}
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 1 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $f\left(x\right) = x + 4$ and $g\left(x\right) = x^2$. Find $\left(f \circ g\right)\left(x\right)$ algebraically, then evaluate at $x = -7$.
+
+*Solution to $\left(b\right)$.* Substitute $g\left(x\right)$ in place of every $x$ in $f\left(x\right)$:
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)\\
+&= f\left(x^2\right)
+\end{align}
+
+</div>
+
+## Completed Example 1 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $f\left(x\right) = x + 4$ and $g\left(x\right) = x^2$. Find $\left(f \circ g\right)\left(x\right)$ algebraically, then evaluate at $x = -7$.
+
+*Solution to $\left(b\right)$.* Substitute $g\left(x\right)$ in place of every $x$ in $f\left(x\right)$:
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)\\
+&= f\left(x^2\right)\\
+&= x^2 + 4
+\end{align}
+
+</div>
+
+## Completed Example 1 (Cont'd)
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $f\left(x\right) = x + 4$ and $g\left(x\right) = x^2$. Find $\left(f \circ g\right)\left(x\right)$ algebraically, then evaluate at $x = -7$.
+
+*Solution to $\left(b\right)$.* Substitute $g\left(x\right)$ in place of every $x$ in $f\left(x\right)$:
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)\\
+&= f\left(x^2\right)\\
+&= x^2 + 4
+\end{align}
+
+Now evaluate at $x = -7$:
+
+\begin{align} \left(f \circ g\right)\left(-7\right) &= \left(-7\right)^2 + 4 = 49 + 4 = \boxed{~53~}
+\end{align}
+
+:::{.fragment}
+
+Both methods give the same result -- this will always be the case.
+
+:::
+
+</div>
+
+## Composition of Functions Practice I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Try It! 1:** Using the same functions $f\left(x\right) = x + 4$ and $g\left(x\right) = x^2$, evaluate $\left(g \circ f\right)\left(-7\right)$ using both methods.
+
+:::
+
+:::{.fragment}
+
+*What do you notice?* What does this tell us about the order in which we compose functions?
+
+:::
+
+:::{.fragment}
+
+*Reminder for method 1:* Start by evaluating $f\left(-7\right)$, then use that result as the input to $g$.
+
+:::
+
+:::{.fragment}
+
+*Reminder for method 2:* Find $\left(g \circ f\right)\left(x\right) = g\left(f\left(x\right)\right)$ algebraically first, then plug in $-7$.
+
+:::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Consider $\displaystyle{f\left(x\right) = \frac{x}{x - 5}}$ and $g\left(x\right) = x^2 - 5$.
+
+Construct $\left(f \circ g\right)\left(x\right)$ and evaluate it at $x = 0$, $x = 5$, and $x = \sqrt{5}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* We substitute $g\left(x\right)$ into $f$:
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $\displaystyle{f\left(x\right) = \frac{x}{x - 5}}$ and $g\left(x\right) = x^2 - 5$.
+
+Construct $\left(f \circ g\right)\left(x\right)$ and evaluate it at $x = 0$, $x = 5$, and $x = \sqrt{5}$.
+
+*Solution.* We substitute $g\left(x\right)$ into $f$:
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)\\
+&= f\left(x^2 - 5\right)
+\end{align}
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $\displaystyle{f\left(x\right) = \frac{x}{x - 5}}$ and $g\left(x\right) = x^2 - 5$.
+
+Construct $\left(f \circ g\right)\left(x\right)$ and evaluate it at $x = 0$, $x = 5$, and $x = \sqrt{5}$.
+
+*Solution.* We substitute $g\left(x\right)$ into $f$:
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)\\
+&= f\left(x^2 - 5\right)\\
+&= \frac{x^2 - 5}{\left(x^2 - 5\right) - 5}
+\end{align}
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $\displaystyle{f\left(x\right) = \frac{x}{x - 5}}$ and $g\left(x\right) = x^2 - 5$.
+
+Construct $\left(f \circ g\right)\left(x\right)$ and evaluate it at $x = 0$, $x = 5$, and $x = \sqrt{5}$.
+
+*Solution.* We substitute $g\left(x\right)$ into $f$:
+
+\begin{align} \left(f \circ g\right)\left(x\right) &= f\left(g\left(x\right)\right)\\
+&= f\left(x^2 - 5\right)\\
+&= \frac{x^2 - 5}{\left(x^2 - 5\right) - 5}\\
+&= \frac{x^2 - 5}{x^2 - 10}
+\end{align}
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Consider $\displaystyle{f\left(x\right) = \frac{x}{x - 5}}$ and $g\left(x\right) = x^2 - 5$.
+
+Construct $\left(f \circ g\right)\left(x\right)$ and evaluate it at $x = 0$, $x = 5$, and $x = \sqrt{5}$.
+
+*Solution.*
+
+$$\left(f \circ g\right)\left(x\right) = \frac{x^2 - 5}{x^2 - 10}$$
+
+Now evaluate at each input:
+
+:::{.fragment}
+
+\begin{align} \left(f \circ g\right)\left(0\right) &= \frac{0 - 5}{0 - 10} = \frac{-5}{-10} = \boxed{~\frac{1}{2}~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} \left(f \circ g\right)\left(5\right) &= \frac{25 - 5}{25 - 10} = \frac{20}{15} = \boxed{~\frac{4}{3}~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+\begin{align} \left(f \circ g\right)\left(\sqrt{5}\right) &= \frac{5 - 5}{5 - 10} = \frac{0}{-5} = \boxed{~0~}
+\end{align}
+
+:::
+
+</div>
+
+## Composition of Functions Practice II
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+**Try It! 2:** Consider the functions $f\left(x\right) = 3x + 8$, $\displaystyle{g\left(x\right) = \frac{x - 8}{3}}$, and $\displaystyle{h\left(x\right) = x^2 - 5}$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
++ Construct $\left(f\circ g\right)\left(x\right)$, and use it to evaluate:
+
+  + $\left(f\circ g\right)\left(0\right)$
+  + $\left(f\circ g\right)\left(-8\right)$
+  + $\left(f\circ g\right)\left(\sqrt{2}\right)$
+
++ Construct $\left(g\circ f\right)\left(x\right)$, and use it to evaluate:
+
+  + $\left(g\circ f\right)\left(-12\right)$
+  + $\left(g\circ f\right)\left(\frac{3}{4}\right)$
+  + $\left(g\circ f\right)\left(\pi\right)$
+
++ What does this tell you about the functions $f$ and $g$?
+:::
+
+:::{.column width="50%"}
+
++ Construct $\left(f\circ h\right)\left(x\right)$, and use it to evaluate:
+
+  + $\left(f\circ h\right)\left(0\right)$
+  + $\left(f\circ h\right)\left(-8\right)$
+  + $\left(f\circ h\right)\left(\sqrt{2}\right)$
+
++ Construct $\left(h\circ f\right)\left(x\right)$, and use it to evaluate:
+
+  + $\left(h\circ f\right)\left(-12\right)$
+  + $\left(h\circ f\right)\left(\frac{3}{4}\right)$
+  + $\left(h\circ f\right)\left(\pi\right)$
+
++ Construct $\left(g\circ g\right)\left(x\right)$, and use it to evaluate:
+
+  + $\left(g\circ g\right)\left(0\right)$
+  + $\left(g\circ g\right)\left(5\right)$
+  + $\left(g\circ g\right)\left(\sqrt{5}\right)$
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+:::
+
+:::{.fragment}
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+:::
+
+:::{.fragment}
+
+*Solution.* Working from the inside out in each case:
+
+:::
+
++ $\left(f \circ g\right)\left(2\right) = f\left(g\left(2\right)\right) = f\left(-1\right) = \boxed{~0~}$ &nbsp; *(closed dot at $x=-1$ on $f$)*
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+*Solution.* Working from the inside out in each case:
+
++ $f\left(g\left(-1\right)\right) = f\left(-4\right) = \boxed{~7~}$
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+*Solution.* Working from the inside out in each case:
+
++ $\left(g \circ f\right)\left(0\right) = g\left(f\left(0\right)\right) = g\left(3\right) = \boxed{~4~}$
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+*Solution.* Working from the inside out in each case:
+
++ $\left(g \circ f\right)\left(-1\right) = g\left(f\left(-1\right)\right) = g\left(0\right) = \boxed{~-5~}$
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+*Solution.* Working from the inside out in each case:
+
++ $\left(g \circ g\right)\left(-3\right) = g\left(g\left(-3\right)\right) = g\left(4\right) = \boxed{~6~}$
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+*Solution.* Working from the inside out in each case:
+
++ $\left(f \circ f\right)\left(-1\right) = f\left(f\left(-1\right)\right) = f\left(0\right) = \boxed{~3~}$
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+*Solution.* Working from the inside out in each case:
+
++ $f\left(g\left(f\left(2\right)\right)\right) = f\left(g\left(3\right)\right) = f\left(4\right) = \boxed{~-5~}$
+
+</div>
+
+## Composition from Graphs
+
+<div style="font-size:16pt">
+
+We can also evaluate compositions from graphs. The key is working from the **inside out**: evaluate the inner function first, then use the result as the input to the outer function.
+
+**Problem:** The graphs of $f\left(x\right)$ and $g\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(f \circ g\right)\left(2\right) \qquad \left(b\right)~f\left(g\left(-1\right)\right) \qquad \left(c\right)~\left(g \circ f\right)\left(0\right) \qquad \left(d\right)~\left(g \circ f\right)\left(-1\right)$$
+$$\left(e\right)~\left(g \circ g\right)\left(-3\right) \qquad \left(f\right)~\left(f \circ f\right)\left(-1\right) \qquad \left(g\right)~f\left(g\left(f\left(2\right)\right)\right) \qquad \left(h\right)~g\left(f\left(g\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals_f1 <- seq(-4, -1.05, length.out = 200)
+x_vals_f2 <- seq(-1, 4, length.out = 200)
+
+f1 <- function(x) -x + 3
+f2 <- function(x) -(x - 1)^2 + 4
+
+x_vals_g1 <- seq(-4, 2, length.out = 200)
+x_vals_g2 <- seq(2.05, 4, length.out = 200)
+
+g1 <- function(x) x^2 - 5
+g2 <- function(x) 2*x - 2
+
+open_f <- data.frame(x = -1, y = f1(-1))
+closed_f <- data.frame(x = -1, y = f2(-1))
+open_g <- data.frame(x = 2, y = g2(2))
+closed_g <- data.frame(x = 2, y = g1(2))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = f1(x_vals_f1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = f2(x_vals_f2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 8,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = g1(x_vals_g1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = g2(x_vals_g2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "darkorange") +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -6, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
+  labs(title = "A Graph of g(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+*Solution.* Working from the inside out in each case:
+
++ $g\left(f\left(g\left(2\right)\right)\right) = g\left(f\left(-1\right)\right) = g\left(0\right) = \boxed{~-5~}$
+
+</div>
+
+## Composition from Graphs Practice
+
+<div style="font-size:16pt">
+
+**Try It! 3:** The graphs of $p\left(x\right)$ and $q\left(x\right)$ appear below. Use them to evaluate each of the following.
+
+$$\left(a\right)~\left(p \circ q\right)\left(2\right) \qquad \left(b\right)~q\left(p\left(-2\right)\right) \qquad \left(c\right)~\left(q \circ p\right)\left(0\right) \qquad \left(d\right)~\left(p \circ p\right)\left(3\right) \qquad \left(e\right)~\left(q \circ q\right)\left(-1\right) \qquad \left(f\right)~p\left(q\left(p\left(2\right)\right)\right)$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_p1 <- seq(-5, -0.05, length.out = 200)
+x_p2 <- seq(0, 5, length.out = 200)
+x_q1 <- seq(-5, 0.95, length.out = 200)
+x_q2 <- seq(1, 5, length.out = 200)
+
+p1 <- function(x) x + 2
+p2 <- function(x) -(x - 2)^2 + 3
+q1 <- function(x) 2*x - 1
+q2 <- function(x) -x + 4
+
+open_p   <- data.frame(x = 0,  y = p1(0))
+closed_p <- data.frame(x = c(-5, 0), y = c(p1(-5), p2(0)))
+open_q   <- data.frame(x = 1,  y = q1(1))
+closed_q <- data.frame(x = c(-5, 1), y = c(q1(-5), q2(1)))
+
+pp <- ggplot() +
+  geom_line(aes(x = x_p1, y = p1(x_p1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_p2, y = p2(x_p2)), color = "blue", linewidth = 1) +
+  geom_point(data = open_p,   aes(x = x, y = y), shape = 21, size = 3, fill = "white",      color = "blue") +
+  geom_point(data = closed_p, aes(x = x, y = y), shape = 21, size = 3, fill = "blue",       color = "blue") +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-4, 4)) +
+  labs(title = "A Graph of p(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+pq <- ggplot() +
+  geom_line(aes(x = x_q1, y = q1(x_q1)), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_q2, y = q2(x_q2)), color = "darkorange", linewidth = 1) +
+  geom_point(data = open_q,   aes(x = x, y = y), shape = 21, size = 3, fill = "white",      color = "darkorange") +
+  geom_point(data = closed_q, aes(x = x, y = y), shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 4, by = 2)) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 4)) +
+  labs(title = "A Graph of q(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+pp + pq
+```
+
+</div>
+
+## Applied Problems
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+
+:::
+
+:::{.fragment}
+
+Express the **area burned** as a function of time $t$, and find the total area burned after 10 minutes.
+
+:::
+
+:::{.fragment}
+
+*Solution.* The area of a circle is $A = \pi r^2$, so $A\left(r\right) = \pi r^2$. We substitute $r\left(t\right)$ in place of $r$:
+
+\begin{align} A\left(r\left(t\right)\right) &= \pi\left(r\left(t\right)\right)^2
+\end{align}
+
+:::
+
+</div>
+
+## Applied Problems
+
+<div style="font-size:17pt">
+
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+
+Express the **area burned** as a function of time $t$, and find the total area burned after 10 minutes.
+
+*Solution.* The area of a circle is $A = \pi r^2$, so $A\left(r\right) = \pi r^2$. We substitute $r\left(t\right)$ in place of $r$:
+
+\begin{align} A\left(r\left(t\right)\right) &= \pi\left(r\left(t\right)\right)^2\\
+&= \pi\left(2t + 1\right)^2
+\end{align}
+
+</div>
+
+## Applied Problems
+
+<div style="font-size:17pt">
+
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+
+Express the **area burned** as a function of time $t$, and find the total area burned after 10 minutes.
+
+*Solution.* The area of a circle is $A = \pi r^2$, so $A\left(r\right) = \pi r^2$. We substitute $r\left(t\right)$ in place of $r$:
+
+\begin{align} A\left(r\left(t\right)\right) &= \pi\left(r\left(t\right)\right)^2\\
+&= \pi\left(2t + 1\right)^2\\
+&= \pi\left(4t^2 + 4t + 1\right)
+\end{align}
+
+</div>
+
+## Applied Problems
+
+<div style="font-size:17pt">
+
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+
+Express the **area burned** as a function of time $t$, and find the total area burned after 10 minutes.
+
+*Solution.* The area of a circle is $A = \pi r^2$, so $A\left(r\right) = \pi r^2$. We substitute $r\left(t\right)$ in place of $r$:
+
+\begin{align} A\left(r\left(t\right)\right) &= \pi\left(r\left(t\right)\right)^2\\
+&= \pi\left(2t + 1\right)^2\\
+&= \pi\left(4t^2 + 4t + 1\right)
+\end{align}
+
+After $10$ minutes: $A\left(r\left(10\right)\right) = \pi\left(4\left(100\right) + 4\left(10\right) + 1\right) = \boxed{~441\pi \approx 1385.4 \text{ sq. ft.}~}$
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Applied Problem 2:** The number of bacteria in a refrigerated food product is given by
+
+$$N\left(T\right) = 23T^2 - 56T + 1 \qquad 3 < T < 33$$
+
+where $T$ is the temperature (°F). After the food is removed from the refrigerator, the temperature is given by $T\left(t\right) = 5t + 1.5$, where $t$ is time in hours.
+
+:::
+
+:::{.fragment}
+
+$\left(a\right)$ Find the composite function $N\left(T\left(t\right)\right)$.
+
+:::
+
+:::{.fragment}
+
+$\left(b\right)$ Find the time (to two decimal places) when the bacteria count reaches $6{,}752$.
+
+:::
+
+:::{.fragment}
+
+*Solution to $\left(a\right)$.* Substitute $T\left(t\right) = 5t + 1.5$ into $N\left(T\right)$:
+
+\begin{align} N\left(T\left(t\right)\right) &= 23\left(5t + 1.5\right)^2 - 56\left(5t + 1.5\right) + 1
+\end{align}
+
+:::
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+**Applied Problem 2:** The number of bacteria in a refrigerated food product is given by
+
+$$N\left(T\right) = 23T^2 - 56T + 1 \qquad 3 < T < 33$$
+
+where $T$ is the temperature (°F). After the food is removed from the refrigerator, the temperature is given by $T\left(t\right) = 5t + 1.5$, where $t$ is time in hours.
+
+$\left(a\right)$ Find the composite function $N\left(T\left(t\right)\right)$.
+
+$\left(b\right)$ Find the time (to two decimal places) when the bacteria count reaches $6{,}752$.
+
+*Solution to $\left(a\right)$.* Substitute $T\left(t\right) = 5t + 1.5$ into $N\left(T\right)$:
+
+\begin{align} N\left(T\left(t\right)\right) &= 23\left(5t + 1.5\right)^2 - 56\left(5t + 1.5\right) + 1\\
+&= 23\left(25t^2 + 15t + 2.25\right) - 280t - 84 + 1
+\end{align}
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+**Applied Problem 2:** The number of bacteria in a refrigerated food product is given by
+
+$$N\left(T\right) = 23T^2 - 56T + 1 \qquad 3 < T < 33$$
+
+where $T$ is the temperature (°F). After the food is removed from the refrigerator, the temperature is given by $T\left(t\right) = 5t + 1.5$, where $t$ is time in hours.
+
+$\left(a\right)$ Find the composite function $N\left(T\left(t\right)\right)$.
+
+$\left(b\right)$ Find the time (to two decimal places) when the bacteria count reaches $6{,}752$.
+
+*Solution to $\left(a\right)$.* Substitute $T\left(t\right) = 5t + 1.5$ into $N\left(T\right)$:
+
+\begin{align} N\left(T\left(t\right)\right) &= 23\left(5t + 1.5\right)^2 - 56\left(5t + 1.5\right) + 1\\
+&= 23\left(25t^2 + 15t + 2.25\right) - 280t - 84 + 1\\
+&= 575t^2 + 345t + 51.75 - 280t - 83
+\end{align}
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+**Applied Problem 2:** The number of bacteria in a refrigerated food product is given by
+
+$$N\left(T\right) = 23T^2 - 56T + 1 \qquad 3 < T < 33$$
+
+where $T$ is the temperature (°F). After the food is removed from the refrigerator, the temperature is given by $T\left(t\right) = 5t + 1.5$, where $t$ is time in hours.
+
+$\left(a\right)$ Find the composite function $N\left(T\left(t\right)\right)$.
+
+$\left(b\right)$ Find the time (to two decimal places) when the bacteria count reaches $6{,}752$.
+
+*Solution to $\left(a\right)$.* Substitute $T\left(t\right) = 5t + 1.5$ into $N\left(T\right)$:
+
+\begin{align} N\left(T\left(t\right)\right) &= 23\left(5t + 1.5\right)^2 - 56\left(5t + 1.5\right) + 1\\
+&= 23\left(25t^2 + 15t + 2.25\right) - 280t - 84 + 1\\
+&= 575t^2 + 345t + 51.75 - 280t - 83\\
+&= \boxed{~575t^2 + 65t - 31.25~}
+\end{align}
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+**Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
+
+*Solution to $\left(b\right)$.* Set $575t^2 + 65t - 31.25 = 6{,}752$ and solve.
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Quadratic Formula
+
+As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c = 0$ is via the *quadratic formula*, which yields $\displaystyle{x = \frac{-b \pm \sqrt{\left(b^2 - 4ac\right)}}{2a}}$.
+
+:::
+
+:::
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+\begin{align} 575t^2 + 65t - 31.25 &= 6752
+\end{align}
+
+:::
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+**Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
+
+*Solution to $\left(b\right)$.* Set $575t^2 + 65t - 31.25 = 6{,}752$ and solve.
+
+</div>
+
+:::{.callout-note}
+## Quadratic Formula
+
+As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c = 0$ is via the *quadratic formula*, which yields $\displaystyle{x = \frac{-b \pm \sqrt{\left(b^2 - 4ac\right)}}{2a}}$.
+
+:::
+
+<div style="font-size:17pt">
+
+\begin{align} 575t^2 + 65t - 31.25 &= 6752\\
+\implies 575t^2 + 65t - 6783.25 &= 0
+\end{align}
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+**Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
+
+*Solution to $\left(b\right)$.* Set $575t^2 + 65t - 31.25 = 6{,}752$ and solve.
+
+</div>
+
+:::{.callout-note}
+## Quadratic Formula
+
+As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c = 0$ is via the *quadratic formula*, which yields $\displaystyle{x = \frac{-b \pm \sqrt{\left(b^2 - 4ac\right)}}{2a}}$.
+
+:::
+
+<div style="font-size:17pt">
+
+\begin{align} 575t^2 + 65t - 31.25 &= 6752\\
+\implies 575t^2 + 65t - 6783.25 &= 0\\
+\implies t &= \frac{-65 \pm \sqrt{65^2 + 4\left(575\right)\left(6783.25\right)}}{2\left(575\right)}
+\end{align}
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+**Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
+
+*Solution to $\left(b\right)$.* Set $575t^2 + 65t - 31.25 = 6{,}752$ and solve.
+
+</div>
+
+:::{.callout-note}
+## Quadratic Formula
+
+As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c = 0$ is via the *quadratic formula*, which yields $\displaystyle{x = \frac{-b \pm \sqrt{\left(b^2 - 4ac\right)}}{2a}}$.
+
+:::
+
+<div style="font-size:17pt">
+
+\begin{align} 575t^2 + 65t - 31.25 &= 6752\\
+\implies 575t^2 + 65t - 6783.25 &= 0\\
+\implies t &= \frac{-65 \pm \sqrt{65^2 + 4\left(575\right)\left(6783.25\right)}}{2\left(575\right)}\\
+&= \frac{-65 \pm \sqrt{4225 + 15{,}601{,}475}}{1150}\\
+&\approx \frac{-65 \pm 3950.5}{1150}
+\end{align}
+
+:::{.fragment}
+
+Taking the positive root (since $t \geq 0$): $\displaystyle{t \approx \frac{3885.5}{1150} \approx \boxed{~3.38 \text{ hours}~}}$
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `5. Composition of Functions`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $f\left(x\right) = 2x - 1$ and $g\left(x\right) = x^2 + 3$.
+
+$\left(a\right)$ Find $\left(f \circ g\right)\left(x\right)$ and evaluate at $x = 2$.
+
+$\left(b\right)$ Find $\left(g \circ f\right)\left(x\right)$ and evaluate at $x = 2$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ The **composition** $\left(f \circ g\right)\left(x\right) = f\left(g\left(x\right)\right)$ chains two functions together -- $g$ acts first, then $f$ acts on the result.
++ **Order matters:** $\left(f \circ g\right)\left(x\right)$ and $\left(g \circ f\right)\left(x\right)$ are generally different functions.
++ We can evaluate compositions **numerically** (step by step) or **algebraically** (substitute $g\left(x\right)$ into $f$) -- both give the same result.
++ We can evaluate compositions **from graphs** by reading output values and using them as the next input.
++ Composition arises naturally in applied settings whenever one quantity depends on another that is itself changing.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Try It! 2 previewed something important. When $\left(f \circ g\right)\left(x\right) = x$ and $\left(g \circ f\right)\left(x\right) = x$, we say $f$ and $g$ are *inverses* of each other.
++ That idea -- *invertibility* -- is something we'll encounter later in our course.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Exam I</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 4 on MyOpenMath</center>
+
+:::
+
+</div>

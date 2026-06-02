@@ -1,0 +1,984 @@
+---
+title: "MAT 142: Domain and Range of Functions"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ Reading landmarks from a function's graph.
++ Interval notation.
++ The definition of a function and the vertical line test.
++ Function notation and evaluating functions.
++ Piecewise-defined functions.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Problem 1:** Simplify $\displaystyle{\frac{x}{x - 8} + \frac{\frac{1}{x + 1} - \frac{1}{x}}{x - 8}}$
+
+**Problem 2:** Simplify $\displaystyle{\frac{x^2 - 12x + 32}{x^2 - 4x}}$
+
+**Problem 3:** Evaluate $f\left(5\right)$ for $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 9\right)}}$
+
+:::
+
+:::{.column width="50%"}
+
+**Problem 4:** Evaluate $f\left(1\right)$ for $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 9\right)}}$
+
+**Problem 5:** Consider $f\left(x\right) = \left\{\begin{array}{rcl} x^2 - x & ; & x \leq -3\\ x & ; & -3 < x < 7\\ \sqrt{2 + x} & ; & x \geq 7\end{array}\right.$
+
+Evaluate $f\left(-4\right)$, $f\left(0\right)$, $f\left(7\right)$, and $f\left(-3\right)$.
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today, we'll develop the ideas of *domain* and *range* for functions.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify the domain of a function from its graph.
++ Determine the domain of a function from its algebraic definition.
++ Identify the range of a function from its graph.
++ Express the domain of a function and the range of a function using interval notation.
+
+## Domain
+
+:::{.fragment}
+
+**Definition (Domain):** Given a function $f\left(x\right)$, the *domain* of $f$ is the set of all permissible inputs.
+
+:::
+
+:::{.fragment}
+
+In PreCalculus, we assume the domain is all real numbers $\left(\mathbb{R}\right)$ unless the function forces us to restrict it.
+
+:::
+
+:::{.fragment}
+
+There are two common situations that force domain restrictions (though we'll encounter more later):
+
+:::
+
++ **Rational expressions:** the denominator cannot be $0$, so we exclude any inputs that make the denominator $0$.
++ **Even-index radicals** (square roots, fourth roots, etc.): the expression under the radical cannot be negative, so we require it to be $\geq 0$.
+
+:::{.fragment}
+
+For a video overview, check out [this video from The Organic Chemistry Tutor](https://youtu.be/KirGQOwjBVI?si=xqBN-U4a0eb79Kdt){target="_blank"} (reading domain from a graph) and [this one from patrickJMT](https://youtu.be/w81y25anEOM?si=T__pcedl9NTh-tL7){target="_blank"} (finding domain algebraically).
+
+:::
+
+## Completed Example 1
+
+:::{.fragment}
+
+**Problem:** Determine the domain of $f\left(x\right) = 10x - 20$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* You might recognize this as a *linear* function. There are no variables in denominators and no radicals. The function is defined for any real number input.
+
+$$\text{Domain of } f: \left(-\infty, \infty\right)$$
+
+:::
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Determine the domain of $\displaystyle{g\left(x\right) = \frac{x}{x^2 - 9}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* This function contains a rational expression, so we must exclude any inputs that make the denominator $0$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x^2 - 9 &\neq 0
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Determine the domain of $\displaystyle{g\left(x\right) = \frac{x}{x^2 - 9}}$.
+
+*Solution.* This function contains a rational expression, so we must exclude any inputs that make the denominator $0$.
+
+\begin{align} x^2 - 9 &\neq 0\\
+\implies \left(x + 3\right)\left(x - 3\right) &\neq 0
+\end{align}
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Determine the domain of $\displaystyle{g\left(x\right) = \frac{x}{x^2 - 9}}$.
+
+*Solution.* This function contains a rational expression, so we must exclude any inputs that make the denominator $0$.
+
+\begin{align} x^2 - 9 &\neq 0\\
+\implies \left(x + 3\right)\left(x - 3\right) &\neq 0\\
+\implies x + 3 \neq 0 &\text{ and } x - 3 \neq 0
+\end{align}
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Determine the domain of $\displaystyle{g\left(x\right) = \frac{x}{x^2 - 9}}$.
+
+*Solution.* This function contains a rational expression, so we must exclude any inputs that make the denominator $0$.
+
+\begin{align} x^2 - 9 &\neq 0\\
+\implies \left(x + 3\right)\left(x - 3\right) &\neq 0\\
+\implies x + 3 \neq 0 &\text{ and } x - 3 \neq 0\\
+\implies x \neq -3 &\text{ and } x \neq 3
+\end{align}
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:17pt">
+
+**Problem:** Determine the domain of $\displaystyle{g\left(x\right) = \frac{x}{x^2 - 9}}$.
+
+*Solution.* This function contains a rational expression, so we must exclude any inputs that make the denominator $0$.
+
+\begin{align} x^2 - 9 &\neq 0\\
+\implies \left(x + 3\right)\left(x - 3\right) &\neq 0\\
+\implies x + 3 \neq 0 &\text{ and } x - 3 \neq 0\\
+\implies x \neq -3 &\text{ and } x \neq 3
+\end{align}
+
+$$\text{Domain of } g: \boxed{~\left(-\infty, -3\right)\cup\left(-3, 3\right)\cup\left(3, \infty\right)~}$$
+
+</div>
+
+## Completed Example 3
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Determine the domain of $\displaystyle{h\left(x\right) = \sqrt{\left(30 - 5x\right)}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* This function contains a square root, so the expression under the radical must be at least $0$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 30 - 5x &\geq 0
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 3
+
+<div style="font-size:17pt">
+
+**Problem:** Determine the domain of $\displaystyle{h\left(x\right) = \sqrt{\left(30 - 5x\right)}}$.
+
+*Solution.* This function contains a square root, so the expression under the radical must be $\geq 0$.
+
+\begin{align} 30 - 5x &\geq 0\\
+\implies -5x &\geq -30
+\end{align}
+
+</div>
+
+## Completed Example 3
+
+<div style="font-size:17pt">
+
+**Problem:** Determine the domain of $\displaystyle{h\left(x\right) = \sqrt{\left(30 - 5x\right)}}$.
+
+*Solution.* This function contains a square root, so the expression under the radical must be $\geq 0$.
+
+\begin{align} 30 - 5x &\geq 0\\
+\implies -5x &\geq -30\\
+\implies x &\leq 6
+\end{align}
+
+</div>
+
+## Completed Example 3
+
+<div style="font-size:17pt">
+
+**Problem:** Determine the domain of $\displaystyle{h\left(x\right) = \sqrt{\left(30 - 5x\right)}}$.
+
+*Solution.* This function contains a square root, so the expression under the radical must be $\geq 0$.
+
+\begin{align} 30 - 5x &\geq 0\\
+\implies -5x &\geq -30\\
+\implies x &\leq 6
+\end{align}
+
+$$\text{Domain of } h: \boxed{~\left(-\infty, 6\right]~}$$
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Solving Inequalities
+
+When dividing or multiplying both sides of an inequality by a **negative** number, the direction of the inequality must **flip**. Forgetting this is a common error. Watch for it carefully.
+:::
+
+:::
+
+## Domain from a Graph
+
+:::{.fragment}
+
+We can also identify the domain of a function directly from its graph.
+
+:::
+
+:::{.fragment}
+
+The domain corresponds to the set of all $x$-values for which the graph exists -- that is, all inputs that have a corresponding output on the graph.
+
+:::
+
+:::{.fragment}
+
+Two things to watch carefully:
+
+:::
+
++ **Open dots** (hollow circles) indicate that the particular point *is not* part of the graph.
++ **Closed dots** (filled circles) indicate that a particular point *is* part of the graph.
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Identify the domain of $j\left(x\right)$ from its graph below. Assume the graph extends infinitely left and right, and that all domain restrictions are visible.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals_1 <- seq(-10, -5.1, length.out = 10)
+x_vals_2 <- seq(-4.95, 0.8, length.out = 100)
+x_vals_3 <- seq(1, 4.8, length.out = 100)
+x_vals_4 <- seq(5.2, 10, length.out = 100)
+
+f1 <- function(x) 0.5*x + 3
+f2 <- function(x) 0.25*x^2 - 2
+f3 <- function(x) sin(x)
+
+y_vals_1 <- f1(x_vals_1)
+y_vals_2 <- f2(x_vals_2)
+y_vals_3 <- f3(x_vals_3)
+y_vals_4 <- f3(x_vals_4)
+
+open_pts <- data.frame(
+  x = c(-5, -5, 1, 5),
+  y = c(f1(-5), f2(-5), f2(1), f3(5))
+)
+closed_pts <- data.frame(
+  x = c(1, 5),
+  y = c(f3(1), 2)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = y_vals_1), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = y_vals_2), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = y_vals_3), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = y_vals_4), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -4, yend = 5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-4, 5)) +
+  theme(
+    axis.line = element_blank(),
+    axis.title = element_blank()
+  )
+```
+
+:::
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Problem:** Identify the domain of $j\left(x\right)$ from its graph below. Assume the graph extends infinitely left and right, and that all domain restrictions are visible.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals_1 <- seq(-10, -5.1, length.out = 10)
+x_vals_2 <- seq(-4.95, 0.8, length.out = 100)
+x_vals_3 <- seq(1, 4.8, length.out = 100)
+x_vals_4 <- seq(5.2, 10, length.out = 100)
+
+f1 <- function(x) 0.5*x + 3
+f2 <- function(x) 0.25*x^2 - 2
+f3 <- function(x) sin(x)
+
+y_vals_1 <- f1(x_vals_1)
+y_vals_2 <- f2(x_vals_2)
+y_vals_3 <- f3(x_vals_3)
+y_vals_4 <- f3(x_vals_4)
+
+open_pts <- data.frame(
+  x = c(-5, -5, 1, 5),
+  y = c(f1(-5), f2(-5), f2(1), f3(5))
+)
+closed_pts <- data.frame(
+  x = c(1, 5),
+  y = c(f3(1), 2)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = y_vals_1), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = y_vals_2), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = y_vals_3), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = y_vals_4), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -4, yend = 5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-4, 5)) +
+  theme(
+    axis.line = element_blank(),
+    axis.title = element_blank()
+  )
+```
+
+*Solution.* The graph has open dots at $x = -5$ and no closed dot. The function is undefined there. At $x = 1$ and $x = 5$, open dots on one piece are matched by closed dots on another, so both values are included. The graph exists for all other $x$ and we'll assume the graph extends in the positive and negative $x$ direction since there are no closed dot indicators at the $x = \pm 10$.
+
+$$\text{Domain of } j: \boxed{~\left(-\infty, -5\right)\cup\left(-5, \infty\right)~}$$
+
+</div>
+
+## Range
+
+:::{.fragment}
+
+**Definition (Range):** Given a function $f\left(x\right)$, the *range* of $f$ is the set of all attainable output values.
+
+:::
+
+:::{.fragment}
+
+The range is generally harder to identify algebraically. Later in our course we'll use:
+
+:::
+
++ Transformations of known *base* functions to determine the range.
++ Asymptotic behavior to identify outputs the function may never reach.
+
+:::{.fragment}
+
+For now, we'll identify the range of a function from its graph by asking: "*what $y$-values does the graph actually reach?*"
+
+:::
+
+## Completed Example 5
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** Determine the range of $g\left(x\right)$ by analyzing its graph below.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-10, -2, length.out = 100)
+x_vals_2 <- seq(-2, 6, length.out = 250)
+x_vals_3 <- seq(6, 10, length.out = 100)
+
+f1 <- function(x) 4 - 1.65*exp(x + 3)
+f2 <- function(x) (1/2)*x*sin(5*x)
+f3 <- function(x) -exp(-x + 6) - 2
+
+y_vals_1 <- f1(x_vals_1)
+y_vals_2 <- f2(x_vals_2)
+y_vals_3 <- f3(x_vals_3)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = y_vals_1), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = y_vals_2), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = y_vals_3), color = "blue", linewidth = 1) +
+  annotate("segment",
+           x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -5, yend = 6,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) +
+  scale_y_continuous(breaks = seq(-5, 6, by = 1)) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-5, 6)) +
+  theme(
+    axis.line = element_blank(),
+    axis.title = element_blank()
+  )
+```
+
+:::
+
+</div>
+
+## Completed Example 5
+
+<div style="font-size:16pt">
+
+**Problem:** Determine the range of $g\left(x\right)$ by analyzing its graph below.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-10, -2, length.out = 100)
+x_vals_2 <- seq(-2, 6, length.out = 250)
+x_vals_3 <- seq(6, 10, length.out = 100)
+
+f1 <- function(x) 4 - 1.65*exp(x + 3)
+f2 <- function(x) (1/2)*x*sin(5*x)
+f3 <- function(x) -exp(-x + 6) - 2
+
+y_vals_1 <- f1(x_vals_1)
+y_vals_2 <- f2(x_vals_2)
+y_vals_3 <- f3(x_vals_3)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = y_vals_1), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = y_vals_2), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = y_vals_3), color = "blue", linewidth = 1) +
+  geom_hline(aes(yintercept = -3), linetype = "dashed", linewidth = 0.5) +
+  geom_hline(aes(yintercept = 4), linetype = "dashed", linewidth = 0.5) +
+  annotate("text", x = 8.5, y = -3.5, label = "y = - 3", size = 5) +
+  annotate("text", x = 8.5, y = 4.5, label = "y = 4", size = 5) +
+  annotate("segment",
+           x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -5, yend = 6,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 1)) +
+  scale_y_continuous(breaks = seq(-5, 6, by = 1)) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-5, 6)) +
+  theme(
+    axis.line = element_blank(),
+    axis.title = element_blank()
+  )
+```
+
+*Solution.* The graph appears to attain output values between $y \approx -3$ and $y \approx 4$.
+
+:::{.fragment}
+
+This means the range is one of the following -- but from the graph alone, we cannot determine which:
+
+$$\left[-3, 4\right] \qquad \left(-3, 4\right] \qquad \left[-3, 4\right) \qquad \left(-3, 4\right)$$
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Key Idea
+
+Whether an endpoint is included in the range depends on whether the function actually *attains* that output value. A graph can suggest approximate bounds, but confirming whether endpoints are reached requires more algebraic analysis via tools we'll develop later in our course.
+
+:::
+
+:::
+
+## Domain and Range Practice
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Determine the domain of each of the following functions from their algebraic definitions.
+
+:::
+
+:::{.fragment}
+
+**Try It! 1:** Find the domain of  the function $f\left(x\right) = \sqrt{\left(x - 10\right)}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 2:** Find the domain of the function $g\left(x\right) = 2 + 5x + 3x^2$
+
+:::
+
+:::{.fragment}
+
+**Try It! 3:** Find the domain of the function $h\left(x\right) = \displaystyle{\frac{x^2 - 16}{5x}}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 4 and 5:** Determine the domain and range of each function from its graph. Assume the behavior continues off to the left or right following the patterns shown.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+x_vals_f1 <- seq(-10, -5, length.out = 250)
+x_vals_f2 <- seq(0.1, 3.9, length.out = 250)
+x_vals_f3 <- seq(4.1, 8, length.out = 250)
+x_vals_f4 <- seq(8, 10, length.out = 250)
+
+f1 <- function(x) cos(4*x) - 2
+f2 <- function(x) x - 2
+f3 <- function(x) -0.5*x + 2
+f4 <- function(x) rep(-2, length(x))
+
+y_vals_f1 <- f1(x_vals_f1)
+y_vals_f2 <- f2(x_vals_f2)
+y_vals_f3 <- f3(x_vals_f3)
+y_vals_f4 <- f4(x_vals_f4)
+
+x_vals_g1 <- seq(-6, -3, length.out = 250)
+x_vals_g2 <- seq(-3, 2, length.out = 250)
+x_vals_g3 <- seq(2, 3, length.out = 250)
+x_vals_g4 <- seq(3, 5, length.out = 250)
+x_vals_g5 <- seq(5, 6, length.out = 250)
+
+g1 <- function(x) (x + 4)^2 - 1
+g2 <- function(x) -(x + 3)
+g3 <- function(x) -(x - 2)^2 - 5
+g4 <- function(x) (x - 3)^3 - 6
+g5 <- function(x) rep(2, length(x))
+
+y_vals_g1 <- g1(x_vals_g1)
+y_vals_g2 <- g2(x_vals_g2)
+y_vals_g3 <- g3(x_vals_g3)
+y_vals_g4 <- g4(x_vals_g4)
+y_vals_g5 <- g5(x_vals_g5)
+
+open_f <- data.frame(x = c(0, 4), y = c(-2, 2))
+closed_f <- data.frame(x = c(-5, 4, 8), y = c(f1(-5), 0, -2))
+closed_g <- data.frame(x = c(-3, 2, 3, 5),
+                        y = c(g1(-3), g2(2), g3(3), g4(5)))
+
+p_f <- ggplot() +
+  geom_line(aes(x = x_vals_f1, y = y_vals_f1), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f2, y = y_vals_f2), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f3, y = y_vals_f3), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_f4, y = y_vals_f4), color = "blue", linewidth = 1) +
+  geom_point(data = open_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_f, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -5, yend = 5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-5, 5, by = 1)) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-5, 5)) +
+  labs(title = "Plot of j(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_g <- ggplot() +
+  geom_line(aes(x = x_vals_g1, y = y_vals_g1), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g2, y = y_vals_g2), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g3, y = y_vals_g3), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g4, y = y_vals_g4), color = "darkorange", linewidth = 1) +
+  geom_line(aes(x = x_vals_g5, y = y_vals_g5), color = "darkorange", linewidth = 1) +
+  geom_point(data = closed_g, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "darkorange", color = "darkorange") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -8, yend = 5,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = seq(-7, 5, by = 1)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-8, 5)) +
+  labs(title = "Plot of k(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_f + p_g
+```
+
+:::
+
+</div>
+
+## Domain and Range Practice
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Determine the domain of each of the following functions from their algebraic definitions.
+
+:::
+
+:::{.fragment}
+
+**Try It! 6:** Find the domain of the function $\ell\left(x\right) = \displaystyle{\frac{x^2 - 36}{x + 6}}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 7:** Find the domain of the function $m\left(x\right) = \displaystyle{\frac{x + 5}{\sqrt{\left(x^2 - 25\right)}}}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 8:** Find the domain of the function $n\left(x\right) = \displaystyle{\frac{x^2 - 5x + 12}{x^2 + 4}}$
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Building Intuition
+
+That last function shows the value of thinking carefully before diving into algebra. What can you say about $x^2 + 4$ for any real number $x$?
+
+:::
+
+:::
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** The height $h$ (in feet) of a projectile is a function of the time $t$ (in seconds) it has been in the air:
+
+$$h\left(t\right) = -16t^2 + 96t$$
+
+:::
+
+:::{.fragment}
+
+What is the domain of this function? What does the domain mean in the context of the problem?
+
+:::
+
+:::{.fragment}
+
+*Solution.* Algebraically, $h\left(t\right)$ is a polynomial and is defined for all real numbers. But in the context of a projectile in the air, negative time doesn't make physical sense, and the projectile hits the ground when $h\left(t\right) = 0$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} -16t^2 + 96t &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** The height $h$ (in feet) of a projectile is a function of the time $t$ (in seconds) it has been in the air:
+
+$$h\left(t\right) = -16t^2 + 96t$$
+
+What is the domain of this function? What does the domain mean in the context of the problem?
+
+*Solution.* Algebraically, $h\left(t\right)$ is a polynomial and is defined for all real numbers. But in the context of a projectile in the air, negative time doesn't make physical sense, and the projectile hits the ground when $h\left(t\right) = 0$.
+
+\begin{align} -16t^2 + 96t &= 0\\
+\implies -16t\left(t - 6\right) &= 0
+\end{align}
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** The height $h$ (in feet) of a projectile is a function of the time $t$ (in seconds) it has been in the air:
+
+$$h\left(t\right) = -16t^2 + 96t$$
+
+What is the domain of this function? What does the domain mean in the context of the problem?
+
+*Solution.* Algebraically, $h\left(t\right)$ is a polynomial and is defined for all real numbers. But in the context of a projectile in the air, negative time doesn't make physical sense, and the projectile hits the ground when $h\left(t\right) = 0$.
+
+\begin{align} -16t^2 + 96t &= 0\\
+\implies -16t\left(t - 6\right) &= 0\\
+\implies -16t = 0 &\text{ or } t - 6 = 0
+\end{align}
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** The height $h$ (in feet) of a projectile is a function of the time $t$ (in seconds) it has been in the air:
+
+$$h\left(t\right) = -16t^2 + 96t$$
+
+What is the domain of this function? What does the domain mean in the context of the problem?
+
+*Solution.* Algebraically, $h\left(t\right)$ is a polynomial and is defined for all real numbers. But in the context of a projectile in the air, negative time doesn't make physical sense, and the projectile hits the ground when $h\left(t\right) = 0$.
+
+\begin{align} -16t^2 + 96t &= 0\\
+\implies -16t\left(t - 6\right) &= 0\\
+\implies -16t = 0 &\text{ or } t - 6 = 0\\
+\implies t = 0 &\text{ or } t = 6
+\end{align}
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** The height $h$ (in feet) of a projectile is a function of the time $t$ (in seconds) it has been in the air:
+
+$$h\left(t\right) = -16t^2 + 96t$$
+
+What is the domain of this function? What does the domain mean in the context of the problem?
+
+*Solution.* Algebraically, $h\left(t\right)$ is a polynomial and is defined for all real numbers. But in the context of a projectile in the air, negative time doesn't make physical sense, and the projectile hits the ground when $h\left(t\right) = 0$.
+
+\begin{align} -16t^2 + 96t &= 0\\
+\implies -16t\left(t - 6\right) &= 0\\
+\implies -16t = 0 &\text{ or } t - 6 = 0\\
+\implies t = 0 &\text{ or } t = 6
+\end{align}
+
+The projectile is in the air from $t = 0$ to $t = 6$ seconds. The **contextual domain** is $\boxed{~\left[0, 6\right]~}$.
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `3. Domain and Range`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Determine the domain of each of the following functions.
+
+$$\left(a\right)~f\left(x\right) = \frac{3x}{\sqrt{\left(x - 4\right)}} \qquad \left(b\right)~g\left(x\right) = \frac{x^2 + 1}{x^2 - 4}$$
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ The **domain** of a function is the set of all permissible inputs.
++ Domain restrictions arise from **denominators** (can't be $0$) and **even-index radicals** (argument must be at least $0$).
++ To find the domain from a graph, identify the set of all $x$-values where the graph exists. Watch for open and closed dots.
++ The **range** of a function is the set of all attainable outputs.
++ To find the range from a graph, identify the set of all $y$-values the graph reaches. Graphs alone may not tell us whether endpoints of the range intervals are included though.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Resources**</center>
+
++ [Domain and range from a graph](https://youtu.be/KirGQOwjBVI?si=xqBN-U4a0eb79Kdt){target="_blank"} -- The Organic Chemistry Tutor
++ [Domain from an algebraic definition](https://youtu.be/w81y25anEOM?si=T__pcedl9NTh-tL7){target="_blank"} -- patrickJMT
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Limits and Rates of Change</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Finish Homework 2 on MyOpenMath</center>
+
+:::
+
+</div>

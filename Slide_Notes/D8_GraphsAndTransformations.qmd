@@ -1,0 +1,862 @@
+---
+title: "MAT 142: Book Functions, Transformations, and Landmarks"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Welcome back from Exam I! 
+
+:::
+
+:::{.fragment}
+
+Over those first few weeks of our course, we focused on truly foundational items.
+
++ Shoring up our algebra background
++ Interval notation
++ Domain and range
++ Composition of functions
+
+:::
+
+:::{.fragment}
+
+We also encountered the notion of the *limit*, which will be a foundational tool in Calculus as well as one we work to become comfortable with here in PreCalculus.
+
+:::
+
+:::{.fragment}
+
+We'll continue with a few more foundational topics before moving into exploring specific function classes for the remainder of our semester.
+
+:::
+
+:::{.fragment}
+
+Try the following warm-up problems to get your algebra legs back.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Consider $f\left(x\right) = x^2$. Find each of the following.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
++ $f\left(3\right)$
++ $f\left(4\right) - 6$
++ $2 \cdot f\left(3\right) + 1$
+
+:::
+
+:::{.column width="50%"}
+
++ $f\left(2x\right)$
++ $f\left(x - h\right)$
++ $f\left(x - h\right) + k$
+
+:::
+
+::::
+
+</div>
+
+## Motivating Application
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+A chemist is running an experiment with a theoretical model $f\left(t\right)$ measuring the expected temperature (°C) of a liquid at time $t$ (minutes) into a reaction.
+
+:::
+
+:::{.fragment}
+
+They start a **second** reaction 5 minutes later. In this second reaction, the temperature at any given time into the reaction is expected to be **triple** the temperature in the original reaction at that same elapsed time.
+
+:::
+
+:::{.fragment}
+
+Construct a function related to $f\left(t\right)$ which models the temperature of the second reaction at $t$ minutes after the start of the *initial* reaction.
+
+:::
+
+:::{.fragment}
+
+Before we work through this, consider the following:
+
+:::
+
++ What is the practical domain of $f\left(t\right)$?
++ What is the practical domain of the function you are constructing?
++ How do you expect the *shape* of the new function to relate to the shape of $f\left(t\right)$?
+
+:::{.fragment}
+
+We'll return to this application at the end of today's class.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today has two connected halves.
+
+:::
+
+:::{.fragment}
+
+**First half -- Book Functions and Transformations:**
+
+:::
+
++ Store mental images of the graphs of several foundational function classes.
++ Develop the notions of vertical and horizontal shifts, stretches, compressions, and reflections.
++ Combine several transformations to construct graphs of more general functions.
+
+:::{.fragment}
+
+**Second half -- Landmarks on Graphs:**
+
+:::
+
++ Identify roots ($x$-intercepts) and the $y$-intercept from a graph.
++ Identify local minima and maxima.
++ Identify intervals of increase, decrease, and constancy.
+
+:::{.fragment}
+
+While this second half consists of things we've seen/done earlier this semester, we'll bring it all back as a refresher.
+
+:::
+
+## Book Functions
+
+:::{.fragment}
+
+As we explore functions in greater depth, it is helpful to have the general *shape* of a function's graph committed to memory.
+
+:::
+
+:::{.fragment}
+
+We'll refer to these foundational functions as **book functions** -- they are the basic building blocks from which more general functions are constructed.
+
+:::
+
+. . .
+
+The graphs of our current book functions appear on the next slide. **You should commit these shapes to memory.** We will add to this list later in the course.
+
+## Book Functions
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 6.5
+
+x_vals <- seq(-4, 4, length.out = 300)
+x_pos  <- seq(0,  4, length.out = 300)
+
+make_axis_plot <- function(xv, yv, title_str, color = "blue") {
+  ggplot() +
+    geom_line(aes(x = xv, y = yv), color = color, linewidth = 1) +
+    annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+             linewidth = 0.4, color = "black") +
+    coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+    scale_x_continuous(breaks = seq(-4, 4, by = 2)) +
+    scale_y_continuous(breaks = seq(-4, 4, by = 2)) +
+    labs(title = title_str) +
+    theme(axis.line = element_blank(),
+          axis.title = element_blank(),
+          plot.title = element_text(size = 16))
+}
+
+p_lin  <- make_axis_plot(x_vals, x_vals,          latex2exp::TeX("Linear: $f(x) = x$"))
+p_quad <- make_axis_plot(x_vals, x_vals^2,         latex2exp::TeX("Quadratic: $f(x) = x^2$"))
+p_cub  <- make_axis_plot(x_vals, x_vals^3,         latex2exp::TeX("Cubic: $f(x) = x^3$"))
+p_ep   <- make_axis_plot(x_vals, x_vals^4,         latex2exp::TeX("Even Power: $f(x) = x^{2n}$"))
+p_op   <- make_axis_plot(x_vals, x_vals^5,         latex2exp::TeX("Odd Power: $f(x) = x^{2n+1}$"))
+p_er   <- make_axis_plot(x_pos,  sqrt(x_pos),      latex2exp::TeX("Even Root: $f(x) = x^{1/(2n)}$"))
+p_or   <- make_axis_plot(x_vals, sign(x_vals)*abs(x_vals)^(1/3), latex2exp::TeX("Odd Root: $f(x) = x^{1/(2n+1)}$"))
+p_abs  <- make_axis_plot(x_vals, abs(x_vals),      latex2exp::TeX("Absolute Value: $f(x) = |x|$"))
+p_more <- ggplot() +
+  annotate("text", x = 0, y = 0, label = "More to come...", size = 4) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0, linewidth = 0.4, color = "black") +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4, linewidth = 0.4, color = "black") +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  labs(title = "More to come...") +
+  theme_bw(base_size = 16) +
+  theme(axis.line = element_blank(), axis.title = element_blank(),
+        plot.title = element_text(size = 10))
+
+(p_lin + p_quad + p_cub) /
+(p_ep  + p_op  + p_er)  /
+(p_or  + p_abs + p_more)
+```
+
+## Book Functions -- Patterns to Notice
+
++ Any **linear** function has a graph that is a straight line.
++ Any **power function with even exponent** ($x^{2n}$) has a "U"-shaped graph, symmetric about the $y$-axis.
++ Any **power function with odd exponent** ($x^{2n+1}$) has an elongated shape similar to $f\left(x\right) = x^3$, symmetric about the origin.
++ Any **even root function** ($x^{1/(2n)}$) has domain $\left[0, \infty\right)$ and a "half-bowl" shape.
++ Any **odd root function** ($x^{1/(2n+1)}$) has an elongated "S"-shape defined on all of $\mathbb{R}$.
++ The **absolute value function** has a "V"-shape with vertex at the origin.
+
+. . .
+
+This knowledge gives us great leverage in understanding the shapes of more general functions via **transformations**.
+
+## Transformations of Functions
+
+:::{.fragment}
+
+We can modify a book function in four fundamental ways:
+
+:::
+
++ **Vertical shift:** move the graph up or down
++ **Horizontal shift:** move the graph left or right
++ **Vertical stretch/compression/reflection:** make the graph taller/shorter, or flip it over the $x$-axis
++ **Horizontal stretch/compression/reflection:** speed up or slow down the function, or flip it over the $y$-axis
+
+:::{.fragment}
+
+We'll use $f\left(x\right) = x^3$ as our running example throughout.
+
+:::
+
+## Vertical Shifts
+
+:::{.fragment}
+
+**Definition (Vertical Shift):** If $g\left(x\right) = f\left(x\right) + k$, then the graph of $g$ is the graph of $f$ shifted **up by $k$ units** (or down if $k < 0$).
+
+:::
+
+:::{.fragment}
+
+**Completed Example 1:** Consider $f\left(x\right) = x^3$, $g\left(x\right) = x^3 + 2$, and $h\left(x\right) = x^3 - 1$.
+
+An interactive version of this plot is available [on Desmos](https://www.desmos.com/calculator/igcigxnmai){target="_blank"}.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+x_vals <- seq(-4, 4, length.out = 300)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = x_vals^3,       color = "f(x) = x^3"),       linewidth = 1) +
+  geom_line(aes(x = x_vals, y = x_vals^3 + 2,   color = "g(x) = x^3 + 2"),   linewidth = 1) +
+  geom_line(aes(x = x_vals, y = x_vals^3 - 1,   color = "h(x) = x^3 - 1"),   linewidth = 1) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_color_manual(values = c("f(x) = x^3" = "blue",
+                                "g(x) = x^3 + 2" = "darkorange",
+                                "h(x) = x^3 - 1" = "darkgreen"),
+                     name = NULL) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  labs(title = "Vertical Shifts") +
+  theme(axis.line = element_blank(), axis.title = element_blank(),
+        legend.position = "right")
+```
+
+:::
+
+## Horizontal Shifts
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Horizontal Shift):** If $g\left(x\right) = f\left(x - h\right)$, then the graph of $g$ is the graph of $f$ shifted **right by $h$ units** (or left if $h < 0$).
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Horizontal Shifts are Counter-Intuitive
+
+This is counterintuitive -- subtracting inside the argument shifts *right*, adding shifts *left*.
+
+:::
+
+:::
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Completed Example 2:** Consider $f\left(x\right) = x^3$, $g\left(x\right) = \left(x - 2\right)^3$, and $h\left(x\right) = \left(x + 1\right)^3$.
+
+An interactive version is available [on Desmos](https://www.desmos.com/calculator/weophishg2){target="_blank"}.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-4, 4, length.out = 300)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = x_vals^3,       color = "f(x) = x^3"),         linewidth = 1) +
+  geom_line(aes(x = x_vals, y = (x_vals - 2)^3, color = "g(x) = (x - 2)^3"),   linewidth = 1) +
+  geom_line(aes(x = x_vals, y = (x_vals + 1)^3, color = "h(x) = (x + 1)^3"),   linewidth = 1) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_color_manual(values = c("f(x) = x^3"       = "blue",
+                                "g(x) = (x - 2)^3" = "darkorange",
+                                "h(x) = (x + 1)^3" = "darkgreen"),
+                     name = NULL) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  labs(title = "Horizontal Shifts") +
+  theme(axis.line = element_blank(), axis.title = element_blank(),
+        legend.position = "right")
+```
+
+:::
+
+## Vertical Stretches, Compressions, and Reflections
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Definition (Vertical Stretch):** If $g\left(x\right) = a \cdot f\left(x\right)$, then:
+
+:::
+
++ If $a > 1$: graph is stretched **taller and narrower** by factor $a$.
++ If $0 < a < 1$: graph is compressed **shorter and wider** by factor $a$.
++ If $a < 0$: graph is **reflected over the $x$-axis**, then stretched/compressed by $\left|a\right|$.
+
+:::{.fragment}
+
+**Completed Example 3:** Consider $f\left(x\right) = x^3$, $\displaystyle{g\left(x\right) = \frac{1}{2}x^3}$, and $h\left(x\right) = -3x^3$.
+
+An interactive version is available [on Desmos](https://www.desmos.com/calculator/gnbwt0yvsn){target="_blank"}.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3
+
+x_vals <- seq(-4, 4, length.out = 300)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = x_vals^3,        color = "f(x) = x^3"),             linewidth = 1) +
+  geom_line(aes(x = x_vals, y = 0.5*x_vals^3,    color = "g(x) = (1/2)x^3"),        linewidth = 1) +
+  geom_line(aes(x = x_vals, y = -3*x_vals^3,     color = "h(x) = -3x^3"),           linewidth = 1) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_color_manual(values = c("f(x) = x^3"      = "blue",
+                                "g(x) = (1/2)x^3" = "darkorange",
+                                "h(x) = -3x^3"    = "darkgreen"),
+                     name = NULL) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  labs(title = "Vertical Stretches, Compressions, and Reflections") +
+  theme(axis.line = element_blank(), axis.title = element_blank(),
+        legend.position = "right")
+```
+
+:::
+
+## Horizontal Stretches, Compressions, and Reflections
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Definition (Horizontal Stretch):** If $g\left(x\right) = f\left(b \cdot x\right)$, then:
+
+:::
+
++ If $b > 1$: graph is **compressed horizontally** (the function "speeds up").
++ If $0 < b < 1$: graph is **stretched horizontally** (the function "slows down").
++ If $b < 0$: graph is **reflected over the $y$-axis**, then stretched/compressed by $\left|b\right|$.
+
+:::{.fragment}
+
+**Completed Example 4:** We use $f\left(x\right) = \sin\left(x\right)$ as the base function here since the horizontal effects are easier to see. Compare $g\left(x\right) = \sin\left(2x\right)$ and $h\left(x\right) = \sin\!\left(-\frac{1}{2}x\right)$.
+
+An interactive version is available [on Desmos](https://www.desmos.com/calculator/4btaweqpqz){target="_blank"}.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals <- seq(-9, 9, length.out = 500)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = sin(x_vals),         color = "f(x) = sin(x)"),          linewidth = 1) +
+  geom_line(aes(x = x_vals, y = sin(2*x_vals),       color = "g(x) = sin(2x)"),          linewidth = 1) +
+  geom_line(aes(x = x_vals, y = sin(-0.5*x_vals),    color = "h(x) = sin(-x/2)"),        linewidth = 1) +
+  annotate("segment", x = -9, xend = 9, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -2, yend = 2,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_color_manual(values = c("f(x) = sin(x)"   = "blue",
+                                "g(x) = sin(2x)"  = "darkorange",
+                                "h(x) = sin(-x/2)"= "darkgreen"),
+                     name = NULL) +
+  coord_cartesian(xlim = c(-9, 9), ylim = c(-2, 2)) +
+  scale_x_continuous(breaks = seq(-9, 9, by = 3)) +
+  labs(title = "Horizontal Stretches, Compressions, and Reflections") +
+  theme(axis.line = element_blank(), axis.title = element_blank(),
+        legend.position = "right")
+```
+
+:::
+
+## Putting It All Together
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+We aren't restricted to a single transformation at a time. We can **combine** transformations. The order in which they are applied follows the order of operations.
+
+:::
+
+:::{.fragment}
+
+**Completed Example 5:** Use transformations to plot $g\left(x\right) = -2\left(x + 3\right)^2 + 4$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Compare to the book function $f\left(x\right) = x^2$. The transformations occur in this order:
+
+:::
+
+1. Shift **left** by $3$ units: $f\left(x + 3\right) = \left(x + 3\right)^2$
+2. Reflect over $x$-axis and stretch vertically by $2$: $-2\left(x + 3\right)^2$
+3. Shift **up** by $4$ units: $g\left(x\right) = -2\left(x + 3\right)^2 + 4$
+
+</div>
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-6, 6, length.out = 300)
+
+f  <- function(x) x^2
+f2 <- function(x) (x + 3)^2
+f3 <- function(x) -2*(x + 3)^2
+g  <- function(x) -2*(x + 3)^2 + 4
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f(x_vals)),  color = "blue",   linewidth = 1, alpha = 0.20,
+            linetype = "solid") +
+  geom_line(aes(x = x_vals, y = f2(x_vals)), color = "blue",   linewidth = 1, alpha = 0.40) +
+  geom_line(aes(x = x_vals, y = f3(x_vals)), color = "blue",   linewidth = 1, alpha = 0.60) +
+  geom_line(aes(x = x_vals, y = g(x_vals)),  color = "darkorange", linewidth = 1.5) +
+  annotate("text", x = 2.5,  y =  3.5, label = "f(x)", color = "blue",       size = 5, alpha = 0.65) +
+  annotate("text", x = -5.5, y =  3.5, label = "Step 1", color = "blue",     size = 5, alpha = 0.75) +
+  annotate("text", x = -3,   y = -5.5, label = "Step 2", color = "blue",     size = 5, alpha = 0.85) +
+  annotate("text", x = -3,   y =  5.2, label = "g(x)",   color = "darkorange", size = 6) +
+  annotate("segment", x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -6, yend = 6,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-6, 6)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = seq(-6, 6, by = 2)) +
+  labs(title = "Building g(x) = -2(x+3)^2 + 4 via Transformations") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::
+
+:::{.column width="40%"}
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+The faded blue curves show the intermediate stages. The final function $g\left(x\right)$ is in orange. Notice the vertex is now at $\left(-3, 4\right)$.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-important}
+
+Order of operations determines the way in which the transformations are applied. That order matters.
+
+:::
+
+:::
+
+:::
+
+::::
+
+## Transformations Practice
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Try It! 1:** Use your knowledge of transformations to sketch the graph of $\displaystyle{g\left(x\right) = 5\sqrt{\left(x + 4\right)} + 2}$.
+
+Identify the book function, describe each transformation in order, and sketch the result.
+
+:::
+
+:::{.fragment}
+
+**Try It! 2:** Construct a function $g\left(x\right)$ whose graph looks like $f\left(x\right) = x^{1/3}$, but:
+
+:::
+
++ Shifted **right** by $2$ units
++ Compressed vertically by a factor of $\displaystyle{\frac{1}{4}}$
++ Shifted **down** by $5$ units
+
+:::{.fragment}
+
+Provide both the algebraic definition of $g\left(x\right)$ and sketch an approximate graph.
+
+:::
+
+</div>
+
+## Landmarks on Graphs of Functions
+
+:::{.fragment}
+
+We've seen function landmarks before (Day 3), but we'll revisit them here since they now have a richer context with transformations in mind.
+
+:::
+
+:::{.fragment}
+
+For any function, we want to be able to identify:
+
+:::
+
++ **Roots** ($x$-intercepts): inputs where $f\left(x\right) = 0$
++ **$y$-intercept**: the point $\left(0, f\left(0\right)\right)$
++ **Local maxima**: peaks where the function transitions from increasing to decreasing
++ **Local minima**: valleys where the function transitions from decreasing to increasing
++ **Intervals of increase/decrease**: where the graph is rising or falling (left to right)
+
+## Completed Example 6
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** Find the roots, $y$-intercept, local maxima and minima, and intervals of increase and decrease for $f\left(x\right)$.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3
+
+x_vals <- seq(-5, 5, length.out = 500)
+f_vals <- (x_vals - 4)*(x_vals - 3)*(x_vals - 1)*(x_vals + 2)*(x_vals + 4)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -200, yend = 200,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
+  scale_y_continuous(breaks = seq(-200, 200, by = 100)) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-200, 200)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+</div>
+
+## Completed Example 6
+
+<div style="font-size:16pt">
+
+**Problem:** Find the roots, $y$-intercept, local maxima and minima, and intervals of increase and decrease for $f\left(x\right)$.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3
+
+x_vals <- seq(-5, 5, length.out = 500)
+f_vals <- (x_vals - 4)*(x_vals - 3)*(x_vals - 1)*(x_vals + 2)*(x_vals + 4)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_vline(xintercept = -3.25, linetype = "dashed", linewidth = 0.5) +
+  geom_vline(xintercept = -0.70, linetype = "dashed", linewidth = 0.5) +
+  geom_vline(xintercept =  2.00, linetype = "dashed", linewidth = 0.5) +
+  geom_vline(xintercept =  3.60, linetype = "dashed", linewidth = 0.5) +
+  geom_point(aes(x = c(-4, -2, 1, 3, 4), y = c(0, 0, 0, 0, 0)),
+             color = "black", size = 3) +
+  geom_point(aes(x = c(-3.25, -0.70, 2.00, 3.60, 0),
+                 y = c( 181,  -127,   48,  -27, -96)),
+             color = "black", size = 3) +
+  annotate("text", x = -4.3, y =  15, label = "x-int", size = 3.5) +
+  annotate("text", x = -1.8, y =  20, label = "x-int", size = 3.5) +
+  annotate("text", x =  1.0, y = -25, label = "x-int", size = 3.5) +
+  annotate("text", x =  3.25, y =  20, label = "x-int", size = 3.5) +
+  annotate("text", x =  4.25, y = -25, label = "x-int", size = 3.5) +
+  annotate("text", x =  0.25, y = -120, label = "y-int", size = 3.5) +
+  annotate("text", x = -4.5, y =  185, label = "Increasing", color = "darkgreen", size = 3.5) +
+  annotate("text", x =  0.5, y =  185, label = "Increasing", color = "darkgreen", size = 3.5) +
+  annotate("text", x =  4.5, y =  185, label = "Increasing", color = "darkgreen", size = 3.5) +
+  annotate("text", x = -2.1, y = -185, label = "Decreasing", color = "darkred", size = 3.5) +
+  annotate("text", x =  2.8, y = -185, label = "Decreasing", color = "darkred", size = 3.5) +
+  annotate("text", x = -3, y =  200, label = "Max",  size = 3.5) +
+  annotate("text", x =  2.25, y =   70, label = "Max",  size = 3.5) +
+  annotate("text", x = -0.5, y = -148, label = "Min",  size = 3.5) +
+  annotate("text", x =  3.8, y =  -55, label = "Min",  size = 3.5) +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -200, yend = 200,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
+  scale_y_continuous(breaks = seq(-200, 200, by = 100)) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-200, 200)) +
+  labs(title = "A Graph of f(x) -- Landmarks Identified") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.* By inspecting the annotated graph (approximations, not exact values):
+
++ **Roots:** $\left(-4, 0\right)$, $\left(-2, 0\right)$, $\left(1, 0\right)$, $\left(3, 0\right)$, $\left(4, 0\right)$
++ **$y$-intercept:** $\left(0, -96\right)$
++ **Increasing** on approximately $\left(-\infty, -3.25\right)\cup\left(-0.75, 2\right)\cup\left(3.6, \infty\right)$
++ **Decreasing** on approximately $\left(-3.25, -0.75\right)\cup\left(2, 3.6\right)$
++ **Local maxima** near $\left(-3.25, 181\right)$ and $\left(2, 48\right)$
++ **Local minima** near $\left(-0.75, -127\right)$ and $\left(3.6, -27\right)$
+
+</div>
+
+## Motivating Application -- Revisited
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** A chemist has model $f\left(t\right)$ for a reaction's temperature. A second reaction starts **5 minutes later**, and its temperature is expected to be **triple** the first reaction's temperature at each time point into the reaction.
+
+:::
+
+:::{.fragment}
+
+Construct a function modeling the second reaction's temperature at time $t$ minutes after the *start of the first* reaction.
+
+:::
+
+:::{.fragment}
+
+*Solution.* We need two transformations applied to $f$:
+
+:::
+
+1. The second reaction starts 5 minutes later, so we shift **right by 5**: the time into the second reaction at clock-time $t$ is $t - 5$, giving $f\left(t - 5\right)$.
+2. The temperature is **triple** at each time point, so we stretch vertically by $3$, resulting in $3f\left(t - 5\right)$.
+
+:::{.fragment}
+
+$$\boxed{~g\left(t\right) = 3f\left(t - 5\right)~}$$
+
+:::
+
+:::{.fragment}
+
+The practical domain is $t \geq 5$, and the shape of $g$ is the same as $f$, just shifted right and stretched vertically.
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `6. Graphing: Book Functions and Transformations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Describe the transformations applied to the book function $f\left(x\right) = \sqrt{x}$ to obtain $g\left(x\right) = -3\sqrt{\left(x - 2\right)} + 1$. List them in order and describe the effect of each on the graph.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ **Book functions** are foundational shapes to memorize: linear, quadratic, cubic, even/odd powers, even/odd roots, and absolute value.
++ $f\left(x\right) + k$: vertical shift up by $k$
++ $f\left(x - h\right)$: horizontal shift right by $h$
++ $a \cdot f\left(x\right)$: vertical stretch ($a > 1$), compression ($0 < a < 1$), or reflection ($a < 0$)
++ $f\left(b \cdot x\right)$: horizontal compression ($b > 1$), stretch ($0 < b < 1$), or reflection ($b < 0$)
++ Transformations combine following the order of operations.
++ Landmarks: roots, $y$-intercept, local maxima/minima, intervals of increase/decrease.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Resources**</center>
+
++ [Vertical shifts (Desmos)](https://www.desmos.com/calculator/igcigxnmai){target="_blank"}
++ [Horizontal shifts (Desmos)](https://www.desmos.com/calculator/weophishg2){target="_blank"}
++ [Vertical stretches (Desmos)](https://www.desmos.com/calculator/gnbwt0yvsn){target="_blank"}
++ [Horizontal stretches (Desmos)](https://www.desmos.com/calculator/4btaweqpqz){target="_blank"}
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Inverse Functions</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Start Homework 5 on MyOpenMath</center>
+
+:::
+
+</div>

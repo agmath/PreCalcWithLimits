@@ -1,0 +1,1608 @@
+---
+title: "MAT 142: Linear Functions and Equations"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ The definition of inverse functions and verification via composition.
++ The horizontal line test for invertibility.
++ The swap-and-solve method for finding $f^{-1}\left(x\right)$.
++ The geometric symmetry of a function and its inverse across $y = x$.
+
+:::{.fragment}
+
+Try the following warm-up problem.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Find the domain, range, $y$-intercept, roots, and the inverse (if it exists) for the function $f\left(x\right) = 5x - 15$.
+
+*Reminders:*
+
+:::{.nonincremental}
+
++ The *domain* of $f\left(x\right)$ is the set of all permissible inputs.
++ The *range* of $f\left(x\right)$ is the set of all attainable outputs.
+    + Use what you know about the "book function" $f\left(x\right) = x$ and transformations to find the range.
++ The $y$-intercept is the point $\left(0, f\left(0\right)\right)$.
++ The *roots* are all solutions to $f\left(x\right) = 0$, which are of the form $\left(x, 0\right)$.
++ Invertible functions pass the *horizontal line test*; use swap-and-solve to find $f^{-1}$.
+
+:::
+
+:::
+
+</div>
+
+## Motivating Application
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+A gym membership with two personal training sessions costs \$125. A gym membership with five personal training sessions costs \$260.
+
+:::
+
+:::{.fragment}
+
+What is the cost per session? The gym would like to offer a discounted rate for members signing up for ten sessions -- they'll take \$5 off the cost for *each* session. How much would that membership cost?
+
+:::
+
+:::{.fragment}
+
+Before we work through this, consider the following:
+
+:::
+
++ What does using a linear model assume about this scenario?
++ Can you think of alternative discount strategies the gym could offer? Would those still result in a linear model?
+
+:::{.fragment}
+
+We'll return to this application at the end of today's class.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today's class has two connected halves.
+
+:::
+
+:::{.fragment}
+
+**First half -- Linear Functions:**
+
+:::
+
++ Recognize functions of the form $f\left(x\right) = mx + b$ as linear functions.
++ Identify the slope $m$ and $y$-intercept $\left(0, b\right)$.
++ Use the slope formula and point-slope form to construct the equation of a line.
++ Connect linear functions to the transformations framework from Day 8.
++ Determine whether a linear function is increasing, decreasing, or constant.
+
+:::{.fragment}
+
+**Second half -- Linear Equations:**
+
+:::
+
++ Solve linear equations in a single variable.
++ Interpret solving equations geometrically as finding intersections or roots.
+
+## Linear Functions
+
+:::{.fragment}
+
+**Definition (Linear Function):** A function $f\left(x\right)$ is *linear* if it can be written in the form
+
+$$f\left(x\right) = mx + b$$
+
+where $m$ is the *slope* and $\left(0, b\right)$ is the *$y$-intercept*.
+
+:::
+
+:::{.fragment}
+
+The slope $m$ measures the rate of change of the function: for every one-unit increase in $x$, the output changes by exactly $m$ units.
+
+:::
+
+. . .
+
+A linear function is:
+
++ **Increasing** if $m > 0$
++ **Decreasing** if $m < 0$
++ **Constant** if $m = 0$
+
+## Forms for the Equation of a Line
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+There are several forms for representing a line. The most useful are:
+
+:::
+
+:::{.fragment}
+
+| Name | Form | Best Use |
+|---|---|---|
+| Slope-Intercept | $y = mx + b$ | Reading slope and $y$-intercept directly |
+| Point-Slope | $y - y_0 = m\left(x - x_0\right)$ | Constructing the equation of a line |
+| Standard | $Ax + By = C$ | Generalizes cleanly to higher dimensions |
+
+:::
+
+:::{.fragment}
+
+We'll focus on **slope-intercept** and **point-slope** forms, since they're the ones with the greatest practical uses in both PreCalculus and Calculus.
+
+:::
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 1:** Determine the slope and $y$-intercept of $y = -8x + 12$. Once you're done, draw a graph of the function $f\left(x\right) = -8x + 12$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* This is already in slope-intercept form.
+
+:::
+
++ Slope: $m = \boxed{~-8~}$
++ $y$-intercept: $\boxed{~\left(0, 12\right)~}$
+
+:::{.fragment}
+
+Since $m = -8$, we have $m < 0$ and this is a **decreasing** linear function.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 3.25
+
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -8*x_vals + 12
+
+ggplot() + 
+  geom_point(aes(x = 0, y = 12),
+             size = 3) + 
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 20)) + 
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) + 
+  scale_y_continuous(breaks = seq(-10, 20, by = 5))
+```
+
+:::
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+**Example 1:** Determine the slope and $y$-intercept of $y = -8x + 12$. Once you're done, draw a graph of the function $f\left(x\right) = -8x + 12$.
+
+*Solution.* This is already in slope-intercept form.
+
+:::{.nonincremental}
+
++ Slope: $m = \boxed{~-8~}$
++ $y$-intercept: $\boxed{~\left(0, 12\right)~}$
+
+:::
+
+Since $m = -8$, we have $m < 0$ and this is a **decreasing** linear function.
+
+```{r}
+#| echo: false
+#| fig.height: 3.25
+
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -8*x_vals + 12
+
+ggplot() + 
+  geom_point(aes(x = 0, y = 12),
+             size = 3) + 
+  geom_segment(aes(x = 0, xend = 1, y = 12, yend = 12),
+               linetype = "dashed") + 
+  geom_segment(aes(x = 1, xend = 1, y = 4, yend = 12),
+              linetype = "dashed") + 
+  geom_point(aes(x = 1, y = 4),
+             size = 3) +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") +
+  annotate("text", x = 0.5, y = 14, size = 4, label = "1 unit") + 
+  annotate("text", x = 1.35, y = 8, size = 4, label = "8 units") +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 20)) +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) + 
+  scale_y_continuous(breaks = seq(-10, 20, by =5))
+```
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+**Example 1:** Determine the slope and $y$-intercept of $y = -8x + 12$. Once you're done, draw a graph of the function $f\left(x\right) = -8x + 12$.
+
+*Solution.* This is already in slope-intercept form.
+
+:::{.nonincremental}
+
++ Slope: $m = \boxed{~-8~}$
++ $y$-intercept: $\boxed{~\left(0, 12\right)~}$
+
+:::
+
+Since $m = -8$, we have $m < 0$ and this is a **decreasing** linear function.
+
+```{r}
+#| echo: false
+#| fig.height: 3.25
+
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -8*x_vals + 12
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") + 
+  geom_point(aes(x = 0, y = 12),
+             size = 3) + 
+  geom_segment(aes(x = 0, xend = 1, y = 12, yend = 12),
+               linetype = "dashed") + 
+  geom_segment(aes(x = 1, xend = 1, y = 4, yend = 12),
+              linetype = "dashed") + 
+  geom_point(aes(x = 1, y = 4),
+             size = 3) +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") +
+  annotate("text", x = 0.5, y = 14, size = 4, label = "1 unit") + 
+  annotate("text", x = 1.35, y = 8, size = 4, label = "8 units") +
+  annotate("text", x = 3.25, y = -8, size = 4, color = "blue", label = "f(x) = -8x + 12") +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 20)) +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) + 
+  scale_y_continuous(breaks = seq(-10, 20, by =5)) + 
+  labs(x = "", y = "")
+```
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 2:** Find the equation of the line with slope $\displaystyle{m = \frac{1}{2}}$ passing through $\left(-2, 5\right)$. Write it in slope-intercept form and graph the function.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+*Solution.* Since we know $\displaystyle{m = \frac{1}{2}}$, start with $\displaystyle{y = \frac{1}{2}x + b}$ and substitute the known point to solve for $b$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 5 &= \frac{1}{2}\left(-2\right) + b
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+**Example 2:** Find the equation of the line with slope $\displaystyle{m = \frac{1}{2}}$ passing through $\left(-2, 5\right)$. Write it in slope-intercept form and graph the function.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* Since we know $\displaystyle{m = \frac{1}{2}}$, start with $\displaystyle{y = \frac{1}{2}x + b}$ and substitute the known point to solve for $b$.
+
+\begin{align} 5 &= \frac{1}{2}\left(-2\right) + b\\
+\implies 5 &= -1 + b
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+**Example 2:** Find the equation of the line with slope $\displaystyle{m = \frac{1}{2}}$ passing through $\left(-2, 5\right)$. Write it in slope-intercept form and graph the function.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* Since we know $\displaystyle{m = \frac{1}{2}}$, start with $\displaystyle{y = \frac{1}{2}x + b}$ and substitute the known point to solve for $b$.
+
+\begin{align} 5 &= \frac{1}{2}\left(-2\right) + b\\
+\implies 5 &= -1 + b\\
+\implies b &= 6
+\end{align}
+
+:::{.fragment}
+
+So the equation is $\boxed{~\displaystyle{y = \frac{1}{2}x + 6}~}$.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- 0.5*x_vals + 6
+
+ggplot() + 
+  geom_point(aes(x = 0, y = 6),
+             size = 3) + 
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -1, yend = 9,
+             linewidth = 0.4, color = "black") +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) + 
+  scale_y_continuous(breaks = seq(-1, 9, by = 1)) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-1, 9)) + 
+  labs(x = "x", y = "y")
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+**Example 2:** Find the equation of the line with slope $\displaystyle{m = \frac{1}{2}}$ passing through $\left(-2, 5\right)$. Write it in slope-intercept form and graph the function.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* Since we know $\displaystyle{m = \frac{1}{2}}$, start with $\displaystyle{y = \frac{1}{2}x + b}$ and substitute the known point to solve for $b$.
+
+\begin{align} 5 &= \frac{1}{2}\left(-2\right) + b\\
+\implies 5 &= -1 + b\\
+\implies b &= 6
+\end{align}
+
+So the equation is $\boxed{~\displaystyle{y = \frac{1}{2}x + 6}~}$.
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- 0.5*x_vals + 6
+
+ggplot() + 
+  geom_point(aes(x = 0, y = 6),
+             size = 3) + 
+  geom_segment(aes(x = 0, xend = 1, y = 6, yend = 6),
+               linetype = "dashed") + 
+  geom_segment(aes(x = 1, xend = 1, y = 6, yend = 6.5)) +
+  geom_point(aes(x = 1, y = 6.5),
+             size = 3) +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -1, yend = 9,
+             linewidth = 0.4, color = "black") +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) + 
+  scale_y_continuous(breaks = seq(-1, 9, by = 1)) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-1, 9)) + 
+  labs(x = "x", y = "y")
+```
+
+:::
+
+::::
+
+</div>
+
+## Slope and Intercept
+
+<div style="font-size:17pt">
+
+**Example 2:** Find the equation of the line with slope $\displaystyle{m = \frac{1}{2}}$ passing through $\left(-2, 5\right)$. Write it in slope-intercept form and graph the function.
+
+</div>
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<div style="font-size:17pt">
+
+*Solution.* Since we know $\displaystyle{m = \frac{1}{2}}$, start with $\displaystyle{y = \frac{1}{2}x + b}$ and substitute the known point to solve for $b$.
+
+\begin{align} 5 &= \frac{1}{2}\left(-2\right) + b\\
+\implies 5 &= -1 + b\\
+\implies b &= 6
+\end{align}
+
+So the equation is $\boxed{~\displaystyle{y = \frac{1}{2}x + 6}~}$.
+
+</div>
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- 0.5*x_vals + 6
+
+ggplot() + 
+  geom_point(aes(x = 0, y = 6),
+             size = 3) + 
+  geom_segment(aes(x = 0, xend = 1, y = 6, yend = 6),
+               linetype = "dashed") + 
+  geom_segment(aes(x = 1, xend = 1, y = 6, yend = 6.5)) +
+  geom_point(aes(x = 1, y = 6.5),
+             size = 3) +
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") +
+  annotate("segment", x = -5, xend = 5, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -1, yend = 9,
+             linewidth = 0.4, color = "black") +
+  scale_x_continuous(breaks = seq(-5, 5, by = 1)) + 
+  scale_y_continuous(breaks = seq(-1, 9, by = 1)) + 
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-1, 9)) + 
+  labs(x = "x", y = "y")
+```
+
+:::{.fragment}
+
+:::{.callout-note}
+## Use Point-Slope Form to Build Equations Instead
+
+The approach on this slide works, but there is a more efficient, and less error proned, approach using *point-slope* form. We'll revisit this example next.
+
+:::
+
+:::
+
+:::
+
+::::
+
+## Point-Slope Form
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Point-Slope Form):** Given a line with slope $m$ passing through the point $\left(x_0, y_0\right)$, the equation of the line is:
+
+$$y - y_0 = m\left(x - x_0\right)$$
+
+:::
+
+:::{.fragment}
+
+This is the most efficient form when constructing the equation of a line -- you need only a slope and one point.
+
+:::
+
+:::{.fragment}
+
+**Example 3:** Revisiting Example 2 -- find the equation of the line with slope $\displaystyle{\frac{1}{2}}$ through $\left(-2, 5\right)$ using point-slope form.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+*Solution.* Substitute directly:
+
+$$\boxed{~y - 5 = \frac{1}{2}\left(x - \left(-2\right)\right)~}$$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+To convert to slope-intercept form:
+
+\begin{align} y - 5 &= \frac{1}{2}\left(x - \left(-2\right)\right)
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Point-Slope Form
+
+<div style="font-size:17pt">
+
+**Definition (Point-Slope Form):** Given a line with slope $m$ passing through the point $\left(x_0, y_0\right)$, the equation of the line is:
+
+$$y - y_0 = m\left(x - x_0\right)$$
+
+This is the most efficient form when constructing the equation of a line -- you need only a slope and one point.
+
+**Example 3:** Revisiting Example 2 -- find the equation of the line with slope $\displaystyle{\frac{1}{2}}$ through $\left(-2, 5\right)$ using point-slope form.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* Substitute directly:
+
+$$\boxed{~y - 5 = \frac{1}{2}\left(x - \left(-2\right)\right)~}$$
+
+:::
+
+:::{.column width="50%"}
+
+To convert to slope-intercept form:
+
+\begin{align} y - 5 &= \frac{1}{2}\left(x - \left(-2\right)\right)\\
+\implies y - 5 &= \frac{1}{2}\left(x + 2\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Point-Slope Form
+
+<div style="font-size:17pt">
+
+**Definition (Point-Slope Form):** Given a line with slope $m$ passing through the point $\left(x_0, y_0\right)$, the equation of the line is:
+
+$$y - y_0 = m\left(x - x_0\right)$$
+
+This is the most efficient form when constructing the equation of a line -- you need only a slope and one point.
+
+**Example 3:** Revisiting Example 2 -- find the equation of the line with slope $\displaystyle{\frac{1}{2}}$ through $\left(-2, 5\right)$ using point-slope form.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* Substitute directly:
+
+$$\boxed{~y - 5 = \frac{1}{2}\left(x - \left(-2\right)\right)~}$$
+
+:::
+
+:::{.column width="50%"}
+
+To convert to slope-intercept form:
+
+\begin{align} y - 5 &= \frac{1}{2}\left(x - \left(-2\right)\right)\\
+\implies y - 5 &= \frac{1}{2}\left(x + 2\right)\\
+\implies y - 5 &= \frac{1}{2}x + 1
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Point-Slope Form
+
+<div style="font-size:17pt">
+
+**Definition (Point-Slope Form):** Given a line with slope $m$ passing through the point $\left(x_0, y_0\right)$, the equation of the line is:
+
+$$y - y_0 = m\left(x - x_0\right)$$
+
+This is the most efficient form when constructing the equation of a line -- you need only a slope and one point.
+
+**Example 3:** Revisiting Example 2 -- find the equation of the line with slope $\displaystyle{\frac{1}{2}}$ through $\left(-2, 5\right)$ using point-slope form.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* Substitute directly:
+
+$$\boxed{~y - 5 = \frac{1}{2}\left(x - \left(-2\right)\right)~}$$
+
+:::
+
+:::{.column width="50%"}
+
+To convert to slope-intercept form:
+
+\begin{align} y - 5 &= \frac{1}{2}\left(x - \left(-2\right)\right)\\
+\implies y - 5 &= \frac{1}{2}\left(x + 2\right)\\
+\implies y - 5 &= \frac{1}{2}x + 1\\
+\implies y &= \frac{1}{2}x + 6~\checkmark
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Point Slope Form
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 4:** Find the equation of the line passing through $\left(3, 8\right)$ and $\left(7, -4\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* First compute the slope using the slope formula.
+
+\begin{align} m &= \frac{y_2 - y_1}{x_2 - x_1}
+\end{align}
+
+:::
+
+</div>
+
+## Point Slope Form
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the equation of the line passing through $\left(3, 8\right)$ and $\left(7, -4\right)$.
+
+*Solution.* First compute the slope using the slope formula.
+
+\begin{align} m &= \frac{y_2 - y_1}{x_2 - x_1}\\
+&= \frac{-4 - 8}{7 - 3}
+\end{align}
+
+</div>
+
+## Point Slope Form
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the equation of the line passing through $\left(3, 8\right)$ and $\left(7, -4\right)$.
+
+*Solution.* First compute the slope using the slope formula.
+
+\begin{align} m &= \frac{y_2 - y_1}{x_2 - x_1}\\
+&= \frac{-4 - 8}{7 - 3}\\
+&= \frac{-12}{4} = -3
+\end{align}
+
+</div>
+
+## Point Slope Form
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the equation of the line passing through $\left(3, 8\right)$ and $\left(7, -4\right)$.
+
+*Solution.* First compute the slope using the slope formula.
+
+\begin{align} m &= \frac{y_2 - y_1}{x_2 - x_1}\\
+&= \frac{-4 - 8}{7 - 3}\\
+&= \frac{-12}{4} = -3
+\end{align}
+
+:::{.fragment}
+
+Now use point-slope form with $m = -3$ and the point $\left(3, 8\right)$:
+
+$$\boxed{~y - 8 = -3\left(x - 3\right)~}$$
+
+:::
+
+:::{.fragment}
+
+**Note:** Either point works -- using $\left(7, -4\right)$ gives $y + 4 = -3\left(x - 7\right)$, which simplifies to the same line.
+
+:::
+
+</div>
+
+## Linear Functions and Transformations
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Recall from Day 8 that every function class is built by transforming a *book function*. For linear functions, that book function is $f\left(x\right) = x$.
+
+:::
+
+:::{.fragment}
+
+Consider the function from Example 4 written as $f\left(x\right) = -3\left(x - 3\right) + 8$.
+
+:::
+
+:::{.fragment}
+
+This makes the transformation sequence explicit:
+
+:::
+
+1. Start with $g\left(x\right) = x$
+2. Shift **right** by $3$, which is done via $g\left(x - 3\right) = x - 3$
+3. Reflect over the $x$-axis and stretch by $3$ to get $-3\cdot g\left(x - 3\right) = -3\left(x - 3\right)$
+4. Shift **up** by $8$, obtaining $3\cdot g\left(x - 3\right) + 8 = -3\left(x - 3\right) + 8$
+
+:::{.fragment}
+
+This is exactly the point-slope form $y - 8 = -3\left(x - 3\right)$ -- written as a function! Point-slope form and the transformations framework are two descriptions of the same idea.
+
+:::
+
+</div>
+
+## Vertical and Horizontal Lines
+
+:::{.fragment}
+
+A line is *horizontal* if its slope is $0$.
+
+:::
+
+:::{.fragment}
+
+The equation for a horizontal line simplifies to $y = b$, since $y = 0x + b$ is the same as $y = b$.
+
+:::
+
+:::{.fragment}
+
+*Vertical* lines have undefined slopes, with equations written as $x = a$
+
+:::
+
+:::{.fragment}
+
+**Example 5:** Find the equation for the *horizontal* line passing through the point $\left(5, -12\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* The equation will have the form $y = b$. This means that the $y$-coordinate (the second coordinate) of all points on the line must remain constant at $-12$, so the equation must be $y = -12$.
+
+:::
+
+:::{.fragment}
+
+**Example 6:** Find the equation of the *vertical* line passing through the point $\left(4, 18\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* This time, the equation will take the form $x = a$ and the $x$-coordinate of every point on the line must remain constant. Since the known point has an $x$-coordinate at $4$, we know that the equation of the line must be $x = 4$.
+
+:::
+
+## Parallel and Perpendicular Lines
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition:** Two lines are **parallel** if they have the same slope. Two lines are **perpendicular** if their slopes are negative reciprocals of one another. That is, $m_1 \cdot m_2 = -1$.
+
+:::
+
+:::{.fragment}
+
+**Example 7:** Find any line parallel to $y = -17x + 11$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Any line with slope $-17$ will do. For example, $\boxed{~y = -17x - 1~}$.
+
+:::
+
+:::{.fragment}
+
+**Example 8:** Find the equation of the line perpendicular to $y = 3x + 8$ and passing through $\left(-5, 12\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* The perpendicular slope is $m = -\frac{1}{3}$ (negative reciprocal of $3$). Using point-slope form:
+
+$$\boxed{~y - 12 = -\frac{1}{3}\left(x + 5\right)~}$$
+
+:::
+
+</div>
+
+## Equations of Lines Practice
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Try It! 1:** Find the equation of the line passing through $\left(-1, 4\right)$ and $\left(3, -8\right)$.
+
++ Write the equation in both point-slope and slope-intercept forms.
++ Is this line increasing or decreasing?
+
+:::
+
+:::{.fragment}
+
+**Try It! 2:** Determine whether the following pairs of lines are parallel, perpendicular, or neither.
+
+:::
+
+:::{.fragment}
+
+$\left(a\right)$ $y = 4x - 7$ and $y = 4x + 2$
+
+:::
+
+:::{.fragment}
+
+$\left(b\right)$ $y = \frac{2}{3}x + 1$ and $y = -\frac{3}{2}x - 5$
+
+:::
+
+:::{.fragment}
+
+$\left(c\right)$ $y = 5x + 3$ and $y = -5x + 3$
+
+:::
+
+</div>
+
+## Linear Equations
+
+:::{.fragment}
+
+**Definition (Linear Equation):** An equation is *linear* in its variable(s) if it involves no exponents on variables, no variables in denominators, no products between variables, and no special functions.
+
+:::
+
+:::{.fragment}
+
+Examples of linear equations:
+
+:::
+
++ $5x - 4 = 22$
++ $10x + 6 = -2\left(x - 5\right)$
++ $2x + 3y = 19 + x$
+
+:::{.fragment}
+
+**Strategy (Solving Linear Equations):**
+
+:::
+
+1. Collect all variable terms on one side.
+2. Move all constant terms to the other side.
+3. Combine like terms.
+4. Divide to isolate the variable.
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 9:** Solve $5x - 20 = 15$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15
+\end{align}
+
+:::
+
+</div>
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+**Example 9:** Solve $5x - 20 = 15$.
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15\\
+\implies 5x &= 35
+\end{align}
+
+</div>
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+**Problem:** Solve $5x - 20 = 15$.
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15\\
+\implies 5x &= 35\\
+\implies x &= \boxed{~7~}
+\end{align}
+
+:::{.fragment}
+
+**Example 10:** Solve $\displaystyle{2t + 18 = \frac{t + 2}{3} + 5}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} 2t + 18 &= \frac{t + 2}{3} + 5
+\end{align}
+
+:::
+
+</div>
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+**Example 9:** Solve $5x - 20 = 15$.
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15\\
+\implies 5x &= 35\\
+\implies x &= \boxed{~7~}
+\end{align}
+
+**Example 10:** Solve $\displaystyle{2t + 18 = \frac{t + 2}{3} + 5}$.
+
+*Solution.*
+
+\begin{align} 2t + 18 &= \frac{t + 2}{3} + 5\\
+\implies 2t + 13 &= \frac{t + 2}{3}
+\end{align}
+
+</div>
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+**Example 9:** Solve $5x - 20 = 15$.
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15\\
+\implies 5x &= 35\\
+\implies x &= \boxed{~7~}
+\end{align}
+
+**Example 10:** Solve $\displaystyle{2t + 18 = \frac{t + 2}{3} + 5}$.
+
+*Solution.*
+
+\begin{align} 2t + 18 &= \frac{t + 2}{3} + 5\\
+\implies 2t + 13 &= \frac{t + 2}{3}\\
+\implies 6t + 39 &= t + 2
+\end{align}
+
+</div>
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+**Example 9:** Solve $5x - 20 = 15$.
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15\\
+\implies 5x &= 35\\
+\implies x &= \boxed{~7~}
+\end{align}
+
+**Example 10:** Solve $\displaystyle{2t + 18 = \frac{t + 2}{3} + 5}$.
+
+*Solution.*
+
+\begin{align} 2t + 18 &= \frac{t + 2}{3} + 5\\
+\implies 2t + 13 &= \frac{t + 2}{3}\\
+\implies 6t + 39 &= t + 2\\
+\implies 5t + 39 &= 2
+\end{align}
+
+</div>
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+**Example 9:** Solve $5x - 20 = 15$.
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15\\
+\implies 5x &= 35\\
+\implies x &= \boxed{~7~}
+\end{align}
+
+**Example 10:** Solve $\displaystyle{2t + 18 = \frac{t + 2}{3} + 5}$.
+
+*Solution.*
+
+\begin{align} 2t + 18 &= \frac{t + 2}{3} + 5\\
+\implies 2t + 13 &= \frac{t + 2}{3}\\
+\implies 6t + 39 &= t + 2\\
+\implies 5t + 39 &= 2\\
+\implies 5t &= -37
+\end{align}
+
+</div>
+
+## Solving Linear Equations
+
+<div style="font-size:17pt">
+
+**Example 9:** Solve $5x - 20 = 15$.
+
+*Solution.*
+
+\begin{align} 5x - 20 &= 15\\
+\implies 5x &= 35\\
+\implies x &= \boxed{~7~}
+\end{align}
+
+**Example 10:** Solve $\displaystyle{2t + 18 = \frac{t + 2}{3} + 5}$.
+
+*Solution.*
+
+\begin{align} 2t + 18 &= \frac{t + 2}{3} + 5\\
+\implies 2t + 13 &= \frac{t + 2}{3}\\
+\implies 6t + 39 &= t + 2\\
+\implies 5t + 39 &= 2\\
+\implies 5t &= -37\\
+\implies t &= \boxed{~-37/5~}
+\end{align}
+
+</div>
+
+## The Geometry of Solving Equations
+
+:::{.fragment}
+
+Every algebraic manipulation we make when solving an equation has a geometric interpretation.
+
+:::
+
++ The solutions to $\text{expr}_1 = \text{expr}_2$ are the *$x$-coordinates of any points of intersection* between the graphs of $f\left(x\right) = \text{expr}_1$ and $g\left(x\right) = \text{expr}_2$.
++ The solutions to $\text{expr} = 0$ are the *roots* ($x$-intercepts) of the graph of $f\left(x\right) = \text{expr}$.
+
+:::{.fragment}
+
+Each legal algebraic step changes the *form* of the equation -- and with it, the *shape* of the geometric question -- but never changes the *location* of the solution.
+
+:::
+
+## Geometry of Solving Equations
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 11:** Solve $\displaystyle{2x + 5 = \frac{x - 3}{6}}$ and illustrate each step geometrically.
+
+:::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} 2x + 5 &= \frac{x - 3}{6} & \left(\text{Step } 1\right)
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="60%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-6, 6, length.out = 500)
+
+make_eq_plot <- function(lhs_fn, rhs_fn, title_str,
+                         show_rhs_label = TRUE,
+                         ylim_lo = -10, ylim_hi = 10) {
+  df <- data.frame(x = x_vals, lhs = lhs_fn(x_vals), rhs = rhs_fn(x_vals))
+  sol_y <- lhs_fn(-3)
+  
+  ggplot(df) +
+    geom_line(aes(x = x, y = lhs, color = "LHS"), linewidth = 1) +
+    geom_line(aes(x = x, y = rhs, color = "RHS"), linewidth = 1) +
+    geom_vline(xintercept = -3, linetype = "dashed", color = "gray40", linewidth = 0.7) +
+    geom_point(aes(x = -3, y = sol_y), color = "black", size = 2.5) +
+    annotate("segment", x = -6, xend = 6, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = ylim_lo, yend = ylim_hi,
+             linewidth = 0.4, color = "black") +
+    scale_color_manual(values = c("LHS" = "blue", "RHS" = "darkorange"), name = NULL) +
+    scale_x_continuous(breaks = seq(-6, 6, by = 2)) +
+    coord_cartesian(xlim = c(-6, 6), ylim = c(ylim_lo, ylim_hi)) +
+    labs(title = title_str) +
+    theme(axis.line = element_blank(), axis.title = element_blank(),
+          legend.position = "none",
+          plot.title = element_text(size = 24))
+}
+
+# Step 5 is just a vertical line
+p5 <- ggplot() +
+  geom_vline(xintercept = -3, linetype = "solid", color = "blue", linewidth = 1.2) +
+  annotate("segment", x = -6, xend = 6, y = 0, yend = 0,
+           linewidth = 0.4, color = "black") +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           linewidth = 0.4, color = "black") +
+  scale_x_continuous(breaks = seq(-6, 6, by = 2)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-10, 10)) +
+  labs(title = "(Step 5) x = -3") +
+  theme_bw(base_size = 12) +
+  theme(axis.line = element_blank(), axis.title = element_blank(),
+        plot.title = element_text(size = 24))
+
+p1 <- make_eq_plot(function(x)  2*x + 5,   function(x) (x - 3)/6,
+                   "(Step 1) 2x + 5 = (x-3)/6")
+
+p1
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Geometry of Solving Equations
+
+<div style="font-size:17pt">
+
+**Example 11:** Solve $\displaystyle{2x + 5 = \frac{x - 3}{6}}$ and illustrate each step geometrically.
+
+::::{.columns}
+
+:::{.column width="40%"}
+*Solution.*
+
+\begin{align} 2x + 5 &= \frac{x - 3}{6} & \left(\text{Step } 1\right)\\
+\implies 12x + 30 &= x - 3 & \left(\text{Step } 2\right)
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+p2 <- make_eq_plot(function(x) 12*x + 30,  function(x)  x - 3,
+                   "(Step 2) 12x + 30 = x - 3")
+
+p2
+```
+
+:::
+
+::::
+
+</div>
+
+## Geometry of Solving Equations
+
+<div style="font-size:17pt">
+
+**Example 11:** Solve $\displaystyle{2x + 5 = \frac{x - 3}{6}}$ and illustrate each step geometrically.
+
+::::{.columns}
+
+:::{.column width="40%"}
+*Solution.*
+
+\begin{align} 2x + 5 &= \frac{x - 3}{6} & \left(\text{Step } 1\right)\\
+\implies 12x + 30 &= x - 3 & \left(\text{Step } 2\right)\\
+\implies 11x + 30 &= -3 & \left(\text{Step } 3\right)
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+p3 <- make_eq_plot(function(x) 11*x + 30,  function(x) rep(-3, length(x)),
+                   "(Step 3) 11x + 30 = -3")
+
+p3
+```
+
+:::
+
+::::
+
+</div>
+
+## Geometry of Solving Equations
+
+<div style="font-size:17pt">
+
+**Example 11:** Solve $\displaystyle{2x + 5 = \frac{x - 3}{6}}$ and illustrate each step geometrically.
+
+::::{.columns}
+
+:::{.column width="40%"}
+*Solution.*
+
+\begin{align} 2x + 5 &= \frac{x - 3}{6} & \left(\text{Step } 1\right)\\
+\implies 12x + 30 &= x - 3 & \left(\text{Step } 2\right)\\
+\implies 11x + 30 &= -3 & \left(\text{Step } 3\right)\\
+\implies 11x &= -33 & \left(\text{Step } 4\right)
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+p4 <- make_eq_plot(function(x) 11*x,       function(x) rep(-33, length(x)),
+                   "(Step 4) 11x = -33", ylim_lo = -40, ylim_hi = 40)
+
+p4
+```
+
+:::
+
+::::
+
+</div>
+
+## Geometry of Solving Equations
+
+<div style="font-size:17pt">
+
+**Example 11:** Solve $\displaystyle{2x + 5 = \frac{x - 3}{6}}$ and illustrate each step geometrically.
+
+::::{.columns}
+
+:::{.column width="40%"}
+*Solution.*
+
+\begin{align} 2x + 5 &= \frac{x - 3}{6} & \left(\text{Step } 1\right)\\
+\implies 12x + 30 &= x - 3 & \left(\text{Step } 2\right)\\
+\implies 11x + 30 &= -3 & \left(\text{Step } 3\right)\\
+\implies 11x &= -33 & \left(\text{Step } 4\right)\\
+\implies x &= -3 & \left(\text{Step } 5\right)
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+p5
+```
+
+:::
+
+::::
+
+</div>
+
+## Geometry of Solving Equations
+
+:::{.fragment}
+
+Below are all the graphical representations of the steps to solve the equation.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 5.5
+
+t <- theme(plot.title = element_text(size = 14))
+
+((p1+t) + (p2+t) + (p3+t)) / ((p4+t) + (p5+t) + plot_spacer())
+```
+
+:::
+
+## Applied Problems
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Applied Problem 1:** A gym membership with 2 personal training sessions costs \$125; with 5 sessions it costs \$260. What is the cost per session? If the gym offers \$5 off per session for members signing up for 10 sessions, how much would that membership cost?
+
+:::
+
+:::{.fragment}
+
+*Solution.* Model the cost as $C\left(n\right) = mn + b$ where $n$ is the number of sessions.
+
+\begin{align} m &= \frac{260 - 125}{5 - 2} = \frac{135}{3} = \$45 \text{ per session}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+Solve for $b$ using $C\left(2\right) = 125$: $\quad 125 = 45\left(2\right) + b \implies b = \$35$
+
+:::
+
+:::{.fragment}
+
+So $C\left(n\right) = 45n + 35$. For the discounted 10-session package, the rate drops to \$40 per session:
+
+$$C_{\text{discounted}}\left(10\right) = 40\left(10\right) + 35 = \boxed{~\$435~}$$
+
+:::
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Applied Problem 2:** A town's population has been growing linearly. In 2003 the population was $45{,}000$, and has been growing by $1{,}700$ people per year. Write a function $P\left(t\right)$ for the population $t$ years after 2003.
+
+:::
+
+:::{.fragment}
+
+*Solution.* We know the slope ($m = 1700$) and a point ($t = 0$, $P = 45000$), so:
+
+$$\boxed{~P\left(t\right) = 1700t + 45000~}$$
+
+:::
+
+:::{.fragment}
+
+**Applied Problem 3:** Average annual income for 1990--1999 is modeled by $I\left(x\right) = 1054x + 23286$, where $x$ is years after 1990. Which statement correctly interprets the slope?
+
+:::{.nonincremental}
+
+1. As of 1990, average annual income was \$23,286.
+2. Over the ten-year period, income increased by a total of \$1,054.
+3. Each year in the 1990s, average annual income increased by \$1,054.
+4. Average annual income rose to \$23,286 by the end of 1999.
+
+:::
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `8. Linear Functions and Equations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Find the equation of the line passing through $\left(2, -1\right)$ and perpendicular to $y = \frac{1}{4}x + 3$. Write your answer in both point-slope and slope-intercept forms.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
+:::{.nonincremental}
+
++ A **linear function** has the form $f\left(x\right) = mx + b$; slope $m$ is the rate of change, $\left(0, b\right)$ is the $y$-intercept.
++ **Slope-intercept form** $y = mx + b$ is easiest for reading; **point-slope form** $y - y_0 = m\left(x - x_0\right)$ is easiest for constructing.
++ Point-slope form *is* the transformations framework applied to $f\left(x\right) = x$.
++ Parallel lines have equal slopes; perpendicular lines have slopes with product $-1$.
++ Solving a linear equation is equivalent to finding the intersection of two lines or the root of a function.
++ Each algebraic step changes the form but preserves the solution location.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Resources**</center>
+
+:::{.nonincremental}
+
++ [Linear functions (Khan Academy)](https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:forms-of-linear-equations){target="_blank"}
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Polynomial Functions</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 6 on MyOpenMath</center>
+
+:::
+
+::::
+
+
+
+
+</div>

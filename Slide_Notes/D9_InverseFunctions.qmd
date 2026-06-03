@@ -1,0 +1,1714 @@
+---
+title: "MAT 142: Inverse Functions"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ Book functions and committing their shapes to memory.
++ Vertical and horizontal shifts, stretches, compressions, and reflections.
++ Combining transformations to build graphs of more general functions.
++ Landmarks on graphs: roots, $y$-intercept, local maxima/minima, intervals of increase/decrease.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**Problem 1:** Consider $\displaystyle{f\left(x\right) = \frac{x - 5}{4}}$ and $g\left(x\right) = 4x + 5$.
+
+  + Describe, in words, how the function $f$ acts on its inputs.
+  + Describe, in words, how the function $g$ acts on its inputs
+  + Find $f\left(g\left(x\right)\right)$ and $g\left(f\left(x\right)\right)$.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**Problem 2:** Consider $j\left(x\right) = 2x^3 + 8$ and $\displaystyle{k\left(x\right) = \left(\frac{x - 8}{2}\right)^{1/3}}$.
+
+  + Describe, in words, how the function $j$ acts on its inputs.
+  + Describe, in words, how the function $k$ acts on its inputs
+  + Find $j\left(k\left(x\right)\right)$ and $k\left(j\left(x\right)\right)$.
+
+:::
+
+:::
+
+::::
+
+:::{.fragment}
+
+*What do you notice about each of these pairs?*
+
+:::
+
+</div>
+
+## Motivating Application
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+A function $f\left(c\right)$ converts temperatures from degrees Celsius to degrees Fahrenheit:
+
+$$f\left(c\right) = \frac{9}{5}c + 32$$
+
+:::
+
+:::{.fragment}
+
+Find a function that converts temperatures from degrees Fahrenheit back to degrees Celsius.
+
+:::
+
+:::{.fragment}
+
+Before we work through this, consider the following:
+
+:::
+
++ What does $f\left(0\right) = 32$ tell you? Does it give you any information about a function that converts Fahrenheit back to Celsius?
++ What does the solution to $f\left(c\right) = 40$ mean?
+
+:::{.fragment}
+
+We'll return to this application at the end of today's class.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Define what it means for two functions to be inverses of one another.
++ Use composition to determine whether two functions are inverses.
++ Identify which functions have inverses using the horizontal line test.
++ Use the *swap-and-solve* method to find the inverse of an invertible function.
+
+## What is an Inverse?
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Inverse Functions):** The functions $f\left(x\right)$ and $g\left(x\right)$ are *inverses* of one another if
+
+$$f\left(g\left(x\right)\right) = x \qquad \text{and} \qquad g\left(f\left(x\right)\right) = x$$
+
+:::
+
+:::{.fragment}
+
+In intuitive terms, $f$ and $g$ are inverses if $f$ *undoes* whatever $g$ *does* to its inputs, and vice-versa.
+
+:::
+
+:::{.fragment}
+
+Think of it this way:
+
+$$x \longrightarrow \boxed{~~g~~} \longrightarrow g\left(x\right) \longrightarrow \boxed{~~f~~} \longrightarrow x$$
+
+:::
+
+:::{.fragment}
+
+We write the inverse of $f$ as $f^{-1}$.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Overloaded Notation Warning
+
+$f^{-1}\left(x\right)$ means *the inverse of $f$*, not $\displaystyle{\frac{1}{f\left(x\right)}}$. The superscript $-1$ is notation for "inverse", not an exponent. You'll need to use context to infer the meaning of the "$-1$" superscript.
+
+:::
+
+:::
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** Determine whether $f\left(x\right) = 2x + 10$ and $\displaystyle{g\left(x\right) = \frac{1}{2}x - 10}$ are inverses of one another.
+
+:::
+
+:::{.fragment}
+
+*Solution.* We check both compositions.
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{1}{2}x - 10\right)
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+**Problem:** Determine whether $f\left(x\right) = 2x + 10$ and $\displaystyle{g\left(x\right) = \frac{1}{2}x - 10}$ are inverses of one another.
+
+*Solution.* We check both compositions.
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{1}{2}x - 10\right)\\
+&= 2\left(\frac{1}{2}x - 10\right) + 10
+\end{align}
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+**Problem:** Determine whether $f\left(x\right) = 2x + 10$ and $\displaystyle{g\left(x\right) = \frac{1}{2}x - 10}$ are inverses of one another.
+
+*Solution.* We check both compositions.
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{1}{2}x - 10\right)\\
+&= 2\left(\frac{1}{2}x - 10\right) + 10\\
+&= \left(x - 20\right) + 10
+\end{align}
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+**Problem:** Determine whether $f\left(x\right) = 2x + 10$ and $\displaystyle{g\left(x\right) = \frac{1}{2}x - 10}$ are inverses of one another.
+
+*Solution.* We check both compositions.
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{1}{2}x - 10\right)\\
+&= 2\left(\frac{1}{2}x - 10\right) + 10\\
+&= \left(x - 20\right) + 10\\
+&= x - 10
+\end{align}
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:17pt">
+
+**Problem:** Determine whether $f\left(x\right) = 2x + 10$ and $\displaystyle{g\left(x\right) = \frac{1}{2}x - 10}$ are inverses of one another.
+
+*Solution.* We check both compositions.
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{1}{2}x - 10\right)\\
+&= 2\left(\frac{1}{2}x - 10\right) + 10\\
+&= \left(x - 20\right) + 10\\
+&= x - 10\\ 
+&\neq x
+\end{align}
+
+:::{.fragment}
+
+Since $f\left(g\left(x\right)\right) \neq x$, we conclude that $f$ and $g$ are **not** inverses of one another. There is no need to check the other composition.
+
+:::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+
+:::
+
+::::
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} g\left(f\left(x\right)\right) &= g\left(\frac{x + 5}{x}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} g\left(f\left(x\right)\right) &= g\left(\frac{x + 5}{x}\right)\\
+&= \frac{5}{\left(\frac{x + 5}{x}\right) - 1}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} g\left(f\left(x\right)\right) &= g\left(\frac{x + 5}{x}\right)\\
+&= \frac{5}{\left(\frac{x + 5}{x}\right) - 1}\\
+&= \frac{5}{\frac{x + 5}{x} - \frac{x}{x}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} g\left(f\left(x\right)\right) &= g\left(\frac{x + 5}{x}\right)\\
+&= \frac{5}{\left(\frac{x + 5}{x}\right) - 1}\\
+&= \frac{5}{\frac{x + 5}{x} - \frac{x}{x}}\\
+&= \frac{5}{\frac{x + 5 - x}{x}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} g\left(f\left(x\right)\right) &= g\left(\frac{x + 5}{x}\right)\\
+&= \frac{5}{\left(\frac{x + 5}{x}\right) - 1}\\
+&= \frac{5}{\frac{x + 5}{x} - \frac{x}{x}}\\
+&= \frac{5}{\frac{x + 5 - x}{x}}\\
+&= \frac{5}{\frac{5}{x}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} g\left(f\left(x\right)\right) &= g\left(\frac{x + 5}{x}\right)\\
+&= \frac{5}{\left(\frac{x + 5}{x}\right) - 1}\\
+&= \frac{5}{\frac{x + 5}{x} - \frac{x}{x}}\\
+&= \frac{5}{\frac{x + 5 - x}{x}}\\
+&= \frac{5}{\frac{5}{x}}\\
+&= 5\cdot\left(\frac{x}{5}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completed Example 2
+
+<div style="font-size:16pt">
+
+**Problem:** Determine whether $\displaystyle{f\left(x\right) = \frac{x + 5}{x}}$ and $\displaystyle{g\left(x\right) = \frac{5}{x - 1}}$ are inverses of one another.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We check $f\left(g\left(x\right)\right)$ first.
+
+:::
+
+:::{.column width="50%"}
+
+Now we check $g\left(f\left(x\right)\right)$.
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} f\left(g\left(x\right)\right) &= f\left(\frac{5}{x - 1}\right)\\
+&= \frac{\left(\frac{5}{x - 1}\right) + 5}{\left(\frac{5}{x - 1}\right)}\\
+&= \frac{\frac{5}{x - 1} + \frac{5\left(x - 1\right)}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5 + 5x - 5}{x - 1}}{\frac{5}{x - 1}}\\
+&= \frac{\frac{5x}{x - 1}}{\frac{5}{x - 1}}\\
+&= \left(\frac{5x}{x - 1}\right)\cdot \left(\frac{x - 1}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} g\left(f\left(x\right)\right) &= g\left(\frac{x + 5}{x}\right)\\
+&= \frac{5}{\left(\frac{x + 5}{x}\right) - 1}\\
+&= \frac{5}{\frac{x + 5}{x} - \frac{x}{x}}\\
+&= \frac{5}{\frac{x + 5 - x}{x}}\\
+&= \frac{5}{\frac{5}{x}}\\
+&= 5\cdot\left(\frac{x}{5}\right)\\
+&= x~\checkmark
+\end{align}
+
+:::{.fragment}
+
+Since $f\left(g\left(x\right)\right) = x$ and $g\left(f\left(x\right)\right) = x$, we have $g = f^{-1}$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Verifying Inverses Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** Show that $\displaystyle{f\left(x\right) = 2x + 7}$ and $\displaystyle{g\left(x\right) = \frac{x - 7}{2}}$ are inverses of one another.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** Show that $\displaystyle{f\left(x\right) = \frac{8x + 2}{5}}$ and $\displaystyle{g\left(x\right) = \frac{5x - 2}{8}}$ are inverses of one another.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+*Reminder:* You need to verify both $f\left(g\left(x\right)\right) = x$ and $g\left(f\left(x\right)\right) = x$.
+
+</div>
+
+## Which Functions Have Inverses?
+
+:::{.fragment}
+
+The inverse of a function must itself be a function. That is, the "inverse" must pass the *vertical line test*.
+
+:::
+
+:::{.fragment}
+
+This means only functions whose graphs pass both the *vertical line test* and the *horizontal line test* are invertible.
+
+:::
+
+:::{.fragment}
+
+**Definition (Horizontal Line Test):** A function is *invertible* if every horizontal line drawn intersects its graph at most once.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-4, 4, length.out = 300)
+
+p_inv <- ggplot() +
+  geom_line(aes(x = x_vals, y = (x_vals - 2)^3 - 1), color = "blue", linewidth = 1) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  labs(title = "An Invertible Function") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_noninv <- ggplot() +
+  geom_line(aes(x = x_vals, y = 0.5*x_vals^2 - 1), color = "blue", linewidth = 1) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  labs(title = "A Non-Invertible Function") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_inv + p_noninv
+```
+
+:::
+
+## Which Functions Have Inverses?
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-4, 4, length.out = 300)
+
+p_inv <- ggplot() +
+  geom_line(aes(x = x_vals, y = (x_vals - 2)^3 - 1), color = "blue", linewidth = 1) +
+  geom_hline(yintercept = 1, color = "darkred", linetype = "dashed", linewidth = 0.8) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("text", x = 3.5, y = 1.35, label = "y = 1", color = "darkred", size = 3.5) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  labs(title = "Invertible: each horizontal line hits once") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_noninv <- ggplot() +
+  geom_line(aes(x = x_vals, y = 0.5*x_vals^2 - 1), color = "blue", linewidth = 1) +
+  geom_hline(yintercept = 1, color = "darkred", linetype = "dashed", linewidth = 0.8) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 4,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("text", x = 3.5, y = 1.35, label = "y = 1", color = "darkred", size = 3.5) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  labs(title = "Not Invertible: horizontal line hits twice") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_inv + p_noninv
+```
+
+The dashed red line $y = 1$ intersects the left graph exactly once -- that output value corresponds to exactly one input. On the right graph it intersects twice -- so the "inverse" would need to assign two outputs to one input, which violates the definition of a function.
+
+## The Swap-and-Solve Method
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Strategy (Swap-and-Solve):** To find the inverse of an invertible function $f\left(x\right)$:
+
+:::
+
+1. Replace $f\left(x\right)$ with $y$.
+2. Swap every $x$ with $y$ and every $y$ with $x$.
+3. Solve the resulting equation for $y$, if possible.
+4. Replace $y$ with $f^{-1}\left(x\right)$.
+
+:::{.fragment}
+
+**Example:** Use the swap-and-solve method to find the inverse of $f\left(x\right) = 3x + 6$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= 3x + 6
+\end{align}
+
+:::
+
+</div>
+
+## The Swap-and-Solve Method
+
+<div style="font-size:17pt">
+
+**Strategy (Swap-and-Solve):** To find the inverse of an invertible function $f\left(x\right)$:
+
+:::{.nonincremental}
+
+1. Replace $f\left(x\right)$ with $y$.
+2. Swap every $x$ with $y$ and every $y$ with $x$.
+3. Solve the resulting equation for $y$, if possible.
+4. Replace $y$ with $f^{-1}\left(x\right)$.
+
+:::
+
+**Example:** Use the swap-and-solve method to find the inverse of $f\left(x\right) = 3x + 6$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= 3x + 6\\
+\implies y &= 3x + 6
+\end{align}
+
+</div>
+
+## The Swap-and-Solve Method
+
+<div style="font-size:17pt">
+
+**Strategy (Swap-and-Solve):** To find the inverse of an invertible function $f\left(x\right)$:
+
+:::{.nonincremental}
+
+1. Replace $f\left(x\right)$ with $y$.
+2. Swap every $x$ with $y$ and every $y$ with $x$.
+3. Solve the resulting equation for $y$, if possible.
+4. Replace $y$ with $f^{-1}\left(x\right)$.
+
+:::
+
+**Example:** Use the swap-and-solve method to find the inverse of $f\left(x\right) = 3x + 6$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= 3x + 6\\
+\implies y &= 3x + 6\\
+\stackrel{\text{Swap and Solve}}{\implies} \color{blue}{x} &= 3\color{blue}{y} + 6
+\end{align}
+
+</div>
+
+## The Swap-and-Solve Method
+
+<div style="font-size:17pt">
+
+**Strategy (Swap-and-Solve):** To find the inverse of an invertible function $f\left(x\right)$:
+
+:::{.nonincremental}
+
+1. Replace $f\left(x\right)$ with $y$.
+2. Swap every $x$ with $y$ and every $y$ with $x$.
+3. Solve the resulting equation for $y$, if possible.
+4. Replace $y$ with $f^{-1}\left(x\right)$.
+
+:::
+
+**Example:** Use the swap-and-solve method to find the inverse of $f\left(x\right) = 3x + 6$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= 3x + 6\\
+\implies y &= 3x + 6\\
+\stackrel{\text{Swap and Solve}}{\implies} \color{blue}{x} &= 3\color{blue}{y} + 6\\
+\implies 3y + 6 &= x
+\end{align}
+
+</div>
+
+## The Swap-and-Solve Method
+
+<div style="font-size:17pt">
+
+**Strategy (Swap-and-Solve):** To find the inverse of an invertible function $f\left(x\right)$:
+
+:::{.nonincremental}
+
+1. Replace $f\left(x\right)$ with $y$.
+2. Swap every $x$ with $y$ and every $y$ with $x$.
+3. Solve the resulting equation for $y$, if possible.
+4. Replace $y$ with $f^{-1}\left(x\right)$.
+
+:::
+
+**Example:** Use the swap-and-solve method to find the inverse of $f\left(x\right) = 3x + 6$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= 3x + 6\\
+\implies y &= 3x + 6\\
+\stackrel{\text{Swap and Solve}}{\implies} \color{blue}{x} &= 3\color{blue}{y} + 6\\
+\implies 3y + 6 &= x\\
+\implies 3y &= x - 6
+\end{align}
+
+</div>
+
+## The Swap-and-Solve Method
+
+<div style="font-size:17pt">
+
+**Strategy (Swap-and-Solve):** To find the inverse of an invertible function $f\left(x\right)$:
+
+:::{.nonincremental}
+
+1. Replace $f\left(x\right)$ with $y$.
+2. Swap every $x$ with $y$ and every $y$ with $x$.
+3. Solve the resulting equation for $y$, if possible.
+4. Replace $y$ with $f^{-1}\left(x\right)$.
+
+:::
+
+**Example:** Use the swap-and-solve method to find the inverse of $f\left(x\right) = 3x + 6$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= 3x + 6\\
+\implies y &= 3x + 6\\
+\stackrel{\text{Swap and Solve}}{\implies} \color{blue}{x} &= 3\color{blue}{y} + 6\\
+\implies 3y + 6 &= x\\
+\implies 3y &= x - 6\\
+\implies y &= \frac{x - 6}{3}
+\end{align}
+
+:::{.fragment}
+
+So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \frac{x - 6}{3}}~}$.
+
+:::
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}
+\end{align}
+
+:::
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{2\color{blue}{y}}{\color{blue}{y} + 4}
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{2\color{blue}{y}}{\color{blue}{y} + 4}\\
+\implies x\left(y + 4\right) &= 2y
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{2\color{blue}{y}}{\color{blue}{y} + 4}\\
+\implies x\left(y + 4\right) &= 2y\\
+\implies xy + 4x &= 2y
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{2\color{blue}{y}}{\color{blue}{y} + 4}\\
+\implies x\left(y + 4\right) &= 2y\\
+\implies xy + 4x &= 2y\\
+\implies xy &= 2y - 4x
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{2\color{blue}{y}}{\color{blue}{y} + 4}\\
+\implies x\left(y + 4\right) &= 2y\\
+\implies xy + 4x &= 2y\\
+\implies xy &= 2y - 4x\\
+\implies xy - 2y &= -4x
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{2\color{blue}{y}}{\color{blue}{y} + 4}\\
+\implies x\left(y + 4\right) &= 2y\\
+\implies xy + 4x &= 2y\\
+\implies xy &= 2y - 4x\\
+\implies xy - 2y &= -4x\\
+\implies y\left(x - 2\right) &= -4x
+\end{align}
+
+</div>
+
+## Completed Example 4
+
+<div style="font-size:17pt">
+
+**Example:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = \frac{2x}{x + 4}}$.
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{2x}{x + 4}\\
+\implies y &= \frac{2x}{x + 4}\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{2\color{blue}{y}}{\color{blue}{y} + 4}\\
+\implies x\left(y + 4\right) &= 2y\\
+\implies xy + 4x &= 2y\\
+\implies xy &= 2y - 4x\\
+\implies xy - 2y &= -4x\\
+\implies y\left(x - 2\right) &= -4x\\
+\implies y &= \frac{-4x}{x - 2}
+\end{align}
+
+:::{.fragment}
+
+So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \frac{-4x}{x - 2}}~}$.
+
+:::
+
+</div>
+
+## Finding Inverses Algebraically Practice
+
+<div style="font-size:17pt">
+
+**Try It! 3:** Use the swap-and-solve method to find $g^{-1}\left(x\right)$ if $\displaystyle{g\left(x\right) = \frac{x - 3}{9}}$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 4:** Use the swap-and-solve method to find $h^{-1}\left(x\right)$ if $\displaystyle{h\left(x\right) = \frac{2x - 5}{x + 2}}$.
+
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Problem:** To convert $x$ degrees Celsius to $y$ degrees Fahrenheit, we use
+
+$$f\left(x\right) = \frac{9}{5}x + 32$$
+
+Find $f^{-1}\left(x\right)$, if it exists, and explain what it means.
+
+:::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{9}{5}x + 32
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** To convert $x$ degrees Celsius to $y$ degrees Fahrenheit, we use
+
+$$f\left(x\right) = \frac{9}{5}x + 32$$
+
+Find $f^{-1}\left(x\right)$, if it exists, and explain what it means.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{9}{5}x + 32\\
+\implies y &= \frac{9}{5}x + 32
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** To convert $x$ degrees Celsius to $y$ degrees Fahrenheit, we use
+
+$$f\left(x\right) = \frac{9}{5}x + 32$$
+
+Find $f^{-1}\left(x\right)$, if it exists, and explain what it means.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{9}{5}x + 32\\
+\implies y &= \frac{9}{5}x + 32\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{9}{5}\color{blue}{y} + 32
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** To convert $x$ degrees Celsius to $y$ degrees Fahrenheit, we use
+
+$$f\left(x\right) = \frac{9}{5}x + 32$$
+
+Find $f^{-1}\left(x\right)$, if it exists, and explain what it means.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{9}{5}x + 32\\
+\implies y &= \frac{9}{5}x + 32\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{9}{5}\color{blue}{y} + 32\\
+\implies \frac{9}{5}y + 32 &= x
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** To convert $x$ degrees Celsius to $y$ degrees Fahrenheit, we use
+
+$$f\left(x\right) = \frac{9}{5}x + 32$$
+
+Find $f^{-1}\left(x\right)$, if it exists, and explain what it means.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{9}{5}x + 32\\
+\implies y &= \frac{9}{5}x + 32\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{9}{5}\color{blue}{y} + 32\\
+\implies \frac{9}{5}y + 32 &= x\\
+\implies \frac{9}{5}y &= x - 32
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Applied Problem
+
+<div style="font-size:17pt">
+
+**Problem:** To convert $x$ degrees Celsius to $y$ degrees Fahrenheit, we use
+
+$$f\left(x\right) = \frac{9}{5}x + 32$$
+
+Find $f^{-1}\left(x\right)$, if it exists, and explain what it means.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.*
+
+\begin{align} f\left(x\right) &= \frac{9}{5}x + 32\\
+\implies y &= \frac{9}{5}x + 32\\
+\stackrel{\text{Swap x and y}}{\implies} \color{blue}{x} &= \frac{9}{5}\color{blue}{y} + 32\\
+\implies \frac{9}{5}y + 32 &= x\\
+\implies \frac{9}{5}y &= x - 32\\
+\implies y &= \frac{5}{9}\left(x - 32\right)
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+:::{.fragment}
+
+**Interpretation:** $f^{-1}\left(x\right)$ converts $x$ degrees *Fahrenheit* back to degrees *Celsius*. For example, $f^{-1}\left(212\right) = \frac{5}{9}\left(212 - 32\right) = \frac{5}{9}\left(180\right) = 100$ degrees Celsius -- the boiling point of water, as expected.
+
+:::
+
+:::{.fragment}
+
+This also answers our motivating questions from the start of class: since $f\left(0\right) = 32$, we have $f^{-1}\left(32\right) = 0$ -- freezing point in Fahrenheit corresponds to $0°C$. And solving $f\left(c\right) = 40$ gives the Celsius temperature that corresponds to $40°F$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `7. Inverses of Functions`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Use the swap-and-solve method to find the inverse of $\displaystyle{f\left(x\right) = 4x - 8}$. Then verify your answer by checking that $f\left(f^{-1}\left(x\right)\right) = x$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ $f$ and $g$ are **inverses** if $f\left(g\left(x\right)\right) = x$ and $g\left(f\left(x\right)\right) = x$.
++ Check invertibility using the **horizontal line test** -- each output value must correspond to exactly one input.
++ Use **swap-and-solve** to find $f^{-1}$: replace $f\left(x\right)$ with $y$, swap $x$ and $y$, solve for $y$.
++ $f^{-1}\left(x\right)$ means the *inverse* of $f$, not $\frac{1}{f\left(x\right)}$.
++ Inverse functions arise naturally whenever we need to *reverse* a process -- like converting units back to their original form.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Inverse functions will appear throughout the rest of the course. For every function class we study, we will ask whether and how to invert functions of that class.
++ You have all the tools you need to find inverses of *linear*, *polynomial*, and *rational* functions at this time. Some classes of function will require special inverses though.
+    + The inverse of an *exponential* function is a *logarithm* and the inverse of a *trigonometric* function requires special *inverse-trigonometric* functions, for example.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Linear Functions and Linear Equations</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 5 on MyOpenMath</center>
+
+:::
+
+</div>

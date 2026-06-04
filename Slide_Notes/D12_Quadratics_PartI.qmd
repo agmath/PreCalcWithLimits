@@ -1,0 +1,2621 @@
+---
+title: "MAT 142: Quadratic Functions and Equations (Part I)"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we introduced complex numbers and their arithmetic. We'll see today why complex numbers arise naturally when studying quadratic equations.
+
+:::
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Expand and simplify each of the following.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~\left(x - 7\right)\left(x - 2\right)$
+
+$\left(b\right)~\left(3x - 2\right)\left(2x + 7\right)$
+
+:::
+
+:::{.column width="50%"}
+
+$\left(c\right)~\left(x + 4\right)\left(x - 3\right)$
+
+$\left(d\right)~\left(x - 5\right)^2$
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Consider the function $f\left(x\right) = -2x^2 - 2x + 24$. Evaluate $f\left(-\frac{1}{2}\right)$, $f\left(-4\right)$, and $f\left(3\right)$.
+
+:::
+
+</div>
+
+## Motivating Application
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+A rocket is launched into the air. Its height (in meters above sea level) as a function of time (in seconds) is given by
+
+$$h\left(t\right) = -4.9t^2 + 229t + 234$$
+
+:::
+
+:::{.fragment}
+
+Find the **maximum height** the rocket attains.
+
+:::
+
+:::{.fragment}
+
+Before we work through this, consider the following:
+
+:::
+
++ What is the domain of $h\left(t\right)$ without considering the real-life context?
++ What is the practical domain of $h\left(t\right)$ given the context of the problem?
++ Why wouldn't a *linear* model make sense here? What would a linear model assume about the rocket's flight?
+
+:::{.fragment}
+
+As usual, we'll return to this application at the end of today's class.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today's class has two connected halves.
+
+:::
+
+:::{.fragment}
+
+**First half -- Solving Quadratic Equations:**
+
+:::
+
++ Solve quadratic equations via factoring.
++ Solve quadratic equations using the quadratic formula.
++ Identify when solutions are complex (non-real).
+
+:::{.fragment}
+
+**Second half -- Quadratic Functions and Their Graphs:**
+
+:::
+
++ Identify the leading coefficient and use it to determine concavity.
++ Find the vertex of a parabola.
++ Find roots using equation-solving techniques.
++ Determine end behavior using limits.
+
+## Quadratic Equations
+
+:::{.fragment}
+
+**Definition (Quadratic Equation):** A *quadratic equation* is an equation involving a single variable of degree $2$. The general form is
+
+$$ax^2 + bx + c = 0$$
+
+:::
+
+:::{.fragment}
+
+Examples of quadratic equations:
+
+:::
+
++ $2x^2 - 4x - 10 = 0$
++ $x^2 = 8 - 2x$
++ $-3x^2 - x + 5 = 32 - 2x^2$
++ $\displaystyle{\frac{4x^2 + 8x}{5} + 2 = x + 2}$
++ $\left(x - 3\right)\left(5 - 2x\right) = x + 8$
++ $x^2 = 9$
+
+:::{.fragment}
+
+A quadratic equation may have $0$, $1$, or $2$ solutions.
+
+:::
+
+## Method I: Factoring
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Strategy (Solving by Factoring):**
+
+:::
+
+1. Use algebra to get $0$ on one side of the equation.
+2. Factor the expression on the other side.
+3. Use the *zero product property*, which guarantees that if $ab = 0$, then $a = 0$ or $b = 0$.
+
+</div>
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+:::{.callout-note}
+## When to Factor
+
+Factoring is quick when integer or rational solutions exist, but it won't always be clear whether factors exist. If you can't factor within about a minute, move on to the quadratic formula (which we'll cover next).
+
+:::
+
+:::
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 1:** Solve $x^2 - 9x + 14 = 0$ by factoring.
+
+:::
+
+::::{.columns}
+
+:::{.column width="70%"}
+
+:::{.fragment}
+
+*Solution.* Look for two numbers that multiply to $14$ and add to $-9$.
+
+\begin{align} x^2 - 9x + 14 &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Method I: Factoring
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<div style="font-size:17pt">
+
+**Strategy (Solving by Factoring):**
+
+:::{.nonincremental}
+
+1. Use algebra to get $0$ on one side of the equation.
+2. Factor the expression on the other side.
+3. Use the *zero product property*, which guarantees that if $ab = 0$, then $a = 0$ or $b = 0$.
+
+:::
+
+</div>
+
+:::
+
+:::{.column width="50%"}
+
+:::{.callout-note}
+## When to Factor
+
+Factoring is quick when integer or rational solutions exist, but it won't always be clear whether factors exist. If you can't factor within about a minute, move on to the quadratic formula (which we'll cover next).
+
+:::
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Example 1:** Solve $x^2 - 9x + 14 = 0$ by factoring.
+
+::::{.columns}
+
+:::{.column width="70%"}
+
+*Solution.* Look for two numbers that multiply to $14$ and add to $-9$.
+
+\begin{align} x^2 - 9x + 14 &= 0\\
+\implies \left(x ~?~ \text{___}\right)\left(x ~?~ \text{___}\right) &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Method I: Factoring
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<div style="font-size:17pt">
+
+**Strategy (Solving by Factoring):**
+
+:::{.nonincremental}
+
+1. Use algebra to get $0$ on one side of the equation.
+2. Factor the expression on the other side.
+3. Use the *zero product property*, which guarantees that if $ab = 0$, then $a = 0$ or $b = 0$.
+
+:::
+
+</div>
+
+:::
+
+:::{.column width="50%"}
+
+:::{.callout-note}
+## When to Factor
+
+Factoring is quick when integer or rational solutions exist, but it won't always be clear whether factors exist. If you can't factor within about a minute, move on to the quadratic formula (which we'll cover next).
+
+:::
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Example 1:** Solve $x^2 - 9x + 14 = 0$ by factoring.
+
+::::{.columns}
+
+:::{.column width="70%"}
+
+*Solution.* Look for two numbers that multiply to $14$ and add to $-9$.
+
+\begin{align} x^2 - 9x + 14 &= 0\\
+\implies \left(x ~?~ \text{___}\right)\left(x ~?~ \text{___}\right) &= 0\\
+\implies \left(x - \text{___}\right)\left(x - \text{___}\right) &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Method I: Factoring
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<div style="font-size:17pt">
+
+**Strategy (Solving by Factoring):**
+
+:::{.nonincremental}
+
+1. Use algebra to get $0$ on one side of the equation.
+2. Factor the expression on the other side.
+3. Use the *zero product property*, which guarantees that if $ab = 0$, then $a = 0$ or $b = 0$.
+
+:::
+
+</div>
+
+:::
+
+:::{.column width="50%"}
+
+:::{.callout-note}
+## When to Factor
+
+Factoring is quick when integer or rational solutions exist, but it won't always be clear whether factors exist. If you can't factor within about a minute, move on to the quadratic formula (which we'll cover next).
+
+:::
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Example 1:** Solve $x^2 - 9x + 14 = 0$ by factoring.
+
+::::{.columns}
+
+:::{.column width="70%"}
+
+*Solution.* Look for two numbers that multiply to $14$ and add to $-9$.
+
+\begin{align} x^2 - 9x + 14 &= 0\\
+\implies \left(x ~?~ \text{___}\right)\left(x ~?~ \text{___}\right) &= 0\\
+\implies \left(x - \text{___}\right)\left(x - \text{___}\right) &= 0\\
+\implies \left(x - 7\right)\left(x - 2\right) &= 0
+\end{align}
+
+:::{.fragment}
+
+Now, using the *zero product property*, we have $x - 7 = 0$ or $x - 2 = 0$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x - 7 &= 0 & &\text{ or } & x - 2 &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Method I: Factoring
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<div style="font-size:17pt">
+
+**Strategy (Solving by Factoring):**
+
+:::{.nonincremental}
+
+1. Use algebra to get $0$ on one side of the equation.
+2. Factor the expression on the other side.
+3. Use the *zero product property*, which guarantees that if $ab = 0$, then $a = 0$ or $b = 0$.
+
+:::
+
+</div>
+
+:::
+
+:::{.column width="50%"}
+
+:::{.callout-note}
+## When to Factor
+
+Factoring is quick when integer or rational solutions exist, but it won't always be clear whether factors exist. If you can't factor within about a minute, move on to the quadratic formula (which we'll cover next).
+
+:::
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Example 1:** Solve $x^2 - 9x + 14 = 0$ by factoring.
+
+::::{.columns}
+
+:::{.column width="70%"}
+
+*Solution.* Look for two numbers that multiply to $14$ and add to $-9$.
+
+\begin{align} x^2 - 9x + 14 &= 0\\
+\implies \left(x ~?~ \text{___}\right)\left(x ~?~ \text{___}\right) &= 0\\
+\implies \left(x - \text{___}\right)\left(x - \text{___}\right) &= 0\\
+\implies \left(x - 7\right)\left(x - 2\right) &= 0
+\end{align}
+
+Now, using the *zero product property*, we have $x - 7 = 0$ or $x - 2 = 0$.
+
+\begin{align} x - 7 &= 0 & &\text{or} & x - 2 &= 0\\
+\implies x &= 7 & &\text{or} & x &= 2
+\end{align}
+
+:::
+
+:::{.column width="30%"}
+
+:::{.fragment}
+
+There are two solutions to the quadratic equation. We have $\boxed{~x = 7~}$ or $\boxed{~x = 2~}$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving Quadratics by Factoring
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 2:** Solve $4x^2 + 18x - 14 = -2x^2 + x$ by factoring.
+
+:::
+
+:::{.fragment}
+
+*Solution.* First, collect everything on one side so that $0$ appears on the other.
+
+\begin{align} 4x^2 + 18x - 14 &= -2x^2 + x
+\end{align}
+
+:::
+
+</div>
+
+## Solving Quadratics by Factoring
+
+<div style="font-size:17pt">
+
+**Example 2:** Solve $4x^2 + 18x - 14 = -2x^2 + x$ by factoring.
+
+*Solution.* First, collect everything on one side so that $0$ appears on the other.
+
+\begin{align} 4x^2 + 18x - 14 &= -2x^2 + x\\
+\implies 6x^2 + 17x - 14&= 0
+\end{align}
+
+</div>
+
+## Solving Quadratics by Factoring
+
+<div style="font-size:17pt">
+
+**Example 2:** Solve $4x^2 + 18x - 14 = -2x^2 + x$ by factoring.
+
+*Solution.* First, collect everything on one side so that $0$ appears on the other.
+
+\begin{align} 4x^2 + 18x - 14 &= -2x^2 + x\\
+\implies 6x^2 + 17x - 14 &= 0\\
+\implies \left(\text{___}x ~?~ \text{___}\right)\left(\text{___}x ~?~ \text{___}\right) &= 0
+\end{align}
+
+</div>
+
+## Solving Quadratics by Factoring
+
+<div style="font-size:17pt">
+
+**Example 2:** Solve $4x^2 + 18x - 14 = -2x^2 + x$ by factoring.
+
+*Solution.* First, collect everything on one side so that $0$ appears on the other.
+
+\begin{align} 4x^2 + 18x - 14 &= -2x^2 + x\\
+\implies 6x^2 + 17x - 14 &= 0\\
+\implies \left(\text{___}x ~?~ \text{___}\right)\left(\text{___}x ~?~ \text{___}\right) &= 0\\
+\implies \left(\text{___}x + \text{___}\right)\left(\text{___}x - \text{___}\right) &= 0
+\end{align}
+
+</div>
+
+## Solving Quadratics by Factoring
+
+<div style="font-size:17pt">
+
+**Example 2:** Solve $4x^2 + 18x - 14 = -2x^2 + x$ by factoring.
+
+*Solution.* First, collect everything on one side so that $0$ appears on the other.
+
+\begin{align} 4x^2 + 18x - 14 &= -2x^2 + x\\
+\implies 6x^2 + 17x - 14 &= 0\\
+\implies \left(\text{___}x ~?~ \text{___}\right)\left(\text{___}x ~?~ \text{___}\right) &= 0\\
+\implies \left(\text{___}x + \text{___}\right)\left(\text{___}x - \text{___}\right) &= 0\\
+\implies \left(2x + 7\right)\left(3x - 2\right) &= 0
+\end{align}
+
+:::{.fragment}
+
+Now we'll use the *zero product property* to obtain two linear equations.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 2x + 7 &= 0 & &\text{or} & 3x - 2 &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Solving Quadratics by Factoring
+
+<div style="font-size:17pt">
+
+**Example 2:** Solve $4x^2 + 18x - 14 = -2x^2 + x$ by factoring.
+
+*Solution.* First, collect everything on one side so that $0$ appears on the other.
+
+\begin{align} 4x^2 + 18x - 14 &= -2x^2 + x\\
+\implies 6x^2 + 17x - 14 &= 0\\
+\implies \left(\text{___}x ~?~ \text{___}\right)\left(\text{___}x ~?~ \text{___}\right) &= 0\\
+\implies \left(\text{___}x + \text{___}\right)\left(\text{___}x - \text{___}\right) &= 0\\
+\implies \left(2x + 7\right)\left(3x - 2\right) &= 0
+\end{align}
+
+Now we'll use the *zero product property* to obtain two linear equations.
+
+\begin{align} 2x + 7 &= 0 & &\text{or} & 3x - 2 &= 0\\
+\implies 2x &= -7 & &\text{or} & 3x &= 2
+\end{align}
+
+</div>
+
+## Solving Quadratics by Factoring
+
+<div style="font-size:17pt">
+
+**Example 2:** Solve $4x^2 + 18x - 14 = -2x^2 + x$ by factoring.
+
+*Solution.* First, collect everything on one side so that $0$ appears on the other.
+
+\begin{align} 4x^2 + 18x - 14 &= -2x^2 + x\\
+\implies 6x^2 + 17x - 14 &= 0\\
+\implies \left(\text{___}x ~?~ \text{___}\right)\left(\text{___}x ~?~ \text{___}\right) &= 0\\
+\implies \left(\text{___}x + \text{___}\right)\left(\text{___}x - \text{___}\right) &= 0\\
+\implies \left(2x + 7\right)\left(3x - 2\right) &= 0
+\end{align}
+
+Now we'll use the *zero product property* to obtain two linear equations.
+
+\begin{align} 2x + 7 &= 0 & &\text{or} & 3x - 2 &= 0\\
+\implies 2x &= -7 & &\text{or} & 3x &= 2\\
+\implies x &= \frac{-7}{2} & &\text{or} & x &= \frac{2}{3}
+\end{align}
+
+:::{.fragment}
+
+Again, we've found two possible solutions to the quadratic equation. We have either $\boxed{~\displaystyle{x = \frac{-7}{2}}~}$ or $\boxed{~\displaystyle{x = \frac{2}{3}}~}$.
+
+:::
+
+</div>
+
+## Factoring Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1: ** Solve the quadratic $x^2 + x - 12 = 0$ by factoring.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** Solve the quadratic $2x^2 - x - 6 = 0$ by factoring.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 3:** Solve the quadratic $x^2 - 10x + 25 = 0$ by factoring.
+
+</div>
+
+## Method II: The Quadratic Formula
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Quadratic Formula):** Any solutions to the equation $ax^2 + bx + c = 0$ are given by
+
+$$x = \frac{-b \pm \sqrt{\left(b^2 - 4ac\right)}}{2a}$$
+
+:::
+
+:::{.fragment}
+
+The expression $b^2 - 4ac$ under the square root is called the *discriminant*. It tells us how many real solutions exist:
+
+:::
+
++ If $b^2 - 4ac > 0$, then there are *two distinct real solutions*
++ If $b^2 - 4ac = 0$, then there is *exactly one real solution*
++ If $b^2 - 4ac < 0$, then there are *no real solutions* (and there will be two complex solutions)
+
+:::{.fragment}
+
+**Strategy:** Get the equation into the form $ax^2 + bx + c = 0$, identify $a$, $b$, $c$, then substitute into the formula.
+
+:::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 4:** Revisit Example 2. Solve $6x^2 + 17x - 14 = 0$ using the quadratic formula.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Here $a = 6$, $b = 17$, $c = -14$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} x &= \frac{-17 \pm \sqrt{\left(17^2 - 4\left(6\right)\left(-14\right)\right)}}{2\left(6\right)}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 4:** Revisit Example 2. Solve $6x^2 + 17x - 14 = 0$ using the quadratic formula.
+
+*Solution.* Here $a = 6$, $b = 17$, $c = -14$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-17 \pm \sqrt{\left(17^2 - 4\left(6\right)\left(-14\right)\right)}}{2\left(6\right)}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 - \left(-336\right)\right)}}{12}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 4:** Revisit Example 2. Solve $6x^2 + 17x - 14 = 0$ using the quadratic formula.
+
+*Solution.* Here $a = 6$, $b = 17$, $c = -14$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-17 \pm \sqrt{\left(17^2 - 4\left(6\right)\left(-14\right)\right)}}{2\left(6\right)}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 - \left(-336\right)\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 + 336\right)}}{12}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 4:** Revisit Example 2. Solve $6x^2 + 17x - 14 = 0$ using the quadratic formula.
+
+*Solution.* Here $a = 6$, $b = 17$, $c = -14$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-17 \pm \sqrt{\left(17^2 - 4\left(6\right)\left(-14\right)\right)}}{2\left(6\right)}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 - \left(-336\right)\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 + 336\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{625}}{12}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 4:** Revisit Example 2. Solve $6x^2 + 17x - 14 = 0$ using the quadratic formula.
+
+*Solution.* Here $a = 6$, $b = 17$, $c = -14$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-17 \pm \sqrt{\left(17^2 - 4\left(6\right)\left(-14\right)\right)}}{2\left(6\right)}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 - \left(-336\right)\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 + 336\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{625}}{12}\\
+\implies x &= \frac{-17 \pm 25}{12}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+Now, we'll evaluate separately -- once for the sum in the numerator and then for the difference.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x &= \frac{-17 - 25}{12} & &\text{or} & x &= \frac{-17 + 25}{12}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 4:** Revisit Example 2. Solve $6x^2 + 17x - 14 = 0$ using the quadratic formula.
+
+*Solution.* Here $a = 6$, $b = 17$, $c = -14$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-17 \pm \sqrt{\left(17^2 - 4\left(6\right)\left(-14\right)\right)}}{2\left(6\right)}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 - \left(-336\right)\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 + 336\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{625}}{12}\\
+\implies x &= \frac{-17 \pm 25}{12}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, we'll evaluate separately -- once for the sum in the numerator and then for the difference.
+
+\begin{align} x &= \frac{-17 - 25}{12} & &\text{or} & x &= \frac{-17 + 25}{12}\\
+\implies x&= \frac{-42}{12} & &\text{or} & x &= \frac{8}{12}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 4:** Revisit Example 2. Solve $6x^2 + 17x - 14 = 0$ using the quadratic formula.
+
+*Solution.* Here $a = 6$, $b = 17$, $c = -14$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-17 \pm \sqrt{\left(17^2 - 4\left(6\right)\left(-14\right)\right)}}{2\left(6\right)}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 - \left(-336\right)\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{\left(289 + 336\right)}}{12}\\
+\implies x &= \frac{-17 \pm \sqrt{625}}{12}\\
+\implies x &= \frac{-17 \pm 25}{12}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, we'll evaluate separately -- once for the sum in the numerator and then for the difference.
+
+\begin{align} x &= \frac{-17 - 25}{12} & &\text{or} & x &= \frac{-17 + 25}{12}\\
+\implies x&= \frac{-42}{12} & &\text{or} & x &= \frac{8}{12}\\
+\implies x&= \frac{-7}{2} & &\text{or} & x &= \frac{2}{3}
+\end{align}
+
+:::{.fragment}
+
+We've landed in exactly the same spot. There are two possible solutions to the quadratic. Either $\boxed{~\displaystyle{x = \frac{-7}{2}}~}$ or $\boxed{~\displaystyle{x = \frac{2}{3}}~}$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 5:** Use the quadratic formula to solve $3x^2 + 5x + 10 = 2x^2 + 3$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* First, collect everything on one side.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} 3x^2 + 5x + 10 &= 2x^2 + 3
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 5:** Use the quadratic formula to solve $3x^2 + 5x + 10 = 2x^2 + 3$.
+
+*Solution.* First, collect everything on one side.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5x + 10 &= 2x^2 + 3\\
+\implies x^2 + 5x + 7 &= 0
+\end{align}
+
+:::{.fragment}
+
+Here $a = 1$, $b = 5$, $c = 7$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x &= \frac{-5 \pm \sqrt{\left(5^2 - 4\left(1\right)\left(7\right)\right)}}{2\left(1\right)}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 5:** Use the quadratic formula to solve $3x^2 + 5x + 10 = 2x^2 + 3$.
+
+*Solution.* First, collect everything on one side.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5x + 10 &= 2x^2 + 3\\
+\implies x^2 + 5x + 7 &= 0
+\end{align}
+
+Here $a = 1$, $b = 5$, $c = 7$.
+
+\begin{align} x &= \frac{-5 \pm \sqrt{\left(5^2 - 4\left(1\right)\left(7\right)\right)}}{2\left(1\right)}\\
+\implies x&= \frac{-5 \pm \sqrt{\left(25 - 28\right)}}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 5:** Use the quadratic formula to solve $3x^2 + 5x + 10 = 2x^2 + 3$.
+
+*Solution.* First, collect everything on one side.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5x + 10 &= 2x^2 + 3\\
+\implies x^2 + 5x + 7 &= 0
+\end{align}
+
+Here $a = 1$, $b = 5$, $c = 7$.
+
+\begin{align} x &= \frac{-5 \pm \sqrt{\left(5^2 - 4\left(1\right)\left(7\right)\right)}}{2\left(1\right)}\\
+\implies x&= \frac{-5 \pm \sqrt{\left(25 - 28\right)}}{2}\\
+\implies x&= \frac{-5 \pm \sqrt{-3}}{2}
+\end{align}
+
+:::{.fragment}
+
+The discriminant is negative, so there are **no real solutions**.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+While there are no real solutions, there will be complex solutions instead.
+
+:::
+
+:::{.fragment}
+
+We'll show them explicitly here.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x &= \frac{-5 - \sqrt{-3}}{2} & & \text{or} & x &= \frac{-5 + \sqrt{-3}}{2}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 5:** Use the quadratic formula to solve $3x^2 + 5x + 10 = 2x^2 + 3$.
+
+*Solution.* First, collect everything on one side.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5x + 10 &= 2x^2 + 3\\
+\implies x^2 + 5x + 7 &= 0
+\end{align}
+
+Here $a = 1$, $b = 5$, $c = 7$.
+
+\begin{align} x &= \frac{-5 \pm \sqrt{\left(5^2 - 4\left(1\right)\left(7\right)\right)}}{2\left(1\right)}\\
+\implies x&= \frac{-5 \pm \sqrt{\left(25 - 28\right)}}{2}\\
+\implies x&= \frac{-5 \pm \sqrt{-3}}{2}
+\end{align}
+
+The discriminant is negative, so there are **no real solutions**.
+
+:::
+
+:::{.column width="50%"}
+
+While there are no real solutions, there will be complex solutions instead.
+
+We'll show them explicitly here.
+
+\begin{align} x &= \frac{-5 - \sqrt{-3}}{2} & & \text{or} & x &= \frac{-5 + \sqrt{-3}}{2}\\
+\implies x &= \frac{-5 - \sqrt{\left(\left(3\right)\left(-1\right)\right)}}{2} & & \text{or} & x &= \frac{-5 + \sqrt{\left(\left(3\right)\left(-1\right)\right)}}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 5:** Use the quadratic formula to solve $3x^2 + 5x + 10 = 2x^2 + 3$.
+
+*Solution.* First, collect everything on one side.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5x + 10 &= 2x^2 + 3\\
+\implies x^2 + 5x + 7 &= 0
+\end{align}
+
+Here $a = 1$, $b = 5$, $c = 7$.
+
+\begin{align} x &= \frac{-5 \pm \sqrt{\left(5^2 - 4\left(1\right)\left(7\right)\right)}}{2\left(1\right)}\\
+\implies x&= \frac{-5 \pm \sqrt{\left(25 - 28\right)}}{2}\\
+\implies x&= \frac{-5 \pm \sqrt{-3}}{2}
+\end{align}
+
+The discriminant is negative, so there are **no real solutions**.
+
+:::
+
+:::{.column width="50%"}
+
+While there are no real solutions, there will be complex solutions instead.
+
+We'll show them explicitly here.
+
+\begin{align} x &= \frac{-5 - \sqrt{-3}}{2} & & \text{or} & x &= \frac{-5 + \sqrt{-3}}{2}\\
+\implies x &= \frac{-5 - \sqrt{\left(\left(3\right)\left(-1\right)\right)}}{2} & & \text{or} & x &= \frac{-5 + \sqrt{\left(\left(3\right)\left(-1\right)\right)}}{2}\\
+\implies x &= \frac{-5 - i\sqrt{3}}{2} & &\text{or} & x &= \frac{-5 + i\sqrt{3}}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving a Quadratic with the Quadratic Formula
+
+<div style="font-size:17pt">
+
+**Example 5:** Use the quadratic formula to solve $3x^2 + 5x + 10 = 2x^2 + 3$.
+
+*Solution.* First, collect everything on one side.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5x + 10 &= 2x^2 + 3\\
+\implies x^2 + 5x + 7 &= 0
+\end{align}
+
+Here $a = 1$, $b = 5$, $c = 7$.
+
+\begin{align} x &= \frac{-5 \pm \sqrt{\left(5^2 - 4\left(1\right)\left(7\right)\right)}}{2\left(1\right)}\\
+\implies x&= \frac{-5 \pm \sqrt{\left(25 - 28\right)}}{2}\\
+\implies x&= \frac{-5 \pm \sqrt{-3}}{2}
+\end{align}
+
+The discriminant is negative, so there are **no real solutions**.
+
+:::
+
+:::{.column width="50%"}
+
+While there are no real solutions, there will be complex solutions instead.
+
+We'll show them explicitly here.
+
+\begin{align} x &= \frac{-5 - \sqrt{-3}}{2} & & \text{or} & x &= \frac{-5 + \sqrt{-3}}{2}\\
+\implies x &= \frac{-5 - \sqrt{\left(\left(3\right)\left(-1\right)\right)}}{2} & & \text{or} & x &= \frac{-5 + \sqrt{\left(\left(3\right)\left(-1\right)\right)}}{2}\\
+\implies x &= \frac{-5 - i\sqrt{3}}{2} & &\text{or} & x &= \frac{-5 + i\sqrt{3}}{2}\\
+\implies x &= \frac{-5}{2} - \frac{\sqrt{3}}{2}i & &\text{or} & x &= \frac{-5}{2} + \frac{\sqrt{3}}{2}i
+\end{align}
+
+:::{.fragment}
+
+The two solutions are *complex conjugates*, which will always be the case.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Quadratic Formula Practice
+
+<div style="font-size:17pt">
+
+**Try It! 4:** Solve $x^2 - 4x - 5 = 0$ using the quadratic formula.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 5:** Solve $2x^2 + 2x + 5 = 1 - x$ using the quadratic formula.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 6:** Solve $x^2 = 6x - 9$ using the quadratic formula.
+
+</div>
+
+## Quadratic Functions and Their Graphs
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Quadratic Function):** A *quadratic function* can be written in the form
+
+$$f\left(x\right) = ax^2 + bx + c$$
+
+:::
+
+:::{.fragment}
+
+Its graph is a *parabola*. This is the "U"-shaped "book function" $f\left(x\right) = x^2$ that you already know, but possibly transformed.
+
+:::
+
+:::{.fragment}
+
+The key features of a parabola:
+
+:::
+
++ **Concavity:** describes the direction (up/down) that the parabola opens and is determined by the sign of the leading coefficient, $a$
++ **Vertex:** the turn-around point on the parabola (its maximum or minimum)
++ **Roots:** the locations where $f\left(x\right) = 0$ (there may be $0$, $1$, or $2$)
++ **End behavior:** what happens as $x \to \pm\infty$
+
+</div>
+
+## Concavity and the Leading Coefficient
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Leading Coefficient and Concavity):** For $f\left(x\right) = ax^2 + bx + c$, the *leading coefficient* is $a$.
+
+:::
+
++ If $a > 0$: the parabola opens *upward* (*concave up*) and the vertex is a *minimum*.
++ If $a < 0$: the parabola opens *downward* (*concave down*) and the vertex is a *maximum*.
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals <- seq(-4, 4, length.out = 300)
+
+p_up <- ggplot() +
+  geom_line(aes(x = x_vals, y = x_vals^2 - 2), color = "blue", linewidth = 1) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  annotate("segment", x = 0, xend = 0, y = -3, yend = 5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-3, 5)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 2)) +
+  labs(title = "a > 0: concave up, minimum at vertex") +
+  theme_bw(base_size = 14) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_down <- ggplot() +
+  geom_line(aes(x = x_vals, y = -x_vals^2 + 2), color = "darkorange", linewidth = 1) +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  annotate("segment", x = 0, xend = 0, y = -3, yend = 5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-3, 5)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 2)) +
+  labs(title = "a < 0: concave down, maximum at vertex") +
+  theme_bw(base_size = 14) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_up + p_down
+```
+
+:::
+
+:::{.fragment}
+
+**Example 6:** Determine the concavity of the quadratic function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Since the *leading coefficient* (the coefficient on $x^2$) is negative ($-2$), the function is concave *down*.
+
+:::
+
+</div>
+
+## The Vertex
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Vertex):** The vertex of the parabola $f\left(x\right) = ax^2 + bx + c$ is located at
+
+$$\left(\frac{-b}{2a},\; f\!\left(\frac{-b}{2a}\right)\right)$$
+
+:::
+
+:::{.fragment}
+
+The $x$-coordinate $\displaystyle{\frac{-b}{2a}}$ is the axis of symmetry. The $y$-coordinate is found by evaluating $f$ at that $x$-value.
+
+:::
+
+:::{.fragment}
+
+**Example 7:** Determine the vertex and the *axis of symmetry* of the quadratic function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+*Solution.* The $x$-coordinate of the vertex is at $\displaystyle{x = \frac{-b}{2a}}$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x &= \frac{8}{2\left(-2\right)}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Vertex
+
+<div style="font-size:17pt">
+
+**Definition (Vertex):** The vertex of the parabola $f\left(x\right) = ax^2 + bx + c$ is located at
+
+$$\left(\frac{-b}{2a},\; f\!\left(\frac{-b}{2a}\right)\right)$$
+
+The $x$-coordinate $\displaystyle{\frac{-b}{2a}}$ is the axis of symmetry. The $y$-coordinate is found by evaluating $f$ at that $x$-value.
+
+**Example 7:** Determine the vertex and the *axis of symmetry* of the quadratic function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* The $x$-coordinate of the vertex is at $\displaystyle{x = \frac{-b}{2a}}$.
+
+\begin{align} x &= \frac{8}{2\left(-2\right)}\\
+\implies x &= \frac{8}{-4}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## The Vertex
+
+<div style="font-size:17pt">
+
+**Definition (Vertex):** The vertex of the parabola $f\left(x\right) = ax^2 + bx + c$ is located at
+
+$$\left(\frac{-b}{2a},\; f\!\left(\frac{-b}{2a}\right)\right)$$
+
+The $x$-coordinate $\displaystyle{\frac{-b}{2a}}$ is the axis of symmetry. The $y$-coordinate is found by evaluating $f$ at that $x$-value.
+
+**Example 7:** Determine the vertex and the *axis of symmetry* of the quadratic function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* The $x$-coordinate of the vertex is at $\displaystyle{x = \frac{-b}{2a}}$.
+
+\begin{align} x &= \frac{8}{2\left(-2\right)}\\
+\implies x &= \frac{8}{-4}\\
+\implies x &= -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+So the $x$-coordinate of the vertex is at $x = -2$, and we find the $y$-coordinate of the vertex by evaluating $f\left(-2\right)$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(-2\right) &= -2\left(-2\right)^2 - 8\left(-2\right) + 4
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Vertex
+
+<div style="font-size:17pt">
+
+**Definition (Vertex):** The vertex of the parabola $f\left(x\right) = ax^2 + bx + c$ is located at
+
+$$\left(\frac{-b}{2a},\; f\!\left(\frac{-b}{2a}\right)\right)$$
+
+The $x$-coordinate $\displaystyle{\frac{-b}{2a}}$ is the axis of symmetry. The $y$-coordinate is found by evaluating $f$ at that $x$-value.
+
+**Example 7:** Determine the vertex and the *axis of symmetry* of the quadratic function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* The $x$-coordinate of the vertex is at $\displaystyle{x = \frac{-b}{2a}}$.
+
+\begin{align} x &= \frac{8}{2\left(-2\right)}\\
+\implies x &= \frac{8}{-4}\\
+\implies x &= -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+So the $x$-coordinate of the vertex is at $x = -2$, and we find the $y$-coordinate of the vertex by evaluating $f\left(-2\right)$.
+
+\begin{align} f\left(-2\right) &= -2\left(-2\right)^2 - 8\left(-2\right) + 4\\
+&= -8 + 16 + 4
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## The Vertex
+
+<div style="font-size:17pt">
+
+**Definition (Vertex):** The vertex of the parabola $f\left(x\right) = ax^2 + bx + c$ is located at
+
+$$\left(\frac{-b}{2a},\; f\!\left(\frac{-b}{2a}\right)\right)$$
+
+The $x$-coordinate $\displaystyle{\frac{-b}{2a}}$ is the axis of symmetry. The $y$-coordinate is found by evaluating $f$ at that $x$-value.
+
+**Example 7:** Determine the vertex and the *axis of symmetry* of the quadratic function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* The $x$-coordinate of the vertex is at $\displaystyle{x = \frac{-b}{2a}}$.
+
+\begin{align} x &= \frac{8}{2\left(-2\right)}\\
+\implies x &= \frac{8}{-4}\\
+\implies x &= -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+So the $x$-coordinate of the vertex is at $x = -2$, and we find the $y$-coordinate of the vertex by evaluating $f\left(-2\right)$.
+
+\begin{align} f\left(-2\right) &= -2\left(-2\right)^2 - 8\left(-2\right) + 4\\
+&= -8 + 16 + 4\\
+&= 12
+\end{align}
+
+:::{.fragment}
+
+The vertex of the parabola is at the point $\left(-2, 12\right)$ and the axis of symmetry is at $x = -2$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## End Behavior
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Definition (End Behavior):** The end behavior of $f\left(x\right)$ describes what happens as $x \to \infty$ and $x \to -\infty$, expressed using limits:
+
+$$\lim_{x\to -\infty}{f\left(x\right)} \qquad \text{and} \qquad \lim_{x\to \infty}{f\left(x\right)}$$
+
+:::
+
+:::{.fragment}
+
+For quadratic functions $f\left(x\right) = ax^2 + bx + c$, the **leading term** $ax^2$ dominates as $x$ becomes large in magnitude. So:
+
+:::
+
++ If $a > 0$: $\displaystyle{\lim_{x\to -\infty}{ax^2 + bx + c} = \infty}$ and $\displaystyle{\lim_{x\to \infty}{ax^2 + bx + c} = \infty}$
++ If $a < 0$: $\displaystyle{\lim_{x\to -\infty}{ax^2 + bx + c} = -\infty}$ and $\displaystyle{\lim_{x\to \infty}{ax^2 + bx + c} = -\infty}$
+
+:::{.fragment}
+
+**Example 8:** Determine the end behavior of the quadratic function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
++ $\displaystyle{\lim_{x\to -\infty}{-2x^2 - 8x + 4} = -\infty}$
++ $\displaystyle{\lim_{x\to \infty}{-2x^2 - 8x + 4} = -\infty}$
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+Note that this behavior aligns with all of the characteristics we've discovered so far. 
+
+:::
+
++ The parabola is *concave down* (it opens downwards)
++ The vertex is a *maximum*
++ The only possibility for the end behavior of this "U"-shaped function was to extend to negative infinity.
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+:::
+
+:::{.fragment}
+
+The last thing we need before we can graph the function is to determine its roots.
+
+:::
+
+:::{.fragment}
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+:::
+
+:::{.fragment}
+
+\begin{align} -2x^2 - 8x + 4 &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x - 2\right) &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x -2\right) &= 0\\
+\implies x^2 + 4x - 2 &= 0
+\end{align}
+
+:::{.fragment}
+
+After deciding against factoring, we'll use the quadratic formula.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} x &= \frac{-4 \pm \sqrt{\left(4^2 - 4\left(1\right)\left(-2\right)\right)}}{2\left(1\right)}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x -2\right) &= 0\\
+\implies x^2 + 4x - 2 &= 0
+\end{align}
+
+After deciding against factoring, we'll use the quadratic formula.
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-4 \pm \sqrt{\left(4^2 - 4\left(1\right)\left(-2\right)\right)}}{2\left(1\right)}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(16 + 8\right)}}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x -2\right) &= 0\\
+\implies x^2 + 4x - 2 &= 0
+\end{align}
+
+After deciding against factoring, we'll use the quadratic formula.
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-4 \pm \sqrt{\left(4^2 - 4\left(1\right)\left(-2\right)\right)}}{2\left(1\right)}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(16 + 8\right)}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{24}}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x -2\right) &= 0\\
+\implies x^2 + 4x - 2 &= 0
+\end{align}
+
+After deciding against factoring, we'll use the quadratic formula.
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-4 \pm \sqrt{\left(4^2 - 4\left(1\right)\left(-2\right)\right)}}{2\left(1\right)}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(16 + 8\right)}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{24}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(\left(4\right)\left(6\right)\right)}}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x -2\right) &= 0\\
+\implies x^2 + 4x - 2 &= 0
+\end{align}
+
+After deciding against factoring, we'll use the quadratic formula.
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-4 \pm \sqrt{\left(4^2 - 4\left(1\right)\left(-2\right)\right)}}{2\left(1\right)}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(16 + 8\right)}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{24}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(\left(4\right)\left(6\right)\right)}}{2}\\
+\implies x &= \frac{-4 \pm 2\sqrt{6}}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x -2\right) &= 0\\
+\implies x^2 + 4x - 2 &= 0
+\end{align}
+
+After deciding against factoring, we'll use the quadratic formula.
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-4 \pm \sqrt{\left(4^2 - 4\left(1\right)\left(-2\right)\right)}}{2\left(1\right)}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(16 + 8\right)}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{24}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(\left(4\right)\left(6\right)\right)}}{2}\\
+\implies x &= \frac{-4 \pm 2\sqrt{6}}{2}\\
+\implies x &= \frac{2\left(-2 \pm \sqrt{6}\right)}{2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding Roots and $y$-Intercept
+
+<div style="font-size:16pt">
+
+We know a lot about the function $f\left(x\right) = -2x^2 - 8x + 4$ from the previous few examples. 
+
+The last thing we need before we can graph the function is to determine its roots.
+
+**Example 9:** Find the roots and $y$-intercept of the function $f\left(x\right) = -2x^2 - 8x + 4$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+*Solution.* We'll solve $f\left(x\right) = 0$, just like we did earlier today.
+
+\begin{align} -2x^2 - 8x + 4 &= 0\\
+\implies -2\left(x^2 + 4x -2\right) &= 0\\
+\implies x^2 + 4x - 2 &= 0
+\end{align}
+
+After deciding against factoring, we'll use the quadratic formula.
+
+:::{.fragment}
+
+These roots, $\boxed{~\displaystyle{x = -2 \pm \sqrt{6}}~}$ are real but won't simplify nicely. We'll just leave it here!
+
+:::
+
+:::{.fragment}
+
+The $y$-intercept is much simpler to find. We'll just evaluate $f\left(0\right)$.
+
+:::
+
+:::{.fragment}
+
+Since $f\left(0\right) = 4$, the $y$-intercept is at the point $\boxed{~\left(0, 4\right)~}$.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} x &= \frac{-4 \pm \sqrt{\left(4^2 - 4\left(1\right)\left(-2\right)\right)}}{2\left(1\right)}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(16 + 8\right)}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{24}}{2}\\
+\implies x &= \frac{-4 \pm \sqrt{\left(\left(4\right)\left(6\right)\right)}}{2}\\
+\implies x &= \frac{-4 \pm 2\sqrt{6}}{2}\\
+\implies x &= \frac{2\left(-2 \pm \sqrt{6}\right)}{2}\\
+\implies x &= -2 \pm \sqrt{6}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Putting It All Together
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 10:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = -2x^2 - 8x + 4$ to draw its graph.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+Over the last several examples, we've investigated all of these items.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+```{r}
+x_vals <- seq(-7, 7, length.out = 500)
+y_vals <- -2*(x_vals^2) - (8*x_vals) + 4
+
+ggplot() + 
+      annotate("segment", x = -7, xend = 7, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") +
+    coord_cartesian(xlim = c(-7, 7), ylim = c(-10, 20)) +
+    scale_x_continuous(breaks = seq(-7, 7, by = 1)) +
+    scale_y_continuous(breaks = seq(-10, 20, by = 5)) + 
+  labs(x = "x", y = "y") + 
+  theme_bw(base_size = 20)
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Putting It All Together
+
+<div style="font-size:17pt">
+
+**Example 10:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = -2x^2 - 8x + 4$ to draw its graph.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
+Over the last several examples, we've investigated all of these items.
+
++ The vertex is at the point $\left(-2, 12\right)$ and the axis of symmetry is at $x = -2$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+x_vals <- seq(-7, 7, length.out = 500)
+y_vals <- -2*(x_vals^2) - (8*x_vals) + 4
+
+ggplot() + 
+  geom_point(aes(x = -2, y = 12),
+             size = 3) + 
+  geom_vline(aes(xintercept = -2),
+             linewidth = 0.5, linetype = "dashed") +
+      annotate("segment", x = -7, xend = 7, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") +
+    coord_cartesian(xlim = c(-7, 7), ylim = c(-10, 20)) +
+    scale_x_continuous(breaks = seq(-7, 7, by = 1)) +
+    scale_y_continuous(breaks = seq(-10, 20, by = 5)) + 
+  labs(x = "x", y = "y") + 
+  theme_bw(base_size = 20)
+```
+
+:::
+
+::::
+
+</div>
+
+## Putting It All Together
+
+<div style="font-size:17pt">
+
+**Example 10:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = -2x^2 - 8x + 4$ to draw its graph.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
+Over the last several examples, we've investigated all of these items.
+
++ The vertex is at the point $\left(-2, 12\right)$ and the axis of symmetry is at $x = -2$
++ The roots are at the points $\left(-2 - \sqrt{6}, 0\right)$ and $\left(-2 + \sqrt{6}, 0\right)$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+x_vals <- seq(-7, 7, length.out = 500)
+y_vals <- -2*(x_vals^2) - (8*x_vals) + 4
+
+ggplot() + 
+  geom_point(aes(x = -2, y = 12),
+             size = 3) + 
+  geom_point(aes(x = -2 - sqrt(6), y = 0),
+             size = 3) +
+  geom_point(aes(x = -2 + sqrt(6), y = 0),
+             size = 3) +
+  geom_vline(aes(xintercept = -2),
+             linewidth = 0.5, linetype = "dashed") +
+      annotate("segment", x = -7, xend = 7, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") +
+    coord_cartesian(xlim = c(-7, 7), ylim = c(-10, 20)) +
+    scale_x_continuous(breaks = seq(-7, 7, by = 1)) +
+    scale_y_continuous(breaks = seq(-10, 20, by = 5)) + 
+  labs(x = "x", y = "y") + 
+  theme_bw(base_size = 20)
+```
+
+:::
+
+::::
+
+</div>
+
+## Putting It All Together
+
+<div style="font-size:17pt">
+
+**Example 10:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = -2x^2 - 8x + 4$ to draw its graph.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
+Over the last several examples, we've investigated all of these items.
+
++ The vertex is at the point $\left(-2, 12\right)$ and the axis of symmetry is at $x = -2$
++ The roots are at the points $\left(-2 - \sqrt{6}, 0\right)$ and $\left(-2 + \sqrt{6}, 0\right)$
++ The $y$-intercept is at the point $\left(0, 4\right)$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+x_vals <- seq(-7, 7, length.out = 500)
+y_vals <- -2*(x_vals^2) - (8*x_vals) + 4
+
+ggplot() + 
+  geom_point(aes(x = -2, y = 12),
+             size = 3) + 
+  geom_point(aes(x = -2 - sqrt(6), y = 0),
+             size = 3) +
+  geom_point(aes(x = -2 + sqrt(6), y = 0),
+             size = 3) +
+  geom_point(aes(x = 0, y = 4),
+             size = 3) +
+  geom_vline(aes(xintercept = -2),
+             linewidth = 0.5, linetype = "dashed") +
+      annotate("segment", x = -7, xend = 7, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") +
+    coord_cartesian(xlim = c(-7, 7), ylim = c(-10, 20)) +
+    scale_x_continuous(breaks = seq(-7, 7, by = 1)) +
+    scale_y_continuous(breaks = seq(-10, 20, by = 5)) + 
+  labs(x = "x", y = "y") + 
+  theme_bw(base_size = 20)
+```
+
+:::
+
+::::
+
+</div>
+
+## Putting It All Together
+
+<div style="font-size:17pt">
+
+**Example 10:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = -2x^2 - 8x + 4$ to draw its graph.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
+Over the last several examples, we've investigated all of these items.
+
++ The vertex is at the point $\left(-2, 12\right)$ and the axis of symmetry is at $x = -2$
++ The roots are at the points $\left(-2 - \sqrt{6}, 0\right)$ and $\left(-2 + \sqrt{6}, 0\right)$
++ The $y$-intercept is at the point $\left(0, 4\right)$
++ The function is concave down
++ The end behavior indicates $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = -\infty}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = -\infty}$
++ The vertex is a maximum
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+x_vals <- seq(-7, 7, length.out = 500)
+y_vals <- -2*(x_vals^2) - (8*x_vals) + 4
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") +
+  geom_point(aes(x = -2, y = 12),
+             size = 3) + 
+  geom_point(aes(x = -2 - sqrt(6), y = 0),
+             size = 3) +
+  geom_point(aes(x = -2 + sqrt(6), y = 0),
+             size = 3) +
+  geom_point(aes(x = 0, y = 4),
+             size = 3) +
+  geom_vline(aes(xintercept = -2),
+             linewidth = 0.5, linetype = "dashed") +
+      annotate("segment", x = -7, xend = 7, y = 0, yend = 0,
+             linewidth = 0.4, color = "black") +
+    annotate("segment", x = 0, xend = 0, y = -10, yend = 20,
+             linewidth = 0.4, color = "black") +
+    coord_cartesian(xlim = c(-7, 7), ylim = c(-10, 20)) +
+    scale_x_continuous(breaks = seq(-7, 7, by = 1)) +
+    scale_y_continuous(breaks = seq(-10, 20, by = 5)) + 
+  labs(x = "x", y = "y") + 
+  theme_bw(base_size = 20)
+```
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Quadratic Practice
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Try It! 7:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = 24 - 2x - 2x^2$ to draw its graph.
+
+:::
+
+</div>
+
+## Plotting a Quadratic Practice (Verified)
+
+<div style="font-size:16pt">
+
+**Try It! 7:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = 24 - 2x - 2x^2$ to draw its graph.
+
+:::{.fragment}
+
+*Solution.* Rewriting the quadratic in standard form gives $f\left(x\right) = -2x^2 - 2x + 24$, so $a = -2$, $b = -2$, $c = 24$.
+
+:::
+
+:::{.fragment}
+
+**Concavity** Since $a = -2 < 0$, the parabola opens **downward** (concave down). The vertex is a **maximum**.
+
+:::
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+:::{.fragment}
+
+**Vertex:** The $x$-coordinate of the vertex: $x = \frac{-b}{2a} = \frac{-\left(-2\right)}{2\left(-2\right)} = \frac{2}{-4} = -\frac{1}{2}$
+
+:::
+
+:::{.fragment}
+
+The $y$-coordinate: $f\!\left(-\frac{1}{2}\right) = 24 - 2\!\left(-\frac{1}{2}\right) - 2\!\left(-\frac{1}{2}\right)^2 = 24 + 1 - \frac{1}{2} = \frac{49}{2}$
+
+:::
+
+:::
+
+:::{.column width="25%"}
+
+:::{.fragment}
+
+Vertex: $\displaystyle{\left(-\frac{1}{2}, \frac{49}{2}\right)}$
+
+:::
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="30%"}
+
+:::{.fragment}
+
+**Roots.** Solve $f\left(x\right) = 0$:
+
+\begin{align} 24 - 2x - 2x^2 &= 0\\
+\implies -2\left(x^2 + x - 12\right) &= 0\\
+\implies \left(x + 4\right)\left(x - 3\right) &= 0\\
+\implies x = -4 &\text{ or } x = 3
+\end{align}
+
+Roots at $\left(-4, 0\right)$ and $\left(3, 0\right)$.
+
+:::
+
+:::
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+**$y$-intercept:** The $y$-intercept is at the point $\left(0, 24\right)$
+
+:::
+
+:::
+
+:::{.column width="30%"}
+
+:::{.fragment}
+
+**End behavior.** The leading term is $-2x^2$, so:
+
+$$\lim_{x\to -\infty}{f\left(x\right)} = -\infty$$ 
+
+and 
+
+$$\lim_{x\to \infty}{f\left(x\right)} = -\infty$$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Quadratic Practice (Verified)
+
+<div style="font-size:16pt">
+
+**Try It! 7:** Use information about the concavity, roots, $y$-intercept, vertex, axis of symmetry, and end behavior of the function $f\left(x\right) = 24 - 2x - 2x^2$ to draw its graph.
+
+$\left(e\right)$ **Graph.** Using vertex $\left(-\frac{1}{2}, \frac{49}{2}\right)$, roots $\left(-4, 0\right)$ and $\left(3, 0\right)$, $y$-intercept $\left(0, 24\right)$, downward concavity, and end-behavior towards negative infinity:
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+x_vals <- seq(-6, 5, length.out = 500)
+f_vals <- 24 - 2*x_vals - 2*x_vals^2
+
+landmarks <- data.frame(
+  x = c(-4, -0.5, 3, 0),
+  y = c(0, 49/2, 0, 24)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_point(data = landmarks, aes(x = x, y = y), size = 3, color = "black") +
+  annotate("segment", x = -6, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -15, yend = 30,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(-6, 5, by = 1)) +
+  scale_y_continuous(breaks = seq(-15, 30, by = 5)) +
+  coord_cartesian(xlim = c(-6, 5), ylim = c(-15, 30)) +
+  labs(title = latex2exp::TeX("$f(x) = 24 - 2x - 2x^2$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+</div>
+
+## Additional Practice
+
+<div style="font-size:17pt">
+
+**Try It! 8:** For each quadratic function below, determine: (i) concavity, (ii) vertex, (iii) roots, (iv) end behavior, and (v) sketch a rough graph.
+
+$\left(a\right)~f\left(x\right) = x^2 - 4x - 5$
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+$\left(b\right)~g\left(x\right) = -x^2 + 6x - 5$
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+</div>
+
+:::{.callout-note}
+## Factoring versus the Quadratic Formula
+
+For roots, try factoring first. If that doesn't work within a minute, use the quadratic formula.
+
+:::
+
+## Applied Problems
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Applied Problem 1:** A rocket is launched into the air. Its height (in meters) is $h\left(t\right) = -4.9t^2 + 229t + 234$, where $t$ is time in seconds.
+
+Find the maximum height the rocket attains.
+
+:::
+
+:::{.fragment}
+
+*Solution.* The maximum occurs at the vertex.
+
+:::
+
+:::{.fragment}
+
+The quadratic function describing the height of the rocket has $a = -4.9$, $b = 229$, and $c = 234$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} t &= \frac{-b}{2a} = \frac{-229}{2\left(-4.9\right)} = \frac{-229}{-9.8} \approx 23.37 \text{ seconds}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+We can plug the time at which the maximum height is reached ($23.37$ seconds) into the height function to determine the height of the rocket.
+
+:::
+
+:::{.fragment}
+
+\begin{align} h\left(23.37\right) &= -4.9\left(23.37\right)^2 + 229\left(23.37\right) + 234 \approx \boxed{~2{,}909.6 \text{ meters}~}
+\end{align}
+
+:::
+
+</div>
+
+## Applied Problems (Cont'd)
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Applied Problem 2:** The price per unit (in dollars) for a cell phone is modeled by $p = 45 - 0.0125x$, where $x$ is the number of phones produced (in thousands). The revenue (in thousands of dollars) is $R = x \cdot p$.
+
+Find the production level that maximizes revenue.
+
+:::
+
+:::{.fragment}
+
+*Solution.* First, write $R$ as a function of $x$:
+
+:::
+
+:::{.fragment}
+
+\begin{align} R\left(x\right) &= x\left(45 - 0.0125x\right) = 45x - 0.0125x^2
+\end{align}
+
+:::
+
+:::{.fragment}
+
+This is a downward-opening parabola ($a = -0.0125 < 0$). 
+
+:::
+
+:::{.fragment}
+
+The maximum revenue occurs at the vertex:
+
+:::
+
+:::{.fragment}
+
+\begin{align} x &= \frac{-b}{2a} = \frac{-45}{2\left(-0.0125\right)} = \frac{-45}{-0.025} = \boxed{~1{,}800 ~\text{phones}~}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+The corresponding maximum revenue is $R\left(1800\right) = 45\left(1800\right) - 0.0125\left(1800\right)^2 = \boxed{~\$40{,}500~}$.
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `10. Quadratic Functions and Equations (Part I)`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider the function $f\left(x\right) = x^2 - 2x - 8$.
+
+$\left(a\right)$ Find the roots by factoring.
+
+$\left(b\right)$ Find the vertex.
+
+$\left(c\right)$ Does the parabola open upward or downward?
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ A **quadratic equation** has the form $ax^2 + bx + c = 0$ and may have $0$, $1$, or $2$ real solutions.
++ **Factoring** is fast when it works; use the **quadratic formula** when it doesn't.
++ The **discriminant** $b^2 - 4ac$ tells you how many real solutions exist before you solve.
++ The graph of a **quadratic function** $f\left(x\right) = ax^2 + bx + c$ forms a parabola.
++ **Concavity** is determined by the sign of $a$; the **vertex** is at $x = \frac{-b}{2a}$.
++ The **end behavior** is determined by the leading term $ax^2$.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Next class we'll develop **completing the square** as a third technique for solving quadratics -- and as the key to writing quadratic functions in **vertex form**, which connects directly to the transformations framework.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Quadratic Functions and Equations (Part II)</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Start Homework 8 on MyOpenMath</center>
+
+:::
+
+</div>

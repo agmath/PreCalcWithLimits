@@ -1,0 +1,1045 @@
+---
+title: "MAT 142: Complex Numbers"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we discussed each of the following:
+
+:::
+
++ Linear functions 
+    + The slope of a line
+    + The $y$-intercept of a line
+    + Writing the equation of a line in slope-intercept form 
+    + Writing the equation of a line in point-slope form
++ Connecting linear functions to the graphical transformation framework
++ Parallel and perpendicular lines
++ Solving linear equations and the corresponding geometric interpretation
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Simplify the expression $\left(2 + 3x\right) + \left(7 - 2x\right)$.
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Simplify the expression $\left(2 + 3x\right)\left(7 - 2x\right)$.
+
+:::
+
+:::{.fragment}
+
+*Note:* These warm-up problems are designed to preview today's topic. Keep your answers in mind as we move forward.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today we take a brief but important detour to introduce the *complex numbers* before moving into our study of polynomial functions.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Write and recognize complex numbers of the form $a + bi$, where $a$, $b$ are real numbers and $i = \sqrt{\left(-1\right)}$.
++ Identify and construct the complex conjugate of a complex number.
++ Add, subtract, multiply, and divide complex numbers, expressing all results in the form $a + bi$.
+
+## What Are Complex Numbers?
+
+:::{.fragment}
+
+**Definition (Complex Number):** A *complex number* is a number of the form $a + bi$, where $a$ and $b$ are real numbers and $i = \sqrt{\left(-1\right)}$.
+
+:::
+
+:::{.fragment}
+
+The collection of all complex numbers is denoted $\mathbb{C}$.
+
+:::
+
++ $a$ is called the *real part* and $b$ is called the *imaginary part*.
++ Real numbers are complex numbers with $b = 0$. So $\mathbb{R}$ is a subset of $\mathbb{C}$ (or, in symbols, $\mathbb{R} \subset \mathbb{C}$).
++ Pure imaginary numbers have $a = 0$, such as $3i$ or $-7i$.
+
+:::{.fragment}
+
+**Powers of $i$:**
+
+:::
+
+:::{.fragment}
+
+$$i^0 = 1 \qquad i^1 = i \qquad i^2 = -1 \qquad i^3 = -i \qquad i^4 = 1 \qquad i^5 = i \qquad \cdots$$
+
+:::
+
+:::{.fragment}
+
+The pattern repeats with period 4. This is the key fact that makes complex arithmetic work.
+
+:::
+
+## Adding and Subtracting Complex Numbers
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Strategy:** Adding and subtracting complex numbers works just like combining like terms with a variable. Treat $i$ as if it were a variable such as $x$.
+
+:::
+
+:::{.fragment}
+
+Combine real parts with real parts, and imaginary parts with imaginary parts.
+
+:::
+
+:::{.fragment}
+
+**Example 1:** Compute the sum $\left(5 - 7i\right) + \left(3i\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Combine like terms:
+
+\begin{align} \left(5 - 7i\right) + \left(3i\right)
+\end{align}
+
+:::
+
+</div>
+
+## Adding and Subtracting Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Adding and subtracting complex numbers works just like combining like terms with a variable. Treat $i$ as if it were a variable such as $x$.
+
+Combine real parts with real parts, and imaginary parts with imaginary parts.
+
+**Example 1:** Compute the sum $\left(5 - 7i\right) + \left(3i\right)$.
+
+*Solution.* Combine like terms:
+
+\begin{align} \left(5 - 7i\right) + \left(3i\right) &= 5 + \left(-7i + 3i\right)
+\end{align}
+
+</div>
+
+## Adding and Subtracting Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Adding and subtracting complex numbers works just like combining like terms with a variable. Treat $i$ as if it were a variable such as $x$.
+
+Combine real parts with real parts, and imaginary parts with imaginary parts.
+
+**Example 1:** Compute the sum $\left(5 - 7i\right) + \left(3i\right)$.
+
+*Solution.* Combine like terms:
+
+\begin{align} \left(5 - 7i\right) + \left(3i\right) &= 5 + \left(-7i + 3i\right)\\
+&= \boxed{~5 - 4i~}
+\end{align}
+
+:::{.fragment}
+
+**Example 2:** Compute the difference $\left(1 + 18i\right) - \left(-3 - i\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \left(1 + 18i\right) - \left(-3 - i\right)
+\end{align}
+
+:::
+
+</div>
+
+## Adding and Subtracting Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Adding and subtracting complex numbers works just like combining like terms with a variable. Treat $i$ as if it were a variable such as $x$.
+
+Combine real parts with real parts, and imaginary parts with imaginary parts.
+
+**Example 1:** Compute the sum $\left(5 - 7i\right) + \left(3i\right)$.
+
+*Solution.* Combine like terms:
+
+\begin{align} \left(5 - 7i\right) + \left(3i\right) &= 5 + \left(-7i + 3i\right)\\
+&= \boxed{~5 - 4i~}
+\end{align}
+
+**Example 2:** Compute the difference $\left(1 + 18i\right) - \left(-3 - i\right)$.
+
+*Solution.*
+
+\begin{align} \left(1 + 18i\right) - \left(-3 - i\right) &= 1 + 18i + 3 + i
+\end{align}
+
+</div>
+
+## Adding and Subtracting Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Adding and subtracting complex numbers works just like combining like terms with a variable. Treat $i$ as if it were a variable such as $x$.
+
+Combine real parts with real parts, and imaginary parts with imaginary parts.
+
+**Example 1:** Compute the sum $\left(5 - 7i\right) + \left(3i\right)$.
+
+*Solution.* Combine like terms:
+
+\begin{align} \left(5 - 7i\right) + \left(3i\right) &= 5 + \left(-7i + 3i\right)\\
+&= \boxed{~5 - 4i~}
+\end{align}
+
+**Example 2:** Compute the difference $\left(1 + 18i\right) - \left(-3 - i\right)$.
+
+*Solution.*
+
+\begin{align} \left(1 + 18i\right) - \left(-3 - i\right) &= 1 + 18i + 3 + i\\
+&= \left(1 + 3\right) + \left(18i + i\right)
+\end{align}
+
+</div>
+
+## Adding and Subtracting Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Adding and subtracting complex numbers works just like combining like terms with a variable. Treat $i$ as if it were a variable such as $x$.
+
+Combine real parts with real parts, and imaginary parts with imaginary parts.
+
+**Example 1:** Compute the sum $\left(5 - 7i\right) + \left(3i\right)$.
+
+*Solution.* Combine like terms:
+
+\begin{align} \left(5 - 7i\right) + \left(3i\right) &= 5 + \left(-7i + 3i\right)\\
+&= \boxed{~5 - 4i~}
+\end{align}
+
+**Example 2:** Compute the difference $\left(1 + 18i\right) - \left(-3 - i\right)$.
+
+*Solution.*
+
+\begin{align} \left(1 + 18i\right) - \left(-3 - i\right) &= 1 + 18i + 3 + i\\
+&= \left(1 + 3\right) + \left(18i + i\right)\\
+&= \boxed{~4 + 19i~}
+\end{align}
+
+</div>
+
+## Adding and Subtracting Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** Simplify $\left(3 + 5i\right) + \left(2 - 9i\right)$
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** Simplify $\left(4 - i\right) - \left(-1 + 6i\right)$
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+:::
+
+:::{.fragment}
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right)
+\end{align}
+
+:::
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2
+\end{align}
+
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2\\
+&= -24 -26i - 6\left(-1\right)
+\end{align}
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2\\
+&= -24 -26i - 6\left(-1\right)\\
+&= -24 -26i + 6
+\end{align}
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2\\
+&= -24 -26i - 6\left(-1\right)\\
+&= -24 -26i + 6\\
+&= \boxed{~-18 - 26i~}
+\end{align}
+
+:::{.fragment}
+
+**Example 4:** Simplify $\left(5 - 8i\right)\left(5 + 8i\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \left(5 - 8i\right)\left(5 + 8i\right)
+\end{align}
+
+:::
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2\\
+&= -24 -26i - 6\left(-1\right)\\
+&= -24 -26i + 6\\
+&= \boxed{~-18 - 26i~}
+\end{align}
+
+**Example 4:** Simplify $\left(5 - 8i\right)\left(5 + 8i\right)$.
+
+*Solution.*
+
+\begin{align} \left(5 - 8i\right)\left(5 + 8i\right) &= 25 + 40i - 40i - 64i^2
+\end{align}
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2\\
+&= -24 -26i - 6\left(-1\right)\\
+&= -24 -26i + 6\\
+&= \boxed{~-18 - 26i~}
+\end{align}
+
+**Example 4:** Simplify $\left(5 - 8i\right)\left(5 + 8i\right)$.
+
+*Solution.*
+
+\begin{align} \left(5 - 8i\right)\left(5 + 8i\right) &= 25 + 40i - 40i - 64i^2\\
+&= 25 -64\left(-1\right)
+\end{align}
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2\\
+&= -24 -26i - 6\left(-1\right)\\
+&= -24 -26i + 6\\
+&= \boxed{~-18 - 26i~}
+\end{align}
+
+**Example 4:** Simplify $\left(5 - 8i\right)\left(5 + 8i\right)$.
+
+*Solution.*
+
+\begin{align} \left(5 - 8i\right)\left(5 + 8i\right) &= 25 + 40i - 40i - 64i^2\\
+&= 25 -64\left(-1\right)\\
+&= 25 + 64
+\end{align}
+
+</div>
+
+## Multiplying Complex Numbers
+
+<div style="font-size:17pt">
+
+**Strategy:** Multiply complex numbers just like polynomial expressions -- distribute (*multiply everything in one factor by everything in the other factor*), then simplify using the fact that $i^2 = -1$ to eliminate any $i^2$ terms and express the result in the form $a + bi$.
+
+**Example 3:** Simplify $\left(6 + 2i\right)\left(-4 - 3i\right)$.
+
+*Solution.*
+
+\begin{align} \left(6 + 2i\right)\left(-4 - 3i\right) &= -24 - 18i - 8i - 6i^2\\
+&= -24 -26i - 6\left(-1\right)\\
+&= -24 -26i + 6\\
+&= \boxed{~-18 - 26i~}
+\end{align}
+
+**Example 4:** Simplify $\left(5 - 8i\right)\left(5 + 8i\right)$.
+
+*Solution.*
+
+\begin{align} \left(5 - 8i\right)\left(5 + 8i\right) &= 25 + 40i - 40i - 64i^2\\
+&= 25 -64\left(-1\right)\\
+&= 25 + 64\\
+&= \boxed{~89~}
+\end{align}
+
+:::{.fragment}
+
+The result is a *real* number. What was special about the two complex numbers we multiplied?
+
+:::
+
+</div>
+
+## Multiplication Practice
+
+<div style="font-size:17pt">
+
+**Try It! 3:** Simplify $\left(2 + 7i\right)\left(3 - 4i\right)$
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 4:** Simplify $\left(1 - 3i\right)\left(1 + 3i\right)$
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 5:** Simplify $\left(9 - 2i\right)\left(9 + 2i\right)$
+
+</div>
+
+## Complex Conjugates
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Complex Conjugate):** The *complex conjugate* of the complex number $a + bi$ is the complex number $a - bi$.
+
+:::
+
+:::{.fragment}
+
+In **Example 4**, the numbers $5 - 8i$ and $5 + 8i$ are *complex conjugates* of one another. Their product was the real number $89$. This happened in **Try It! 5** for the same reason.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Products of Complex Conjugates
+
+The product of a complex number and its conjugate is *always* a real number.
+
+:::
+
+:::
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+\begin{align} \left(a + bi\right)\left(a - bi\right)
+\end{align}
+
+:::
+
+</div>
+
+## Complex Conjugates
+
+<div style="font-size:17pt">
+
+**Definition (Complex Conjugate):** The *complex conjugate* of the complex number $a + bi$ is the complex number $a - bi$.
+
+In **Example 4**, the numbers $5 - 8i$ and $5 + 8i$ are *complex conjugates* of one another. Their product was the real number $89$.
+
+</div>
+
+:::{.callout-note}
+## Products of Complex Conjugates
+
+The product of a complex number and its conjugate is *always* a real number.
+
+:::
+
+<div style="font-size:17pt">
+
+\begin{align} \left(a + bi\right)\left(a - bi\right) &= a^2 - abi + abi - b^2i^2
+\end{align}
+
+</div>
+
+## Complex Conjugates
+
+<div style="font-size:17pt">
+
+**Definition (Complex Conjugate):** The *complex conjugate* of the complex number $a + bi$ is the complex number $a - bi$.
+
+In **Example 4**, the numbers $5 - 8i$ and $5 + 8i$ are *complex conjugates* of one another. Their product was the real number $89$.
+
+</div>
+
+:::{.callout-note}
+## Products of Complex Conjugates
+
+The product of a complex number and its conjugate is *always* a real number.
+
+:::
+
+<div style="font-size:17pt">
+
+\begin{align} \left(a + bi\right)\left(a - bi\right) &= a^2 - abi + abi - b^2i^2\\
+&= a^2 -b^2\left(-1\right)
+\end{align}
+
+</div>
+
+## Complex Conjugates
+
+<div style="font-size:17pt">
+
+**Definition (Complex Conjugate):** The *complex conjugate* of the complex number $a + bi$ is the complex number $a - bi$.
+
+In **Example 4**, the numbers $5 - 8i$ and $5 + 8i$ are *complex conjugates* of one another. Their product was the real number $89$.
+
+</div>
+
+:::{.callout-note}
+## Products of Complex Conjugates
+
+The product of a complex number and its conjugate is *always* a real number.
+
+:::
+
+<div style="font-size:17pt">
+
+\begin{align} \left(a + bi\right)\left(a - bi\right) &= a^2 - abi + abi - b^2i^2\\
+&= a^2 -b^2\left(-1\right)\\
+&= \boxed{~a^2 + b^2~}
+\end{align}
+
+:::{.fragment}
+
+This fact is what makes division of complex numbers possible.
+
+:::
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Strategy:** To divide complex numbers, multiply both the numerator and denominator by the *complex conjugate of the denominator*. This makes the denominator real, allowing us to write the result in the form $a + bi$.
+
+:::
+
+:::{.fragment}
+
+**Example 5:** Simplify $\displaystyle{\frac{5 - 2i}{1 + i}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Multiply numerator and denominator by the conjugate of the denominator, $1 - i$.
+
+\begin{align} \frac{5 - 2i}{1 + i}
+\end{align}
+
+:::
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Strategy:** To divide complex numbers, multiply both the numerator and denominator by the *complex conjugate of the denominator*. This makes the denominator real, allowing us to write the result in the form $a + bi$.
+
+**Example 5:** Simplify $\displaystyle{\frac{5 - 2i}{1 + i}}$.
+
+*Solution.* Multiply numerator and denominator by the conjugate of the denominator, $1 - i$.
+
+\begin{align} \frac{5 - 2i}{1 + i} &= \left(\frac{5 - 2i}{1 + i}\right) \cdot \left(\frac{1 - i}{1 - i}\right)
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Strategy:** To divide complex numbers, multiply both the numerator and denominator by the *complex conjugate of the denominator*. This makes the denominator real, allowing us to write the result in the form $a + bi$.
+
+**Example 5:** Simplify $\displaystyle{\frac{5 - 2i}{1 + i}}$.
+
+*Solution.* Multiply numerator and denominator by the conjugate of the denominator, $1 - i$.
+
+\begin{align} \frac{5 - 2i}{1 + i} &= \left(\frac{5 - 2i}{1 + i}\right) \cdot \left(\frac{1 - i}{1 - i}\right)\\
+&= \frac{\left(5 - 2i\right)\left(1 - i\right)}{\left(1 + i\right)\left(1 - i\right)}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Strategy:** To divide complex numbers, multiply both the numerator and denominator by the *complex conjugate of the denominator*. This makes the denominator real, allowing us to write the result in the form $a + bi$.
+
+**Example 5:** Simplify $\displaystyle{\frac{5 - 2i}{1 + i}}$.
+
+*Solution.* Multiply numerator and denominator by the conjugate of the denominator, $1 - i$.
+
+\begin{align} \frac{5 - 2i}{1 + i} &= \left(\frac{5 - 2i}{1 + i}\right) \cdot \left(\frac{1 - i}{1 - i}\right)\\
+&= \frac{\left(5 - 2i\right)\left(1 - i\right)}{\left(1 + i\right)\left(1 - i\right)}\\
+&= \frac{5 - 5i - 2i + 2i^2}{1 -i + i -i^2}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Strategy:** To divide complex numbers, multiply both the numerator and denominator by the *complex conjugate of the denominator*. This makes the denominator real, allowing us to write the result in the form $a + bi$.
+
+**Example 5:** Simplify $\displaystyle{\frac{5 - 2i}{1 + i}}$.
+
+*Solution.* Multiply numerator and denominator by the conjugate of the denominator, $1 - i$.
+
+\begin{align} \frac{5 - 2i}{1 + i} &= \left(\frac{5 - 2i}{1 + i}\right) \cdot \left(\frac{1 - i}{1 - i}\right)\\
+&= \frac{\left(5 - 2i\right)\left(1 - i\right)}{\left(1 + i\right)\left(1 - i\right)}\\
+&= \frac{5 - 5i -2i + 2i^2}{1 -i + i -i^2}\\
+&= \frac{5 - 7i + 2\left(-1\right)}{1 - \left(-1\right)}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Strategy:** To divide complex numbers, multiply both the numerator and denominator by the *complex conjugate of the denominator*. This makes the denominator real, allowing us to write the result in the form $a + bi$.
+
+**Example 5:** Simplify $\displaystyle{\frac{5 - 2i}{1 + i}}$.
+
+*Solution.* Multiply numerator and denominator by the conjugate of the denominator, $1 - i$.
+
+\begin{align} \frac{5 - 2i}{1 + i} &= \left(\frac{5 - 2i}{1 + i}\right) \cdot \left(\frac{1 - i}{1 - i}\right)\\
+&= \frac{\left(5 - 2i\right)\left(1 - i\right)}{\left(1 + i\right)\left(1 - i\right)}\\
+&= \frac{5 - 5i -2i + 2i^2}{1 -i + i -i^2}\\
+&= \frac{5 - 7i + 2\left(-1\right)}{1 - \left(-1\right)}\\
+&= \frac{3 - 7i}{2}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Strategy:** To divide complex numbers, multiply both the numerator and denominator by the *complex conjugate of the denominator*. This makes the denominator real, allowing us to write the result in the form $a + bi$.
+
+**Example 5:** Simplify $\displaystyle{\frac{5 - 2i}{1 + i}}$.
+
+*Solution.* Multiply numerator and denominator by the conjugate of the denominator, $1 - i$.
+
+\begin{align} \frac{5 - 2i}{1 + i} &= \left(\frac{5 - 2i}{1 + i}\right) \cdot \left(\frac{1 - i}{1 - i}\right)\\
+&= \frac{\left(5 - 2i\right)\left(1 - i\right)}{\left(1 + i\right)\left(1 - i\right)}\\
+&= \frac{5 - 5i -2i + 2i^2}{1 -i + i -i^2}\\
+&= \frac{5 - 7i + 2\left(-1\right)}{1 - \left(-1\right)}\\
+&= \frac{3 - 7i}{2}\\
+&= \boxed{~\frac{3}{2} - \frac{7}{2}i~}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} \frac{-2 - 5i}{3i}
+\end{align}
+
+:::
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+\begin{align} \frac{-2 - 5i}{3i} &= \left(\frac{-2 - 5i}{3i}\right) \cdot \left(\frac{-3i}{-3i}\right)
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+\begin{align} \frac{-2 - 5i}{3i} &= \left(\frac{-2 - 5i}{3i}\right) \cdot \left(\frac{-3i}{-3i}\right)\\
+&= \frac{\left(-2 - 5i\right)\left(-3i\right)}{\left(3i\right)\left(-3i\right)}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+\begin{align} \frac{-2 - 5i}{3i} &= \left(\frac{-2 - 5i}{3i}\right) \cdot \left(\frac{-3i}{-3i}\right)\\
+&= \frac{\left(-2 - 5i\right)\left(-3i\right)}{\left(3i\right)\left(-3i\right)}\\
+&= \frac{6i + 15i^2}{-9i^2}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+\begin{align} \frac{-2 - 5i}{3i} &= \left(\frac{-2 - 5i}{3i}\right) \cdot \left(\frac{-3i}{-3i}\right)\\
+&= \frac{\left(-2 - 5i\right)\left(-3i\right)}{\left(3i\right)\left(-3i\right)}\\
+&= \frac{6i + 15i^2}{-9i^2}\\
+&= \frac{6i + 15\left(-1\right)}{-9\left(-1\right)}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+\begin{align} \frac{-2 - 5i}{3i} &= \left(\frac{-2 - 5i}{3i}\right) \cdot \left(\frac{-3i}{-3i}\right)\\
+&= \frac{\left(-2 - 5i\right)\left(-3i\right)}{\left(3i\right)\left(-3i\right)}\\
+&= \frac{6i + 15i^2}{-9i^2}\\
+&= \frac{6i + 15\left(-1\right)}{-9\left(-1\right)}\\
+&= \frac{6i - 15}{9}
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+\begin{align} \frac{-2 - 5i}{3i} &= \left(\frac{-2 - 5i}{3i}\right) \cdot \left(\frac{-3i}{-3i}\right)\\
+&= \frac{\left(-2 - 5i\right)\left(-3i\right)}{\left(3i\right)\left(-3i\right)}\\
+&= \frac{6i + 15i^2}{-9i^2}\\
+&= \frac{6i + 15\left(-1\right)}{-9\left(-1\right)}\\
+&= \frac{6i - 15}{9}\\
+&= \frac{-15}{9} + \frac{6}{9}i
+\end{align}
+
+</div>
+
+## Division
+
+<div style="font-size:17pt">
+
+**Example 6:** Simplify $\displaystyle{\frac{-2 - 5i}{3i}}$.
+
+*Solution.* Note that $3i = 0 + 3i$, so its complex conjugate is $0 - 3i = -3i$.
+
+\begin{align} \frac{-2 - 5i}{3i} &= \left(\frac{-2 - 5i}{3i}\right) \cdot \left(\frac{-3i}{-3i}\right)\\
+&= \frac{\left(-2 - 5i\right)\left(-3i\right)}{\left(3i\right)\left(-3i\right)}\\
+&= \frac{6i + 15i^2}{-9i^2}\\
+&= \frac{6i + 15\left(-1\right)}{-9\left(-1\right)}\\
+&= \frac{6i - 15}{9}\\
+&= \frac{-15}{9} + \frac{6}{9}i\\
+&= \boxed{~-\frac{5}{3} + \frac{2}{3}i~}
+\end{align}
+
+</div>
+
+## Division Practice
+
+<div style="font-size:17pt">
+
+**Try It! 6:** Simplify $\displaystyle{\frac{3 + i}{2 - i}}$
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 7:** Simplify $\displaystyle{\frac{-7i}{3 + 4i}}$
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 8:** Simplify $\displaystyle{\frac{3 + 4i}{-7i}}$
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `9. Complex Numbers`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Simplify $\displaystyle{\left(2 + 5i\right)\left(1 - 6i\right)}$. Express your answer in the form $a + bi$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ A **complex number** has the form $a + bi$ where $a, b \in \mathbb{R}$ and $i = \sqrt{-1}$.
++ Real numbers are complex numbers with $b = 0$, so $\mathbb{R}$ is a subset of $\mathbb{C}$.
++ **Add/subtract:** combine real parts and imaginary parts separately (as *like terms*).
++ **Multiply:** distribute and use $i^2 = -1$ to simplify.
++ The **complex conjugate** of $a + bi$ is $a - bi$; the product $\left(a + bi\right)\left(a - bi\right)$ is always real: $a^2 + b^2$.
++ **Divide:** multiply numerator and denominator by the conjugate of the denominator, then simplify.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Complex numbers arise naturally when solving quadratic equations -- the quadratic formula can produce square roots of negative numbers, and complex numbers are exactly what we need to make sense of them.
++ When we study quadratic (and higher-degree polynomial) functions next, we'll see that complex numbers complete the picture of what roots can look like.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Quadratic Functions and Equations</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 7 on MyOpenMath</center>
+
+:::
+
+</div>

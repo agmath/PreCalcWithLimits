@@ -1,0 +1,1121 @@
+---
+title: "MAT 142: Polynomial Functions and Equations (Part I)"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+We've recently investigated quadratics:
+
+:::
+
++ Quadratic Equations: $ax^2 + bx + c = 0$
+    + Solving by *factoring*
+    + Solving by the *quadratic formula*
+    + Solving by *completing the square*
++ Quadratic functions: 
+    + *Standard form*: $f\left(x\right) = ax^2 + bx + c$
+    + *Vertex form*: $f\left(x\right) = a\left(x - h\right)^2 + k$
++ *Geography* of quadratics:
+    + $y$-intercept and roots
+    + Vertex and axis of symmetry
+    + Concavity
+    + End behavior ($\displaystyle{\lim_{x\to \pm \infty}{f\left(x\right)}}$)
++ Circles: 
+    + Completing the square to obtain center-radius form: $\left(x - h\right)^2 + \left(y - k\right)^2 = r^2$
+    + Using the distance and midpoint formulas 
+    
+:::
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Find all solutions to $\left(x + 5\right)\left(-3x + 5\right) = 0$.
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** A student claims that the solutions to $\left(x - 5\right)\left(x - 1\right) = 21$ are $x = 5$ and $x = 1$ because those values make each factor equal to zero. Is the student correct? If not, identify the error and find the actual solutions.
+
+:::
+
+:::{.fragment}
+
+*Note:* Problem 2 is designed to surface a common mistake. Think carefully before answering.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today we generalize the ideas from *linear* and *quadratic* functions to the broader class of *polynomial functions*.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify the leading term, leading coefficient, and degree of a polynomial.
++ Solve polynomial equations that are in (or can be put into) factored form.
++ Identify roots of a polynomial function and their multiplicities.
++ Describe the behavior of a polynomial graph at each root based on multiplicity.
++ Determine the end behavior of a polynomial function using limits.
++ Combine all of the above to sketch the graph of a polynomial function.
+
+## Polynomial Equations
+
+:::{.fragment}
+
+**Definition (Polynomial Equation):** A polynomial equation can be written in the form
+
+$$a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0 = 0$$
+
+:::
+
+:::{.fragment}
+
+For a polynomial $a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0$:
+
+:::
+
++ The **leading term** is $a_nx^n$ -- the term with the highest power.
++ The **leading coefficient** is $a_n$ -- the coefficient on the highest power.
++ The **degree** is $n$ -- the highest power of $x$.
+
+:::{.fragment}
+
+Linear ($n = 1$) and quadratic ($n = 2$) equations are both special cases of polynomials.
+
+:::
+
+## Solving Polynomial Equations
+
+:::{.fragment}
+
+**Strategy:** The general approach for solving polynomial equations is the same as for quadratics:
+
+:::
+
+1. Write the equation with $0$ on one side.
+2. Factor the expression completely.
+3. Apply the **zero product property**: if $ab\cdots = 0$, then at least one factor equals $0$.
+
+:::{.fragment}
+
+:::{.callout-note}
+## Number of Solutions
+
+A degree $n$ polynomial equation has *at most* $n$ real solutions. Counting complex solutions and multiplicities, it has *exactly* $n$ solutions.
+
+:::
+
+:::
+
+## Solving Polynomial Equations I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 1:** The polynomial equation $4x^3 - 10x^2 -42x + 40 = 0$ can be partially factored into $\left(2x + 5\right)\left(2x^2 - 10x + 8\right) = 0$. Find all solutions to the equation.
+
+:::
+
+:::{.fragment}
+
+*Solution.* We already have $0$ on the right side. Continue factoring the left side.
+
+\begin{align} \left(2x + 5\right)\left(2x^2 - 10x + 8\right) &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Solving Polynomial Equations I
+
+<div style="font-size:17pt">
+
+**Example 1:** The polynomial equation $4x^3 - 10x^2 -42x + 40 = 0$ can be partially factored into $\left(2x + 5\right)\left(2x^2 - 10x + 8\right) = 0$. Find all solutions to the equation.
+
+*Solution.* We already have $0$ on the right side. Continue factoring the left side.
+
+\begin{align} \left(2x + 5\right)\left(2x^2 - 10x + 8\right) &= 0\\
+\implies 2\left(2x + 5\right)\left(x^2 - 5x + 4\right) &= 0
+\end{align}
+
+</div>
+
+## Solving Polynomial Equations I
+
+<div style="font-size:17pt">
+
+**Example 1:** The polynomial equation $4x^3 - 10x^2 -42x + 40 = 0$ can be partially factored into $\left(2x + 5\right)\left(2x^2 - 10x + 8\right) = 0$. Find all solutions to the equation.
+
+*Solution.* We already have $0$ on the right side. Continue factoring the left side.
+
+\begin{align} \left(2x + 5\right)\left(2x^2 - 10x + 8\right) &= 0\\
+\implies 2\left(2x + 5\right)\left(x^2 - 5x + 4\right) &= 0\\
+\implies 2\left(2x + 5\right)\left(x - 4\right)\left(x - 1\right) &= 0
+\end{align}
+
+:::{.fragment}
+
+From factored form, we use the zero product property.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 2x + 5 &= 0 & &\text{or} & x - 4 &= 0 & &\text{or} & x - 1 &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Solving Polynomial Equations I
+
+<div style="font-size:17pt">
+
+**Example 1:** The polynomial equation $4x^3 - 10x^2 -42x + 40 = 0$ can be partially factored into $\left(2x + 5\right)\left(2x^2 - 10x + 8\right) = 0$. Find all solutions to the equation.
+
+*Solution.* We already have $0$ on the right side. Continue factoring the left side.
+
+\begin{align} \left(2x + 5\right)\left(2x^2 - 10x + 8\right) &= 0\\
+\implies 2\left(2x + 5\right)\left(x^2 - 5x + 4\right) &= 0\\
+\implies 2\left(2x + 5\right)\left(x - 4\right)\left(x - 1\right) &= 0
+\end{align}
+
+From factored form, we use the zero product property.
+
+\begin{align} 2x + 5 &= 0 & &\text{or} & x - 4 &= 0 & &\text{or} & x - 1 &= 0\\
+\implies 2x &= -5 & &\text{or} & x &= 4 & &\text{or} & x &= 1
+\end{align}
+
+
+</div>
+
+## Solving Polynomial Equations I
+
+<div style="font-size:17pt">
+
+**Example 1:** The polynomial equation $4x^3 - 10x^2 -42x + 40 = 0$ can be partially factored into $\left(2x + 5\right)\left(2x^2 - 10x + 8\right) = 0$. Find all solutions to the equation.
+
+*Solution.* We already have $0$ on the right side. Continue factoring the left side.
+
+\begin{align} \left(2x + 5\right)\left(2x^2 - 10x + 8\right) &= 0\\
+\implies 2\left(2x + 5\right)\left(x^2 - 5x + 4\right) &= 0\\
+\implies 2\left(2x + 5\right)\left(x - 4\right)\left(x - 1\right) &= 0
+\end{align}
+
+From factored form, we use the zero product property.
+
+\begin{align} 2x + 5 &= 0 & &\text{or} & x - 4 &= 0 & &\text{or} & x - 1 &= 0\\
+\implies 2x &= -5 & &\text{or} & x &= 4 & &\text{or} & x &= 1\\
+\implies x &= \frac{-5}{2} & & & & & & & &
+\end{align}
+
+:::{.fragment}
+
+So we have three distinct solutions, $\boxed{~x = -5/2~}$, $\boxed{~x = 4~}$, or $\boxed{~x = 1~}$.
+
+:::
+
+:::{.fragment}
+
+Notice that this was a degree-three polynomial, so three solutions is exactly what we expect (though those solutions may not all be distinct, or real, generally).
+
+:::
+
+</div>
+
+## Multiplicity of a Root/Solution
+
+:::{.fragment}
+
+**Definition (Multiplicity):** If $\left(x - a\right)^k$ appears in the fully factored form of a polynomial, then $x = a$ is a root of *multiplicity* $k$.
+
+:::
+
+:::{.fragment}
+
+For example, the equation $x^2 + 6x + 9 = 0$ has factored form $\left(x + 3\right)^2 = 0$, and has only one solution. That solution is $x = -3$, but $-3$ is a *root of multiplicity two*. It results from a factor that appears twice.
+
+:::
+
+:::{.fragment}
+
+Counting multiplicities and complex solutions, a degree $n$ polynomial always has exactly $n$ solutions.
+
+:::
+
+## Solutions and their Multiplicities
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 2:** Find all solutions to $\left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 = 0$, including complex roots and multiplicities.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} \left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Solutions and their Multiplicities
+
+<div style="font-size:16pt">
+
+**Example 2:** Find all solutions to $\left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 = 0$, including complex roots and multiplicities.
+
+*Solution.*
+
+\begin{align} \left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0\\
+\implies \left(x - 3\right)\left(x - 2\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0
+\end{align}
+
+:::{.fragment}
+
+Reading the solutions directly from the *linear* factors, we have $x = 3$ (multiplicity 1), $x = 2$ (multiplicity 1), $x = 8$ (multiplicity 3).
+
+:::
+
+:::{.fragment}
+
+That accounts for $1 + 1 + 3 = 5$ solutions. 
+
+:::
+
+:::{.fragment}
+
+The total degree of the polynomial is $2 + 2 + 3 = 7$ (remember that we add exponents when multiplying factors with like bases, so $x^2\cdot x^2\cdot x^3 = x^7$). 
+
+:::
+
+:::{.fragment}
+
+Because of this, two solutions remain, and we know that they come from $x^2 + x + 4 = 0$:
+
+:::
+
+:::{.fragment}
+
+\begin{align} x &= \frac{-1 \pm \sqrt{\left(1 - 16\right)}}{2}
+\end{align}
+
+:::
+
+</div>
+
+## Solutions and their Multiplicities
+
+<div style="font-size:16pt">
+
+**Example 2:** Find all solutions to $\left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 = 0$, including complex roots and multiplicities.
+
+*Solution.*
+
+\begin{align} \left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0\\
+\implies \left(x - 3\right)\left(x - 2\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0
+\end{align}
+
+Reading the solutions directly from the *linear* factors, we have $x = 3$ (multiplicity 1), $x = 2$ (multiplicity 1), $x = 8$ (multiplicity 3).
+
+That accounts for $1 + 1 + 3 = 5$ solutions. 
+
+The total degree of the polynomial is $2 + 2 + 3 = 7$ (remember that we add exponents when multiplying factors with like bases, so $x^2\cdot x^2\cdot x^3 = x^7$). 
+
+Because of this, two solutions remain, and we know that they come from $x^2 + x + 4 = 0$:
+
+\begin{align} x &= \frac{-1 \pm \sqrt{\left(1 - 16\right)}}{2} = \frac{-1 \pm \sqrt{-15}}{2}
+\end{align}
+
+</div>
+
+## Solutions and their Multiplicities
+
+<div style="font-size:16pt">
+
+**Example 2:** Find all solutions to $\left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 = 0$, including complex roots and multiplicities.
+
+*Solution.*
+
+\begin{align} \left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0\\
+\implies \left(x - 3\right)\left(x - 2\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0
+\end{align}
+
+Reading the solutions directly from the *linear* factors, we have $x = 3$ (multiplicity 1), $x = 2$ (multiplicity 1), $x = 8$ (multiplicity 3).
+
+That accounts for $1 + 1 + 3 = 5$ solutions. 
+
+The total degree of the polynomial is $2 + 2 + 3 = 7$ (remember that we add exponents when multiplying factors with like bases, so $x^2\cdot x^2\cdot x^3 = x^7$). 
+
+Because of this, two solutions remain, and we know that they come from $x^2 + x + 4 = 0$:
+
+\begin{align} x &= \frac{-1 \pm \sqrt{\left(1 - 16\right)}}{2} = \frac{-1 \pm \sqrt{-15}}{2} = \frac{-1 \pm i\sqrt{15}}{2}
+\end{align}
+
+</div>
+
+## Solutions and their Multiplicities
+
+<div style="font-size:16pt">
+
+**Example 2:** Find all solutions to $\left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 = 0$, including complex roots and multiplicities.
+
+*Solution.*
+
+\begin{align} \left(x^2 - 5x + 6\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0\\
+\implies \left(x - 3\right)\left(x - 2\right)\left(x^2 + x + 4\right)\left(x - 8\right)^3 &= 0
+\end{align}
+
+Reading the solutions directly from the *linear* factors, we have $x = 3$ (multiplicity 1), $x = 2$ (multiplicity 1), $x = 8$ (multiplicity 3).
+
+That accounts for $1 + 1 + 3 = 5$ solutions. 
+
+The total degree of the polynomial is $2 + 2 + 3 = 7$ (remember that we add exponents when multiplying factors with like bases, so $x^2\cdot x^2\cdot x^3 = x^7$). 
+
+Because of this, two solutions remain, and we know that they come from $x^2 + x + 4 = 0$:
+
+\begin{align} x &= \frac{-1 \pm \sqrt{\left(1 - 16\right)}}{2} = \frac{-1 \pm \sqrt{-15}}{2} = \frac{-1 \pm i\sqrt{15}}{2} = \frac{-1}{2} \pm \frac{\sqrt{15}}{2}i
+\end{align}
+
+:::{.fragment}
+
+The two complex solutions are a conjugate pair, as expected. All $7$ solutions accounted for. $\checkmark$
+
+:::
+
+</div>
+
+## Solving Polynomial Equations Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** Find all solutions to $\left(x^2 + 9\right)\left(x^2 - 11x + 30\right)^2 = 0$.
+
+Before solving, answer: what is the degree of this polynomial? How many solutions should you find (counting multiplicities and complex solutions)?
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+*Reminder:* Check that your solution count matches the degree when you're done.
+
+</div>
+
+## Polynomial Functions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Definition (Polynomial Function):** A function of the form
+
+$$f\left(x\right) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0$$
+
+is a *polynomial function*. Its graph is a smooth, continuous curve.
+
+:::
+
+:::{.fragment}
+
+To sketch the graph of a polynomial function, we identify five things:
+
+:::
+
++ **$y$-intercept:** evaluate $f\left(0\right)$
++ **Roots and multiplicities:** solve $f\left(x\right) = 0$
++ **Root behavior:** The multiplicity of each root determines the function's behavior at that point.
+    + If the root $x = a$ is a root with *odd* multiplicity, the graph of $f\left(x\right)$ *passes through* the $x$-axis at that root.
+    + If the root $x = a$ is a root with *even* multiplicity, the graph of $f\left(x\right)$ *bounces off* of the $x$-axis at that root.
++ **End behavior:** analyze using limits by either focusing on the leading term or the sign on each of the factors in factored form.
+    + $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)}}$
+    + $\displaystyle{\lim_{x\to +\infty}{f\left(x\right)}}$
++ **Rough shape:** connect the dots using the root behavior, $y$-intercept, and end behavior.
+
+</div>
+
+## Roots and Multiplicity -- Graph Behavior
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+The multiplicity of a root determines how the graph behaves at that $x$-intercept:
+
++ If the root $x = a$ is a root with *odd* multiplicity, the graph of $f\left(x\right)$ *passes through* the $x$-axis at that root.
++ If the root $x = a$ is a root with *even* multiplicity, the graph of $f\left(x\right)$ *bounces off* of the $x$-axis at that root.
+
+:::
+
+:::{.fragment}
+
+$$f\left(x\right) = x^3\left(x - 1\right)\left(x + 2\right)^2$$
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+x_vals <- seq(-3.5, 3.5, length.out = 500)
+
+p_odd <- ggplot() +
+  geom_line(aes(x = x_vals, y = (x_vals - 1)*(x_vals + 2)^2*(x_vals - 0)^3),
+            color = "blue", linewidth = 1) +
+  geom_point(aes(x = c(-2, 0, 1), y = c(0, 0, 0)), size = 3, color = "black") +
+  annotate("text", x = -2, y = -0.5, label = "mult 2\n(bounces)", size = 4.5, color = "darkred") +
+  annotate("text", x =  -0.25, y = -0.5, label = "mult 3\n(passes)", size = 4.5, color = "darkgreen") +
+  annotate("text", x =  1.25, y = -0.5, label = "mult 1\n(passes)", size = 4.5, color = "darkorange") +
+  annotate("segment", x = -3, xend = 2, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  annotate("segment", x = 0, xend = 0, y = -1.5, yend = 2.5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  coord_cartesian(xlim = c(-3, 2), ylim = c(-1.5, 2.5)) +
+  scale_x_continuous(breaks = seq(-3, 2, by = 1)) +
+  scale_y_continuous(breaks = seq(-1, 2, by = 1)) +
+  labs(title = "Root behavior depends on multiplicity") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_odd
+```
+
+:::
+
+</div>
+
+## End Behavior of Polynomial Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Just as with quadratics, the **leading term** $a_nx^n$ determines end behavior.
+
+:::
+
+:::{.fragment}
+
+| Leading coefficient | Degree | $\displaystyle{\lim_{x\to -\infty}}$ | $\displaystyle{\lim_{x\to \infty}}$ |
+|:---:|:---:|:---:|:---:|
+| $a_n > 0$ | even | $+\infty$ | $+\infty$ |
+| $a_n < 0$ | even | $-\infty$ | $-\infty$ |
+| $a_n > 0$ | odd | $-\infty$ | $+\infty$ |
+| $a_n < 0$ | odd | $+\infty$ | $-\infty$ |
+
+:::
+
+:::{.fragment}
+
+**From Factored Form:** If your polynomial function is in factored form, for example $f\left(x\right) = \left(x - a_1\right)^{n_1}\left(x - a_2\right)^{n_2}\cdots\left(x - a_k\right)^{n_k}$, then analyse the limiting *sign* of each factor when $x$ approaches $-\infty$ and again when $x$ approaches $\infty$, and determine whether the ultimate product will be positive or negative.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-tip}
+## Remember Your "Book Functions"
+
+:::{.nonincremental}
+
++ Even-degree polynomials behave like parabolas (both ends go the same direction). 
++ Odd-degree polynomials behave like cubics (ends go opposite directions).
+
+:::
+
+:::
+
+:::
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+**$y$-intercept:** $g\left(0\right) = \left(0 + 5\right)\left(0 + 1\right)^2\left(0 - 3\right)\left(0 - 5\right)\left(0 - 7\right)^4$
+
+:::
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 5 \cdot \left(1\right)^2 \cdot \left(-3\right) \cdot \left(-5\right) \cdot \left(-7\right)^4$
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 5 \cdot 1 \cdot \left(-3\right) \cdot \left(-5\right) \cdot 2401$
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 180{,}075$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+**Roots and multiplicities:**
+
+:::
+
++ $x = -5$: multiplicity $1$, so passes through
++ $x = -1$: multiplicity $2$, so bounces
++ $x = 3$: multiplicity $1$, so passes through
++ $x = 5$: multiplicity $1$, so passes through
++ $x = 7$: multiplicity $4$, so bounces
+
+:::
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+**End behavior:** We'll evaluate $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)}}$ separately. 
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to -\infty}{g\left(x\right)} &= \lim_{x\to -\infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 180{,}075$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+**Roots and multiplicities:**
+
+:::{.nonincremental}
+
+
++ $x = -5$: multiplicity $1$, so passes through
++ $x = -1$: multiplicity $2$, so bounces
++ $x = 3$: multiplicity $1$, so passes through
++ $x = 5$: multiplicity $1$, so passes through
++ $x = 7$: multiplicity $4$, so bounces
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:** We'll evaluate $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)}}$ separately. 
+
+\begin{align} \lim_{x\to -\infty}{g\left(x\right)} &= \lim_{x\to -\infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(-\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(-\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 180{,}075$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+**Roots and multiplicities:**
+
+:::{.nonincremental}
+
++ $x = -5$: multiplicity $1$, so passes through
++ $x = -1$: multiplicity $2$, so bounces
++ $x = 3$: multiplicity $1$, so passes through
++ $x = 5$: multiplicity $1$, so passes through
++ $x = 7$: multiplicity $4$, so bounces
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:** We'll evaluate $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)}}$ separately. 
+
+\begin{align} \lim_{x\to -\infty}{g\left(x\right)} &= \lim_{x\to -\infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(-\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(-\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}\\
+&= -\infty
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 180{,}075$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+**Roots and multiplicities:**
+
+:::{.nonincremental}
+
++ $x = -5$: multiplicity $1$, so passes through
++ $x = -1$: multiplicity $2$, so bounces
++ $x = 3$: multiplicity $1$, so passes through
++ $x = 5$: multiplicity $1$, so passes through
++ $x = 7$: multiplicity $4$, so bounces
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:** We'll evaluate $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)}}$ separately. 
+
+\begin{align} \lim_{x\to -\infty}{g\left(x\right)} &= \lim_{x\to -\infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(-\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(-\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}\\
+&= -\infty\\
+\lim_{x\to\infty}g\left(x\right) &= \lim_{x\to \infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 180{,}075$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+**Roots and multiplicities:**
+
+:::{.nonincremental}
+
++ $x = -5$: multiplicity $1$, so passes through
++ $x = -1$: multiplicity $2$, so bounces
++ $x = 3$: multiplicity $1$, so passes through
++ $x = 5$: multiplicity $1$, so passes through
++ $x = 7$: multiplicity $4$, so bounces
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:** We'll evaluate $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)}}$ separately. 
+
+\begin{align} \lim_{x\to -\infty}{g\left(x\right)} &= \lim_{x\to -\infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(-\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(-\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}\\
+&= -\infty\\
+\lim_{x\to\infty}g\left(x\right) &= \lim_{x\to \infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to \infty}{\stackrel{\color{red}{\left(+\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(+\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 180{,}075$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+**Roots and multiplicities:**
+
+:::{.nonincremental}
+
++ $x = -5$: multiplicity $1$, so passes through
++ $x = -1$: multiplicity $2$, so bounces
++ $x = 3$: multiplicity $1$, so passes through
++ $x = 5$: multiplicity $1$, so passes through
++ $x = 7$: multiplicity $4$, so bounces
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:** We'll evaluate $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)}}$ separately. 
+
+\begin{align} \lim_{x\to -\infty}{g\left(x\right)} &= \lim_{x\to -\infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(-\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(-\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}\\
+&= -\infty\\
+\lim_{x\to\infty}g\left(x\right) &= \lim_{x\to \infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to \infty}{\stackrel{\color{red}{\left(+\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(+\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}\\
+&= \infty
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Graphing a Polynomial
+
+<div style="font-size:16pt">
+
+**Example 3:** For $g\left(x\right) = \left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4$, find the $y$-intercept, roots and their multiplicities, determine the end behavior, and sketch an approximate graph.
+
+*Solution.*
+
+**$y$-intercept:** $g\left(0\right) = 180{,}075$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+**Roots and multiplicities:**
+
+:::{.nonincremental}
+
++ $x = -5$: multiplicity $1$, so passes through
++ $x = -1$: multiplicity $2$, so bounces
++ $x = 3$: multiplicity $1$, so passes through
++ $x = 5$: multiplicity $1$, so passes through
++ $x = 7$: multiplicity $4$, so bounces
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+x_vals <- seq(-6, 9, length.out = 500)
+y_vals <- (x_vals + 5)*(x_vals + 1)^2*(x_vals - 3)*(x_vals - 5)*(x_vals - 7)^4
+
+ggplot() + 
+  geom_line(aes(x = x_vals, y = y_vals),
+            color = "blue") +
+  annotate("segment", x = -6, xend = 9, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  annotate("segment", x = 0, xend = 0, y = -1e4, yend = 2e5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.4) +
+  labs(x = "x", y = "y") +
+  coord_cartesian(xlim = c(-6, 9), ylim = c(-1.5e4, 2e5)) +
+  scale_x_continuous(breaks = seq(-6, 9, by = 1)) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:** We'll evaluate $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)}}$ separately. 
+
+\begin{align} \lim_{x\to -\infty}{g\left(x\right)} &= \lim_{x\to -\infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(-\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(-\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}\\
+&= -\infty\\
+\lim_{x\to\infty}g\left(x\right) &= \lim_{x\to \infty}{\left(x + 5\right)\left(x + 1\right)^2\left(x - 3\right)\left(x - 5\right)\left(x - 7\right)^4}\\
+&= \lim_{x\to \infty}{\stackrel{\color{red}{\left(+\right)}}{\left(x + 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x + 1\right)^2}\stackrel{\color{red}{\left(+\right)}}{\left(x - 3\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 5\right)}\stackrel{\color{red}{\left(+\right)}}{\left(x - 7\right)^4}}\\
+&= \infty
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Graphing Polynomials Practice
+
+<div style="font-size:16pt">
+
+**Try It! 2:** For the polynomial function $f\left(x\right) = \left(x + 3\right)^2\left(x - 1\right)\left(x - 4\right)^3$:
+
+:::{.nonincremental}
+
++ Find the $y$-intercept.
++ List all roots and their multiplicities. Does each root pass through or bounce off the $x$-axis?
++ Determine the end behavior using limits.
++ Sketch a rough graph.
+
+:::
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 3:** *Before sketching anything* -- a sixth degree polynomial function has roots at $x = -2$ (multiplicity 1), $x = 0$ (multiplicity 3), and $x = 4$ (multiplicity 2), with positive leading coefficient.
+
+Without computing anything, predict:
+
+:::{.nonincremental}
+
++ What happens at each root?
++ What are the end behavior limits?
++ Does the graph cross the $x$-axis more times than there are roots, or fewer?
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `12. Polynomial Functions and Equations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $f\left(x\right) = \left(x + 2\right)^3\left(x - 1\right)\left(x - 4\right)^2$.
+
+$\left(a\right)$ What is the degree of $f$?
+
+$\left(b\right)$ List the roots and their multiplicities. At each root, does the graph pass through or bounce off the $x$-axis?
+
+$\left(c\right)$ Determine $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)}}$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
+<center>**Ideas From Today**</center>
+
++ A **polynomial equation** of degree $n$ has at most $n$ real solutions. Counting complex solutions and multiplicities, it has exactly $n$.
++ **Solving/Root-Finding Strategy:** get $0$ on one side, factor completely, apply the zero product property.
++ A root of **odd multiplicity** passes through the $x$-axis; a root of **even multiplicity** bounces off.
++ **End behavior** is determined using limits. 
+    + From expanded form, the leading term dominates: even-degree polynomials have both ends going the same direction; odd-degree polynomials have ends going opposite directions.
+    + From factored form, analyse the sign of each term and determine whether the product will be positive or negative.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
+<center>**Looking Ahead**</center>
+
++ Today we could only solve polynomial equations that were already in factored (or near-factored) form. What if the polynomial is given in standard, expanded form?
++ Next class we'll develop two tools for that situation: the *Rational Roots Theorem* (which narrows down candidates for roots) and *polynomial long division* (which reduces the degree once a root is found).
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Polynomial Long Division and Factoring</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Start Homework 9 on MyOpenMath</center>
+
+:::
+
+:::
+
+
+
+::::
+
+:::
+
+
+
+</div>

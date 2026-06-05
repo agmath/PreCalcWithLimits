@@ -1,0 +1,1744 @@
+---
+title: "MAT 142: Quadratic Functions and Equations (Part II)"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we covered quadratic equations and functions:
+
+:::
+
++ Solving quadratic equations by factoring.
++ Solving quadratic equations using the quadratic formula.
++ Concavity, vertex, roots, end behavior, and graphing parabolas.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Find the vertex and roots of $f\left(x\right) = 3x^2 - 5x - 2$, and use them to sketch a graph. Does the concavity match what you'd expect from the leading coefficient?
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Describe how the graphs of each of the functions below can be obtained via transformations of the "book function" $b\left(x\right) = x^2$. Then expand each function into standard form $ax^2 + bx + c$. Can you still easily tell the structure of the graph from the standard form?
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~g\left(x\right) = 2\left(x - 3\right)^2 + 7$
+
+:::
+
+:::{.column width="50%"}
+
+$\left(b\right)~h\left(x\right) = -\left(x + 5\right)^2 - 1$
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+*Note:* Problem 2 previews today's main technique. We'll be attempting to obtain this convenient "*vertex form*" from the standard form.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today we develop the third and final method for solving quadratic equations, and connect it to the transformations framework.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Use *completing the square* to solve a quadratic equation.
++ Rewrite a quadratic function in *vertex form* $a\left(x - h\right)^2 + k$ by completing the square.
++ Identify the vertex $\left(h, k\right)$ directly from vertex form and describe the graph as a transformation of $f\left(x\right) = x^2$.
++ Apply completing the square to find the center and radius of a circle from its general equation.
++ Use the distance and midpoint formulas to find the equation of a circle from its diameter endpoints.
+
+## Method III: Completing the Square
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Key Idea:** A *perfect square trinomial* has the form $x^2 + bx + \left(\frac{b}{2}\right)^2$ because it can be factored into $\displaystyle{\left(x + \frac{b}{2}\right)^2}$.
+
+:::
+
+:::{.fragment}
+
+To solve $ax^2 + bx + c = 0$ by completing the square:
+
+:::
+
+1. Get $0$ on one side.
+2. Factor $a$ out of the variable terms: $\displaystyle{a\left(x^2 + \frac{b}{a}x\right) + c = 0}$.
+3. Add and subtract $\displaystyle{\left(\frac{b}{2a}\right)^2}$ *inside* the parentheses, to obtain $\displaystyle{a\left(x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 - \left(\frac{b}{2a}\right)^2\right) + c = 0}$.
+4. Extract the subtracted term (multiplying by $a$), leaving a perfect square inside and resulting in $\displaystyle{a\left(x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2\right) - \frac{b^2}{4a} + c = 0}$.
+5. Factor the perfect square trinomial to obtain $\displaystyle{a\left(x + \frac{b}{2a}\right)^2 - \frac{b^2}{4a} + c = 0}$.
+6. Isolate $x$, eventually taking square roots of both sides and remembering that a "$\pm$" results from this operation.
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+:::{.fragment fragment-index=1}
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+:::
+
+:::{.fragment fragment-index=2}
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment fragment-index=3}
+
+\begin{align} x^2 - 8x - 5 &= 0
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment fragment-index=3}
+
+\begin{align} \text{Ensure 0 is on one side}\\
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 8x - 5 &= 0\\
+\implies \left(x^2 - 8x\right) - 5 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\text{Ensure 0 is on one side}\\
+&\text{Group variable terms together}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 8x - 5 &= 0\\
+\implies \left(x^2 - 8x\right) - 5 &= 0\\
+\stackrel{\left(\frac{-8}{2}\right)^2 = 16}{\implies} \left(x^2 - 8x + 16 - 16\right) - 5 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\text{Ensure 0 is on one side}\\
+&\text{Group variable terms together}\\
+&\text{Add and subtract } \left(\frac{b}{2}\right)^2 \text{ inside the parentheses}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 8x - 5 &= 0\\
+\implies \left(x^2 - 8x\right) - 5 &= 0\\
+\stackrel{\left(\frac{-8}{2}\right)^2 = 16}{\implies} \left(x^2 - 8x + 16 - 16\right) - 5 &= 0\\
+\implies \left(x^2 - 8x + 16\right) - 16 - 5 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\text{Ensure 0 is on one side}\\
+&\text{Group variable terms together}\\
+&\text{Add and subtract } \left(\frac{b}{2}\right)^2 \text{ inside the parentheses}\\
+&\text{Carefully move the } -\left(\frac{b}{2}\right)^2 \text{ outside the parentheses}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 8x - 5 &= 0\\
+\implies \left(x^2 - 8x\right) - 5 &= 0\\
+\stackrel{\left(\frac{-8}{2}\right)^2 = 16}{\implies} \left(x^2 - 8x + 16 - 16\right) - 5 &= 0\\
+\implies \left(x^2 - 8x + 16\right) - 16 - 5 &= 0\\
+\implies \left(x - 4\right)^2 - 21 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\text{Ensure 0 is on one side}\\
+&\text{Group variable terms together}\\
+&\text{Add and subtract } \left(\frac{b}{2}\right)^2 \text{ inside the parentheses}\\
+&\text{Carefully move the } -\left(\frac{b}{2}\right)^2 \text{ outside the parentheses}\\
+&\text{Factor the trinomial in the parentheses into a perfect square}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 8x - 5 &= 0\\
+\implies \left(x^2 - 8x\right) - 5 &= 0\\
+\stackrel{\left(\frac{-8}{2}\right)^2 = 16}{\implies} \left(x^2 - 8x + 16 - 16\right) - 5 &= 0\\
+\implies \left(x^2 - 8x + 16\right) - 16 - 5 &= 0\\
+\implies \left(x - 4\right)^2 - 21 &= 0\\
+\implies \left(x - 4\right)^2 &= 21
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\text{Ensure 0 is on one side}\\
+&\text{Group variable terms together}\\
+&\text{Add and subtract } \left(\frac{b}{2}\right)^2 \text{ inside the parentheses}\\
+&\text{Carefully move the } -\left(\frac{b}{2}\right)^2 \text{ outside the parentheses}\\
+&\text{Factor the trinomial in the parentheses into a perfect square}\\
+&\text{Use algebra to isolate the binomial being squared}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 8x - 5 &= 0\\
+\implies \left(x^2 - 8x\right) - 5 &= 0\\
+\stackrel{\left(\frac{-8}{2}\right)^2 = 16}{\implies} \left(x^2 - 8x + 16 - 16\right) - 5 &= 0\\
+\implies \left(x^2 - 8x + 16\right) - 16 - 5 &= 0\\
+\implies \left(x - 4\right)^2 - 21 &= 0\\
+\implies \left(x - 4\right)^2 &= 21\\
+\implies x - 4 &= \pm\sqrt{21}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\text{Ensure 0 is on one side}\\
+&\text{Group variable terms together}\\
+&\text{Add and subtract } \left(\frac{b}{2}\right)^2 \text{ inside the parentheses}\\
+&\text{Carefully move the } -\left(\frac{b}{2}\right)^2 \text{ outside the parentheses}\\
+&\text{Factor the trinomial in the parentheses into a perfect square}\\
+&\text{Use algebra to isolate the binomial being squared}\\
+&\text{Take the square root of both sides, remembering that you'll need a } \pm
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square I
+
+<div style="font-size:17pt">
+
+**Example 1:** Use completing the square to solve $x^2 - 8x - 5 = 0$.
+
+*Solution.* Since $a = 1$, we don't need to factor out a leading coefficient.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 8x - 5 &= 0\\
+\implies \left(x^2 - 8x\right) - 5 &= 0\\
+\stackrel{\left(\frac{-8}{2}\right)^2 = 16}{\implies} \left(x^2 - 8x + 16 - 16\right) - 5 &= 0\\
+\implies \left(x^2 - 8x + 16\right) - 16 - 5 &= 0\\
+\implies \left(x - 4\right)^2 - 21 &= 0\\
+\implies \left(x - 4\right)^2 &= 21\\
+\implies x - 4 &= \pm\sqrt{21}\\
+\implies x &= \boxed{~4 \pm \sqrt{21}~}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\text{Ensure 0 is on one side}\\
+&\text{Group variable terms together}\\
+&\text{Add and subtract } \left(\frac{b}{2}\right)^2 \text{ inside the parentheses}\\
+&\text{Carefully move the } -\left(\frac{b}{2}\right)^2 \text{ outside the parentheses}\\
+&\text{Factor the trinomial in the parentheses into a perfect square}\\
+&\text{Use algebra to isolate the binomial being squared}\\
+&\text{Take the square root of both sides, remembering that you'll need a } \pm\\
+&\text{Isolate the variable to find the solutions}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+:::{.fragment fragment-index=1}
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+:::
+
+:::{.fragment fragment-index=2}
+
+*Solution.*
+
+:::
+
+:::{.fragment fragment-index=3}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} 
+\end{align}
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+\text{Get 0 on one side}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0\\
+\implies 2\left(x^2 + 6x\right) + 5 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+\text{Get 0 on one side}\\
+\text{Factor "a" out of the two variable terms}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0\\
+\implies 2\left(x^2 + 6x\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9 - 9\right) + 5 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+&\text{Get 0 on one side}\\
+&\text{Factor "a" out of the two variable terms}\\
+&\text{Inside parentheses, add and subtract } \left(\frac{6}{2}\right)^2
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0\\
+\implies 2\left(x^2 + 6x\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9 - 9\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9\right) - 2\left(9\right) + 5 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+&\text{Get 0 on one side}\\
+&\text{Factor "a" out of the two variable terms}\\
+&\text{Inside parentheses, add and subtract } \left(\frac{6}{2}\right)^2\\
+&\text{Carefully move the -9 outside, multiplying by the factored out "a"}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0\\
+\implies 2\left(x^2 + 6x\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9 - 9\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9\right) - 2\left(9\right) + 5 &= 0\\
+\implies 2\left(x + 3\right)^2 - 13 &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+&\text{Get 0 on one side}\\
+&\text{Factor "a" out of the two variable terms}\\
+&\text{Inside parentheses, add and subtract } \left(\frac{6}{2}\right)^2\\
+&\text{Carefully move the -9 outside, multiplying by the factored out "a"}\\
+&\text{Factor the grouped terms into a perfect square}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0\\
+\implies 2\left(x^2 + 6x\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9 - 9\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9\right) - 2\left(9\right) + 5 &= 0\\
+\implies 2\left(x + 3\right)^2 - 13 &= 0\\
+\implies \left(x + 3\right)^2 &= \frac{13}{2}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+&\text{Get 0 on one side}\\
+&\text{Factor "a" out of the two variable terms}\\
+&\text{Inside parentheses, add and subtract } \left(\frac{6}{2}\right)^2\\
+&\text{Carefully move the -9 outside, multiplying by the factored out "a"}\\
+&\text{Factor the grouped terms into a perfect square}\\
+&\text{Isolate the binomial being squared}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0\\
+\implies 2\left(x^2 + 6x\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9 - 9\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9\right) - 2\left(9\right) + 5 &= 0\\
+\implies 2\left(x + 3\right)^2 - 13 &= 0\\
+\implies \left(x + 3\right)^2 &= \frac{13}{2}\\
+\implies x + 3 &= \pm \sqrt{\frac{13}{2}}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+&\text{Get 0 on one side}\\
+&\text{Factor "a" out of the two variable terms}\\
+&\text{Inside parentheses, add and subtract } \left(\frac{6}{2}\right)^2\\
+&\text{Carefully move the -9 outside, multiplying by the factored out "a"}\\
+&\text{Factor the grouped terms into a perfect square}\\
+&\text{Isolate the binomial being squared}\\
+&\\
+&\text{Take the square root, remembering } \pm
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Completing the Square II
+
+<div style="font-size:17pt">
+
+**Problem:** Use completing the square to solve $3x^2 + 5 = x^2 - 12x$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 3x^2 + 5 &= x^2 - 12x\\
+\implies 2x^2 + 12x + 5 &= 0\\
+\implies 2\left(x^2 + 6x\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9 - 9\right) + 5 &= 0\\
+\implies 2\left(x^2 + 6x + 9\right) - 2\left(9\right) + 5 &= 0\\
+\implies 2\left(x + 3\right)^2 - 13 &= 0\\
+\implies \left(x + 3\right)^2 &= \frac{13}{2}\\
+\implies x + 3 &= \pm \sqrt{\frac{13}{2}}\\
+\implies x &= -3 \pm \sqrt{\frac{13}{2}}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+\begin{align} &\\
+&\text{Get 0 on one side}\\
+&\text{Factor "a" out of the two variable terms}\\
+&\text{Inside parentheses, add and subtract } \left(\frac{6}{2}\right)^2\\
+&\text{Carefully move the -9 outside, multiplying by the factored out "a"}\\
+&\text{Factor the grouped terms into a perfect square}\\
+&\text{Isolate the binomial being squared}\\
+&\\
+&\text{Take the square root, remembering } \pm\\
+&\\
+&\text{Isolate } x \text{ to solve}
+\end{align}
+
+:::
+
+::::
+
+:::{.fragment}
+
+There are two solutions $\boxed{~\displaystyle{-3 \pm \sqrt{\frac{13}{2}}}~}$.
+
+:::
+
+</div>
+
+## Completing the Square Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** Use completing the square to solve $x^2 + 6x + 2 = 0$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** Use completing the square to solve $-3x^2 - 12x + 3 = 0$.
+
+</div>
+
+## Vertex Form
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+The same process that solves quadratic equations gives us something even more useful: *vertex form*.
+
+:::
+
+:::{.fragment}
+
+**Definition (Vertex Form):** A quadratic function written as
+
+$$f\left(x\right) = a\left(x - h\right)^2 + k$$
+
+is in *vertex form*. The vertex is at $\left(h, k\right)$, and the graph is a transformation of $f\left(x\right) = x^2$ which has been
+
++ moved *right* by $h$ units,
++ *stretched/compressed* by a factor of $a$ (and *flipped* over the $x$-axis if $a < 0$), and
++ shifted *up* by $k$ units.
+
+:::
+
+:::{.fragment}
+
+This is exactly the transformations framework we encountered earlier this semester.
+
+:::
+
+:::{.fragment}
+
+Now we have a systematic method for getting any quadratic into this form -- *complete the square*.
+
+:::
+
+</div>
+
+## Obtaining Vertex Form
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 3:** Complete the square to rewrite $g\left(x\right) = 3x^2 + 36x - 25$ in vertex form. Describe the graph of $g$ as a transformation of $f\left(x\right) = x^2$ and identify the vertex.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+\begin{align} g\left(x\right) &= 3x^2 + 36x - 25
+\end{align}
+
+:::
+
+</div>
+
+## Obtaining Vertex Form
+
+<div style="font-size:17pt">
+
+**Example 3:** Complete the square to rewrite $g\left(x\right) = 3x^2 + 36x - 25$ in vertex form. Describe the graph of $g$ as a transformation of $f\left(x\right) = x^2$ and identify the vertex.
+
+*Solution.*
+
+\begin{align} g\left(x\right) &= 3x^2 + 36x - 25\\
+&= 3\left(x^2 + 12x\right) - 25
+\end{align}
+
+</div>
+
+## Obtaining Vertex Form
+
+<div style="font-size:17pt">
+
+**Example 3:** Complete the square to rewrite $g\left(x\right) = 3x^2 + 36x - 25$ in vertex form. Describe the graph of $g$ as a transformation of $f\left(x\right) = x^2$ and identify the vertex.
+
+*Solution.*
+
+\begin{align} g\left(x\right) &= 3x^2 + 36x - 25\\
+&= 3\left(x^2 + 12x\right) - 25\\
+&= 3\left(x^2 + 12x + 36 - 36\right) - 25
+\end{align}
+
+</div>
+
+## Obtaining Vertex Form
+
+<div style="font-size:17pt">
+
+**Example 3:** Complete the square to rewrite $g\left(x\right) = 3x^2 + 36x - 25$ in vertex form. Describe the graph of $g$ as a transformation of $f\left(x\right) = x^2$ and identify the vertex.
+
+*Solution.*
+
+\begin{align} g\left(x\right) &= 3x^2 + 36x - 25\\
+&= 3\left(x^2 + 12x\right) - 25\\
+&= 3\left(x^2 + 12x + 36 - 36\right) - 25\\
+&= 3\left(x^2 + 12x + 36\right) - 108 - 25
+\end{align}
+
+</div>
+
+## Obtaining Vertex Form
+
+<div style="font-size:17pt">
+
+**Example 3:** Complete the square to rewrite $g\left(x\right) = 3x^2 + 36x - 25$ in vertex form. Describe the graph of $g$ as a transformation of $f\left(x\right) = x^2$ and identify the vertex.
+
+*Solution.*
+
+\begin{align} g\left(x\right) &= 3x^2 + 36x - 25\\
+&= 3\left(x^2 + 12x\right) - 25\\
+&= 3\left(x^2 + 12x + 36 - 36\right) - 25\\
+&= 3\left(x^2 + 12x + 36\right) - 108 - 25\\
+&= 3\left(x + 6\right)^2 - 133
+\end{align}
+
+</div>
+
+## Obtaining Vertex Form
+
+<div style="font-size:17pt">
+
+**Example 3:** Complete the square to rewrite $g\left(x\right) = 3x^2 + 36x - 25$ in vertex form. Describe the graph of $g$ as a transformation of $f\left(x\right) = x^2$ and identify the vertex.
+
+*Solution.*
+
+\begin{align} g\left(x\right) &= 3x^2 + 36x - 25\\
+&= 3\left(x^2 + 12x\right) - 25\\
+&= 3\left(x^2 + 12x + 36 - 36\right) - 25\\
+&= 3\left(x^2 + 12x + 36\right) - 108 - 25\\
+&= \boxed{~3\left(x + 6\right)^2 - 133~}\\
+&= \boxed{~3\left(x - \left(-6\right)\right)^2 - 133~}
+\end{align}
+
+:::{.fragment}
+
+The graph $g\left(x\right)$ is moved to the left by $6$ and down $133$ from the "book function" $f\left(x\right) = x^2$. The vertex of the "book function" was at $\left(0, 0\right)$, so the vertex of $g\left(x\right)$ is at $\left(-6, -133\right)$.
+
+:::
+
+</div>
+
+## Graphing from Vertex Form
+
+<div style="font-size:17pt">
+
+**Example 4:** Describe the graph of $g\left(x\right) = 3\left(x + 6\right)^2 - 133$ as a transformation of $f\left(x\right) = x^2$.
+
+:::{.fragment}
+
+*Solution.* The transformation sequence applied to the "book function" $f\left(x\right) = x^2$:
+
+:::
+
+1. Shift **left** by $6$ units: $f\left(x + 6\right) = \left(x + 6\right)^2$
+2. Stretch **vertically** by factor $3$ to obtain $3\left(x + 6\right)^2$
+3. Shift **down** by $133$ units and arrive at $g\left(x\right) = 3\left(x + 6\right)^2 - 133$
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.0
+
+x_vals <- seq(-10, 10, length.out = 500)
+
+f  <- function(x) x^2
+f2 <- function(x) (x + 6)^2
+f3 <- function(x) 3*(x + 6)^2
+g  <- function(x) 3*(x + 6)^2 - 133
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f(x_vals),  color = "f(x) = x^2"),               linewidth = 1, alpha = 0.25) +
+  geom_line(aes(x = x_vals, y = f2(x_vals), color = "Step 1: (x+6)^2"),           linewidth = 1, alpha = 0.45) +
+  geom_line(aes(x = x_vals, y = f3(x_vals), color = "Step 2: 3(x+6)^2"),          linewidth = 1, alpha = 0.65) +
+  geom_line(aes(x = x_vals, y = g(x_vals),  color = "g(x) = 3(x+6)^2 - 133"),    linewidth = 1.5) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -150, yend = 150,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  scale_color_manual(
+    values = c("f(x) = x^2"             = "blue",
+               "Step 1: (x+6)^2"        = "blue",
+               "Step 2: 3(x+6)^2"       = "blue",
+               "g(x) = 3(x+6)^2 - 133" = "darkorange"),
+    breaks = c("f(x) = x^2",
+               "Step 1: (x+6)^2",
+               "Step 2: 3(x+6)^2",
+               "g(x) = 3(x+6)^2 - 133"),
+    name = NULL) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-150, 150)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-150, 150, by = 50)) +
+  labs(title = "Building g(x) via Transformations of f(x) = x^2") +
+  theme(axis.line = element_blank(), axis.title = element_blank(),
+        legend.position = "right")
+```
+
+:::
+
+</div>
+
+## Vertex Form Practice
+
+<div style="font-size:17pt">
+
+**Try It! 3:** Complete the square to rewrite $j\left(x\right) = 2x^2 - 12x + 7$ in vertex form $a\left(x - h\right)^2 + k$.
+
++ Identify the vertex.
++ Describe the graph of $j$ as a sequence of transformations applied to $f\left(x\right) = x^2$.
++ Does the parabola open upward or downward?
++ Draw the graph of $j\left(x\right)$
+
+</div>
+
+## Circles
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Completing the square has a beautiful application beyond quadratics: finding the **center and radius of a circle** from its general equation.
+
+:::
+
+:::{.fragment}
+
+**Definition (Center-Radius Form):** The equation of a circle with center $\left(x_0, y_0\right)$ and radius $r$ is
+
+$$\left(x - x_0\right)^2 + \left(y - y_0\right)^2 = r^2$$
+
+:::
+
+:::{.fragment}
+
+**Example 5:** The circle with equation $\left(x - 4\right)^2 + \left(y + 2\right)^2 = 49$ has *center* at the point $\left(4, -2\right)$ and *radius* $7$.
+
+:::
+
+:::{.fragment}
+
+When a circle's equation is given in *general form* ($x^2 + bx + y^2 + cy = d$), we complete the square *twice* — once for the $x$ terms and once for the $y$ terms — to recover the center-radius form.
+
+:::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16
+\end{align}
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $y$:**</center>
+
+\begin{align} \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $y$:**</center>
+
+\begin{align} \left(x + 2\right)^2 + y^2 - 10y &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y\right) &= 20
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $y$:**</center>
+
+\begin{align} \left(x + 2\right)^2 + y^2 - 10y &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y\right) &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 -10y + 25 - 25\right) &= 20
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $y$:**</center>
+
+\begin{align} \left(x + 2\right)^2 + y^2 - 10y &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y\right) &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 -10y + 25 - 25\right) &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y + 25\right) - 25 &= 20
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $y$:**</center>
+
+\begin{align} \left(x + 2\right)^2 + y^2 - 10y &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y\right) &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 -10y + 25 - 25\right) &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y + 25\right) - 25 &= 20\\
+\implies \left(x + 2\right)^2 + \left(y - 5\right)^2 - 25 &= 20
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Center and Radius
+
+<div style="font-size:17pt">
+
+**Example 6:** Find the center and radius of the circle given by $x^2 + 4x + y^2 - 10y = 16$.
+
+*Solution.* We'll complete the square for $x$ and then complete the square for $y$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $x$:**</center>
+
+\begin{align} x^2 + 4x + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4 - 4\right) + y^2 - 10y &= 16\\
+\implies \left(x^2 + 4x + 4\right) - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 - 4 + y^2 - 10y &= 16\\
+\implies \left(x + 2\right)^2 + y^2 - 10y &= 20
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Complete the Square for $y$:**</center>
+
+\begin{align} \left(x + 2\right)^2 + y^2 - 10y &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y\right) &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 -10y + 25 - 25\right) &= 20\\
+\implies \left(x + 2\right)^2 + \left(y^2 - 10y + 25\right) - 25 &= 20\\
+\implies \left(x + 2\right)^2 + \left(y - 5\right)^2 - 25 &= 20\\
+\implies \left(x + 2\right)^2 + \left(y - 5\right)^2 &= 45
+\end{align}
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+The equation of the circle in its center-radius form is $\left(x - \left(-2\right)\right)^2 + \left(y - 5\right)^2 = 45$.
+
+:::
+
+:::{.fragment}
+
+The center of the circle is at the point $\left(-2, 5\right)$ and the radius is $\sqrt{45}$.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+
+theta <- seq(0, 2*pi, length.out = 500)
+cx <- -2; cy <- 5; r <- sqrt(45)
+
+circle_df <- data.frame(x = cx + r*cos(theta), y = cy + r*sin(theta))
+
+ggplot() +
+  geom_path(data = circle_df, aes(x = x, y = y), color = "blue", linewidth = 1) +
+  geom_point(aes(x = cx, y = cy), size = 3, color = "black") +
+  geom_segment(aes(x = cx, xend = cx + r, y = cy, yend = cy),
+               linetype = "dashed", color = "darkred", linewidth = 0.8) +
+  annotate("text", x = cx - 1.2, y = cy - 1, label = "(-2, 5)", size = 6.5) +
+  annotate("text", x = cx + r/2 - 0.25, y = cy + 1, label = "r = sqrt(45)", color = "darkred", size = 6.5) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -5, yend = 15,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_equal(xlim = c(-10, 10), ylim = c(-5, 15)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-5, 15, by = 2)) +
+  labs(title = latex2exp::TeX("$(x + 2)^2 + (y - 5)^2 = 45$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Circles Practice
+
+<div style="font-size:17pt">
+
+**Try It! 4:** Find the center and radius of the circle given by $x^2 - 6x + y^2 + 8y = 11$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+*Reminder:* Complete the square separately for the $x$ terms and the $y$ terms.
+
+</div>
+
+## Distance and Midpoint Formulas
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+We have two more tools that come in handy when working with circles and geometry more broadly.
+
+:::
+
+:::{.fragment}
+
+**Definition (Distance Formula):** The distance between points $\left(x_1, y_1\right)$ and $\left(x_2, y_2\right)$ is:
+
+$$d = \sqrt{\left(x_2 - x_1\right)^2 + \left(y_2 - y_1\right)^2}$$
+
+:::
+
+:::{.fragment}
+
+**Definition (Midpoint Formula):** The midpoint between $\left(x_1, y_1\right)$ and $\left(x_2, y_2\right)$ is:
+
+$$\left(\frac{x_1 + x_2}{2},\; \frac{y_1 + y_2}{2}\right)$$
+
+:::
+
+:::{.fragment}
+
+The distance formula comes from the Pythagorean theorem and the midpoint formula uses the idea of coordinatewise averaging.
+
+:::
+
+</div>
+
+## Circle From Two Points
+
+<div style="font-size:17pt">
+
+**Example 7:** Find the equation of the circle with $\left(-3, 1\right)$ and $\left(5, 9\right)$ at opposite ends of a diameter.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+*Solution.* The center is the midpoint of the diameter.
+
+\begin{align} \text{Center} &= \left(\frac{-3 + 5}{2},\; \frac{1 + 9}{2}\right) = \left(1, 5\right)
+\end{align}
+
+:::
+
+:::{.fragment}
+
+The radius is the distance from the center to either endpoint.
+
+\begin{align} r &= \sqrt{\left(\left(5 - 1\right)^2 + \left(9 - 5\right)^2\right)} = \sqrt{32}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+The equation of the circle is $\boxed{~\left(x - 1\right)^2 + \left(y - 5\right)^2 = 32~}$.
+
+:::
+
+:::
+
+:::{.column width="60%"}
+
+
+```{r}
+#| echo: false
+#| message: false
+
+theta <- seq(0, 2*pi, length.out = 500)
+cx <- 1; cy <- 5; r <- sqrt(32)
+
+circle_df <- data.frame(x = cx + r*cos(theta), y = cy + r*sin(theta))
+
+endpoints <- data.frame(x = c(-3, 5), y = c(1, 9))
+
+ggplot() +
+  geom_path(data = circle_df, aes(x = x, y = y), color = "blue", linewidth = 1) +
+  geom_point(aes(x = cx, y = cy), size = 3, color = "black", alpha = 0.4) +
+  geom_point(data = endpoints, aes(x = x, y = y), size = 3, color = "black") +
+  geom_segment(aes(x = -3, xend = 5, y = 1, yend = 9),
+               linetype = "dashed", color = "gray40", linewidth = 0.8) +
+  geom_segment(aes(x = cx, xend = cx + r, y = cy, yend = cy),
+               linetype = "dashed", color = "darkred", linewidth = 0.8) +
+  annotate("text", x = 1.3, y = 4, label = "(?, ?)", size = 5.5) +
+  annotate("text", x = -4.75, y = 1, label = "(-3, 1)", size = 5.5) +
+  annotate("text", x = 6.5, y = 9, label = "(5, 9)", size = 5.5) +
+  annotate("text", x = cx + r/2, y = cy + 0.6, label = "r = ?", color = "darkred", size = 5.5) +
+  annotate("segment", x = -8, xend = 8, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -4, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_equal(xlim = c(-8, 8), ylim = c(-4, 12)) +
+  scale_x_continuous(breaks = seq(-8, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-4, 12, by = 2)) +
+  labs(title = latex2exp::TeX("$(x - 1)^2 + (y - 5)^2 = 32$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Circles Practice
+
+<div style="font-size:17pt">
+
+**Try It! 5:** Find the equation of the circle with $\left(2, -1\right)$ and $\left(8, 7\right)$ at opposite ends of a diameter.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+*Reminder:* Use the midpoint formula for the center, then the distance formula for the radius.
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `11. Quadratic Functions and Equations (Part II)`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Complete the square to rewrite $f\left(x\right) = x^2 - 6x + 2$ in vertex form. State the vertex and describe the graph as a transformation of $f\left(x\right) = x^2$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ **Completing the square** converts $ax^2 + bx + c$ into $a\left(x - h\right)^2 + k$ by adding and subtracting $\left(\frac{b}{2a}\right)^2$ and factoring.
++ The resulting form $f\left(x\right) = a\left(x - h\right)^2 + k$ is called **vertex form**
+    + The vertex is $\left(h, k\right)$ and the graph is a direct transformation of $g\left(x\right) = x^2$.
++ For circles, completing the square twice recovers **center-radius form** $\left(x - x_0\right)^2 + \left(y - y_0\right)^2 = r^2$.
++ The **distance formula** gives the length between two points; the **midpoint formula** gives the point halfway between them.
++ Given the endpoints of a diameter of a circle, use midpoint for the center and distance for the radius.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ With quadratics complete, we move into **polynomial functions**. These are a natural generalization beyond *linear* and *quadratic* functions. You'll see that many of the ideas from quadratics (roots, end behavior, leading coefficient, end behavior, etc.) carry forward in a richer form.
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Polynomial Functions</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 8 on MyOpenMath</center>
+
+:::
+
+:::
+
+::::
+
+:::
+
+
+
+</div>

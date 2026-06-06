@@ -1,0 +1,1905 @@
+---
+title: "MAT 142: Polynomial Functions and Equations (Part II)"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we introduced polynomial functions and equations in both expanded and factored (or near-factored) forms.
+
+:::
+
+:::{.fragment}
+From expanded form $f\left(x\right) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0$...
+:::
+
++ The *leading term*, $a_nx^n$ is the term including the highest power of $x$
++ The *leading coefficient* is $a_n$, the coefficient on the term including the highest power of $x$
++ The *degree* of the polynomial is the highest power that $x$ is being raised to
+
+:::{.fragment}
+
+We convert from the expanded/standard form to factored form in order to learn more about the function geography.
+
+:::
+
++ We solve polynomial equations or find roots of polynomial functions by factoring and using the zero product property
++ The multiplicity of each root tells us about the behavior of the function at those roots.
+    + The function passes through the $x$-axis at roots with odd multiplicity.
+    + The function bounces off the $x$-axis at roots with even multiplicity.
++ End behavior is determining by evaluating limits as $x$ approaches $\pm\infty$ and analysing the leading term or by sign-tracking with each factor.
+
+</div>
+
+## Warm-Up Problems
+
+<div style="font-size:16pt">
+
+Try the following warm-up problems using the polynomial $p\left(x\right) = \left(x^2 + 5x + 6\right)\left(x - 3\right)^7\left(x^2 - 25\right)^2\left(x^2 + 9\right)^3$.
+
+**Problem 1:** Find the $y$-intercept and all roots (real and complex, with multiplicities). Verify that your solution count matches the degree of $p$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Problem 2:** Determine the end behavior of $p\left(x\right)$ using limits, then use all of your findings to sketch an approximate graph.
+
+</div>
+
+## Objectives
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Today we address the central limitation from last class: what do we do when a polynomial is given in expanded, unfactored form?
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Apply the **Rational Roots Theorem** to identify candidate rational roots of a polynomial.
++ Use **polynomial long division** to divide a polynomial by a linear factor.
++ Combine these tools to fully factor a polynomial and find all of its roots.
++ Interpret a nonzero remainder from long division.
+
+:::{.fragment}
+
+**The problem we're solving:** Last class, every polynomial equation we encountered was already in factored (or near-factored) form. That made finding roots straightforward.
+
+:::
+
+:::{.fragment}
+
+But what about a polynomial like $f\left(x\right) = 2x^3 + x^2 - 4x + 1$?
+
+:::
+
+:::{.fragment}
+
+This is a degree-3 polynomial with no obvious factoring. We need new tools.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Two New Tools
+
+:::{.nonincremental}
+
+1. The **Rational Roots Theorem** tells us which rational numbers are *candidates* for roots.
+2. Once we know a root exists at $x = r$, **Polynomial Long Division**  allows us to factor out $\left(x - r\right)$ and obtain another polynomial factor of reduced degree.
+
+:::
+
+:::
+
+:::
+
+## The Rational Roots Theorem
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Theorem (Rational Roots Theorem):** If the polynomial $p\left(x\right) = a_nx^n + \cdots + a_0$ has a rational root, it must be of the form $\displaystyle{x = \pm\frac{p}{q}}$, where $p$ is a factor of the *constant term* and $q$ is a factor of the *leading coefficient*.
+
+:::
+
+:::{.fragment}
+
+This theorem does *not* guarantee that rational roots exist. It only narrows down the candidates to check.
+
+:::
+
+:::{.fragment}
+
+**Strategy:** List all $\displaystyle{\pm\frac{p}{q}}$ candidates, then evaluate the polynomial at each one until you find a root (or exhaust the list).
+
+:::
+
+:::{.fragment}
+
+**Example 1:** Find all rational roots of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* The constant term is $1$ (factors: $\pm 1$) and the leading coefficient is $2$ (factors: $\pm 1, \pm 2$). 
+
+:::
+
+:::{.fragment}
+
+The rational root candidates are: $x = \pm 1$ and $\displaystyle{x = \pm\frac{1}{2}}$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="30%"}
+
+:::{.fragment}
+
+**Test $x = 1$:**
+
+\begin{align} p\left(1\right) &= 2\left(1\right)^3 + \left(1\right)^2 - 4\left(1\right) + 1\\
+&= 2 + 1 - 4 + 1 = \boxed{0~\checkmark}
+\end{align}
+
+$x = 1$ **is** a root.
+
+:::
+
+:::
+
+:::{.column width="30%"}
+
+:::{.fragment}
+
+**Test $x = \frac{1}{2}$:**
+
+\begin{align} p\!\left(\tfrac{1}{2}\right) &= 2\!\left(\tfrac{1}{8}\right) + \tfrac{1}{4} - 4\!\left(\tfrac{1}{2}\right) + 1\\
+&= \tfrac{1}{4} + \tfrac{1}{4} - 2 + 1 = \frac{-1}{2}~\text{✗}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Rational Roots Theorem
+
+<div style="font-size:16pt">
+
+**Theorem (Rational Roots Theorem):** If the polynomial $p\left(x\right) = a_nx^n + \cdots + a_0$ has a rational root, it must be of the form $\displaystyle{x = \pm\frac{p}{q}}$, where $p$ is a factor of the *constant term* and $q$ is a factor of the *leading coefficient*.
+
+This theorem does *not* guarantee that rational roots exist. It only narrows down the candidates to check.
+
+**Strategy:** List all $\displaystyle{\pm\frac{p}{q}}$ candidates, then evaluate the polynomial at each one until you find a root (or exhaust the list).
+
+**Example 1:** Find all rational roots of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+*Solution.* The constant term is $1$ (factors: $\pm 1$) and the leading coefficient is $2$ (factors: $\pm 1, \pm 2$). 
+
+The rational root candidates are: $x = \pm 1$ and $\displaystyle{x = \pm\frac{1}{2}}$.
+
+::::{.columns}
+
+:::{.column width="30%"}
+
+**Test $x = 1$:**
+
+\begin{align} p\left(1\right) &= 2\left(1\right)^3 + \left(1\right)^2 - 4\left(1\right) + 1\\
+&= 2 + 1 - 4 + 1 = \boxed{0~\checkmark}
+\end{align}
+
+$x = 1$ **is** a root.
+
+:::
+
+:::{.column width="30%"}
+
+**Test $x = \frac{1}{2}$:** $~\text{✗}$
+
+:::{.fragment}
+
+**Test $x = -1$:** 
+
+:::
+
+:::{.fragment}
+
+\begin{align} p\left(-1\right) &= 2\left(-1\right)^3  + \left(-1\right)^2 - 4\left(-1\right) + 1\\
+&= -2 + 1 + 4 + 1 = 4~\text{✗}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Rational Roots Theorem
+
+<div style="font-size:16pt">
+
+**Theorem (Rational Roots Theorem):** If the polynomial $p\left(x\right) = a_nx^n + \cdots + a_0$ has a rational root, it must be of the form $\displaystyle{x = \pm\frac{p}{q}}$, where $p$ is a factor of the *constant term* and $q$ is a factor of the *leading coefficient*.
+
+This theorem does *not* guarantee that rational roots exist. It only narrows down the candidates to check.
+
+**Strategy:** List all $\displaystyle{\pm\frac{p}{q}}$ candidates, then evaluate the polynomial at each one until you find a root (or exhaust the list).
+
+**Example 1:** Find all rational roots of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+*Solution.* The constant term is $1$ (factors: $\pm 1$) and the leading coefficient is $2$ (factors: $\pm 1, \pm 2$). 
+
+The rational root candidates are: $x = \pm 1$ and $\displaystyle{x = \pm\frac{1}{2}}$.
+
+::::{.columns}
+
+:::{.column width="30%"}
+
+**Test $x = 1$:**
+
+\begin{align} p\left(1\right) &= 2\left(1\right)^3 + \left(1\right)^2 - 4\left(1\right) + 1\\
+&= 2 + 1 - 4 + 1 = \boxed{0~\checkmark}
+\end{align}
+
+$x = 1$ **is** a root.
+
+:::
+
+:::{.column width="30%"}
+
+**Test $x = \frac{1}{2}$:** $~\text{✗}$
+
+**Test $x = -1$:** $~\text{✗}$
+
+:::{.fragment}
+
+**Test $x = \frac{-1}{2}$:**
+
+\begin{align} p\!\left(\tfrac{-1}{2}\right) &= 2\!\left(\tfrac{-1}{8}\right) + \tfrac{1}{4} - 4\!\left(\tfrac{-1}{2}\right) + 1\\
+&= \tfrac{-1}{4} + \tfrac{1}{4} + 2 + 1 = 3~\text{✗}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Rational Roots Theorem
+
+<div style="font-size:16pt">
+
+**Theorem (Rational Roots Theorem):** If the polynomial $p\left(x\right) = a_nx^n + \cdots + a_0$ has a rational root, it must be of the form $\displaystyle{x = \pm\frac{p}{q}}$, where $p$ is a factor of the *constant term* and $q$ is a factor of the *leading coefficient*.
+
+This theorem does *not* guarantee that rational roots exist. It only narrows down the candidates to check.
+
+**Strategy:** List all $\displaystyle{\pm\frac{p}{q}}$ candidates, then evaluate the polynomial at each one until you find a root (or exhaust the list).
+
+**Example 1:** Find all rational roots of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+*Solution.* The constant term is $1$ (factors: $\pm 1$) and the leading coefficient is $2$ (factors: $\pm 1, \pm 2$). 
+
+The rational root candidates are: $x = \pm 1$ and $\displaystyle{x = \pm\frac{1}{2}}$.
+
+::::{.columns}
+
+:::{.column width="30%"}
+
+**Test $x = 1$:**
+
+\begin{align} p\left(1\right) &= 2\left(1\right)^3 + \left(1\right)^2 - 4\left(1\right) + 1\\
+&= 2 + 1 - 4 + 1 = \boxed{0~\checkmark}
+\end{align}
+
+$x = 1$ **is** a root.
+
+:::
+
+:::{.column width="30%"}
+
+**Test $x = \frac{1}{2}$:** $~\text{✗}$
+
+**Test $x = -1$:** $~\text{✗}$
+
+**Test $x = \frac{-1}{2}$:** $~\text{✗}$
+
+:::
+
+:::{.column width="30%"}
+
+:::{.fragment}
+
+The **only rational root** is $x = 1$. The other two roots of this degree-3 polynomial are irrational or complex. We'll be able to find them shortly.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Rational Roots Theorem Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** Consider the polynomial function $p\left(x\right) = x^3 + 6x^2 + 10x + 3$. Use the rational roots theorem to (i) list all candidate roots, and (ii) determine whether any rational roots for $p\left(x\right)$ exist. 
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+:::
+
+:::{.fragment}
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+:::
+
+:::{.fragment}
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+*Solution.* Set up the long division.
+
+:::
+
+:::{.fragment}
+
+$$\begin{array}{r}
+\phantom{2x^2 + 3x - 1}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}
+\end{array}$$
+
+:::
+
+:::
+
+::::
+
+:::{.fragment}
+
+**Step 1:** What times $x$ gives $2x^3$? 
+
+:::
+
+:::{.fragment}
+
+Since $x\cdot \left(2x^2\right) = 2x^3$, we'll put $2x^2$ on top of the division bar and subtract $2x^2\left(x - 1\right)$ from the polynomial.
+
+:::
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2\phantom{{}+ 3x - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 1:** What times $x$ gives $2x^3$? 
+
+Since $x\cdot \left(2x^2\right) = 2x^3$, we'll put $2x^2$ on top of the division bar and subtract $2x^2\left(x - 1\right)$ from the polynomial.
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2\phantom{{}+ 3x - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 1:** What times $x$ gives $2x^3$? 
+
+Since $x\cdot \left(2x^2\right) = 2x^3$, we'll put $2x^2$ on top of the division bar and subtract $2x^2\left(x - 1\right)$ from the polynomial.
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2\phantom{{}+ 3x - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 1:** What times $x$ gives $2x^3$? 
+
+Since $x\cdot \left(2x^2\right) = 2x^3$, we'll put $2x^2$ on top of the division bar and subtract $2x^2\left(x - 1\right)$ from the polynomial.
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2\phantom{{}+ 3x - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** What times $x$ gives us $3x^2$?
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2\phantom{{}+ 3x - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** What times $x$ gives us $3x^2$? Using $3x$ will do that -- we'll add $3x$ to the quotient and subtract $3x\left(x - 1\right)$ from what remains. 
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2 + 3x\phantom{{}+ - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** What times $x$ gives us $3x^2$? Using $3x$ will do that -- we'll add $3x$ to the quotient and subtract $3x\left(x - 1\right)$ from what remains. 
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2 + 3x\phantom{{}+ - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}\\
+\underline{-(3x^2 - 3x)\phantom{--}}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** What times $x$ gives us $3x^2$? Using $3x$ will do that -- we'll add $3x$ to the quotient and subtract $3x\left(x - 1\right)$ from what remains. 
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2 + 3x\phantom{{}+ - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}\\
+\underline{-(3x^2 - 3x)\phantom{--}}\\
+-x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** What times $x$ gives us $3x^2$? Using $3x$ will do that -- we'll add $3x$ to the quotient and subtract $3x\left(x - 1\right)$ from what remains. 
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2 + 3x\phantom{{}+ - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}\\
+\underline{-(3x^2 - 3x)\phantom{--}}\\
+-x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 3:** What times $x$ will give us $-x$?
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+*Solution.* Set up the long division.
+
+$$\begin{array}{r}
+2x^2 + 3x\phantom{{}+ - 1\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}\\
+\underline{-(3x^2 - 3x)\phantom{--}}\\
+-x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 3:** What times $x$ will give us $-x$? Since $-1$ is the value, we'll add it to the quotient, subtract $-1\left(x - 1\right)$, and see what remains.
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+*Solution.* Set up the long division.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+$$\begin{array}{r}
+2x^2 + 3x - 1\phantom{\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}\\
+\underline{-(3x^2 - 3x)\phantom{--}}\\
+-x + 1\phantom{)}
+\end{array}$$
+
+:::
+
+::::{.column width="60%"}
+
+:::
+
+::::
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+*Solution.* Set up the long division.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+$$\begin{array}{r}
+2x^2 + 3x - 1\phantom{\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}\\
+\underline{-(3x^2 - 3x)\phantom{--}}\\
+-x + 1\phantom{)}\\
+\underline{-(-x + 1)\phantom{}}
+\end{array}$$
+
+:::
+
+::::{.column width="60%"}
+
+:::
+
+::::
+
+</div>
+
+## Polynomial Long Division I
+
+<div style="font-size:17pt">
+
+Since $x = 1$ is a root of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$, we know $\left(x - 1\right)$ is a factor. We can recover the other factor using *polynomial long division* — the same algorithm as integer long division, applied to polynomials.
+
+**Key question at each step:** *What must I multiply the leading term of the divisor by to match the leading term of what remains?*
+
+**Example 2:** Divide $2x^3 + x^2 - 4x + 1$ by $\left(x - 1\right)$.
+
+*Solution.* Set up the long division.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+$$\begin{array}{r}
+2x^2 + 3x - 1\phantom{\;\;}\\
+x-1{\overline{\smash{\big)}\,2x^3 + x^2 - 4x + 1\phantom{)}}}\\
+\underline{-(2x^3 - 2x^2)\phantom{----}}\\
+3x^2 - 4x + 1\phantom{)}\\
+\underline{-(3x^2 - 3x)\phantom{--}}\\
+-x + 1\phantom{)}\\
+\underline{-(-x + 1)\phantom{}}\\
+0
+\end{array}$$
+
+:::
+
+::::{.column width="60%"}
+
+:::{.fragment}
+
+Since we've obtained a remainder of $0$, we know that $2x^3 + x^2 - 4x + 1$ factors into $\left(x - 1\right)\left(2x^2 + 3x - 1\right)$.
+
+:::
+
+:::{.fragment}
+
+This means that the polynomial $p\left(x\right)$ factors into $p\left(x\right) = \left(x - 1\right)\left(2x^2 + 3x - 1\right)$.
+
+:::
+
+:::{.fragment}
+
+From the factored form, we can see immediately that $p\left(x\right)$ has a root at $x = 1$, since the first factor will evaluate to $0$.
+
+:::
+
+:::{.fragment}
+
+We also see a quadratic factor remaining. That's where our final two roots will come from.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Note that the $x^3$ and $x$ terms are missing. We write them in explicitly with coefficient $0$ to keep columns aligned.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+$$\begin{array}{r}
+\phantom{3x^3 - 6x^2 - 3x + 6}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}
+\end{array}$$
+
+:::
+
+:::
+
+::::
+
+:::{.fragment}
+
+**Step 1:** What times $x$ gives $3x^4$?
+
+:::
+
+:::{.fragment}
+
+Since $x \cdot \left(3x^3\right) = 3x^4$, we put $3x^3$ on top and subtract $3x^3\left(x + 2\right)$ from the polynomial.
+
+:::
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3\phantom{{} - 6x^2 - 3x + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 1:** Since $x \cdot \left(3x^3\right) = 3x^4$, we put $3x^3$ on top and subtract $3x^3\left(x + 2\right)$ from the polynomial.
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3\phantom{{} - 6x^2 - 3x + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 1:** Since $x \cdot \left(3x^3\right) = 3x^4$, we put $3x^3$ on top and subtract $3x^3\left(x + 2\right)$ from the polynomial.
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3\phantom{{} - 6x^2 - 3x + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** What times $x$ gives $-6x^3$?
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2\phantom{{} - 3x + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** Since $x \cdot \left(-6x^2\right) = -6x^3$, we put $-6x^2$ on top and subtract $-6x^2\left(x + 2\right)$ from what remains.
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2\phantom{{} - 3x + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}\\
+\underline{-(-6x^3 - 12x^2)\phantom{----\;}}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 2:** Since $x \cdot \left(-6x^2\right) = -6x^3$, we put $-6x^2$ on top and subtract $-6x^2\left(x + 2\right)$ from what remains.
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2\phantom{{} - 3x + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}\\
+\underline{-(-6x^3 - 12x^2)\phantom{----\;}}\\
+-3x^2 + 0x + 12\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 3:** What times $x$ gives $-3x^2$?
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2 - 3x\phantom{{} + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}\\
+\underline{-(-6x^3 - 12x^2)\phantom{----\;}}\\
+-3x^2 + 0x + 12\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 3:** Since $x \cdot \left(-3x\right) = -3x^2$, we put $-3x$ on top and subtract $-3x\left(x + 2\right)$ from what remains.
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2 - 3x\phantom{{} + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}\\
+\underline{-(-6x^3 - 12x^2)\phantom{----\;}}\\
+-3x^2 + 0x + 12\phantom{)}\\
+\underline{-(-3x^2 - 6x)\phantom{--\;}}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 3:** Since $x \cdot \left(-3x\right) = -3x^2$, we put $-3x$ on top and subtract $-3x\left(x + 2\right)$ from what remains.
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2 - 3x\phantom{{} + 6\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}\\
+\underline{-(-6x^3 - 12x^2)\phantom{----\;}}\\
+-3x^2 + 0x + 12\phantom{)}\\
+\underline{-(-3x^2 - 6x)\phantom{--\;}}\\
+6x + 12\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 4:** What times $x$ gives $6x$?
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2 - 3x + 6\phantom{\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}\\
+\underline{-(-6x^3 - 12x^2)\phantom{----\;}}\\
+-3x^2 + 0x + 12\phantom{)}\\
+\underline{-(-3x^2 - 6x)\phantom{--\;}}\\
+6x + 12\phantom{)}
+\end{array}$$
+
+:::
+
+::::
+
+**Step 4:** Since $x \cdot 6 = 6x$, we put $6$ on top and subtract $6\left(x + 2\right)$ from what remains.
+
+</div>
+
+## Polynomial Long Division II
+
+<div style="font-size:17pt">
+
+**Example 3:** Divide $f\left(x\right) = 3x^4 - 15x^2 + 12$ by $\left(x + 2\right)$.
+
+*Solution.* The $x^3$ and $x$ terms have coefficient $0$ — written in explicitly to keep columns aligned.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$$\begin{array}{r}
+3x^3 - 6x^2 - 3x + 6\phantom{\;\;\;\;\;}\\
+x+2{\overline{\smash{\big)}\,3x^4 + 0x^3 - 15x^2 + 0x + 12\phantom{)}}}\\
+\underline{-(3x^4 + 6x^3)\phantom{--------}}\\
+-6x^3 - 15x^2 + 0x + 12\phantom{)}\\
+\underline{-(-6x^3 - 12x^2)\phantom{----\;}}\\
+-3x^2 + 0x + 12\phantom{)}\\
+\underline{-(-3x^2 - 6x)\phantom{--\;}}\\
+6x + 12\phantom{)}\\
+\underline{-(6x + 12)\phantom{}}\\
+0
+\end{array}$$
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+The remainder is $0$, confirming that $\left(x + 2\right)$ divides $f\left(x\right)$ evenly.
+
+:::
+
+:::{.fragment}
+
+The quotient is $\boxed{~3x^3 - 6x^2 - 3x + 6~}$, so:
+
+$$3x^4 - 15x^2 + 12 = \left(x + 2\right)\left(3x^3 - 6x^2 - 3x + 6\right)$$
+
+:::
+
+:::{.fragment}
+
+**Note:** The zero-coefficient terms were essential for keeping the columns aligned throughout. Without them, it's easy to accidentally add or subtract terms from the wrong column.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Long Division Practice
+
+<div style="font-size:17pt">
+
+**Try It! 2:** Divide $p\left(x\right) = x^3 + 6x^2 + 10x + 3$ by $\left(x + 3\right)$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 3:** Divide $f\left(x\right) = 3x^4 - 2x^3 + x + 9$ by $\left(x + 2\right)$.
+
+When you finish, interpret the result: what does a nonzero remainder tell you about whether $\left(x + 2\right)$ is a factor of $f$?
+
+</div>
+
+## Finding All the Roots of a Polynomial
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 4:** Find *all* roots of $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+:::
+
+:::{.fragment}
+
+We began by using the *Rational Roots Theorem* to discover that the only rational root of $p\left(x\right)$ was $x = 1$.
+
+:::
+
+:::{.fragment}
+
+From here, we knew that $\left(x - 1\right)$ was a factor of $p\left(x\right)$.
+
+:::
+
+:::{.fragment}
+
+Factoring a polynomial is simply rewriting it using multiplication. We had to figure out "*What times $\left(x - 1\right)$ is equal to $p\left(x\right)$?*"
+
+:::
+
+:::{.fragment}
+
+This is a *division* problem, so we used *polynomial long division* to rewrite $p\left(x\right) = \left(x - 1\right)q\left(x\right)$, where $q\left(x\right)$ was of lower degree than $p\left(x\right)$.
+
+:::
+
+:::{.fragment}
+
+This allowed us to discover that $p\left(x\right) = \left(x - 1\right)\left(2x^2 + 3x - 1\right)$.
+
+:::
+
+:::{.fragment}
+
+The remaining quadratic factor $2x^2 + 3x - 1$ doesn't factor over integers, so we use the quadratic formula:
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} 2x^2 + 3x - 1 &= 0\\
+\implies x &= \frac{-3 \pm \sqrt{9 + 8}}{4} = \frac{-3 \pm \sqrt{17}}{4}
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+The three roots are $\boxed{~\displaystyle{x = 1,\quad x = \frac{-3 - \sqrt{17}}{4},\quad x = \frac{-3 + \sqrt{17}}{4}}~}$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Finding All Roots of a Polynomial Practice
+
+<div style="font-size:17pt">
+
+**Try It! 4:** Earlier, you used long division to factor the polynomial $p\left(x\right) = x^3 + 6x^2 + 10x + 3$ into $p\left(x\right) = \left(x + 3\right)q\left(x\right)$. Find all of the roots of $p\left(x\right)$ from the factored form resulting after your long division.
+
+</div>
+
+## Plotting a Polynomial
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 5:** Use your knowledge of the $y$-intercept, roots and multiplicities, and end behavior to sketch a graph of the function $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+:::
+
+:::{.fragment}
+
+**y-intercept:** 
+
+:::
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::
+
+:::{.column width="55%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-3, 3, length.out = 500)
+f_vals <- 2*x_vals^3 + x_vals^2 - 4*x_vals + 1
+
+roots <- c((-3 - sqrt(17))/4, 1, (-3 + sqrt(17))/4)
+
+ggplot() +
+  #geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  #geom_point(aes(x = roots, y = rep(0, 3)), size = 3, color = "black") +
+  #geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -3, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-3, 3), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-3, 3, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = 2x^3 + x^2 - 4x + 1$")) +
+  theme_bw(base_size = 28) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+
+</div>
+
+## Plotting a Polynomial
+
+<div style="font-size:17pt">
+
+**Example 5:** Use your knowledge of the $y$-intercept, roots and multiplicities, and end behavior to sketch a graph of the function $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+**y-intercept:** $p\left(0\right) = 1$
+
+:::{.fragment}
+
+**Roots:**
+
+:::
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::
+
+:::{.column width="55%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-3, 3, length.out = 500)
+f_vals <- 2*x_vals^3 + x_vals^2 - 4*x_vals + 1
+
+roots <- c((-3 - sqrt(17))/4, 1, (-3 + sqrt(17))/4)
+
+ggplot() +
+  #geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  #geom_point(aes(x = roots, y = rep(0, 3)), size = 3, color = "black") +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -3, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-3, 3), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-3, 3, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = 2x^3 + x^2 - 4x + 1$")) +
+  theme_bw(base_size = 28) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Polynomial
+
+<div style="font-size:17pt">
+
+**Example 5:** Use your knowledge of the $y$-intercept, roots and multiplicities, and end behavior to sketch a graph of the function $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+**y-intercept:** $p\left(0\right) = 1$
+
+**Roots:** $\boxed{~\displaystyle{x = 1,\quad x = \frac{-3 - \sqrt{17}}{4},\quad x = \frac{-3 + \sqrt{17}}{4}}~}$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+All roots have multiplicity 1, meaning...
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-3, 3, length.out = 500)
+f_vals <- 2*x_vals^3 + x_vals^2 - 4*x_vals + 1
+
+roots <- c((-3 - sqrt(17))/4, 1, (-3 + sqrt(17))/4)
+
+ggplot() +
+  #geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = roots, y = rep(0, 3)), size = 3, color = "black") +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -3, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-3, 3), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-3, 3, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = 2x^3 + x^2 - 4x + 1$")) +
+  theme_bw(base_size = 28) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Polynomial
+
+<div style="font-size:17pt">
+
+**Example 5:** Use your knowledge of the $y$-intercept, roots and multiplicities, and end behavior to sketch a graph of the function $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+**y-intercept:** $p\left(0\right) = 1$
+
+**Roots:** $\boxed{~\displaystyle{x = 1,\quad x = \frac{-3 - \sqrt{17}}{4},\quad x = \frac{-3 + \sqrt{17}}{4}}~}$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+All roots have multiplicity 1, meaning that the function $p\left(x\right)$ will pass through the $x$-axis at each root.
+
+:::{.fragment}
+
+**End Behavior:**
+
++ $\displaystyle{\lim_{x\to -\infty}{p\left(x\right)}}$
++ $\displaystyle{\lim_{x\to \infty}{p\left(x\right)}}$
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-3, 3, length.out = 500)
+f_vals <- 2*x_vals^3 + x_vals^2 - 4*x_vals + 1
+
+roots <- c((-3 - sqrt(17))/4, 1, (-3 + sqrt(17))/4)
+
+ggplot() +
+  #geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = roots, y = rep(0, 3)), size = 3, color = "black") +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -3, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-3, 3), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-3, 3, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = 2x^3 + x^2 - 4x + 1$")) +
+  theme_bw(base_size = 28) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Polynomial
+
+<div style="font-size:17pt">
+
+**Example 5:** Use your knowledge of the $y$-intercept, roots and multiplicities, and end behavior to sketch a graph of the function $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+**y-intercept:** $p\left(0\right) = 1$
+
+**Roots:** $\boxed{~\displaystyle{x = 1,\quad x = \frac{-3 - \sqrt{17}}{4},\quad x = \frac{-3 + \sqrt{17}}{4}}~}$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+All roots have multiplicity 1, meaning that the function $p\left(x\right)$ will pass through the $x$-axis at each root.
+
+:::{.nonincremental}
+
+**End Behavior:**
+
++ $\displaystyle{\lim_{x\to -\infty}{p\left(x\right)} = \lim_{x\to -\infty}{2x^3 + x^2 - 4x + 1}}$
++ $\displaystyle{\lim_{x\to \infty}{p\left(x\right)} = \lim_{x\to \infty}{2x^3 + x^2 - 4x + 1}}$
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-3, 3, length.out = 500)
+f_vals <- 2*x_vals^3 + x_vals^2 - 4*x_vals + 1
+
+roots <- c((-3 - sqrt(17))/4, 1, (-3 + sqrt(17))/4)
+
+ggplot() +
+  #geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = roots, y = rep(0, 3)), size = 3, color = "black") +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -3, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-3, 3), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-3, 3, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = 2x^3 + x^2 - 4x + 1$")) +
+  theme_bw(base_size = 28) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Polynomial
+
+<div style="font-size:17pt">
+
+**Example 5:** Use your knowledge of the $y$-intercept, roots and multiplicities, and end behavior to sketch a graph of the function $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+**y-intercept:** $p\left(0\right) = 1$
+
+**Roots:** $\boxed{~\displaystyle{x = 1,\quad x = \frac{-3 - \sqrt{17}}{4},\quad x = \frac{-3 + \sqrt{17}}{4}}~}$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+All roots have multiplicity 1, meaning that the function $p\left(x\right)$ will pass through the $x$-axis at each root.
+
+:::{.nonincremental}
+
+**End Behavior:**
+
++ $\displaystyle{\lim_{x\to -\infty}{p\left(x\right)} = \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{2x^3} + x^2 - 4x + 1}}$
++ $\displaystyle{\lim_{x\to \infty}{p\left(x\right)} = \lim_{x\to \infty}{\stackrel{\color{red}{\left(+\right)}}{2x^3} + x^2 - 4x + 1}}$
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-3, 3, length.out = 500)
+f_vals <- 2*x_vals^3 + x_vals^2 - 4*x_vals + 1
+
+roots <- c((-3 - sqrt(17))/4, 1, (-3 + sqrt(17))/4)
+
+ggplot() +
+  #geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = roots, y = rep(0, 3)), size = 3, color = "black") +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -3, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-3, 3), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-3, 3, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = 2x^3 + x^2 - 4x + 1$")) +
+  theme_bw(base_size = 28) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Polynomial
+
+<div style="font-size:17pt">
+
+**Example 5:** Use your knowledge of the $y$-intercept, roots and multiplicities, and end behavior to sketch a graph of the function $p\left(x\right) = 2x^3 + x^2 - 4x + 1$.
+
+**y-intercept:** $p\left(0\right) = 1$
+
+**Roots:** $\boxed{~\displaystyle{x = 1,\quad x = \frac{-3 - \sqrt{17}}{4},\quad x = \frac{-3 + \sqrt{17}}{4}}~}$
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+All roots have multiplicity 1, meaning that the function $p\left(x\right)$ will pass through the $x$-axis at each root.
+
+:::{.nonincremental}
+
+**End Behavior:**
+
++ $\displaystyle{\lim_{x\to -\infty}{p\left(x\right)} = \lim_{x\to -\infty}{\stackrel{\color{red}{\left(-\right)}}{2x^3} + x^2 - 4x + 1} = -\infty}$
++ $\displaystyle{\lim_{x\to \infty}{p\left(x\right)} = \lim_{x\to \infty}{\stackrel{\color{red}{\left(+\right)}}{2x^3} + x^2 - 4x + 1} = \infty}$
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+x_vals <- seq(-3, 3, length.out = 500)
+f_vals <- 2*x_vals^3 + x_vals^2 - 4*x_vals + 1
+
+roots <- c((-3 - sqrt(17))/4, 1, (-3 + sqrt(17))/4)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = roots, y = rep(0, 3)), size = 3, color = "black") +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -3, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-3, 3), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-3, 3, by = 1)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = 2x^3 + x^2 - 4x + 1$")) +
+  theme_bw(base_size = 28) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Plotting a Polynomial Practice
+
+<div style="font-size:17pt">
+
+**Try It! 5:** Consider the polynomial $p\left(x\right) = x^3 + 6x^2 + 10x + 3$ you encountered in **Try It!** activities 1, 2, and 4. Find its $y$-intercept, all roots and multiplicities, and analyse its end behavior in order to sketch a graph of the polynomial function.
+
+</div>
+
+## The Full Strategy Recap
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Strategy (Finding All Roots and Graphing):**
+
+:::
+
+1. Apply the **Rational Roots Theorem** to list candidates $x = \pm\frac{p}{q}$.
+2. Test candidates until you find a root $x = r$.
+3. Use **long division** to divide $f\left(x\right)$ by $\left(x - r\right)$, obtaining $f\left(x\right) = \left(x - r\right)q\left(x\right)$, where the degree of $q\left(x\right)$ is less than the degree of $p\left(x\right)$.
+4. Repeat steps 1--3 on $q\left(x\right)$ until you reach linear and quadratic factors.
+5. Apply the **zero product property** (and the quadratic formula for any remaining quadratic factors) to find all roots.
+6. Identify the *multiplicity* of each root and use it to determine behavior of the function at those roots.
+    + Roots with odd multiplicity will have crossings.
+    + Roots with even multiplicity will result in the graph bounding off the $x$-axis.
+7. Determine the *$y$-intercept* by evaluating $p\left(0\right)$.
+8. Determine the *end behavior* by evaluating $\displaystyle{\lim_{x\to -\infty}{p\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{p\left(x\right)}}$ using either the dominance of the leading term (expanded/standard form) or by analysing the sign of each factor and determining the sign of the product (factored form).
+9. Sketch the function satisfying the properties you've discovered.
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `13. Polynomial Long Division and Factoring`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $f\left(x\right) = 2x^3 - 3x^2 - 11x + 6$.
+
+$\left(a\right)$ List all rational root candidates using the Rational Roots Theorem.
+
+$\left(b\right)$ Test $x = 3$. Is it a root?
+
+$\left(c\right)$ If so, perform polynomial long division to write $f\left(x\right) = \left(x - 3\right)q\left(x\right)$ and identify $q\left(x\right)$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ The **Rational Roots Theorem** says that any rational root of $a_nx^n + \cdots + a_0$ must have the form $\pm\frac{p}{q}$ where $p$ divides $a_0$ and $q$ divides $a_n$. It narrows candidates but doesn't guarantee rational roots exist.
++ **Polynomial long division** works exactly like integer long division: divide, multiply, subtract, bring down, repeat.
++ A remainder of $0$ means the divisor is a factor. A nonzero remainder means it is not.
++ Together, these tools reduce any polynomial to a product of linear and quadratic factors, at which point all roots can be found.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ With polynomials complete, we move into **rational functions** — ratios of polynomials. The tools from the polynomial days (roots, end behavior, factoring) all carry forward, but rational functions introduce a new feature: **vertical and horizontal asymptotes**.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Rational Functions</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 9 on MyOpenMath</center>
+
+:::
+
+</div>

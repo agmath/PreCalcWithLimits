@@ -1,0 +1,2200 @@
+---
+title: "MAT 142: Rational Functions and Equations"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+
+f <- function(x) (2*x^2 - 8*x + 6)/(x^2 - x - 20)
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+At our last meeting, we encountered and utilized two tools for working with polynomials in expanded form:
+
+:::
+
++ The **Rational Roots Theorem** narrowed down candidates for rational roots.
++ **Polynomial long division** was used to factor out a known root $r$ of $p\left(x\right)$, rewriting $p\left(x\right) = \left(x - r\right)q\left(x\right)$ where $q\left(x\right)$ is of lower degree than $p\left(x\right)$.
++ Together, these tools let us factor any polynomial into *linear* and *quadratic* factors, ultimately permitting us to find all of its roots.
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Use polynomial long division to factor $p\left(x\right) = x^3 + x^2 - 21x - 45$ and sketch a graph. *(Hint: $\left(x + 3\right)$ is a factor.)*
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Find the domain of $\displaystyle{f\left(x\right) = \frac{x^2 - 5x}{x^2 - 25}}$.
+
+:::
+
+:::{.fragment}
+
+**Problem 3:** Find the domain of $\displaystyle{f\left(x\right) = \frac{x + 8}{\sqrt{\left(x^2 - 36\right)}}}$.
+
+:::
+
+:::{.fragment}
+
+*Note:* Problems 2 and 3 both involve domain restrictions, but for different reasons. Think about what makes each one different.
+
+:::
+
+</div>
+
+## Objectives
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Today we'll leverage those tools from polynomial functions to analyse *rational functions*, which are ratios of polynomials. 
+
+:::
+
+:::{.fragment} 
+
+Rational functions introduce genuinely new geometric features that our previous classes of functions don't have.
+
++ Domain restrictions
++ Asymptotes
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Define rational functions and identify their domains.
++ Find the roots and $y$-intercept of a rational function.
++ Identify vertical and horizontal asymptotes and explain what they represent.
++ Use asymptotes, roots, the $y$-intercept, and additional reference points to sketch the graph of a rational function.
+
+</div>
+
+## What Is a Rational Function?
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Rational Function):** A function $f\left(x\right)$ is a *rational function* if it can be written as
+
+$$r\left(x\right) = \frac{p\left(x\right)}{q\left(x\right)}$$
+
+where $p\left(x\right)$ and $q\left(x\right)$ are polynomials.
+
+:::
+
+:::{.fragment}
+
+A few notes:
+
+:::
+
++ Polynomial functions are rational functions with $q\left(x\right) = 1$.
++ Rational functions introduce a new concern in that the denominator can possibly evaluate to zero, creating *domain restrictions* and *asymptotes*.
++ Finding roots of a rational function means solving $\displaystyle{\frac{p(x)}{q(x)} = 0}$, which is a *rational equation*.
+
+</div>
+
+## Domain, Roots, and $y$-Intercept
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Consider the general rational function $\displaystyle{r\left(x\right) = \frac{p\left(x\right)}{q\left(x\right)}}$
+
+:::
+
+:::{.fragment}
+
+**Domain:** Since division by zero is undefined, the domain of $r\left(x\right)$ excludes all $x$ where $q\left(x\right) = 0$.
+
+:::
+
+:::{.fragment}
+
+**Roots:** A fraction equals zero only when its *numerator* is zero (and its denominator is not). So roots occur where $p\left(x\right) = 0$, provided $q\left(x\right) \neq 0$ at those points.
+
+:::
+
+:::{.fragment}
+
+**$y$-Intercept:** Evaluate $r\left(0\right)$, provided $0$ is in the domain. If $x = 0$ is not a permissible input, then there is no $y$-intercept.
+
+:::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+:::
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+*Solution.* 
+
+:::
+
+:::{.fragment}
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x^2 - x - 20 &\neq 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+:::
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+:::
+
+:::{.fragment}
+
+\begin{align}
+
+\frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0
+
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align}
+
+\frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0
+
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align}
+
+\frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right)&= 0
+
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right) &= 0\\
+\implies x^2 - 4x + 3 &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right) &= 0\\
+\implies x^2 - 4x + 3 &= 0\\
+\implies \left(x - 3\right)\left(x - 1\right) &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right) &= 0\\
+\implies x^2 - 4x + 3 &= 0\\
+\implies \left(x - 3\right)\left(x - 1\right) &= 0\\
+\implies x - 3 = 0 &\text{ or } x - 1 = 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right) &= 0\\
+\implies x^2 - 4x + 3 &= 0\\
+\implies \left(x - 3\right)\left(x - 1\right) &= 0\\
+\implies x - 3 = 0 &\text{ or } x - 1 = 0\\
+\implies x = 3 &\text{ or } x = 1
+\end{align}
+
+:::{.fragment}
+
+So the function $r\left(x\right)$ has roots at $\boxed{~\left(1, 0\right)~}$ and $\boxed{~\left(3, 0\right)~}$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+**$y$-intecept:** Since $x = 0$ is in the domain of $r\left(x\right)$, the function has a $y$-intercept.
+
+:::{.fragment}
+
+We'll find it by evaluating $r\left(0\right)$.
+
+:::
+
+:::{.fragment}
+
+$\displaystyle{r\left(0\right) = \frac{2\left(0\right)^2 - 8\left(0\right) + 6}{\left(0\right)^2 - \left(0\right) - 20}}$
+
+:::
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right) &= 0\\
+\implies x^2 - 4x + 3 &= 0\\
+\implies \left(x - 3\right)\left(x - 1\right) &= 0\\
+\implies x - 3 = 0 &\text{ or } x - 1 = 0\\
+\implies x = 3 &\text{ or } x = 1
+\end{align}
+
+So the function $r\left(x\right)$ has roots at $\boxed{~\left(1, 0\right)~}$ and $\boxed{~\left(3, 0\right)~}$
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+**$y$-intecept:** Since $x = 0$ is in the domain of $r\left(x\right)$, the function has a $y$-intercept.
+
+We'll find it by evaluating $r\left(0\right)$.
+
+$\displaystyle{r\left(0\right) = \frac{2\left(0\right)^2 - 8\left(0\right) + 6}{\left(0\right)^2 - \left(0\right) - 20} = \frac{6}{-20}}$
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right) &= 0\\
+\implies x^2 - 4x + 3 &= 0\\
+\implies \left(x - 3\right)\left(x - 1\right) &= 0\\
+\implies x - 3 = 0 &\text{ or } x - 1 = 0\\
+\implies x = 3 &\text{ or } x = 1
+\end{align}
+
+So the function $r\left(x\right)$ has roots at $\boxed{~\left(1, 0\right)~}$ and $\boxed{~\left(3, 0\right)~}$
+
+:::
+
+::::
+
+</div>
+
+## Analysing Rational Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, find the domain, roots, and $y$-intercept.
+
+::::{.columns}
+
+:::{.column width="55%"}
+
+*Solution.* 
+
+**Domain:** Solve $x^2 - x - 20 \neq 0$.
+
+\begin{align} x^2 - x - 20 &\neq 0\\
+\implies \left(x - 5\right)\left(x + 4\right) &\neq 0\\
+\implies x \neq 5 &\text{ or } x \neq -4
+\end{align}
+
+So the domain is $x \neq -4$ and $x \neq 5$, or $\boxed{~\left(-\infty, -4\right)\cup\left(-4, 5\right)\cup\left(5, \infty\right)~}$.
+
+**$y$-intecept:** Since $x = 0$ is in the domain of $r\left(x\right)$, the function has a $y$-intercept.
+
+We'll find it by evaluating $r\left(0\right)$.
+
+$\displaystyle{r\left(0\right) = \frac{2\left(0\right)^2 - 8\left(0\right) + 6}{\left(0\right)^2 - \left(0\right) - 20} = \frac{6}{-20} = \boxed{~\frac{-3}{10}~}}$
+
+:::
+
+:::{.column width="45%"}
+
+**Roots:** Solve $\displaystyle{\frac{2x^2 - 8x + 6}{x^2 - x - 20} = 0}$
+
+\begin{align} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= 0\\
+\implies 2x^2 - 8x + 6 &= 0\\
+\implies 2\left(x^2 - 4x + 3\right) &= 0\\
+\implies x^2 - 4x + 3 &= 0\\
+\implies \left(x - 3\right)\left(x - 1\right) &= 0\\
+\implies x - 3 = 0 &\text{ or } x - 1 = 0\\
+\implies x = 3 &\text{ or } x = 1
+\end{align}
+
+So the function $r\left(x\right)$ has roots at $\boxed{~\left(1, 0\right)~}$ and $\boxed{~\left(3, 0\right)~}$
+
+:::
+
+::::
+
+</div>
+
+## Graphing Rational Functions I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+We can now draw a partial graph of the function $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+:::
+
+:::{.fragment}
+
+As a reminder, $r\left(x\right)$ has 
+
+:::
+
+</div>
+
+## Graphing Rational Functions I
+
+<div style="font-size:17pt">
+
+We can now draw a partial graph of the function $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+As a reminder, $r\left(x\right)$ has 
+
+:::{.nonincremental}
+
++ *domain restrictions* at $x = -4$ and $x = 5$
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+ggplot() +
+  #geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 5.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 5.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+</div>
+
+## Graphing Rational Functions I
+
+<div style="font-size:17pt">
+
+We can now draw a partial graph of the function $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+As a reminder, $r\left(x\right)$ has 
+
+:::{.nonincremental}
+
++ *domain restrictions* at $x = -4$ and $x = 5$
++ *roots* at $\left(1, 0\right)$ and $\left(3, 0\right)$
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_point(aes(x = c(1, 3), y = c(0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 5.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 5.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+</div>
+
+## Graphing Rational Functions I
+
+<div style="font-size:17pt">
+
+We can now draw a partial graph of the function $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+As a reminder, $r\left(x\right)$ has 
+
+:::{.nonincremental}
+
++ *domain restrictions* at $x = -4$ and $x = 5$
++ *roots* at $\left(1, 0\right)$ and $\left(3, 0\right)$
++ a *$y$-intercept* at $\left(0, -3/10\right)$
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 5.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 5.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+</div>
+
+## Analysis of Rational Function Practice
+
+**Try It! 1:** Identify the domain, roots, and $y$-intercept for the function $\displaystyle{g\left(x\right) = \frac{-4x^2 - 4x + 24}{5x^2 + 5x - 100}}$. Draw a partial graph of the function by identifying locations for discontinuities, the $y$-intercept, and any roots.
+
+## Asymptotes
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Asymptote):** An asymptote is a line (or curve) that a function approaches arbitrarily closely. Rational functions can have *vertical*, *horizontal*, or *slant* asymptotes.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-warning}
+## A Common Misconception
+
+You may have previously heard that "*A function can never cross its asymptote*", but this is not generally true. A function can never cross its *vertical* asymptotes, but it *can* cross its horizontal or slant asymptote.
+
+:::
+
+:::
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Vertical Asymptote):** The line $x = a$ is a vertical asymptote of $\displaystyle{\frac{p(x)}{q(x)}}$ if $q\left(a\right) = 0$ and $p\left(a\right) \neq 0$.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Types of Discontinuities
+
+There are two types of *discontinuity* that a rational function $\displaystyle{r\left(x\right) = \frac{p\left(x\right)}{q\left(x\right)}}$ may have.
+
+:::{.nonincremental}
+
++ A *hole* occurs at $x = a$ if $\left(x - a\right)$ is a factor of both $p\left(x\right)$ and $q\left(x\right)$.
++ A *vertical asymptote* occurs at $x = a$ when $\left(x - a\right)$ is a factor of $q\left(x\right)$, but not $p\left(x\right)$. 
+
+:::
+
+:::
+
+:::
+
+## Vertical Asymptotes and Holes
+
+<div style="font-size:17pt">
+
+**Definition (Vertical Asymptote):** The line $x = a$ is a vertical asymptote of $\displaystyle{\frac{p(x)}{q(x)}}$ if $q\left(a\right) = 0$ and $p\left(a\right) \neq 0$.
+
+</div>
+
+:::{.callout-note}
+## Types of Discontinuities
+
+There are two types of *discontinuity* that a rational function $\displaystyle{r\left(x\right) = \frac{p\left(x\right)}{q\left(x\right)}}$ may have.
+
+:::{.nonincremental}
+
++ A *hole* occurs at $x = a$ if $\left(x - a\right)$ is a factor of both $p\left(x\right)$ and $q\left(x\right)$.
++ A *vertical asymptote* occurs at $x = a$ when $\left(x - a\right)$ is a factor of $q\left(x\right)$, but not $p\left(x\right)$. 
+
+:::
+
+:::
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Strategy:** Solve $q\left(x\right) = 0$. Each solution is either the location of a *vertical asymptote* or of a *hole*.
+
+:::
+
+:::{.fragment}
+
+For $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$, we already found that $q\left(x\right) = 0$ at $x = -4$ and $x = 5$. 
+:::
+
+:::{.fragment}
+
+Since neither of these are also roots of $p\left(x\right)$, the discontinuities don't cancel out -- they aren't *holes*.
+
+:::
+
+:::{.fragment}
+
+Both of these discontinuities result in vertical asymptotes, represented by the dashed lines in the partial graph we produced earlier.
+
+:::
+
+</div>
+
+## Vertical Asymptotes Practice
+
+<div style="font-size:17pt">
+
+**Try It! 2:** Determine whether the domain restrictions of $\displaystyle{g\left(x\right) = \frac{-4x^2 - 4x + 24}{5x^2 + 5x - 100}}$ correspond to vertical asymptotes or holes.
+
+</div>
+
+## Horizontal Asymptotes
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Horizontal Asymptote):** The line $y = b$ is a horizontal asymptote of $r\left(x\right)$ if $\displaystyle{\lim_{x\to\infty}{f\left(x\right)} = b}$ or $\displaystyle{\lim_{x\to-\infty}{f\left(x\right)} = b}$.
+
+:::
+
+:::{.fragment}
+
+**Strategy:** Divide numerator and denominator by $x^n$, where $n$ is the highest degree in the entire expression. Then take the limit — terms with $x$ in the denominator vanish.
+
+:::
+
+:::{.fragment}
+
+**Example 2:** Find any horizontal asmyptotes of the function $\displaystyle{f\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to -\infty} \frac{2x^2 - 8x + 6}{x^2 - x - 20}
+\end{align}
+
+:::
+
+</div>
+
+## Horizontal Asymptotes
+
+<div style="font-size:17pt">
+
+**Definition (Horizontal Asymptote):** The line $y = b$ is a horizontal asymptote of $r\left(x\right)$ if $\displaystyle{\lim_{x\to\infty}{f\left(x\right)} = b}$ or $\displaystyle{\lim_{x\to-\infty}{f\left(x\right)} = b}$.
+
+**Strategy:** Divide numerator and denominator by $x^n$, where $n$ is the highest degree in the entire expression. Then take the limit — terms with $x$ in the denominator vanish.
+
+**Example 2:** Find any horizontal asmyptotes of the function $\displaystyle{f\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+*Solution.
+
+\begin{align} \lim_{x\to -\infty} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= \lim_{x\to -\infty}{\frac{\frac{2x^2}{x^2} - \frac{8x}{x^2} + \frac{6}{x^2}}{\frac{x^2}{x^2} - \frac{x}{x^2} - \frac{20}{x^2}}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Horizontal Asymptotes
+
+<div style="font-size:17pt">
+
+**Definition (Horizontal Asymptote):** The line $y = b$ is a horizontal asymptote of $r\left(x\right)$ if $\displaystyle{\lim_{x\to\infty}{f\left(x\right)} = b}$ or $\displaystyle{\lim_{x\to-\infty}{f\left(x\right)} = b}$.
+
+**Strategy:** Divide numerator and denominator by $x^n$, where $n$ is the highest degree in the entire expression. Then take the limit — terms with $x$ in the denominator vanish.
+
+**Example 2:** Find any horizontal asmyptotes of the function $\displaystyle{f\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+*Solution.*
+
+\begin{align} \lim_{x\to -\infty} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= \lim_{x\to -\infty}{\frac{\frac{2x^2}{x^2} - \frac{8x}{x^2} + \frac{6}{x^2}}{\frac{x^2}{x^2} - \frac{x}{x^2} - \frac{20}{x^2}}}\\
+&= \lim_{x\to -\infty}{\frac{2 - \frac{8}{x} + \frac{6}{x^2}}{1 - \frac{1}{x} - \frac{20}{x^2}}}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Horizontal Asymptotes
+
+<div style="font-size:17pt">
+
+**Definition (Horizontal Asymptote):** The line $y = b$ is a horizontal asymptote of $r\left(x\right)$ if $\displaystyle{\lim_{x\to\infty}{f\left(x\right)} = b}$ or $\displaystyle{\lim_{x\to-\infty}{f\left(x\right)} = b}$.
+
+**Strategy:** Divide numerator and denominator by $x^n$, where $n$ is the highest degree in the entire expression. Then take the limit — terms with $x$ in the denominator vanish.
+
+**Example 2:** Find any horizontal asmyptotes of the function $\displaystyle{f\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+
+*Solution.*
+
+\begin{align} \lim_{x\to -\infty} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= \lim_{x\to -\infty}{\frac{\frac{2x^2}{x^2} - \frac{8x}{x^2} + \frac{6}{x^2}}{\frac{x^2}{x^2} - \frac{x}{x^2} - \frac{20}{x^2}}}\\
+&= \lim_{x\to -\infty}{\frac{2 - \frac{8}{x} + \frac{6}{x^2}}{1 - \frac{1}{x} - \frac{20}{x^2}}}\\
+&= \frac{2}{1}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Horizontal Asymptotes
+
+<div style="font-size:17pt">
+
+**Definition (Horizontal Asymptote):** The line $y = b$ is a horizontal asymptote of $r\left(x\right)$ if $\displaystyle{\lim_{x\to\infty}{f\left(x\right)} = b}$ or $\displaystyle{\lim_{x\to-\infty}{f\left(x\right)} = b}$.
+
+**Strategy:** Divide numerator and denominator by $x^n$, where $n$ is the highest degree in the entire expression. Then take the limit — terms with $x$ in the denominator vanish.
+
+**Example 2:** Find any horizontal asmyptotes of the function $\displaystyle{f\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$.
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+*Solution.*
+
+\begin{align} \lim_{x\to \infty} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= \lim_{x\to \infty}{\frac{\frac{2x^2}{x^2} - \frac{8x}{x^2} + \frac{6}{x^2}}{\frac{x^2}{x^2} - \frac{x}{x^2} - \frac{20}{x^2}}}\\
+&= \lim_{x\to \infty}{\frac{2 - \frac{8}{x} + \frac{6}{x^2}}{1 - \frac{1}{x} - \frac{20}{x^2}}}\\
+&= \frac{2}{1}\\
+&= 2
+\end{align}
+
+:::{.fragment}
+
+So $r\left(x\right)$ has a horizontal asymptote at $y = 2$.
+
+:::
+
+:::
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+Note that the exact same analysis would show that $\displaystyle{\lim_{x\to -\infty}}{r\left(x\right)} = 2$.
+
+:::
+
+:::{.fragment}
+
+If the end behavior of a rational function approaches a finite limit, then it will always be the case that $\displaystyle{\lim_{x\to -\infty}{r\left(x\right)} = \lim_{x\to \infty}{r\left(x\right)}}$.
+
+:::
+
+:::{.fragment}
+
+This is not the case for all function classes though.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Horizontal Asymptotes Practice
+
+<div style="font-size:17pt">
+
+**Try It! 3:** Determine whether the function $\displaystyle{g\left(x\right) = \frac{-4x^2 - 4x + 24}{5x^2 + 5x - 100}}$ has a horizontal asymptote. Write the equation of the horizontal asymptote, if so.
+
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+:::
+
+:::
+
+:::{.column width="60%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+
+:::{.fragment}
+
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20}}$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{50 + 40 + 6}{25 + 5 - 20}}$
+
+:::
+
+:::{.column width="40%"}
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{96}{10}}$
+
+:::
+
+:::{.column width="40%"}
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3), y = c(-3/10, 0, 0)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5}}$
+
+:::
+
+:::{.column width="40%"}
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3, -5), y = c(-3/10, 0, 0, 48/5)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5} > 2}$
+
+:::
+
+:::{.column width="40%"}
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3, -5), y = c(-3/10, 0, 0, 48/5)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5} > 2}$
+
+:::
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = 6$:**</center>
+
+:::{.fragment}
+
+$\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{\left(6\right)^2 - \left(6\right) - 20}}$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3, -5), y = c(-3/10, 0, 0, 48/5)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5} > 2}$
+
+:::
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = 6$:**</center>
+
+$\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{\left(6\right)^2 - \left(6\right) - 20} = \frac{72 - 48 + 6}{36 - 6 - 20}}$
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3, -5), y = c(-3/10, 0, 0, 48/5)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5} > 2}$
+
+:::
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = 6$:**</center>
+
+$\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{\left(6\right)^2 - \left(6\right) - 20} = \frac{30}{10}}$
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3, -5), y = c(-3/10, 0, 0, 48/5)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5} > 2}$
+
+:::
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = 6$:**</center>
+
+$\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{\left(6\right)^2 - \left(6\right) - 20} = 3}$
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+ggplot() +
+  geom_point(aes(x = c(0, 1, 3, -5, 6), y = c(-3/10, 0, 0, 48/5, 3)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5} > 2}$
+
+:::
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = 6$:**</center>
+
+$\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{\left(6\right)^2 - \left(6\right) - 20} = 3 > 2}$
+
+:::
+
+:::{.column width="20%"}
+
+:::{.fragment}
+
+Now we draw an approximate graph respecting all asymptotes and reference points.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Complete Graph
+
+<div style="font-size:17pt">
+
+We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.nonincremental}
+
++ vertical asymptotes at $x = -4$ and $x = 5$,
++ a horizontal asymptote at $y = 2$,
++ roots at $\left(1, 0\right)$ and $\left(3, 0\right)$, and
++ a $y$-intercept at $\left(0, -3/10\right)$
+
+:::
+
+To complete the sketch, we'll need reference points from each of the domain regions. We'll find one to the left of $x = -4$ and one to the right of $x = 5$ because we already have reference points in the middle section.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+#| echo: false
+#| message: false
+
+my_func <- function(x){
+  top <- 2*x^2 - 8*x + 6
+  bottom <- x^2 - x - 20
+  return(top/bottom)
+}
+
+x_vals_1 <- seq(-10, -3.9, length.out = 500)
+x_vals_2 <- seq(-4.1, 4.9, length.out = 500)
+x_vals_3 <- seq(5.1, 10, length.out = 500)
+y_vals_1 <- my_func(x_vals_1)
+y_vals_2 <- my_func(x_vals_2)
+y_vals_3 <- my_func(x_vals_3)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = y_vals_1),
+            color = "blue") + 
+  geom_line(aes(x = x_vals_2, y = y_vals_2),
+            color = "blue") + 
+  geom_line(aes(x = x_vals_3, y = y_vals_3),
+            color = "blue") + 
+  geom_point(aes(x = c(0, 1, 3, -5, 6), y = c(-3/10, 0, 0, 48/5, 3)), size = 3, color = "black") +
+  geom_vline(xintercept = c(-4, 5), linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -4, y = 9, label = "x = -4", color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 5,  y = 9, label = "x = 5",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("text", x = 8,  y = 2.75, label = "y = 2",  color = "gray30", size = 6.5, hjust = -0.1) +
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -10, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10)) +
+  scale_x_continuous(breaks = seq(-10, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 10, by = 2)) +
+  labs(title = latex2exp::TeX("Partial graph of $f(x) = (2x^2 - 8x + 6)/(x^2 - x - 20)$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = -5$:**</center>
+$\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 6}{\left(-5\right)^2 - \left(-5\right) - 20} = \frac{48}{5} > 2}$
+
+:::
+
+:::{.column width="40%"}
+
+<center>**Reference Point at $x = 6$:**</center>
+
+$\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{\left(6\right)^2 - \left(6\right) - 20} = 3 > 2}$
+
+:::
+
+:::{.column width="20%"}
+
+Now we draw an approximate graph respecting all asymptotes and reference points.
+
+:::
+
+::::
+
+</div>
+
+## Sketching the Graph Practice
+
+<div style="font-size:17pt">
+
+**Try It! 4:** Use your findings from the earlier **Try It!** activities to sketch the graph of $\displaystyle{g\left(x\right) = \frac{-4x^2 - 4x + 24}{5x^2 + 5x - 100}}$. Be sure to include any holes, vertical asymptotes, horizontal asymptote, roots, the $y$-intercept, and at least one reference point from each region.
+
+*Before sketching:* Based on your analysis of the function $g\left(x\right)$ so far, how many separate "pieces" will the graph have? In which region will each root appear?
+
+</div>
+
+## The Full Strategy
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Strategy (Analyzing and Graphing a Rational Function):** Consider the rational function $\displaystyle{r\left(x\right) = \frac{p\left(x\right)}{q\left(x\right)}}$.
+
+:::
+
+1. Start by factoring both $p\left(x\right)$ and $q\left(x\right)$ completely.
+2. **Domain:** find all $x$ where $q\left(x\right) = 0$ and exclude them.
+3. **Vertical asymptotes and holes:** each excluded $x$ value corresponds to either a *hole* or a *vertical asymptote*.
+    + A hole occurs at $x = a$ if $\left(x - a\right)$ is a factor of both $p\left(x\right)$ and $q\left(x\right)$.
+    + A vertical asymptote occurs at $x = a$ if $\left(x - a\right)$ is a factor of $q\left(x\right)$, but not $p\left(x\right)$.
+4. **Roots:** solve $p\left(x\right) = 0$, and verify that the denominator is not also $0$ there (otherwise there is a hole instead of a root).
+5. **$y$-intercept:** evaluate $r\left(0\right)$, again checking that $0$ is a permissible input. Otherwise, the function $r\left(x\right)$ has no $y$-intercept.
+6. **Horizontal asymptote:** evaluate $\displaystyle{\lim_{x\to\infty}{\frac{p\left(x\right)}{q\left(x\right)}}}$ by dividing every term in the numerator and denominator by the highest power of $x$ in the entire function.
+    + Terms with a remaining $x$ in the denominator after simplifying will vanish as $x\to\infty$.
+7. **Reference points:** evaluate $r\left(x\right)$ for at least one $x$-value in each region beyond and between asymptotes.
+    + Compare the height ($y$-coordinate) of the reference point to any horizontal asymptote (if one exists) and be sure to plot the location of the reference point appropriately.
+8. **Sketch:** connect the dots, respecting asymptotes and root behavior.
+
+</div>
+
+## The Full Strategy Practice
+
+<div style="font-size:17pt">
+
+**Try It! 5:** Conduct a full analysis of the rational function $\displaystyle{h\left(x\right) = \frac{x^4 - 7x^3 - 9x^2 + 115x - 100}{x^4 - 7x^3 - 25x^2 + 151x - 120}}$
+
+*Hints*. The expression $x^4 - 7x^3 - 9x^2 + 115x -100$ factors into $\left(x + 4\right)\left(x - 1\right)\left(x - 5\right)^2$. Similarly, the expression $x^4 - 7x^3 - 25x^2  + 151x - 120$ factors into $\left(x+ 5\right)\left(x - 1\right)\left(x - 3\right)\left(x - 8\right)$.
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `14. Rational Functions and Equations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $\displaystyle{j\left(x\right) = \frac{x - 4}{x^2 - x - 6}}$.
+
+$\left(a\right)$ Find the domain of $j\left(x\right)$.
+
+$\left(b\right)$ Find the roots of $j\left(x\right)$, if any exist.
+
+$\left(c\right)$ Find any vertical and horizontal asymptotes.
+
+$\left(d\right)$ Sketch an approximate graph of $j\left(x\right)$.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ A **rational function** $\displaystyle{r\left(x\right) = \frac{p(x)}{q(x)}}$ is undefined where $q\left(x\right) = 0$ — those are domain restrictions.
++ **Vertical asymptotes** occur at $x = a$ where $q\left(a\right) = 0$ but $p\left(a\right)\neq 0$.
++ **Holes** occur at $x = a$, where $q\left(a\right) = 0$ and $p\left(a\right) = 0$.
++ **Horizontal asymptotes** describe end behavior. A rational function may have zero or one horizontal asymptote. Find it by evaluating $\displaystyle{\lim_{x\to \infty}{\frac{p\left(x\right)}{q\left(x\right)}}}$.
++ **Roots** come from the numerator: solve $p\left(x\right) = 0$.
++ Use **reference points** between asymptotes and roots to determine the location of the graph of $r\left(x\right)$ in each domain region, then sketch.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ We'll continue our exploration of different function classes with **radical functions**.
++ This class of function introduces us to a new type of domain restriction.
++ Our analysis will include more of the same -- domain, $y$-intercept, roots, end behavior, etc.
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Radical Functions</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Start Homework 10 on MyOpenMath</center>
+
+:::
+
+:::
+
+::::
+
+:::
+
+
+</div>

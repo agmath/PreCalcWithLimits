@@ -1,0 +1,3272 @@
+---
+title: "MAT 142: Radical Functions and Equations"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders and Warm-Up
+
+<div style="font-size:15pt">
+
+:::{.fragment}
+
+Last class we studied rational functions. Before moving on, let's practice solving a **rational equation** — and encounter a trap that will reappear today.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Solve $\displaystyle{\frac{3}{x} + 2 = \frac{5}{x}}$.
+
+:::
+
+:::{.fragment}
+
+*Hint*. To start, multiply both sides by $x$ (the simplest common denominator), then solve.
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Solve $\displaystyle{\frac{6}{x^2 - 9} + \frac{1}{x + 3} = \frac{2}{x - 3}}$.
+
+:::
+
+:::{.fragment}
+
+*Hint*. Start similarly and pay close attention to your solutions.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Extraneous Solutions
+
+An *extraneous solution* is an algebraically valid result that fails when substituted back into the original equation — often because it violates a domain restriction. **Always check solutions** when multiplying by an expression containing a variable.
+
+:::
+
+:::
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+This same trap appears today with radical equations, where squaring both sides can introduce extraneous solutions.
+
+:::
+
+</div>
+
+## Objectives
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Today we study **radical functions** — functions built from roots of expressions.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify the domain of a radical function based on the index of the root.
++ Solve polynomial inequalities using sign testing.
++ Find the roots and $y$-intercept of a radical function.
++ Sketch the graph of a radical function.
+
+</div>
+
+## What Is a Radical Function?
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition (Radical Function):** A function of the form
+
+$$f\left(x\right) = \sqrt[n~~~]{g\left(x\right)} = \left(g\left(x\right)\right)^{1/n}$$
+
+where $n$ is a positive integer, is called a *radical* (or *root*) function.
+
+:::
+
+:::{.fragment}
+
+**Domain depends on the index $n$:**
+
+:::
+
++ If $n$ is **odd**: the domain is all real numbers (odd roots of negatives are defined).
++ If $n$ is **even**: the domain requires $g\left(x\right) \geq 0$ (even roots of negatives result in complex numbers).
+
+:::{.fragment}
+
+**Roots:** $f\left(x\right) = 0$ only when $g\left(x\right) = 0$.
+
+:::
+
+:::{.fragment}
+
+**$y$-intercept:** Evaluate $f\left(0\right)$, provided $0$ is in the domain.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## On Notation
+
+While the root notation ($\sqrt{~~~}$) is common, it is almost always more mathematically convenient to use the exponent notation.
+
+For example, instead of witing $f\left(x\right) = \sqrt{x}$, write $f\left(x\right) = x^{1/2}$
+
+:::
+
+:::
+
+## Domain of Radical Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 1:** Find the domain of the radical function $\displaystyle{f\left(x\right) = 3\sqrt{\left(x - 9\right)} + 17}$
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+Since the order of the root is even, we need the argument (the expression inside of the square root) to be non-negative.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x - 9\geq 0
+\end{align}
+
+:::
+
+</div>
+
+## Domain of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 1:** Find the domain of the radical function $\displaystyle{f\left(x\right) = 3\sqrt{\left(x - 9\right)} + 17}$
+
+*Solution.*
+
+Since the order of the root is even, we need the argument (the expression inside of the square root) to be non-negative.
+
+\begin{align} x - 9\geq 0\\
+\implies x \geq 9
+\end{align}
+
+:::{.fragment}
+
+The domain of $f\left(x\right)$ is $x\geq 9$, or equivalently $\left[9, \infty\right)$
+
+:::
+
+:::{.fragment}
+
+**Example 2:** Find the domain of the radical function $\displaystyle{g\left(x\right) = 5\left(\frac{x + 8}{7}\right)^{1/7} - 4}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+Since the order of the root is odd (it is a *seventh* root), the domain consists of *all real numbers*, or equivalently $\left(-\infty, \infty\right)$.
+
+:::
+
+</div>
+
+## Domain of Radical Functions Practice
+
+<div style="font-size:17pt">
+
+Before encountering a comprehensive example, let's build intuition for domains. Find the domain of each function:
+
+**Try It! 1:** Find the domain of the function $\displaystyle{f\left(x\right) = \sqrt{\left(\frac{3x + 4}{8}\right)}}$.
+
+**Try It! 2:** Find the domain of the function $\displaystyle{g\left(x\right) = 3\sqrt[5~]{\left(x^2 - 9x + 20\right)}}$.
+
+**Try It! 3:** Find the domain of the function $\displaystyle{h\left(x\right) = -2\left(x^2 - 9x + 20\right)^{1/4} + 10}$.
+
+**Try It! 4:** Find the domain of the function $\displaystyle{j\left(x\right) = \frac{5}{\sqrt{\left(8 - 2x\right)}}}$
+
+:::{.fragment}
+
+There are several interesting things to consider across the examples above.
+
++ The second and third functions have the same expression inside the radical. Why do the domains differ?
++ Why must the inequality describing the domain in of the fourth function be strict (that is, it doesn't include the finite boundary endpoint)?
++ What is an appropriate strategy for solving the inequality describing the domain of the third function?
+
+:::
+
+</div>
+
+## Solving Polynomial Inequalities
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Finding domains of even-degree radical functions requires solving inequalities like $g\left(x\right) \geq 0$. In all but the simplest cases (like **Example 1** and **Try It! 1**), we use *sign testing*.
+
+:::
+
+:::{.fragment}
+
+**Strategy (Sign Testing):** To find the domain of a function that includes $\displaystyle{\left(g\left(x\right)\right)^{\frac{1}{2n}}}$, follow the steps below.
+
+:::
+
+1. Find the roots of $g\left(x\right)$ — these are the potential boundary locations.
+2. The roots divide the number line into intervals.
+3. Test one point in each interval to determine the sign of $g\left(x\right)$ there.
+4. The domain for this part of the function consists of intervals where the sign is positive (or zero, if it is permissible for $\displaystyle{\left(g\left(x\right)\right)^{\frac{1}{2n}}}$ to evaluate to $0$).
+
+:::{.fragment}
+
+The function can only change sign at its roots, so one test point per interval is sufficient.
+
+:::
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+:::
+
+:::{.fragment}
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$
+
+:::
+
+:::{.fragment}
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} x^2 - 5x - 14 &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+::::
+
+:::{.fragment}
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  #geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  #annotate("text", x = -10, y = -0.5, label = "-10", size = 6) +
+  #annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  #annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+:::
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+<center>**Conduct Sign Analysis:**</center>
+
+:::
+
+:::{.fragment}
+
+Can either evaluate the sign (positive/negative) from $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+
+:::
+
+:::
+
+::::
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  #annotate("text", x = -10, y = -0.5, label = "-10", size = 6) +
+  #annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  #annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Conduct Sign Analysis:**</center>
+
+Can either evaluate the sign (positive/negative) from $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+
+:::
+
+::::
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7, -5), y = c(0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) +
+  #annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  #annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Conduct Sign Analysis:**</center>
+
+Can either evaluate the sign (positive/negative) from $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+
+:::
+
+::::
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7, -5), y = c(0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) +
+  #annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Conduct Sign Analysis:**</center>
+
+Can either evaluate the sign (positive/negative) from $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+
+:::
+
+::::
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7, -5, 0), y = c(0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) +
+  #annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Conduct Sign Analysis:**</center>
+
+Can either evaluate the sign (positive/negative) from $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+
+:::
+
+::::
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7, -5, 0), y = c(0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) +
+  #annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Conduct Sign Analysis:**</center>
+
+Can either evaluate the sign (positive/negative) from $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+
+:::
+
+::::
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7, -5, 0, 10), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) +
+  annotate("text", x = 10, y = -0.5, label = "10", size = 6) +
+  annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
+
+*Solution.*
+
+Since the root is even order (8th root), we need to consider domain restrictions.
+
+The function $f\left(x\right)$ will only be defined when $x^2 - 5x - 14 \geq 0$.
+
+We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} x^2 - 5x - 14 &= 0\\
+\implies \left(x - 7\right)\left(x + 2\right) &= 0\\
+\implies x = 7 &\text{ or } x = -2
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Conduct Sign Analysis:**</center>
+
+Either evaluate the sign (positive/negative) using $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+
+:::{.fragment}
+
+**Domain:** $\boxed{~\left(-\infty, -2\right]\cup \left[7, \infty\right)~}$
+
+:::
+
+:::
+
+::::
+
+The analysis above results in three sub-intervals where the expression under the root is not zero: $\left(-\infty, -2\right)$, $\left(-2, 7\right)$, and $\left(7, \infty\right)$.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 7, -5, 0, 10), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 7, y = -0.5, label = "7", size = 6) + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) +
+  annotate("text", x = 10, y = -0.5, label = "10", size = 6) +
+  annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+Again, we need the expression under the root to be non-negative.
+
+:::
+
+:::{.fragment}
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+:::
+
+:::{.fragment}
+
+We'll draw a number line and conduct the sign analysis.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  #geom_vline(xintercept = c(-2, 7), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6), y = c(0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  #annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+:::
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6), y = c(0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  #annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  #annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3), y = c(0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3), y = c(0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "(+)(-)(-)^2(-)", size = 6, color = "darkgreen") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3), y = c(0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0), y = c(0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0), y = c(0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0.5, y = 0.5, label = "(+)(+)(-)^2(-)", size = 6, color = "darkred") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0), y = c(0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0.5, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0, 4), y = c(0, 0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0.5, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0, 4), y = c(0, 0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0.5, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 4, y = 0.5, label = "(+)(+)(+)^2(-)", size = 6, color = "darkred") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0, 4), y = c(0, 0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0.5, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 4, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0, 4, 8), y = c(0, 0, 0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = 8, y = -0.5, label = "8", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0.5, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 4, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## More Domains of Radical Functions
+
+<div style="font-size:17pt">
+
+**Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
+
+*Solution.*
+
+Again, we need the expression under the root to be non-negative.
+
+Notice that the boundary values (the $x$-values resulting in $0$ under the radical) are $x = -5$, $-1$, $2$, and $6$
+
+We'll draw a number line and conduct the sign analysis.
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 11, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 11, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-5, -1, 2, 6), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-5, -1, 2, 6, -8, -3, 0, 4, 8), y = c(0, 0, 0, 0, 0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -5, y = -0.5, label = "-5", size = 6) + 
+  annotate("text", x = -1, y = -0.5, label = "-1", size = 6) + 
+  annotate("text", x = 2, y = -0.5, label = "2", size = 6) +
+  annotate("text", x = 6, y = -0.5, label = "6", size = 6) +
+  annotate("text", x = -3, y = -0.5, label = "-3", size = 6) +
+  annotate("text", x = -8, y = -0.5, label = "-8", size = 6) +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) +
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = 8, y = -0.5, label = "8", size = 6) +
+  annotate("text", x = -8, y = 0.5, label = "(-)(-)(-)^2(-): Negative", size = 6, color = "darkred") +
+  annotate("text", x = -3, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0.5, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 4, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 9, y = 0.5, label = "(+)(+)(+)^2(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 11), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+:::{.fragment}
+
+All of the boundary values and the segments corresponding to positive values under the radical are included in the domain.
+
+:::
+
+:::{.fragment}
+
+We'll use $\{2\}$ to indicate the single value $2$ when we write the domain.
+
+:::
+
+:::{.fragment}
+
+**Domain:** $\boxed{~\left[-5, -1\right]\cup\left\{2\right\}\cup\left[6, \infty\right)~}$
+
+:::
+
+:::{.fragment}
+
+*Note.* As seen here, intervals won't necessarily alternate signs. Test them all.
+
+:::
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+:::
+
+:::{.fragment}
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} x^2 - 11x - 26 &= 0
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+:::{.fragment}
+
+**Step 2:** These roots create three intervals
+
+:::
+
+:::{.fragment}
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_point(aes(x = c(-2, 13), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+:::
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  #annotate("text", x = -10, y = -0.5, label = "-10", size = 6) + 
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+:::{.fragment}
+
+$\displaystyle{g\left(-10\right) = \left(-10\right)^2 - 11\left(-10\right) - 26}$
+
+:::
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10), y = c(0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) + 
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = \left(100 + 110 - 26\right)}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10), y = c(0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) + 
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10), y = c(0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) + 
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10, 0), y = c(0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) + 
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+$\displaystyle{g\left(0\right) = \left(0\right)^2 - 11\left(0\right) - 26}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10, 0), y = c(0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) + 
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+$\displaystyle{g\left(0\right) = - 26}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10, 0), y = c(0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) + 
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+$\displaystyle{g\left(0\right) = - 26}$
+
+:::{.fragment}
+
+$\displaystyle{g\left(15\right) = \left(15\right)^2 - 11\left(15\right) - 26}$
+
+:::
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10, 0, 15), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) +
+  annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+$\displaystyle{g\left(0\right) = - 26}$
+
+$\displaystyle{g\left(15\right) = 225 - 165 - 26}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10, 0, 15), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) +
+  annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+$\displaystyle{g\left(0\right) = - 26}$
+
+$\displaystyle{g\left(15\right) = 34}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10, 0, 15), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) +
+  annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+Since the index is $2$ (even), we need $x^2 - 11x - 26 \geq 0$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**Step 1:** Find roots of $x^2 - 11x - 26 = 0$.
+
+\begin{align} x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = 13 &\text{ or } x = -2
+\end{align}
+
+**Step 2:** These roots create three intervals
+
+$\left(-\infty, -2\right)$, $\left(-2, 13\right)$, and $\left(13, \infty\right)$
+
+:::
+
+:::{.column width="50%"}
+
+**Step 3:** Test one point in each interval.
+
+$\displaystyle{g\left(-10\right) = 184}$
+
+$\displaystyle{g\left(0\right) = - 26}$
+
+$\displaystyle{g\left(15\right) = 34}$
+
+**Domain:** $\boxed{~\left(-\infty, -2\right] \cup \left[13, \infty\right)~}$
+
+:::
+
+::::
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -20, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 20, xend = -20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-2, 13), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-2, 13, -10, 0, 15), y = c(0, 0, 0, 0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -2, y = -0.5, label = "-2", size = 6) + 
+  annotate("text", x = 13, y = -0.5, label = "13", size = 6) + 
+  annotate("text", x = -10, y = -0.5, label = "-10", size = 6) +
+  annotate("text", x = 15, y = -0.5, label = "15", size = 6) +
+  annotate("text", x = -10, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 6, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 16, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-20, 20), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+**Domain:** $\boxed{~\left(-\infty, -2\right]\cup \left[13, \infty\right)~}$
+
+:::{.fragment}
+
+**Roots:** We'll solve $f\left(x\right) = 0$
+
+:::
+
+:::{.fragment}
+
+\begin{align} \sqrt{\left(x^2 - 11x - 26\right)} &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+**Domain:** $\boxed{~\left(-\infty, -2\right]\cup \left[13, \infty\right)~}$
+
+**Roots:** We'll solve $f\left(x\right) = 0$
+
+\begin{align} \sqrt{\left(x^2 - 11x - 26\right)} &= 0\\
+\implies x^2 - 11x - 26 &= 0
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+**Domain:** $\boxed{~\left(-\infty, -2\right]\cup \left[13, \infty\right)~}$
+
+**Roots:** We'll solve $f\left(x\right) = 0$
+
+\begin{align} \sqrt{\left(x^2 - 11x - 26\right)} &= 0\\
+\implies x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+**Domain:** $\boxed{~\left(-\infty, -2\right]\cup \left[13, \infty\right)~}$
+
+**Roots:** We'll solve $f\left(x\right) = 0$
+
+\begin{align} \sqrt{\left(x^2 - 11x - 26\right)} &= 0\\
+\implies x^2 - 11x - 26 &= 0\\
+\implies \left(x - 13\right)\left(x + 2\right) &= 0\\
+\implies x = -2 &\text{ or } x = 13
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+**Domain:** $\boxed{~\left(-\infty, -2\right]\cup \left[13, \infty\right)~}$
+
+**Roots:** The roots of $f\left(x\right)$ are at $\boxed{~\left(-2, 0\right)~}$ and $\boxed{~\left(13, 0\right)~}$
+
+:::{.fragment}
+
+**$y$-intercept:** Note that $x = 0$ is not in the domain of the function. This means that there is no $y$-intercept.
+
+:::
+
+:::{.fragment}
+
+**End behavior:** We'll analyse $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)}}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)}}$
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to -\infty}{f\left(x\right)} = \lim_{x\to -\infty}{\sqrt{\left(x^2 - 11x - 26\right)}}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+The quadratic under the root goes off to infinity.
+
+:::
+
+:::{.fragment}
+
+Because of this, the root goes off to infinity as well.
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to -\infty}{f\left(x\right)} &= \infty
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to \infty}{f\left(x\right)} = \lim_{x\to \infty}{\sqrt{\left(x^2 - 11x - 26\right)}}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+The quadratic under the root goes off to infinity.
+
+:::
+
+:::{.fragment}
+
+Because of this, the root goes off to infinity as well.
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to \infty}{f\left(x\right)} &= \infty
+\end{align}
+
+:::
+
+:::
+
+::::
+
+
+
+</div>
+
+## Analysis of Radical Functions I
+
+<div style="font-size:16pt">
+
+**Example 5:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 11x - 26\right)}}$. Use your results to sketch the graph of $f\left(x\right)$
+
+*Solution.* 
+
+**Domain:** $\boxed{~\left(-\infty, -2\right]\cup \left[13, \infty\right)~}$
+
+**Roots:** The roots of $f\left(x\right)$ are at $\boxed{~\left(-2, 0\right)~}$ and $\boxed{~\left(13, 0\right)~}$
+
+**$y$-intercept:** Note that $x = 0$ is not in the domain of the function. This means that there is no $y$-intercept.
+
+**End behavior:** We've found $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = \infty}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = \infty}$
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x1 <- seq(-10, -2, length.out = 500)
+x2 <- seq(13, 20, length.out = 500)
+f <- function(x) sqrt(x^2 - 11*x - 26)
+
+ggplot() +
+  geom_line(aes(x = x1, y = f(x1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x2, y = f(x2)), color = "blue", linewidth = 1) +
+  geom_point(aes(x = c(-2, 13), y = c(0, 0)), size = 3, color = "black") +
+  annotate("segment", x = -10, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -1, yend = 12,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-10, 20), ylim = c(-1, 12)) +
+  scale_x_continuous(breaks = seq(-10, 20, by = 5)) +
+  labs(title = latex2exp::TeX("$f(x) = \\sqrt{x^2 - 11x - 26}$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+**Domain:** We'll start by finding the boundary values.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 16 - x^2 &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** We'll start by finding the boundary values.
+
+\begin{align} 16 - x^2 &= 0\\
+\implies x^2 &= 16
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** We'll start by finding the boundary values.
+
+\begin{align} 16 - x^2 &= 0\\
+\implies x^2 &= 16\\
+\implies x &= \pm 4
+\end{align}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 10, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-4, 4), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-4, 4), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -4, y = -0.5, label = "-4", size = 6) + 
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  #annotate("text", x = -5, y = 0.5, label = "(-)(-): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+:::
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** We'll start by finding the boundary values.
+
+\begin{align} 16 - x^2 &= 0\\
+\implies x^2 &= 16\\
+\implies x &= \pm 4
+\end{align}
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 10, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-4, 4), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-4, 4), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -4, y = -0.5, label = "-4", size = 6) + 
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = -7, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 2, y = 0.5, label = "(-)(+): Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** We'll start by finding the boundary values.
+
+\begin{align} 16 - x^2 &= 0\\
+\implies x^2 &= 16\\
+\implies x &= \pm 4
+\end{align}
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 10, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-4, 4), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-4, 4), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -4, y = -0.5, label = "-4", size = 6) + 
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = -7, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 0, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 9.5, y = 0.5, label = "(+)(+): Positive", size = 6, color = "darkgreen") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** We'll start by finding the boundary values.
+
+\begin{align} 16 - x^2 &= 0\\
+\implies x^2 &= 16\\
+\implies x &= \pm 4
+\end{align}
+
+```{r}
+#| echo: false
+#| fig.height: 1
+
+ggplot() + 
+  annotate("segment", x = -10, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 10, xend = -10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  geom_vline(xintercept = c(-4, 4), color = "grey30", linetype = "dashed", linewidth = 0.75) +
+  geom_point(aes(x = c(-4, 4), y = c(0, 0)),
+             size = 3, color = "black") + 
+  annotate("text", x = -4, y = -0.5, label = "-4", size = 6) + 
+  annotate("text", x = 4, y = -0.5, label = "4", size = 6) +
+  annotate("text", x = -7, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  annotate("text", x = 0, y = 0.5, label = "Positive", size = 6, color = "darkgreen") +
+  annotate("text", x = 7, y = 0.5, label = "Negative", size = 6, color = "darkred") +
+  #annotate("text", x = 0, y = -0.5, label = "0", size = 6) + 
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-0.75, 0.75)) +
+  theme_void()
+```
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+:::{.fragment}
+
+**Roots:** We'll solve $g\left(x\right) = 0$
+
+:::
+
+:::{.fragment}
+
+\begin{align} \sqrt{\left(16 - x^2\right)} &= 0
+\end{align}
+
+:::
+
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+**Roots:** We'll solve $g\left(x\right) = 0$
+
+\begin{align} \sqrt{\left(16 - x^2\right)} &= 0\\
+\implies 16 - x^2 &= 0
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+**Roots:** We'll solve $g\left(x\right) = 0$
+
+\begin{align} \sqrt{\left(16 - x^2\right)} &= 0\\
+\implies 16 - x^2 &= 0\\
+\implies x^2 = 16
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+**Roots:** We'll solve $g\left(x\right) = 0$
+
+\begin{align} \sqrt{\left(16 - x^2\right)} &= 0\\
+\implies 16 - x^2 &= 0\\
+\implies x^2 = 16\\
+\implies x = \pm 4
+\end{align}
+
+:::{.fragment}
+
+There's no surprise here. The roots are the boundary values we found earlier.
+
+:::
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+**Roots:** The roots of $g\left(x\right)$ are at $\left(-4, 0 \right)$ and $\left(4, 0\right)$.
+
+:::{.fragment}
+
+**$y$-intercept:** We'll evaluate $g\left(0\right)$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} g\left(0\right) = \sqrt{\left(16 - \left(0\right)^2\right)}
+\end{align}
+
+:::
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+**Roots:** The roots of $g\left(x\right)$ are at $\left(-4, 0 \right)$ and $\left(4, 0\right)$.
+
+**$y$-intercept:** We'll evaluate $g\left(0\right)$.
+
+\begin{align} g\left(0\right) &= \sqrt{\left(16 - \left(0\right)^2\right)}\\
+&= \sqrt{16}
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+**Roots:** The roots of $g\left(x\right)$ are at $\left(-4, 0 \right)$ and $\left(4, 0\right)$.
+
+**$y$-intercept:** We'll evaluate $g\left(0\right)$.
+
+\begin{align} g\left(0\right) &= \sqrt{\left(16 - \left(0\right)^2\right)}\\
+&= \sqrt{16}\\
+&= 4
+\end{align}
+
+</div>
+
+## Analysis of Radical Functions II
+
+<div style="font-size:16pt">
+
+**Example 6:** Find the domain, roots, $y$-intercept, and end behavior of $\displaystyle{g\left(x\right) = \sqrt{\left(16 - x^2\right)}}$. Use your results to sketch the graph of $g\left(x\right)$.
+
+*Solution.*
+
+**Domain:** $\left[-4, 4\right]$
+
+**Roots:** The roots of $g\left(x\right)$ are at $\left(-4, 0 \right)$ and $\left(4, 0\right)$.
+
+**$y$-intercept:** The $y$-intercept of the function is at $\left(0, 4\right)$.
+
+:::{.fragment}
+
+**End Behavior:** Not applicable since the domain does not extend toward positive or negative infinity.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-4, 4, length.out = 500)
+f <- function(x) sqrt(16 - x^2)
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f(x_vals)), color = "blue", linewidth = 1) +
+  geom_point(aes(x = c(-4, 4), y = c(0, 0)), size = 3, color = "black") +
+  annotate("segment", x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -1, yend = 6,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-1, 6)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = seq(-1, 6, by = 1)) +
+  labs(title = latex2exp::TeX("$g(x) = \\sqrt{16 - x^2}$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+</div>
+
+## Radical Function Practice
+
+<div style="font-size:16pt">
+
+For each radical function below, find: (i) the domain, (ii) any roots, and (iii) the $y$-intercept (if one exists).
+
+:::{.fragment}
+
+**Try It! 1:** $\displaystyle{f\left(x\right) = \sqrt{\left(4 - 2x\right)}}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 2:** $\displaystyle{g\left(x\right) = \sqrt{\left(3x^2 - 4x - 15\right)}}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 3:** $\displaystyle{h\left(x\right) = \sqrt{\left(x^2 - 9\right)}}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 4:** $\displaystyle{j\left(x\right) = \sqrt{\left(x^2 + 9\right)}}$
+
+:::
+
+:::{.fragment}
+
+**Try It! 5:** $\displaystyle{k\left(x\right) = \sqrt{\left(x + 3\right)^2}}$
+
+:::
+
+:::{.fragment}
+
+> **Challenge for Try It! 5:** Before computing, predict what the graph will look like. Then simplify $\sqrt{\left(x+3\right)^2}$ algebraically. Does the result match your prediction?
+
+:::
+
+</div>
+
+## Radical Functions and Inverse Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Radical functions arise naturally as *inverses of power functions*.
+
+:::
+
+:::{.fragment}
+
+For example, $f\left(x\right) = x^2$ is not invertible over all of $\mathbb{R}$ — it fails the horizontal line test. But if we restrict its domain to $x \geq 0$, then $f\left(x\right) = x^2$ is invertible, and its inverse is $f^{-1}\left(x\right) = \sqrt{x}$.
+
+:::
+
+:::{.fragment}
+
+This is one justification for why $\sqrt{x}$ is only defined for $x \geq 0$. It's the inverse of a function whose restricted domain was $x \geq 0$.
+
+:::
+
+:::{.fragment}
+
+More generally, if $n$ is even, then $f\left(x\right) = x^n$ restricted to $x \geq 0$ has inverse $f^{-1}\left(x\right) = x^{1/n} = \sqrt[n]{x}$.
+
+:::
+
+:::{.fragment}
+
+For *odd* $n$, no domain restriction is needed because $f\left(x\right) = x^n$ already passes the horizontal line test on all of $\mathbb{R}$.
+
+:::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `15. Radical Functions and Equations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $\displaystyle{f\left(x\right) = \sqrt{\left(x^2 - 4x - 12\right)}}$.
+
+$\left(a\right)$ Find the domain of $f\left(x\right)$ using sign testing.
+
+$\left(b\right)$ Find any roots and the $y$-intercept (if one exists).
+
+$\left(c\right)$ Sketch a rough graph.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ A **radical function** $f\left(x\right) = \left(g\left(x\right)\right)^{1/n}$ has domain that depends on whether $n$ is even or odd.
+    + Odd index: all real numbers.
+    + Even index: solve $g\left(x\right) \geq 0$ using sign testing.
++ **Sign testing:** find roots of $g$, test one point per interval, keep intervals where the sign is non-negative.
++ **Roots** of $f$ occur where $g\left(x\right) = 0$.
++ Radical functions arise as inverses of power functions with domain restrictions.
++ **Extraneous solutions** can appear whenever you multiply both sides by a variable expression (rational equations) or raise both sides to a power (radical equations) — always check solutions.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ With algebraic functions complete, we move into **exponential and logarithmic functions**.
++ These are genuinely new classes of function. For example, exponential functions have the independent variable in the exponent.
++ The inverse relationship between exponentials and logarithms connects directly back to our Day 9 discussion on inverse functions.
+    + Take a look back at that discussion for a refresher.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Basics of Exponentials and Logarithms</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 10 on MyOpenMath</center>
+
+:::
+
+</div>

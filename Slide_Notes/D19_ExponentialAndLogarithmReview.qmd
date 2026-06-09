@@ -1,0 +1,2353 @@
+---
+title: "MAT 142: Exponential and Logarithm Foundations"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Last class we studied radical functions — the final class of algebraic function in our course. Today we begin an investigation of two genuinely new function classes.
+
+:::
+
+:::{.fragment}
+
+Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Which of the following are radical functions? Which are rational functions? Which are neither?
+
+$$f\left(x\right) = \frac{x^2 - 5x}{x^2 - 25}, \quad g\left(x\right) = 3\sqrt[5]{\left(x^2 - 9x + 20\right)}, \quad h\left(x\right) = \frac{x + 8}{\sqrt{\left(x^2 - 36\right)}}$$
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Find the domain of each function in Problem 1.
+
+:::
+
+:::{.fragment}
+
+**Problem 3:** A student claims that $\sqrt{\left(x^2\right)} = x$ for all real $x$. Is the student correct? If not, give a counterexample and write the correct statement.
+
+:::
+
+</div>
+
+## Objectives
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Today we review two genuinely new classes of function that behave differently from everything we've seen so far: *exponential* and *logarithmic* functions.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Apply the laws of exponents to simplify exponential expressions.
++ Convert between logarithmic and exponential form.
++ Apply the laws of logarithms to expand and condense logarithmic expressions.
++ Use inverse properties of exponentials and logarithms to simplify expressions.
++ Solve exponential and logarithmic equations.
+
+</div>
+
+## Laws of Exponents
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+The following properties govern all exponential expressions of the form $a^b$.
+
+:::
+
+:::{.fragment}
+
+$$\begin{array}{lll}
+\textbf{(1)}~x^0 = 1,~\text{for}~x \neq 0 &  & \textbf{(2)}~x^1 = x\\[6pt]
+\textbf{(3)}~x^m x^n = x^{m+n} &  & \textbf{(4)}~\displaystyle{\frac{x^m}{x^n} = x^{m-n}}\\[6pt]
+\textbf{(5)}~\left(x^a\right)^b = x^{ab} &  & \textbf{(6)}~x^{-a} = \displaystyle{\frac{1}{x^a}},~\text{for}~x \neq 0\\[6pt]
+\textbf{(7)}~\left(xy\right)^a = x^a y^a &  & \textbf{(8)}~\displaystyle{\left(\frac{x}{y}\right)^a = \frac{x^a}{y^a}}
+\end{array}$$
+
+:::
+
+:::{.fragment}
+
+These are the same rules you used in algebra (and we reviewed in our Week One class meetings).
+
+:::
+
+:::{.fragment}
+
+They extend unchanged to any real exponent, including fractions, negatives, and variables.
+
+:::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+:::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(a)** 
+
+:::
+
+:::{.fragment}
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(b)**
+
+:::
+
+:::{.fragment}
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2}
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}\\
+&= \frac{y^{12}}{x^2y^4x^8}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}\\
+&= \frac{y^{12}}{x^2y^4x^8}\\
+&= \frac{y^{12}}{\left(x^2x^8\right)y^4}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}\\
+&= \frac{y^{12}}{x^2y^4x^8}\\
+&= \frac{y^{12}}{\left(x^2x^8\right)y^4}\\
+&= \frac{y^{12}}{x^{10}y^4}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}\\
+&= \frac{y^{12}}{x^2y^4x^8}\\
+&= \frac{y^{12}}{\left(x^2x^8\right)y^4}\\
+&= \frac{y^{12}}{x^{10}y^4}\\
+&= \boxed{~\frac{y^8}{x^{10}}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(c)**
+
+:::
+
+:::{.fragment}
+
+\begin{align} \left(\frac{x^8y^2}{\left(xy\right)^2}\right)^{1/2}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}\\
+&= \frac{y^{12}}{x^2y^4x^8}\\
+&= \frac{y^{12}}{\left(x^2x^8\right)y^4}\\
+&= \frac{y^{12}}{x^{10}y^4}\\
+&= \boxed{~\frac{y^8}{x^{10}}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(c)**
+
+\begin{align} \left(\frac{x^8y^2}{\left(xy\right)^2}\right)^{1/2} &= \frac{x^4y}{xy}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}\\
+&= \frac{y^{12}}{x^2y^4x^8}\\
+&= \frac{y^{12}}{\left(x^2x^8\right)y^4}\\
+&= \frac{y^{12}}{x^{10}y^4}\\
+&= \boxed{~\frac{y^8}{x^{10}}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(c)**
+
+\begin{align} \left(\frac{x^8y^2}{\left(xy\right)^2}\right)^{1/2} &= \frac{x^4y}{xy}\\
+&= \frac{x^3y}{y}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions
+
+<div style="font-size:16pt">
+
+**Example 1:** Simplify each expression. Write your answer with only positive exponents.
+
+$$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\frac{x y^2}{x^{-4} y^6}\right)^{-2} \qquad \left(c\right)~\left(\frac{x^8 y^2}{\left(xy\right)^2}\right)^{1/2}$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)** 
+
+\begin{align} \left(x^2 y^{-3}\right)^2 x y^5 &= x^4y^{-6}xy^5\\
+&= \left(x^4x\right)\left(y^{-6}y^5\right)\\
+&= x^5y^{-1}\\
+&= \boxed{~\frac{x^5}{y}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)**
+
+\begin{align} \left(\frac{xy^2}{x^{-4}y^6}\right)^{-2} &= \frac{x^{-2}y^{-4}}{x^8y^{-12}}\\
+&= \frac{y^{12}}{x^2y^4x^8}\\
+&= \frac{y^{12}}{\left(x^2x^8\right)y^4}\\
+&= \frac{y^{12}}{x^{10}y^4}\\
+&= \boxed{~\frac{y^8}{x^{10}}~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(c)**
+
+\begin{align} \left(\frac{x^8y^2}{\left(xy\right)^2}\right)^{1/2} &= \frac{x^4y}{xy}\\
+&= \frac{x^3y}{y}\\
+&= \boxed{~x^3~}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Exponential Expressions Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** Simplify $\displaystyle{\left(\frac{x^3 y^{-2}}{x^{-1} y^4}\right)^2}$. Write your answer with only positive exponents.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** Simplify $\displaystyle{\frac{\left(x^2y\right)^3\cdot x^{-4}}{y^{-2}\cdot\left(xy^2\right)^2}}$. Write your answer using only positive exponents.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 3:** Simplify $\displaystyle{\left(x^{-1/2}y^2\right)^4\cdot\left(x^3y^{-1}\right)^{-2}\right)}$. Write your answer using only positive exponents.
+
+</div>
+
+## What Is a Logarithm?
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition:** The *logarithm base $b$ of $a$* is the exponent to which we must raise $b$ to obtain $a$:
+
+$$\log_b\left(a\right) = y \iff b^y = a ~~~~~~\text{ or }~~~~~~ \log_{\Box}\left(\triangle\right) = \bigcirc \iff \Box^{^\bigcirc} = \triangle$$
+
+:::
+
+:::{.fragment}
+
+Logarithmic and exponential statements contain the same information, just expressed differently.
+
+:::
+
+:::{.fragment}
+
+**Reading the definition:** The *base* of the logarithm is the base of the corresponding exponential. The *argument* is the result of the exponentiation. The *output* of the logarithm is the required exponent.
+
+:::
+
+:::{.fragment}
+
+**Domain of logarithms:** Since a positive base raised to any real power is always positive, $\log_b\left(a\right)$ is only defined for $a > 0$. The domain of any logarithmic function is $\left(0, \infty\right)$.
+
+:::
+
+:::{.fragment}
+
+Put another way, we cannot take logarithms of negative numbers (or of $0$).
+
+:::
+
+</div>
+
+## Evaluating Logarithms
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 2:** Evaluate each logarithm by first converting to exponential form.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(1)** $\log_2\left(8\right)$
+
+:::
+
+:::{.fragment}
+
+*Ask*: For what $y$ is $2^y = 8$?
+
+:::
+
+:::{.fragment}
+
+Since $2^3 = 8$, we have $\boxed{~\log_{2}\left(8\right) = 3~}$.
+
+:::
+
+:::{.fragment}
+
+**(2)** $\log_3\left(81\right)$
+
+:::
+
+:::{.fragment}
+
+*Ask*: For what $y$ is $3^y = 81$?
+
+:::
+
+:::{.fragment}
+
+Since $3^4 = 81$, we have $\boxed{~\log_{3}\left(81\right) = 4~}$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(3)** $\displaystyle{\log_4\left(\frac{1}{64}\right)}$
+
+:::
+
+:::{.fragment}
+
+*Ask*: For what $y$ is $\displaystyle{4^y = \frac{1}{64}}$?
+
+:::
+
+:::{.fragment}
+
+We know that the exponent must be negative. Compensating for this, ask for what $z$ is $4^z = 64$?
+
+:::
+
+:::{.fragment}
+
+Since $4^3 = 64$, we have $\boxed{~\displaystyle{\log_4\left(\frac{1}{64}\right)} = -3~}$
+
+:::
+
+:::{.fragment}
+
+**(4)** $\log_{1/9}\left(81\right)$
+
+:::
+
+:::{.fragment}
+
+*Ask*: For what $y$ is $\displaystyle{\left(\frac{1}{9}\right)^y = 81}$?
+
+:::
+
+:::{.fragment}
+
+We know that the exponent must be negative. Compensating for that, ask for what $z$ is $9^z = 81$?
+
+:::
+
+:::{.fragment}
+
+Since $9^2 = 81$, we know that $\boxed{~\displaystyle{\log_{1/9}\left(81\right) = -2}~}$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Laws of Logarithms
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+The following properties govern logarithmic expressions. Each one is a direct consequence of the corresponding law of exponents.
+
+:::
+
+:::{.fragment}
+
+$$\begin{array}{ll}
+\textbf{(1)}~\log_a\!\left(1\right) = 0 & \textbf{(2)}~\log_a\!\left(a\right) = 1\\[6pt]
+\textbf{(3)}~\log_a\!\left(xy\right) = \log_a\!\left(x\right) + \log_a\!\left(y\right) & \textbf{(4)}~\log_a\!\left(\dfrac{x}{y}\right) = \log_a\!\left(x\right) - \log_a\!\left(y\right)\\[6pt]
+\textbf{(5)}~\log_a\!\left(x^n\right) = n\log_a\!\left(x\right) & \textbf{(6)}~\log_a\!\left(x\right) = \dfrac{\log_b\!\left(x\right)}{\log_b\!\left(a\right)} \quad \textit{(Change of Base)}
+\end{array}$$
+
+:::
+
+:::{.fragment}
+
+**Two special bases:**
+
+:::
+
++ $\log_{10}\left(x\right)$ is written simply as $\log\left(x\right)$ — the *common logarithm*.
++ $\log_e\left(x\right)$ is written as $\ln\left(x\right)$ — the *natural logarithm*, with base $e \approx 2.718$.
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+:::
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(a)**
+
+\begin{align} &2\log_2\!\left(x\right) - \log_2\!\left(5x\right)
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="33%"}
+
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)\\
+&= \boxed{~\log_2\left(\frac{x}{5}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(b)** 
+
+:::
+
+:::{.fragment}
+
+\begin{align} &\ln\left(x\right) + \ln\left(x + 1\right) -\ln\left(x^2\right)
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)\\
+&= \boxed{~\log_2\left(\frac{x}{5}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)** 
+
+\begin{align} &\ln\left(x\right) + \ln\left(x + 1\right) -\ln\left(x^2\right)\\
+&= \ln\left(x\left(x + 1\right)\right) - \ln\left(x^2\right)
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)\\
+&= \boxed{~\log_2\left(\frac{x}{5}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)** 
+
+\begin{align} &\ln\left(x\right) + \ln\left(x + 1\right) -\ln\left(x^2\right)\\
+&= \ln\left(x\left(x + 1\right)\right) - \ln\left(x^2\right)\\
+&= \ln\left(\frac{x\left(x + 1\right)}{x^2}\right)
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)\\
+&= \boxed{~\log_2\left(\frac{x}{5}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)** 
+
+\begin{align} &\ln\left(x\right) + \ln\left(x + 1\right) -\ln\left(x^2\right)\\
+&= \ln\left(x\left(x + 1\right)\right) - \ln\left(x^2\right)\\
+&= \ln\left(\frac{x\left(x + 1\right)}{x^2}\right)\\
+&= \boxed{~\ln\left(\frac{x + 1}{x}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(c)**
+
+:::
+
+:::{.fragment}
+
+\begin{align} &\log_{10}\left(2x\right) + \log_{10}\left(\frac{5}{x}\right)
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)\\
+&= \boxed{~\log_2\left(\frac{x}{5}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)** 
+
+\begin{align} &\ln\left(x\right) + \ln\left(x + 1\right) -\ln\left(x^2\right)\\
+&= \ln\left(x\left(x + 1\right)\right) - \ln\left(x^2\right)\\
+&= \ln\left(\frac{x\left(x + 1\right)}{x^2}\right)\\
+&= \boxed{~\ln\left(\frac{x + 1}{x}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(c)**
+
+\begin{align} &\log_{10}\left(2x\right) + \log_{10}\left(\frac{5}{x}\right)\\
+&= \log_{10}\left(2x\left(\frac{5}{x}\right)\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)\\
+&= \boxed{~\log_2\left(\frac{x}{5}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)** 
+
+\begin{align} &\ln\left(x\right) + \ln\left(x + 1\right) -\ln\left(x^2\right)\\
+&= \ln\left(x\left(x + 1\right)\right) - \ln\left(x^2\right)\\
+&= \ln\left(\frac{x\left(x + 1\right)}{x^2}\right)\\
+&= \boxed{~\ln\left(\frac{x + 1}{x}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(c)**
+
+\begin{align} &\log_{10}\left(2x\right) + \log_{10}\left(\frac{5}{x}\right)\\
+&= \log_{10}\left(2x\left(\frac{5}{x}\right)\right)\\
+&= \log_{10}\left(10\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions
+
+<div style="font-size:16pt">
+
+**Example 3:** Use the laws of logarithms to write each expression as a single logarithm.
+
+$$\left(a\right)~2\log_2\!\left(x\right) - \log_2\!\left(5x\right) \qquad \left(b\right)~\ln\!\left(x\right) + \ln\!\left(x+1\right) - \ln\!\left(x^2\right) \qquad \left(c\right)~\log_{10}\!\left(2x\right) + \log_{10}\!\!\left(\frac{5}{x}\right)$$
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+**(a)**
+
+\begin{align} &2\log_2\left(x\right) - \log_2\left(5x\right)\\
+&= \log_2\left(x^2\right) - \log_2\left(5x\right)\\
+&= \log_2\left(\frac{x^2}{5x}\right)\\
+&= \boxed{~\log_2\left(\frac{x}{5}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(b)** 
+
+\begin{align} &\ln\left(x\right) + \ln\left(x + 1\right) -\ln\left(x^2\right)\\
+&= \ln\left(x\left(x + 1\right)\right) - \ln\left(x^2\right)\\
+&= \ln\left(\frac{x\left(x + 1\right)}{x^2}\right)\\
+&= \boxed{~\ln\left(\frac{x + 1}{x}\right)~}
+\end{align}
+
+:::
+
+:::{.column width="33%"}
+
+**(c)**
+
+\begin{align} &\log_{10}\left(2x\right) + \log_{10}\left(\frac{5}{x}\right)\\
+&= \log_{10}\left(2x\left(\frac{5}{x}\right)\right)\\
+&= \log_{10}\left(10\right)\\
+&= \boxed{~1~}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Simplifying Logarithmic Expressions Practice
+
+<div style="font-size:17pt">
+
+**Try It! 4:** Evaluate $\log_8\!\left(4\right)$ by converting to exponential form. *(Hint: write both $8$ and $4$ as powers of $2$.)*
+
+<br/>
+<br/>
+
+**Try It! 5:** Write $\displaystyle{3\ln\!\left(x\right) + \ln\!\left(x^2 + 1\right) - 2\ln\!\left(x - 1\right)}$ as a single logarithm.
+
+<br/>
+<br/>
+
+**Try It! 6:** Write $\displaystyle{\log_{2}\left(x + 3\right) + 3\log_{2}\left(x\right) - \log_{2}\left(x^2 - 9\right)}$ as a single logarithm.
+
+<br/>
+<br/>
+
+**Try It! 7:** Write $\displaystyle{\frac{1}{2}\ln\left(x^2 + 4\right) - 2\ln\left(x\right) + \ln\left(x^3\right)}$ as a single logarithm.
+
+</div>
+
+## Inverse Properties
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Since $f\left(x\right) = a^x$ and $g\left(x\right) = \log_a\!\left(x\right)$ are inverses of each other, composing them in either order returns $x$:
+
+:::
+
+:::{.fragment}
+
+$$\displaystyle{a^{\log_a\left(x\right)} = x \qquad \text{and} \qquad \log_a\left(a^x\right) = x}$$
+
+:::
+
+:::{.fragment}
+
+These two identities are powerful simplification tools.
+
+:::
+
+:::{.fragment}
+
+**Example 4:** Simplify each expression.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+$\left(a\right)~3\log_{10}\!\left(10^2\right) + 5$
+
+:::
+
+:::{.fragment}
+
+\begin{align} 3\log_{10}\left(10^2\right) + 5
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Inverse Properties
+
+<div style="font-size:17pt">
+
+Since $f\left(x\right) = a^x$ and $g\left(x\right) = \log_a\!\left(x\right)$ are inverses of each other, composing them in either order returns $x$:
+
+$$\displaystyle{a^{\log_a\left(x\right)} = x \qquad \text{and} \qquad \log_a\left(a^x\right) = x}$$
+
+These two identities are powerful simplification tools.
+
+**Example 4:** Simplify each expression.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~3\log_{10}\!\left(10^2\right) + 5$
+
+\begin{align} 3\log_{10}\left(10^2\right) + 5 &= 3\left(2\right) + 5
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Inverse Properties
+
+<div style="font-size:17pt">
+
+Since $f\left(x\right) = a^x$ and $g\left(x\right) = \log_a\!\left(x\right)$ are inverses of each other, composing them in either order returns $x$:
+
+$$\displaystyle{a^{\log_a\left(x\right)} = x \qquad \text{and} \qquad \log_a\left(a^x\right) = x}$$
+
+These two identities are powerful simplification tools.
+
+**Example 4:** Simplify each expression.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~3\log_{10}\!\left(10^2\right) + 5$
+
+\begin{align} 3\log_{10}\left(10^2\right) + 5 &= 3\left(2\right) + 5\\
+&= \boxed{~11~}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+$\left(b\right)~\displaystyle{10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)}}$
+
+:::
+
+:::{.fragment}
+
+\begin{align} 10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)}
+\end{align}
+
+:::
+
+
+:::
+
+::::
+
+</div>
+
+## Inverse Properties
+
+<div style="font-size:17pt">
+
+Since $f\left(x\right) = a^x$ and $g\left(x\right) = \log_a\!\left(x\right)$ are inverses of each other, composing them in either order returns $x$:
+
+$$\displaystyle{a^{\log_a\left(x\right)} = x \qquad \text{and} \qquad \log_a\left(a^x\right) = x}$$
+
+These two identities are powerful simplification tools.
+
+**Example 4:** Simplify each expression.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~3\log_{10}\!\left(10^2\right) + 5$
+
+\begin{align} 3\log_{10}\left(10^2\right) + 5 &= 3\left(2\right) + 5\\
+&= \boxed{~11~}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+$\left(b\right)~\displaystyle{10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)}}$
+
+\begin{align} 10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)} &= 10^{\log_{10}\left(4\cdot\left(15\right)\right) - \log_{10}\left(3\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Inverse Properties
+
+<div style="font-size:17pt">
+
+Since $f\left(x\right) = a^x$ and $g\left(x\right) = \log_a\!\left(x\right)$ are inverses of each other, composing them in either order returns $x$:
+
+$$\displaystyle{a^{\log_a\left(x\right)} = x \qquad \text{and} \qquad \log_a\left(a^x\right) = x}$$
+
+These two identities are powerful simplification tools.
+
+**Example 4:** Simplify each expression.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~3\log_{10}\!\left(10^2\right) + 5$
+
+\begin{align} 3\log_{10}\left(10^2\right) + 5 &= 3\left(2\right) + 5\\
+&= \boxed{~11~}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+$\left(b\right)~\displaystyle{10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)}}$
+
+\begin{align} 10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)} &= 10^{\log_{10}\left(4\cdot\left(15\right)\right) - \log_{10}\left(3\right)}\\
+&= 10^{\log_{10}\left(\frac{4\cdot\left(15\right)}{3}\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Inverse Properties
+
+<div style="font-size:17pt">
+
+Since $f\left(x\right) = a^x$ and $g\left(x\right) = \log_a\!\left(x\right)$ are inverses of each other, composing them in either order returns $x$:
+
+$$\displaystyle{a^{\log_a\left(x\right)} = x \qquad \text{and} \qquad \log_a\left(a^x\right) = x}$$
+
+These two identities are powerful simplification tools.
+
+**Example 4:** Simplify each expression.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~3\log_{10}\!\left(10^2\right) + 5$
+
+\begin{align} 3\log_{10}\left(10^2\right) + 5 &= 3\left(2\right) + 5\\
+&= \boxed{~11~}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+$\left(b\right)~\displaystyle{10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)}}$
+
+\begin{align} 10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)} &= 10^{\log_{10}\left(4\cdot\left(15\right)\right) - \log_{10}\left(3\right)}\\
+&= 10^{\log_{10}\left(\frac{4\cdot\left(15\right)}{3}\right)}\\
+&= 10^{\log_{10}\left(20\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Inverse Properties
+
+<div style="font-size:17pt">
+
+Since $f\left(x\right) = a^x$ and $g\left(x\right) = \log_a\!\left(x\right)$ are inverses of each other, composing them in either order returns $x$:
+
+$$\displaystyle{a^{\log_a\left(x\right)} = x \qquad \text{and} \qquad \log_a\left(a^x\right) = x}$$
+
+These two identities are powerful simplification tools.
+
+**Example 4:** Simplify each expression.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\left(a\right)~3\log_{10}\!\left(10^2\right) + 5$
+
+\begin{align} 3\log_{10}\left(10^2\right) + 5 &= 3\left(2\right) + 5\\
+&= \boxed{~11~}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+$\left(b\right)~\displaystyle{10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)}}$
+
+\begin{align} 10^{\left(\log_{10}\left(4\right) + \log_{10}\left(15\right)\right) - \log_{10}\left(3\right)} &= 10^{\log_{10}\left(4\cdot\left(15\right)\right) - \log_{10}\left(3\right)}\\
+&= 10^{\log_{10}\left(\frac{4\cdot\left(15\right)}{3}\right)}\\
+&= 10^{\log_{10}\left(20\right)}\\
+&= \boxed{~20~}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving Exponential Equations
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+An *exponential equation* has the variable in an exponent. 
+
+:::
+
+:::{.fragment}
+
+Since our basic operations (addition, subtraction, multiplication, division, roots, and powers) can't reach it there, we use logarithms to bring the variable down.
+
+:::
+
+:::{.fragment}
+
+**Strategy:**
+
+:::
+
+1. Isolate the exponential expression on one side.
+2. Take $\ln$ of both sides and use $\ln\!\left(a^n\right) = n\ln\!\left(a\right)$ to bring the exponent down.
+3. Solve for the variable using standard algebra.
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Choice of Logarithm Base
+
+In Step 2 above, any base works, but $\ln$ is a perfectly convenient choice. Sometimes a more appropriate choice of base can make your work a bit simpler, but you'll always arrive at the same solution.
+
+:::
+
+:::
+
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Isolate the exponential first.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first. Next take the natural logarithm of both sides to bring the exponent down.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first. Next take the natural logarithm of both sides to bring the exponent down.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2\\
+\implies \ln\left(4^{2x + 7}\right) &= \ln\left(2\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first. Next take the natural logarithm of both sides to bring the exponent down.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2\\
+\implies \ln\left(4^{2x + 7}\right) &= \ln\left(2\right)\\
+\implies \left(2x + 7\right)\ln\left(4\right) &= \ln\left(2\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first. Next take the natural logarithm of both sides to bring the exponent down. Use algebra to isolate the variable.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2\\
+\implies \ln\left(4^{2x + 7}\right) &= \ln\left(2\right)\\
+\implies \left(2x + 7\right)\ln\left(4\right) &= \ln\left(2\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first. Next take the natural logarithm of both sides to bring the exponent down. Use algebra to isolate the variable.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2\\
+\implies \ln\left(4^{2x + 7}\right) &= \ln\left(2\right)\\
+\implies \left(2x + 7\right)\ln\left(4\right) &= \ln\left(2\right)\\
+\implies 2x + 7 &= \frac{\ln\left(2\right)}{\ln\left(4\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first. Next take the natural logarithm of both sides to bring the exponent down. Use algebra to isolate the variable.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2\\
+\implies \ln\left(4^{2x + 7}\right) &= \ln\left(2\right)\\
+\implies \left(2x + 7\right)\ln\left(4\right) &= \ln\left(2\right)\\
+\implies 2x + 7 &= \frac{\ln\left(2\right)}{\ln\left(4\right)}\\
+\implies 2x &= \frac{\ln\left(2\right)}{\ln\left(4\right)} - 7
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation I
+
+<div style="font-size:16pt">
+
+**Example 5:** Solve $5\left(4^{2x+7}\right) - 12 = -2$.
+
+*Solution.* Isolate the exponential first. Next take the natural logarithm of both sides to bring the exponent down. Use algebra to isolate the variable.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} 5\left(4^{2x+7}\right) - 12 &= -2\\
+\implies 5\left(4^{2x + 7}\right) &= 10\\
+\implies 4^{2x + 7} &= 2\\
+\implies \ln\left(4^{2x + 7}\right) &= \ln\left(2\right)\\
+\implies \left(2x + 7\right)\ln\left(4\right) &= \ln\left(2\right)\\
+\implies 2x + 7 &= \frac{\ln\left(2\right)}{\ln\left(4\right)}\\
+\implies 2x &= \frac{\ln\left(2\right)}{\ln\left(4\right)} - 7\\
+\implies x &= \frac{\frac{\ln\left(2\right)}{\ln\left(4\right)} - 7}{2}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+Using the change of base rule gives us $\displaystyle{x = \frac{\log_{4}\left(2\right) - 7}{2}}$. 
+
+:::
+
+:::{.fragment}
+
+We know that $\log_{4}\left(2\right)$ is $\displaystyle{\frac{1}{2}}$ because $\displaystyle{4^{1/2} = 2}$.
+
+:::
+
+:::{.fragment}
+
+This gives us $\displaystyle{x = \frac{\frac{1}{2} - 7}{2}}$
+
+:::
+
+:::{.fragment}
+
+Finding a common denominator and simplifying further gives us $\boxed{~x = \frac{-13}{4}~}$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving an Exponential Equation Practice
+
+<div style="font-size:17pt">
+
+**Try It! 8:** Solve $\displaystyle{3^{x - 2} = 15}$. Leave your answer in exact form involving the natural logarithm.
+
+<br/>
+<br/>
+<br/>
+
+**Try It! 9:** Solve $\displaystyle{3^{x^2 - 2x} = 3^{x + 4}}$.
+
+<br/>
+<br/>
+<br/>
+
+**Try It! 10:** Solve $\displaystyle{5^{4 - x} = 30}$.
+
+<br/>
+<br/>
+<br/>
+
+**Try It! 11:** Solve $\displaystyle{3\left(7^{3x - 1}\right) + 5 = 26}$.
+
+</div>
+
+## Solving Logarithmic Equations
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+A *logarithmic equation* has the variable inside a logarithm argument. We use exponentials to unlock it.
+
+:::
+
+:::{.fragment}
+
+**Strategy:**
+
+:::
+
+1. Isolate the logarithmic expression on one side.
+2. Exponentiate both sides using the same base as the logarithm, exploiting $\displaystyle{a^{\log_a\left(x\right)} = x}$.
+3. Solve for the variable using standard algebra.
+4. **Check all solutions** — since the domain of a logarithm is $(0, \infty)$, some algebraically valid solutions may be extraneous.
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-warning}
+## Always Check Solutions
+
+Extraneous solutions are common with logarithmic equations. A candidate solution is only valid if the argument to every logarithm in the original equation is strictly positive at that value.
+
+:::
+
+:::
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Isolate the logarithm first.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 3\log_5\!\left(x^2 - 4x\right) + 7 &= 10
+\end{align}
+
+:::
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1\\
+\implies 5^{\log_{5}\left(x^2 - 4x\right)} &= 5^1
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1\\
+\implies 5^{\log_{5}\left(x^2 - 4x\right)} &= 5^1\\
+\implies x^2 - 4x &= 5
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base. Use algebraic techniques to solve what remains.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1\\
+\implies 5^{\log_{5}\left(x^2 - 4x\right)} &= 5^1\\
+\implies x^2 - 4x &= 5
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base. Use algebraic techniques to solve what remains.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1\\
+\implies 5^{\log_{5}\left(x^2 - 4x\right)} &= 5^1\\
+\implies x^2 - 4x &= 5\\
+\implies x^2 -4x - 5 &= 0
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base. Use algebraic techniques to solve what remains.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1\\
+\implies 5^{\log_{5}\left(x^2 - 4x\right)} &= 5^1\\
+\implies x^2 - 4x &= 5\\
+\implies x^2 -4x - 5 &= 0\\
+\implies \left(x - 5\right)\left(x + 1\right) &= 0
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base. Use algebraic techniques to solve what remains.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1\\
+\implies 5^{\log_{5}\left(x^2 - 4x\right)} &= 5^1\\
+\implies x^2 - 4x &= 5\\
+\implies x^2 -4x - 5 &= 0\\
+\implies \left(x - 5\right)\left(x + 1\right) &= 0\\
+\implies x - 5 = 0 &\text{ or } x + 1 = 0
+\end{align}
+
+</div>
+
+## Solving Logarithmic Equations I
+
+<div style="font-size:17pt">
+
+**Example 6:** Solve $3\log_5\!\left(x^2 - 4x\right) + 7 = 10$.
+
+*Solution.* Isolate the logarithm first. Next, exponentiate both sides with the appropriate base. Use algebraic techniques to solve what remains.
+
+\begin{align} 3\log_5\left(x^2 - 4x\right) + 7 &= 10\\
+\implies 3\log_{5}\left(x^2 - 4x\right) &= 3\\
+\implies \log_{5}\left(x^2 - 4x\right) &= 1\\
+\implies 5^{\log_{5}\left(x^2 - 4x\right)} &= 5^1\\
+\implies x^2 - 4x &= 5\\
+\implies x^2 -4x - 5 &= 0\\
+\implies \left(x - 5\right)\left(x + 1\right) &= 0\\
+\implies x - 5 = 0 &\text{ or } x + 1 = 0\\
+\implies x = 5 &\text{ or } x = -1
+\end{align}
+
+:::{.fragment}
+
+Now we'll verify whether the candidate solutions above are true solutions or are extraneous.
+
+:::
+
+:::{.fragment}
+
+Doing so requires determining whether $x^2 - 4x$ is positive for each candidate solution.
+
+:::
+
+:::{.fragment}
+
+Since $\left(-1\right)^2 - 4\left(-1\right) = 5$, we know that $\boxed{~x = -1~}$ is a valid solution. 
+
+:::
+
+:::{.fragment}
+
+Similarly, since $\left(5\right)^2 - 4\left(5\right) = 5$, we have $\boxed{~x = 5~}$ is also a valid solution.
+
+:::
+
+</div>
+
+## Solving Logarithmic Equations Practice
+
+<div style="font-size:17pt">
+
+**Try It! 12:** Solve $\displaystyle{\log_3\!\left(x + 6\right) + \log_3\!\left(x\right) = 3}$. Check your solutions carefully.
+
+<br/>
+<br/>
+<br/>
+
+**Try It! 13:** Solve $\displaystyle{\log_{2}\left(x\right) + \log_{2}\left(x - 2\right) = 3}$. Check your solutions carefully.
+
+<br/>
+<br/>
+<br/>
+
+**Try It! 14:** Solve $\displaystyle{\log_{4}\left(x + 3\right) - \log_{4}\left(x\right) = \log_{4}\left(x - 1\right)}$. Check your solutions carefully.
+
+<br/>
+<br/>
+<br/>
+
+**Try It! 15:** Solve $\displaystyle{2\log_{3}\left(x\right) - \log_{3}\left(x + 6\right) = 1}$. Check your solutions carefully.
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `16. Exponential and Logarithm Foundations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider the equation $\displaystyle{2\log_4\left(x - 1\right) = 2}$.
+
+$\left(a\right)$ Isolate the logarithm and exponentiate both sides.
+
+$\left(b\right)$ Solve for $x$.
+
+$\left(c\right)$ Check whether your solution is valid.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ The **laws of exponents** govern all exponential expressions: multiply $\to$ add exponents, divide $\to$ subtract, power of power $\to$ multiply, negative exponent $\to$ reciprocal.
++ $\log_b\!\left(a\right) = y \iff b^y = a$. Logarithms and exponentials are two representations of the same relationship.
++ The **laws of logarithms** mirror the laws of exponents: products $\to$ sums, quotients $\to$ differences, powers $\to$ coefficients.
++ The **inverse properties** $a^{\log_a\!\left(x\right)} = x$ and $\log_a\!\left(a^x\right) = x$ are the key tools for solving equations.
++ Solving **exponential equations**: isolate the exponential and then take $\ln()$ of both sides. 
++ Solving **logarithmic equations**: isolate the logarithm and then exponentiate both sides. Always check for extraneous solutions.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Today was a review/overview of mechanics. Next class we look at exponential and logarithmic **functions** — their graphs, transformations, and behavior — and see why these functions appear throughout science, finance, and data analysis.
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Exponential and Logarithmic Functions</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Start Homework 11 on MyOpenMath</center>
+
+:::
+
+:::
+
+::::
+
+:::
+
+
+</div>

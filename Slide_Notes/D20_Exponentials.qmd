@@ -1,0 +1,3424 @@
+---
+title: "MAT 142: Exponential Functions"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Last class we reviewed laws of exponents and logarithms, and practiced solving exponential and logarithmic equations. Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Solve $\displaystyle{2^{2x+3} = 2^{x+9}}$.
+
+:::
+
+:::{.fragment}
+
+*Hint:* Since the bases are equal, the exponents must be equal.
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Solve $\displaystyle{\frac{1}{5}\left(8^{5-6x}\right) + 9 = 20}$.
+
+:::
+
+:::{.fragment}
+
+*Hint:* Isolate the exponential first, then take the natural logarithm of both sides.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today we focus on *exponential functions*.
+
+:::
+
+:::{.fragment}
+
+These are functions that model growth and decay across science, finance, medicine, and data analysis. 
+
+:::
+
+:::{.fragment}
+
+From population growth to radioactive decay to compound interest, exponential functions describe some of the most important patterns in the natural and social world.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify and sketch the graph of an exponential book function $f\left(x\right) = a^x$.
++ Describe the domain, range, asymptote, and end behavior of an exponential function.
++ Apply transformations to sketch graphs of exponential functions.
++ Find the inverse of an exponential function.
++ Apply exponential functions to a variety of applied contexts.
+
+## The Exponential Book Function
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Definition:** The *exponential book function* is $f\left(x\right) = a^x$, where $a > 0$ and $a \neq 1$.
+
+:::
+
+:::{.fragment}
+
+We require $a > 0$ and $a \neq 1$ to avoid degenerate cases:
+
+:::
+
++ $a = 1$: gives the constant function $f\left(x\right) = 1$ — not interesting as an exponential.
++ $a \leq 0$: $a^x$ is not real-valued for every $x$ (for example, $\displaystyle{(-4)^{1/2}}$ is undefined in $\mathbb{R}$).
+
+:::{.fragment}
+
+The behavior of the function $\displaystyle{f\left(x\right) = a^x}$ depends on which side of $1$ the base falls:
+
+:::
+
++ $a > 1$: the function is **increasing** — larger exponents produce larger outputs.
++ $0 < a < 1$: the function is **decreasing** — larger exponents produce smaller outputs.
+
+:::{.fragment}
+
+There is no memorization required here. It follows directly from what exponentiation does.
+
+:::
+
+:::{.fragment}
+
+For example, $\displaystyle{2^3 = 8}$ while $\displaystyle{\left(\frac{1}{4}\right)^2 = \frac{1}{16}}$.
+
+:::
+
+</div>
+
+## Graphs of the Exponential Book Function
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.5
+
+x_vals <- seq(-4, 4, length.out = 500)
+
+p1 <- ggplot() +
+  geom_line(aes(x = x_vals, y = 2^x_vals), color = "blue", linewidth = 1.2) +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -0.5, yend = 10,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-0.5, 10)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(0, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = a^x$, $a > 1$ (shown: $a = 2$)")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p2 <- ggplot() +
+  geom_line(aes(x = x_vals, y = (1/2)^x_vals), color = "darkred", linewidth = 1.2) +
+  geom_point(aes(x = 0, y = 1), size = 3, color = "black") +
+  annotate("segment", x = -4, xend = 4, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -0.5, yend = 10,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-4, 4), ylim = c(-0.5, 10)) +
+  scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(0, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$f(x) = a^x$, $0 < a < 1$ (shown: $a = 1/2$)")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p1 + p2
+```
+
+## Geography of the Exponential Function
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Both graphs share the following features regardless of base:
+
+:::
+
+:::{.fragment}
+
+| Feature | Value |
+|:--|:--|
+| **Domain** | $\left(-\infty, \infty\right)$ — all real numbers |
+| **Range** | $\left(0, \infty\right)$ — always positive |
+| **$y$-intercept** | $\left(0, 1\right)$ — since $a^0 = 1$ for any premissible $a$ |
+| **Horizontal asymptote** | $y = 0$ |
+
+:::
+
+:::{.fragment}
+
+**End behavior depends on the base:**
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+If $a > 1$:
+
+\begin{align} \lim_{x \to -\infty} a^x &= 0\\
+\lim_{x \to \infty} a^x &= \infty
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+If $0 < a < 1$:
+
+\begin{align} \lim_{x \to -\infty} a^x &= \infty\\
+\lim_{x \to \infty} a^x &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Natural Base $e$
+
+:::{.fragment}
+
+One of the most interesting and widely useful bases in mathematics is *Euler's Number*, $e \approx 2.71828\ldots$.
+
+:::
+
+:::{.fragment}
+
+It arises naturally from as the value of the limit $\displaystyle{\lim_{n \to \infty}\left(1 + \frac{1}{n}\right)^n}$, which we will encounter again shortly in an application to compound interest.
+
+:::
+
+:::{.fragment}
+
+The function $f\left(x\right) = e^x$ is called the *natural exponential function* and is the default choice for most mathematical and scientific applications.
+
+:::
+
+:::{.fragment}
+
+Its inverse is the *natural logarithm* $\ln\left(x\right) = \log_e\left(x\right)$, which is why $\ln$ appeared so naturally when solving exponential equations last class.
+
+:::
+
+## Transformations of Exponential Functions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Recall the general transformation framework $g\left(x\right) = A \cdot f\left(B\left(x - H\right)\right) + K$, which 
+
++ shifts the graph of $f$ right by $H$, 
++ compresses/stretches horizontally by $B$, 
++ stretches vertically by $\left|A\right|$ (reflecting over the $x$-axis if $A < 0$), and 
++ shifts up by $K$.
+
+:::
+
+:::{.fragment}
+
+For exponential functions, the key effects of transformations $\displaystyle{f\left(x\right) = A\left(a^{B\left(x - H\right)}\right) + K}$ are:
+
+:::
+
++ The **horizontal asymptote** shifts from $y = 0$ to $y = K$.
++ The **range** shifts from $\left(0, \infty\right)$ to $\left(K, \infty\right)$ or $\left(-\infty, K\right)$ if $A < 0$.
++ The **$y$-intercept** changes — evaluate $f\left(0\right)$ to find it.
++ The **end behavior** changes accordingly. Evaluate the usual limits or reason via the transformation steps.
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+:::
+
+:::{.fragment}
+
+*Solution.* The base function is $e^x$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::
+
+:::{.column width="60%"}
+
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+The base function undergoes the following transformations.
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+:::{.fragment}
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="60%"}
+
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+:::{.fragment}
+
+**Horizontal Asymptote:**
+
+:::
+
+:::
+
+:::{.column width="60%"}
+
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:**
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+:::{.fragment}
+
+\begin{align} f\left(x\right) &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+\begin{align} f\left(x\right) &= 0\\
+\implies -2e^{x + 3} + 4 &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+\begin{align} f\left(x\right) &= 0\\
+\implies -2e^{x + 3} + 4 &= 0\\
+\implies -2e^{x + 3} &= -4
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+\begin{align} f\left(x\right) &= 0\\
+\implies -2e^{x + 3} + 4 &= 0\\
+\implies -2e^{x + 3} &= -4\\
+\implies e^{x + 3} &= 2
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+\begin{align} f\left(x\right) &= 0\\
+\implies -2e^{x + 3} + 4 &= 0\\
+\implies -2e^{x + 3} &= -4\\
+\implies e^{x + 3} &= 2\\
+\implies \ln\left(e^{x + 3}\right) &= \ln\left(2\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+\begin{align} f\left(x\right) &= 0\\
+\implies -2e^{x + 3} + 4 &= 0\\
+\implies -2e^{x + 3} &= -4\\
+\implies e^{x + 3} &= 2\\
+\implies \ln\left(e^{x + 3}\right) &= \ln\left(2\right)\\
+\implies \left(x + 3\right)\ln\left(e\right) &= \ln\left(2\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+\begin{align} f\left(x\right) &= 0\\
+\implies -2e^{x + 3} + 4 &= 0\\
+\implies -2e^{x + 3} &= -4\\
+\implies e^{x + 3} &= 2\\
+\implies \ln\left(e^{x + 3}\right) &= \ln\left(2\right)\\
+\implies \left(x + 3\right)\ln\left(e\right) &= \ln\left(2\right)\\
+\implies x + 3 &= \ln\left(2\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** The book function has no $x$-intercept, but due to the flipping and vertical shift, the function $f\left(x\right)$ will have one.
+
+\begin{align} f\left(x\right) &= 0\\
+\implies -2e^{x + 3} + 4 &= 0\\
+\implies -2e^{x + 3} &= -4\\
+\implies e^{x + 3} &= 2\\
+\implies \ln\left(e^{x + 3}\right) &= \ln\left(2\right)\\
+\implies \left(x + 3\right)\ln\left(e\right) &= \ln\left(2\right)\\
+\implies x + 3 &= \ln\left(2\right)\\
+\implies x &= \ln\left(2\right) - 3
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+:::{.fragment}
+
+**End Behavior:**
+
+:::
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to -\infty}{-2e^{x + 3} + 4}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:**
+
+\begin{align} \lim_{x\to -\infty}{-2e^{x + 3} + 4} &= -2\left(0\right) + 4
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:**
+
+\begin{align} \lim_{x\to -\infty}{-2e^{x + 3} + 4} &= -2\left(0\right) + 4\\
+&= 4
+\end{align}
+
+:::{.fragment}
+
+\begin{align} \lim_{x\to \infty}{-2e^{x + 3} + 4}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:**
+
+\begin{align} \lim_{x\to -\infty}{-2e^{x + 3} + 4} &= -2\left(0\right) + 4\\
+&= 4
+\end{align}
+
+\begin{align} \lim_{x\to \infty}{-2e^{x + 3} + 4} &= -\infty
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:** $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = 4}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = -\infty}$
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:** $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = 4}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = -\infty}$
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -2*exp(x_vals + 3) + 4
+y_base_vals <- exp(x_vals)
+
+ggplot() +
+  geom_line(aes(x_vals, y_base_vals), color = "blue", alpha = 0.4) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1) +
+  #geom_point(aes(x = 0, y = -2*exp(3) + 4), size = 3) +
+  #geom_point(aes(x = log(2) - 3, y = 0), size = 3) +
+  #geom_hline(yintercept = 4, linetype = "dashed", color = "gray40", linewidth = 0.8) +
+  #annotate("text", x = -5, y = 6, label = "y = 4", color = "gray40", size = 5) +
+  annotate("segment", x = -5, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -40, yend = 20,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-5, 3), ylim = c(-40, 20)) +
+  scale_x_continuous(breaks = seq(-5, 1, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = -2e^{x+3} + 4$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:** $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = 4}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = -\infty}$
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -2*exp(x_vals + 3) + 4
+y_base_vals <- exp(x_vals)
+
+ggplot() +
+  geom_line(aes(x_vals, y_base_vals), color = "blue", alpha = 0.4) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = 0, y = -2*exp(3) + 4), size = 3) +
+  #geom_point(aes(x = log(2) - 3, y = 0), size = 3) +
+  #geom_hline(yintercept = 4, linetype = "dashed", color = "gray40", linewidth = 0.8) +
+  #annotate("text", x = -5, y = 6, label = "y = 4", color = "gray40", size = 5) +
+  annotate("segment", x = -5, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -40, yend = 20,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-5, 3), ylim = c(-40, 20)) +
+  scale_x_continuous(breaks = seq(-5, 1, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = -2e^{x+3} + 4$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:** $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = 4}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = -\infty}$
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -2*exp(x_vals + 3) + 4
+y_base_vals <- exp(x_vals)
+
+ggplot() +
+  geom_line(aes(x_vals, y_base_vals), color = "blue", alpha = 0.4) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = 0, y = -2*exp(3) + 4), size = 3) +
+  #geom_point(aes(x = log(2) - 3, y = 0), size = 3) +
+  geom_hline(yintercept = 4, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -5, y = 6, label = "y = 4", color = "gray30", size = 5) +
+  annotate("segment", x = -5, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -40, yend = 20,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-5, 3), ylim = c(-40, 20)) +
+  scale_x_continuous(breaks = seq(-5, 1, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = -2e^{x+3} + 4$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:** $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = 4}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = -\infty}$
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -2*exp(x_vals + 3) + 4
+y_base_vals <- exp(x_vals)
+
+ggplot() +
+  geom_line(aes(x_vals, y_base_vals), color = "blue", alpha = 0.4) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = 0, y = -2*exp(3) + 4), size = 3) +
+  geom_point(aes(x = log(2) - 3, y = 0), size = 3) +
+  geom_hline(yintercept = 4, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -5, y = 6, label = "y = 4", color = "gray30", size = 5) +
+  annotate("segment", x = -5, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -40, yend = 20,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-5, 3), ylim = c(-40, 20)) +
+  scale_x_continuous(breaks = seq(-5, 1, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = -2e^{x+3} + 4$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions I
+
+<div style="font-size:16pt">
+
+**Problem:** For $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* The base function is $e^x$. Since $e > 1$, the base function exhibits *exponential growth* -- it is an *increasing* function.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+The base function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *left* by $3$
++ *flipped* over the $x$-axis
++ *stretched* by a factor of $2$
++ shifted *upward* by $4$
+
+:::
+
+**$y$-intercept:** We'll evaluate $f\left(0\right)$
+
+\begin{align} f\left(0\right) &= -2e^{0 + 3} + 4\\
+&= -2e^3 + 4
+\end{align}
+
+**Horizontal Asymptote:** Is moved from $y = 0$ to $y = 4$ because of the vertical shift.
+
+:::
+
+:::{.column width="60%"}
+
+**$x$-intercept:** $\displaystyle{\left(\ln\left(2\right) - 3, 0\right)}$
+
+**End Behavior:** $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)} = 4}$ and $\displaystyle{\lim_{x\to \infty}{f\left(x\right)} = -\infty}$
+
+```{r}
+x_vals <- seq(-5, 5, length.out = 500)
+y_vals <- -2*exp(x_vals + 3) + 4
+y_base_vals <- exp(x_vals)
+
+ggplot() +
+  geom_line(aes(x_vals, y_base_vals), color = "blue", alpha = 0.4) +
+  geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1) +
+  geom_point(aes(x = 0, y = -2*exp(3) + 4), size = 3) +
+  geom_point(aes(x = log(2) - 3, y = 0), size = 3) +
+  geom_hline(yintercept = 4, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  annotate("text", x = -5, y = 6, label = "y = 4", color = "gray30", size = 5) +
+  annotate("segment", x = -5, xend = 3, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -40, yend = 20,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-5, 3), ylim = c(-40, 20)) +
+  scale_x_continuous(breaks = seq(-5, 1, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = -2e^{x+3} + 4$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+:::
+
+:::{.fragment}
+
+\begin{align} g\left(x\right) &= 8\left(\frac{1}{2}\right)^{10-2x}
+\end{align}
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(\frac{1}{2}\right)^{10-2x}\\ 
+&= 8\left(\frac{1}{2}\right)^{-\left(2x - 10\right)} - 1
+\end{align}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(\frac{1}{2}\right)^{10-2x}\\ 
+&= 8\left(\frac{1}{2}\right)^{-\left(2x - 10\right)} - 1\\
+&= 8\left(2^{2x - 10}\right) - 1
+\end{align}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(\frac{1}{2}\right)^{10-2x}\\ 
+&= 8\left(\frac{1}{2}\right)^{-\left(2x - 10\right)} - 1\\
+&= 8\left(2^{2x - 10}\right) - 1\\
+&= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+The comparison function undergoes the following transformations.
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::{.fragment}
+
+**$y$-intercept:** 
+
+:::
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** We'll evaluate $g\left(0\right)$
+
+:::{.fragment}
+
+$\displaystyle{g\left(0\right)}$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** We'll evaluate $g\left(0\right)$
+
+$\displaystyle{g\left(0\right)= 8\left(2^{2\left(0 - 5\right)}\right) - 1}$
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** We'll evaluate $g\left(0\right)$
+
+$\displaystyle{g\left(0\right)= 8\left(2^{2\left(0 - 5\right)}\right) - 1 = 8\left(2^{-10}\right) - 1}$
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+:::{.fragment}
+
+**Horizontal Asymptote:**
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** Shifted from $y = 0$ to $y = -1$ due to the vertical shift.
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+:::
+
+:::{.fragment}
+
+We'll solve $g\left(x\right) = 0$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} g\left(x\right) &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies 8\left(2^{2\left(x - 5\right)}\right) - 1 &= 0
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies 8\left(2^{2\left(x - 5\right)}\right) - 1 &= 0\\
+\implies 8\left(2^{2\left(x - 5\right)}\right) &= 1
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies 8\left(2^{2\left(x - 5\right)}\right) - 1 &= 0\\
+\implies 8\left(2^{2\left(x - 5\right)}\right) &= 1\\
+\implies 2^{2\left(x - 5\right)} &= \frac{1}{8}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies 8\left(2^{2\left(x - 5\right)}\right) - 1 &= 0\\
+\implies 8\left(2^{2\left(x - 5\right)}\right) &= 1\\
+\implies 2^{2\left(x - 5\right)} &= \frac{1}{8}\\
+\implies \ln\left(2^{2\left(x - 5\right)}\right) &= \ln\left(\frac{1}{8}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies \ln\left(2^{2\left(x - 5\right)}\right) &= \ln\left(\frac{1}{8}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies \ln\left(2^{2\left(x - 5\right)}\right) &= \ln\left(\frac{1}{8}\right)\\
+\implies 2\left(x - 5\right)\ln\left(2\right) &= \ln\left(\frac{1}{8}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies \ln\left(2^{2\left(x - 5\right)}\right) &= \ln\left(\frac{1}{8}\right)\\
+\implies 2\left(x - 5\right)\ln\left(2\right) &= \ln\left(\frac{1}{8}\right)\\
+\implies x - 5 &= \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies x - 5 &= \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** Again, due to the vertical shift, the function will have an $x$-intercept.
+
+We'll solve $g\left(x\right) = 0$.
+
+\begin{align} g\left(x\right) &= 0\\
+\implies x - 5 &= \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}\\
+\implies x &= 5 + \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** $\displaystyle{\left(5 + \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}, 0\right)}$
+
+
+:::{.fragment}
+
+**End Behavior:** 
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** $\displaystyle{\left(5 + \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}, 0\right)}$
+
+**End Behavior:** As an alternative to using formal limits, we can analyse the impact of the transformations on the comparison function.
+
+:::{.fragment}
+
+The comparison function exhibited exponential growth.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** $\displaystyle{\left(5 + \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}, 0\right)}$
+
+**End Behavior:** As an alternative to using formal limits, we can analyse the impact of the transformations on the comparison function.
+
+The comparison function exhibited exponential growth. The transformed function also exhibits exponential growth because there was no vertical flip.
+
+:::{.fragment}
+
+The end behavior to the left approaches the horizontal asymptote at $y = -1$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Exponential Functions II
+
+<div style="font-size:16pt">
+
+**Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+*Solution.* Working with a horizontal flip (a negative $B$ value) is difficult, so we'll rewrite the function first.
+
+\begin{align} g\left(x\right) &= 8\left(2^{2\left(x - 5\right)}\right) - 1
+\end{align}
+
+The comparison function is $f\left(x\right) = 2^x$, which is exponential growth since the base exceeds $1$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+The comparison function undergoes the following transformations.
+
+:::{.nonincremental}
+
++ shifted *right* by $5$
++ horizontally *compressed* (sped up) by a factor of $2$
++ vertically *stretched* by a factor of $8$
++ shifted *downward* by $1$
+
+:::
+
+**$y$-intercept:** $\displaystyle{\left(0, 8\left(2^{-10}\right) - 1\right)}$
+
+**Horizontal Asymptote:** $y = -1$
+
+:::
+
+:::{.column width="50%"}
+
+**$x$-intercept:** $\displaystyle{\left(5 + \frac{\ln\left(\frac{1}{8}\right)}{2\ln\left(2\right)}, 0\right)}$
+
+**End Behavior:** $\displaystyle{\lim_{x\to -\infty}{g\left(x\right)} = -1}$ and $\displaystyle{\lim_{x\to \infty}{g\left(x\right)} = \infty}$
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-1, 6, length.out = 500)
+g_vals <- 8*(1/2)^(10 - 2*x_vals) - 1
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = g_vals), color = "blue", linewidth = 1) +
+  geom_hline(yintercept = -1, linetype = "dashed", color = "gray30", linewidth = 0.8) +
+  geom_point(aes(x = 0, y = 8*(1/2)^10 - 1), size = 3, color = "black") +
+  geom_point(aes(x = 5 + (log(1/8)/(2*log(2))), y = 0), size = 3, color = "black") +
+  annotate("text", x = 5, y = -0.5, label = "y = -1", color = "gray30", size = 5) +
+  annotate("segment", x = -1, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -1.5, yend = 8,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-1, 6), ylim = c(-1.5, 8)) +
+  scale_x_continuous(breaks = seq(-1, 6, by = 1)) +
+  labs(title = latex2exp::TeX("$g(x) = 8(1/2)^{10-2x} - 1$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Exponential Function Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** For $f\left(x\right) = 3^{x - 2} + 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** For $g\left(x\right) = -\left(\frac{1}{3}\right)^{x+1} + 5$, identify the same features and sketch a graph.
+
+*Before sketching:* The negative leading coefficient will flip the graph. How does that affect the range and end behavior compared to the basic $\left(\frac{1}{3}\right)^x$ function?
+
+</div>
+
+## Inverses of Exponential Functions
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Since exponential functions are one-to-one (they pass both the vertical and horizontal line tests), they are invertible. Their inverses are logarithmic functions — which is exactly the connection we've been building toward.
+
+:::
+
+:::{.fragment}
+
+**Strategy (Reminder):** The swap-and-solve method for finding $f^{-1}\left(x\right)$, given a one-to-one function $f\left(x\right)$.
+
+:::
+
+1. Replace $f\left(x\right)$ with $y$.
+2. Swap $x$ and $y$.
+3. Solve for $y$ — this will require using logarithms to undo the exponential.
+4. Replace $y$ with $f^{-1}\left(x\right)$.
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+:::
+
+:::{.fragment}
+
+\begin{align} y &= -2e^{x+3} + 4
+\end{align}
+
+:::
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+\begin{align} y &= -2e^{x+3} + 4\\
+\stackrel{\text{swap}}{} x &= -2e^{y + 3} + 4
+\end{align}
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+\begin{align} y &= -2e^{x+3} + 4\\
+\stackrel{\text{swap}}{} x &= -2e^{y + 3} + 4\\
+\implies -2e^{y + 3} &= x - 4
+\end{align}
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+\begin{align} y &= -2e^{x+3} + 4\\
+\stackrel{\text{swap}}{} x &= -2e^{y + 3} + 4\\
+\implies -2e^{y + 3} &= x - 4\\
+\implies e^{y + 3} &= \frac{x - 4}{-2}
+\end{align}
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+\begin{align} y &= -2e^{x+3} + 4\\
+\stackrel{\text{swap}}{} x &= -2e^{y + 3} + 4\\
+\implies -2e^{y + 3} &= x - 4\\
+\implies e^{y + 3} &= \frac{x - 4}{-2}\\
+\implies e^{y + 3} &= \frac{4 - x}{2}
+\end{align}
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+\begin{align} y &= -2e^{x+3} + 4\\
+\stackrel{\text{swap}}{} x &= -2e^{y + 3} + 4\\
+\implies -2e^{y + 3} &= x - 4\\
+\implies e^{y + 3} &= \frac{x - 4}{-2}\\
+\implies e^{y + 3} &= \frac{4 - x}{2}\\
+\implies \ln\left(e^{y + 3}\right) &= \ln\left(\frac{4 - x}{2}\right)
+\end{align}
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+\begin{align} y &= -2e^{x+3} + 4\\
+\stackrel{\text{swap}}{} x &= -2e^{y + 3} + 4\\
+\implies -2e^{y + 3} &= x - 4\\
+\implies e^{y + 3} &= \frac{x - 4}{-2}\\
+\implies e^{y + 3} &= \frac{4 - x}{2}\\
+\implies \ln\left(e^{y + 3}\right) &= \ln\left(\frac{4 - x}{2}\right)\\
+\implies \left(y + 3\right) &= \ln\left(\frac{4 - x}{2}\right)
+\end{align}
+
+</div>
+
+## Finding the Inverse of an Exponential Function I
+
+<div style="font-size:16pt">
+
+**Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
+
+*Solution.* Replace $f\left(x\right)$ with $y$, swap, then solve.
+
+\begin{align} y &= -2e^{x+3} + 4\\
+\stackrel{\text{swap}}{} x &= -2e^{y + 3} + 4\\
+\implies -2e^{y + 3} &= x - 4\\
+\implies e^{y + 3} &= \frac{x - 4}{-2}\\
+\implies e^{y + 3} &= \frac{4 - x}{2}\\
+\implies \ln\left(e^{y + 3}\right) &= \ln\left(\frac{4 - x}{2}\right)\\
+\implies \left(y + 3\right) &= \ln\left(\frac{4 - x}{2}\right)\\
+\implies y &= \ln\left(\frac{4 - x}{2}\right) - 3
+\end{align}
+
+:::{.fragment}
+
+So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right) - 3}~}$.
+
+:::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1
+\end{align}
+
+:::
+
+::::
+
+:::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1\\
+\implies \left(\frac{1}{2}\right)^{10 - 2y} &= \frac{x + 1}{8}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1\\
+\implies \left(\frac{1}{2}\right)^{10 - 2y} &= \frac{x + 1}{8}\\
+\implies \ln\left(\left(\frac{1}{2}\right)^{10 - 2y}\right) &= \ln\left(\frac{x + 1}{8}\right) 
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1\\
+\implies \left(\frac{1}{2}\right)^{10 - 2y} &= \frac{x + 1}{8}\\
+\implies \ln\left(\left(\frac{1}{2}\right)^{10 - 2y}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies \left(10 - 2y\right)\ln\left(\frac{1}{2}\right) &= \ln\left(\frac{x + 1}{8}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1\\
+\implies \left(\frac{1}{2}\right)^{10 - 2y} &= \frac{x + 1}{8}\\
+\implies \ln\left(\left(\frac{1}{2}\right)^{10 - 2y}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies \left(10 - 2y\right)\ln\left(\frac{1}{2}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies 10 - 2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)}
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+:::{.fragment}
+
+\begin{align} \implies -2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)} - 10
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1\\
+\implies \left(\frac{1}{2}\right)^{10 - 2y} &= \frac{x + 1}{8}\\
+\implies \ln\left(\left(\frac{1}{2}\right)^{10 - 2y}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies \left(10 - 2y\right)\ln\left(\frac{1}{2}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies 10 - 2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)}
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+\begin{align} \implies -2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)} - 10\\
+\implies y &= \frac{\frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)} - 10}{-2}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1\\
+\implies \left(\frac{1}{2}\right)^{10 - 2y} &= \frac{x + 1}{8}\\
+\implies \ln\left(\left(\frac{1}{2}\right)^{10 - 2y}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies \left(10 - 2y\right)\ln\left(\frac{1}{2}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies 10 - 2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)}
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+\begin{align} \implies -2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)} - 10\\
+\implies y &= \frac{\frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)} - 10}{-2}\\
+\implies y &= 5 - \frac{\ln\left(\frac{x + 1}{8}\right)}{2\ln\left(\frac{1}{2}\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Finding the Inverse of an Exponential Function II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+\begin{align} y &= 8\left(\frac{1}{2}\right)^{10-2x} - 1\\
+\stackrel{\text{swap}}{} x &= 8\left(\frac{1}{2}\right)^{10 - 2y} - 1\\
+\implies 8\left(\frac{1}{2}\right)^{10 - 2y} &= x + 1\\
+\implies \left(\frac{1}{2}\right)^{10 - 2y} &= \frac{x + 1}{8}\\
+\implies \ln\left(\left(\frac{1}{2}\right)^{10 - 2y}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies \left(10 - 2y\right)\ln\left(\frac{1}{2}\right) &= \ln\left(\frac{x + 1}{8}\right)\\
+\implies 10 - 2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)}
+\end{align}
+
+:::
+
+:::{.column width="60%"}
+
+\begin{align} \implies -2y &= \frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)} - 10\\
+\implies y &= \frac{\frac{\ln\left(\frac{x + 1}{8}\right)}{\ln\left(1/2\right)} - 10}{-2}\\
+\implies y &= 5 - \frac{\ln\left(\frac{x + 1}{8}\right)}{2\ln\left(\frac{1}{2}\right)}
+\end{align}
+
+So $\boxed{~\displaystyle{f^{-1}\left(x\right) = 5 - \frac{\ln\left(\frac{x + 1}{8}\right)}{2\ln\left(\frac{1}{2}\right)}}~}$
+
+:::{.fragment}
+
+Using the change of base formula simplifies the function form slightly to $\boxed{~\displaystyle{f^{-1}\left(x\right) = 5 - \frac{1}{2}\log_{1/2}\left(\frac{x + 1}{8}\right)}~}$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Inverse Practice
+
+<div style="font-size:17pt">
+
+**Try It! 3:** Find the inverse of $f\left(x\right) = 3^{x-2} + 1$ from Try It! 1. State the domain of $f^{-1}$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 4:** Find the inverse of $g\left(x\right) = -\left(\frac{1}{3}\right)^{x+1} + 5$ from Try It! 2. State the domain of $g^{-1}$.
+
+</div>
+
+## Compound Interest
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Definition:** If $P$ dollars (the *principal*) earns interest at annual rate $r$, compounded $n$ times per year, then the account value after $t$ years is:
+
+$$A = P\left(1 + \frac{r}{n}\right)^{nt}$$
+
+:::
+
+:::{.fragment}
+
+**Continuous compounding** is the limiting case as $n \to \infty$. Using the definition of $e$, this gives:
+
+$$A = Pe^{rt}$$
+
+:::
+
+:::{.fragment}
+
+The factor $e^{rt}$ is why the natural exponential appears so frequently in finance and science — it is what exponential growth looks like when compounding happens at every instant.
+
+:::
+
+</div>
+
+## Application to Compound Interest
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** \$1,000 is deposited into an account earning 2% annual interest.
+
+$\left(a\right)$ Find the account value after 5 years if interest is compounded quarterly.
+
+$\left(b\right)$ Find the account value after 5 years if interest is compounded continuously.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(a) Quarterly** ($n = 4$, $P = 1000$, $r = 0.02$, $t = 5$):
+
+\begin{align} A &= 1000\left(1 + \frac{0.02}{4}\right)^{4 \cdot 5}\\
+&= 1000\left(1.005\right)^{20}\\
+&\approx \boxed{~\$1{,}104.90~}
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(b) Continuous** ($P = 1000$, $r = 0.02$, $t = 5$):
+
+\begin{align} A &= 1000 \cdot e^{0.02 \cdot 5}\\
+&= 1000 \cdot e^{0.1}\\
+&\approx \boxed{~\$1{,}105.17~}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+:::{.fragment}
+
+The difference after 5 years is about **27 cents**.
+
+:::
+
+</div>
+
+## Investment Doubling Time
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** How long does it take to double the initial \$1,000 investment under each compounding method?
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(a) Quarterly:** Solve $2000 = 1000\left(1.005\right)^{4t}$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 2 &= \left(1.005\right)^{4t}\\
+\implies \ln\left(2\right) &= 4t \cdot \ln\left(1.005\right)\\
+\implies t &= \frac{\ln\left(2\right)}{4\ln\left(1.005\right)}\\
+&\approx \boxed{~34.74 \text{ years}~}
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(b) Continuous:** Solve $2000 = 1000e^{0.02t}$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 2 &= e^{0.02t}\\
+\implies \ln\left(2\right) &= 0.02t\\
+\implies t &= \frac{\ln\left(2\right)}{0.02}\\
+&\approx \boxed{~34.66 \text{ years}~}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+:::{.fragment}
+
+The difference is less than **two weeks** over a 35-year investment. At low interest rates, continuous compounding sounds much better than it actually is.
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-tip}
+## The Rule of 72
+
+A useful approximation: dividing $72$ by the annual interest rate (as a percentage) gives the approximate doubling time in years. At 2%, that's $72/2 = 36$ years — close to our exact answer of ~34.7.
+
+:::
+
+:::
+
+## Application to Carbon Dating
+
+<div style="font-size:17pt">
+
+**Try It! 5:** Carbon-14 is a radioactive isotope used in archaeological dating. It decays
+according to $\displaystyle{A = A_0 \left(\frac{1}{2}\right)^{t/5730}}$, where $A_0$ is the
+initial amount and $t$ is time in years. A bone fragment is found to contain $40\%$ of its
+original carbon-14. How old is the fragment? Round to the nearest year.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 6:** Using the same decay model, what percentage of the original carbon-14 remains
+in a sample after $2{,}000$ years? Round to the nearest hundredth of a percent.
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `17. Exponential Functions and Equations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $h\left(x\right) = 4e^{x - 2} - 3$.
+
+$\left(a\right)$ Find the $y$-intercept, horizontal asymptote, and range.
+
+$\left(b\right)$ Find $h^{-1}\!\left(x\right)$ and state its domain.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ $f\left(x\right) = a^x$ is the **exponential book function**. Domain: all reals. Range: $\left(0, \infty\right)$. Asymptote: $y = 0$. $y$-intercept: $\left(0, 1\right)$.
++ If $a > 1$: increasing. If $0 < a < 1$: decreasing.
++ Transformations shift the asymptote, change the range, and alter end behavior in predictable ways.
++ The inverse of $f\left(x\right) = a^x$ is $f^{-1}\left(x\right) = \log_a\left(x\right)$
+    + Use the *swap and solve* method to construct function inverses.
++ Exponential functions are involved in many applications involving growth or decay.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Next class we do the same analysis for **logarithmic functions** — graphs, transformations, inverses, and applications.
++ Since logarithmic and exponential functions are inverses, their graphs are reflections of each other across $y = x$. Everything we learned today carries over directly.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Logarithmic Functions</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Continue Homework 11 on MyOpenMath</center>
+
+:::
+
+</div>

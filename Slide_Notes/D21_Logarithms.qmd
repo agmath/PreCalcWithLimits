@@ -1,0 +1,3482 @@
+---
+title: "MAT 142: Logarithmic Functions"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Last class we investigated exponential functions — their geography, transformations, inverses, and applications to compound interest and decay. Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Solve $\displaystyle{\log_5\!\left(x + 10\right) = 30}$.
+
+:::
+
+:::{.fragment}
+
+**Problem 2:** Solve $\displaystyle{\ln\!\left(x + 5\right) = 8 - \ln\!\left(x + 1\right)}$. Check your solution carefully.
+
+:::
+
+:::{.fragment}
+
+*Note:* Problem 2 requires combining logarithms before exponentiating. The resulting equation is quadratic — and one solution will be extraneous.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Since logarithmic and exponential functions are inverses of each other, much of today's analysis mirrors last class — but with the roles of domain/range, asymptotes, and intercepts swapped.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify and sketch the graph of the logarithmic book function $f\left(x\right) = \log_a\!\left(x\right)$.
++ Describe the domain, range, asymptote, and end behavior of a logarithmic function.
++ Apply transformations to sketch graphs of logarithmic functions.
++ Find the inverse of a logarithmic function.
++ Apply exponential and logarithmic models to real-world problems.
+
+## The Logarithmic Book Function
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Definition:** The *logarithmic book function* is $f\left(x\right) = \log_a\!\left(x\right)$, where $a > 0$ and $a \neq 1$.
+
+:::
+
+:::{.fragment}
+
+Since $f\left(x\right) = \log_a\!\left(x\right)$ is the inverse of $g\left(x\right) = a^x$, its graph is the reflection of the exponential graph across the line $y = x$. Every feature swaps:
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+| Exponential $a^x$ | Logarithmic $\log_a\!\left(x\right)$ |
+|:--|:--|
+| Domain: $\left(-\infty, \infty\right)$ | Domain: $\left(0, \infty\right)$ |
+| Range: $\left(0, \infty\right)$ | Range: $\left(-\infty, \infty\right)$ |
+| $y$-intercept: $\left(0, 1\right)$ | $x$-intercept: $\left(1, 0\right)$ |
+| Horizontal asymptote: $y = 0$ | Vertical asymptote: $x = 0$ |
+
+:::
+
+:::{.fragment}
+
+The behavior again depends on the base:
+
+:::
+
++ $a > 1$: **increasing** — the logarithm grows without bound, but slowly.
++ $0 < a < 1$: **decreasing**.
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+```{r}
+x_exp_vals <- seq(-5, 5, length.out = 500)
+y_exp_vals <- exp(x_exp_vals)
+
+x_log_vals <- seq(0.005, 5, length.out = 500)
+y_log_vals <- log(x_log_vals)
+
+ggplot() +
+  geom_line(aes(x = x_exp_vals, y = y_exp_vals), color = "blue", linewidth = 1, alpha = 0.15) +
+  geom_line(aes(x = x_log_vals, y = y_log_vals), color = "blue") +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  annotate("segment", x = -2, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -5, yend = 5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-2, 5), ylim = c(-5, 5)) +
+  scale_x_continuous(breaks = seq(-2, 5, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = \\log_a(x)$, $a > 1$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::{.fragment}
+
+```{r}
+x_exp_vals <- seq(-5, 5, length.out = 500)
+y_exp_vals <- 0.5^(x_exp_vals)
+
+x_log_vals <- seq(0.005, 5, length.out = 500)
+y_log_vals <- log(x_log_vals)/log(0.5)
+
+ggplot() +
+  geom_line(aes(x = x_exp_vals, y = y_exp_vals), color = "darkred", linewidth = 1, alpha = 0.15) +
+  geom_line(aes(x = x_log_vals, y = y_log_vals), color = "darkred") +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  annotate("segment", x = -2, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -5, yend = 5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-2, 5), ylim = c(-5, 5)) +
+  scale_x_continuous(breaks = seq(-2, 5, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = \\log_a(x)$, $0 < a < 1$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Logarithmic Book Function
+
+<div style="font-size:16pt">
+
+**Definition:** The *logarithmic book function* is $f\left(x\right) = \log_a\!\left(x\right)$, where $a > 0$ and $a \neq 1$.
+
+Since $f\left(x\right) = \log_a\!\left(x\right)$ is the inverse of $g\left(x\right) = a^x$, its graph is the reflection of the exponential graph across the line $y = x$. Every feature swaps:
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+| Exponential $a^x$ | Logarithmic $\log_a\!\left(x\right)$ |
+|:--|:--|
+| Domain: $\left(-\infty, \infty\right)$ | Domain: $\left(0, \infty\right)$ |
+| Range: $\left(0, \infty\right)$ | Range: $\left(-\infty, \infty\right)$ |
+| $y$-intercept: $\left(0, 1\right)$ | $x$-intercept: $\left(1, 0\right)$ |
+| Horizontal asymptote: $y = 0$ | Vertical asymptote: $x = 0$ |
+
+The behavior again depends on the base:
+
+:::{.nonincremental}
+
++ $a > 1$: **increasing** — the logarithm grows without bound, but slowly.
++ $0 < a < 1$: **decreasing**.
+
+:::
+
+The faded curves in the plots on the right are the corresponding exponentials.
+
+:::{.fragment}
+
+The dashed line is the $y = x$ line, allowing us to see that the graph of the logarithmic functions are reflections of the graphs of the exponentials.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+x_exp_vals <- seq(-5, 5, length.out = 500)
+y_exp_vals <- exp(x_exp_vals)
+
+x_log_vals <- seq(0.005, 5, length.out = 500)
+y_log_vals <- log(x_log_vals)
+
+ggplot() +
+  geom_line(aes(x = x_exp_vals, y = y_exp_vals), color = "blue", linewidth = 1, alpha = 0.15) +
+  geom_line(aes(x = x_log_vals, y = y_log_vals), color = "blue") +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  annotate("segment", x = -2, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -5, yend = 5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-2, 5), ylim = c(-5, 5)) +
+  scale_x_continuous(breaks = seq(-2, 5, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = \\log_a(x)$, $a > 1$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+```{r}
+x_exp_vals <- seq(-5, 5, length.out = 500)
+y_exp_vals <- 0.5^(x_exp_vals)
+
+x_log_vals <- seq(0.005, 5, length.out = 500)
+y_log_vals <- log(x_log_vals)/log(0.5)
+
+ggplot() +
+  geom_line(aes(x = x_exp_vals, y = y_exp_vals), color = "darkred", linewidth = 1, alpha = 0.15) +
+  geom_line(aes(x = x_log_vals, y = y_log_vals), color = "darkred") +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  annotate("segment", x = -2, xend = 5, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -5, yend = 5,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-2, 5), ylim = c(-5, 5)) +
+  scale_x_continuous(breaks = seq(-2, 5, by = 1)) +
+  labs(title = latex2exp::TeX("$f(x) = \\log_a(x)$, $0 < a < 1$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+::::
+
+</div>
+
+## Transformations of Logarithmic Functions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+For $f\left(x\right) = A\cdot\log_a\!\left(B\left(x - H\right)\right) + K$, the key effects are:
+
+:::
+
++ The **vertical asymptote** shifts from $x = 0$ to $x = H$.
++ The **domain** shifts from $\left(0, \infty\right)$ to $\left(H, \infty\right)$ if $B > 0$ or to $\left(-\infty, H\right)$ if $B < 0$.
++ The **$x$-intercept** changes. Solve $f\left(x\right) = 0$ to find it.
++ The **$y$-intercept** may or may not exist. If $x = 0$ is in the domain of the function, evaluate $f\left(0\right)$ to find the $y$-intercept.
++ End behavior adjusts accordingly.
+
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## The Mirror Image
+
+Since $\log_a$ and $a^x$ are inverses, the logarithm's vertical asymptote plays the same role as the exponential's horizontal asymptote — it's the boundary the function approaches but never crosses. The logarithm approaches it as $x$ approaches the asymptote from the side on which the function values are defined; the exponential approaches its asymptote as $x \to \pm\infty$.
+
+:::
+
+:::
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+:::
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+:::{.fragment}
+
+**Domain:**
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** The argument of the logarithm ($x - 5$) must be positive.
+
+:::{.fragment}
+
+\begin{align} x - 5 > 0
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** The argument of the logarithm ($x - 5$) must be positive.
+
+\begin{align} x - 5 > 0\\
+x > 5
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+:::{.fragment}
+
+**Vertical Asymptote:**
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** Since the graph was shifted $5$ to the right, the asymptote is shifted that same way.
+
+:::{.fragment}
+
+The asymptote for the comparison/base function was at $x = 0$
+
+:::
+
+:::{.fragment}
+
+The asymptote for the translated function is at $x = 5$
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+:::{.fragment}
+
+**$y$-intercept:**
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** $x = 0$ is not in the domain of $f\left(x\right)$, so there is no $y$ intercept.
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** None
+
+:::{.fragment}
+
+**$x$-intercept:**
+
+:::
+
+:::{.fragment}
+
+\begin{align} \frac{3}{2}\ln\left(x - 5\right) - 9 = 0
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** None
+
+**$x$-intercept:**
+
+\begin{align} \frac{3}{2}\ln\left(x - 5\right) - 9 = 0\\
+\implies \frac{3}{2}\ln\left(x - 5\right) &= 9
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** None
+
+**$x$-intercept:**
+
+\begin{align} \frac{3}{2}\ln\left(x - 5\right) - 9 = 0\\
+\implies \frac{3}{2}\ln\left(x - 5\right) &= 9\\
+\implies \ln\left(x - 5\right) &= 6
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** None
+
+**$x$-intercept:**
+
+\begin{align} \frac{3}{2}\ln\left(x - 5\right) - 9 = 0\\
+\implies \frac{3}{2}\ln\left(x - 5\right) &= 9\\
+\implies \ln\left(x - 5\right) &= 6\\
+\implies x - 5 &= e^6
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** None
+
+**$x$-intercept:** $\displaystyle{\left(5 + e^6, 0\right)}$
+
+\begin{align} \frac{3}{2}\ln\left(x - 5\right) - 9 = 0\\
+\implies \frac{3}{2}\ln\left(x - 5\right) &= 9\\
+\implies \ln\left(x - 5\right) &= 6\\
+\implies x - 5 &= e^6
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+**End behavior:**
+
+:::
+
+:::{.fragment}
+
+$\displaystyle{\lim_{x\to -\infty}{\frac{3}{2}\ln\left(x - 5\right) - 9}}$
+
+:::
+
+:::{.fragment}
+
+$\displaystyle{\lim_{x\to \infty}{\frac{3}{2}\ln\left(x - 5\right) - 9}}$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** None
+
+**$x$-intercept:** $\displaystyle{\left(5 + e^6, 0\right)}$
+
+\begin{align} \frac{3}{2}\ln\left(x - 5\right) - 9 = 0\\
+\implies \frac{3}{2}\ln\left(x - 5\right) &= 9\\
+\implies \ln\left(x - 5\right) &= 6\\
+\implies x - 5 &= e^6
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:**
+
+$\displaystyle{\lim_{x\to 5^+}{\frac{3}{2}\ln\left(x - 5\right) - 9}} = -\infty$
+
+$\displaystyle{\lim_{x\to \infty}{\frac{3}{2}\ln\left(x - 5\right) - 9}}$
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions I
+
+<div style="font-size:16pt">
+
+**Example 1:** For $\displaystyle{f\left(x\right) = \frac{3}{2}\ln\!\left(x - 5\right) - 9}$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* Base function is $\ln\!\left(x\right)$, but it has been...
+
+:::{.nonincremental}
+
++ shifted *right* by $5$ 
++ *stretched* vertically by a factor of $\frac{3}{2}$
++ shifted *downward* by $9$.
+
+:::
+
+**Domain:** $x > 5$ or $\left(5, \infty\right)$
+
+**Vertical Asymptote:** $x = 5$
+
+**$y$-intercept:** None
+
+**$x$-intercept:** $\displaystyle{\left(5 + e^6, 0\right)}$
+
+\begin{align} \frac{3}{2}\ln\left(x - 5\right) - 9 = 0\\
+\implies \frac{3}{2}\ln\left(x - 5\right) &= 9\\
+\implies \ln\left(x - 5\right) &= 6\\
+\implies x - 5 &= e^6
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+**End behavior:**
+
+$\displaystyle{\lim_{x\to 5^+}{\frac{3}{2}\ln\left(x - 5\right) - 9} = -\infty}$
+
+$\displaystyle{\lim_{x\to \infty}{\frac{3}{2}\ln\left(x - 5\right) - 9} = \infty}$
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.5
+
+x_vals <- seq(5.01, 20, length.out = 500)
+f_vals <- (3/2)*log(x_vals - 5) - 9
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = f_vals), color = "blue", linewidth = 1) +
+  geom_vline(xintercept = 5, linetype = "dashed", color = "gray40", linewidth = 0.8) +
+  geom_point(aes(x = exp(6) + 5, y = 0), size = 3, color = "black") +
+  annotate("text", x = 6, y = 2, label = "x = 5", color = "gray40", size = 6) +
+  annotate("segment", x = -1, xend = 20, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -12, yend = 3,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-1, 20), ylim = c(-12, 3)) +
+  scale_x_continuous(breaks = seq(-1, 20, by = 3)) +
+  labs(title = latex2exp::TeX("$f(x) = \\frac{3}{2}\\ln(x-5) - 9$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+:::
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+:::{.fragment}
+
+**Domain:** 
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** The argument to the logarithm must be positive.
+
+:::{.fragment}
+
+\begin{align} x + 4 &> 0
+\end{align}
+
+:::
+
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** The argument to the logarithm must be positive.
+
+:::{.fragmet}
+
+\begin{align} x + 4 &> 0\\
+x &> -4
+\end{align}
+
+:::
+
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+\begin{align} x + 4 &> 0\\
+x &> -4
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+:::{.fragment}
+
+**Vertical asymptote:** 
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** Since the graph is shifted *left* by $4$, so is the vertical asymptote.
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+:::{.fragment}
+
+**$y$-intercept:** 
+
+:::
+
+:::{.fragment}
+
+\begin{align} g\left(0\right) &= -8\log_{2}\left(0 + 4\right) + 6
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** 
+
+\begin{align} g\left(0\right) &= -8\log_{2}\left(0 + 4\right) + 6\\
+&= -8\log_{2}\left(4\right) + 6
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** 
+
+\begin{align} g\left(0\right) &= -8\log_{2}\left(0 + 4\right) + 6\\
+&= -8\log_{2}\left(4\right) + 6\\
+&= -8\left(2\right) + 6
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** 
+
+\begin{align} g\left(0\right) &= -8\log_{2}\left(0 + 4\right) + 6\\
+&= -8\log_{2}\left(4\right) + 6\\
+&= -8\left(2\right) + 6\\
+&= -10
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+\begin{align} g\left(0\right) &= -8\log_{2}\left(0 + 4\right) + 6\\
+&= -8\log_{2}\left(4\right) + 6\\
+&= -8\left(2\right) + 6\\
+&= -10
+\end{align}
+
+:::
+
+:::{.column width="55%"}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+**$x$-intercept:** 
+
+:::
+
+:::{.fragment}
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** 
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0\\
+\implies -8\log_{2}\left(x + 4\right) &= -6
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** 
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0\\
+\implies -8\log_{2}\left(x + 4\right) &= -6\\
+\implies \log_{2}\left(x + 4\right) &= \frac{-6}{-8}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** 
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0\\
+\implies -8\log_{2}\left(x + 4\right) &= -6\\
+\implies \log_{2}\left(x + 4\right) &= \frac{3}{4}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** 
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0\\
+\implies -8\log_{2}\left(x + 4\right) &= -6\\
+\implies \log_{2}\left(x + 4\right) &= \frac{3}{4}\\
+\implies 2^{\log_{2}\left(x + 4\right)} &= 2^{3/4}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** 
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0\\
+\implies -8\log_{2}\left(x + 4\right) &= -6\\
+\implies \log_{2}\left(x + 4\right) &= \frac{3}{4}\\
+\implies 2^{\log_{2}\left(x + 4\right)} &= 2^{3/4}\\
+\implies x + 4 &= 8^{1/4}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** 
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0\\
+\implies -8\log_{2}\left(x + 4\right) &= -6\\
+\implies \log_{2}\left(x + 4\right) &= \frac{3}{4}\\
+\implies 2^{\log_{2}\left(x + 4\right)} &= 2^{3/4}\\
+\implies x + 4 &= 8^{1/4}\\
+\implies x &= 8^{1/4} - 4
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** $\displaystyle{\left(8^{1/4} - 4, 0\right)}$
+
+\begin{align} -8\log_{2}\left(x + 4\right) + 6 &= 0\\
+\implies -8\log_{2}\left(x + 4\right) &= -6\\
+\implies \log_{2}\left(x + 4\right) &= \frac{3}{4}\\
+\implies 2^{\log_{2}\left(x + 4\right)} &= 2^{3/4}\\
+\implies x + 4 &= 8^{1/4}\\
+\implies x &= 8^{1/4} - 4
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** $\displaystyle{\left(8^{1/4} - 4, 0\right)}$
+
+
+:::{.fragment}
+
+**End behavior:**
+
+:::
+
+:::{.fragment}
+
+$\displaystyle{\lim_{x \to -4^+}{-8\log_{2}\left(x + 4\right) + 6}}$
+
+:::
+
+:::{.fragment}
+
+$\displaystyle{\lim_{x \to \infty}{-8\log_{2}\left(x + 4\right) + 6}}$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** $\displaystyle{\left(8^{1/4} - 4, 0\right)}$
+
+**End behavior:**
+
+$\displaystyle{\lim_{x \to -4^+}{-8\log_{2}\left(x + 4\right) + 6} = \infty}$
+
+$\displaystyle{\lim_{x \to \infty}{-8\log_{2}\left(x + 4\right) + 6}}$
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** $\displaystyle{\left(8^{1/4} - 4, 0\right)}$
+
+**End behavior:**
+
+$\displaystyle{\lim_{x \to -4^+}{-8\log_{2}\left(x + 4\right) + 6} = \infty}$
+
+$\displaystyle{\lim_{x \to \infty}{-8\log_{2}\left(x + 4\right) + 6} = -\infty}$
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** $\displaystyle{\left(8^{1/4} - 4, 0\right)}$
+
+**End behavior:** $\displaystyle{\lim_{x \to -4^+}{g\left(x\right)} = \infty}$ and $\displaystyle{\lim_{x \to \infty}{g\left(x\right)} = -\infty}$
+
+$\displaystyle{\lim_{x \to -4^+}{-8\log_{2}\left(x + 4\right) + 6} = \infty}$
+
+$\displaystyle{\lim_{x \to \infty}{-8\log_{2}\left(x + 4\right) + 6} = -\infty}$
+
+:::
+
+::::
+
+</div>
+
+## Analysis of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 2:** For $g\left(x\right) = -8\log_2\!\left(x + 4\right) + 6$, identify the domain, vertical asymptote, $y$-intercept, $x$-intercept, and end behavior. Sketch a graph.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+*Solution.* The base/comparison function is $\log_2\left(x\right)$, but... 
+
+:::{.nonincremental}
+
++ shifted *left* by $4$ 
++ *reflected* across the $x$-axis
++ *stretched* vertically by a factor of $8$ 
++ shifted *upwards* by $6$.
+
+:::
+
+**Domain:** $x > -4$ or $\left(-4, \infty\right)$
+
+**Vertical asymptote:** $x = -4$
+
+**$y$-intercept:** $\left(0, -10\right)$
+
+:::
+
+:::{.column width="55%"}
+
+**$x$-intercept:** $\displaystyle{\left(8^{1/4} - 4, 0\right)}$
+
+**End behavior:** $\displaystyle{\lim_{x \to -4^+}{g\left(x\right)} = \infty}$ and $\displaystyle{\lim_{x \to \infty}{g\left(x\right)} = -\infty}$
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3.25
+
+x_vals <- seq(-3.99, 10, length.out = 500)
+g_vals <- -8*log(x_vals + 4)/log(2) + 6
+
+ggplot() +
+  geom_line(aes(x = x_vals, y = g_vals), color = "blue", linewidth = 1) +
+  geom_vline(xintercept = -4, linetype = "dashed", color = "gray40", linewidth = 0.8) +
+  geom_point(aes(x = 0, y = -10), size = 3, color = "black") +
+  geom_point(aes(x = 2^(3/4) - 4, y = 0), size = 3, color = "black") +
+  annotate("text", x = -3.5, y = 8, label = "x = -4", color = "gray40", size = 4) +
+  annotate("segment", x = -4, xend = 10, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  annotate("segment", x = 0, xend = 0, y = -15, yend = 10,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed"), linewidth = 0.5) +
+  coord_cartesian(xlim = c(-4, 10), ylim = c(-15, 10)) +
+  scale_x_continuous(breaks = seq(-4, 10, by = 2)) +
+  labs(title = latex2exp::TeX("$g(x) = -8\\log_2(x+4) + 6$")) +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Logarithmic Function Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** For $f\left(x\right) = \log_3\!\left(x + 2\right) - 4$, identify the domain, vertical asymptote, $y$-intercept (if it exists), $x$-intercept, and end behavior. Sketch an approximate graph.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** For $g\left(x\right) = -2\ln\!\left(x - 1\right) + 3$, identify the same features and sketch a graph.
+
+*Before sketching:* The negative leading coefficient flips the graph. How does that affect the end behavior and range compared to the basic $\ln\!\left(x\right)$ function?
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+:::
+
+:::{.fragment}
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+:::
+
+:::{.fragment}
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\!\left(4x - 5\right) + 8$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8
+\end{align}
+
+:::
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\left(4x - 5\right) + 8$.
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8\\
+\stackrel{\text{Swap}}{} x &= \log_{10}\left(4y - 5\right) + 8
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\left(4x - 5\right) + 8$.
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8\\
+\stackrel{\text{Swap}}{} x &= \log_{10}\left(4y - 5\right) + 8\\
+\implies \log_{10}\left(4y - 5\right) + 8 &= x
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\left(4x - 5\right) + 8$.
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8\\
+\stackrel{\text{Swap}}{} x &= \log_{10}\left(4y - 5\right) + 8\\
+\implies \log_{10}\left(4y - 5\right) + 8 &= x\\
+\implies \log_{10}\left(4y - 5\right) &= x - 8
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\left(4x - 5\right) + 8$.
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8\\
+\stackrel{\text{Swap}}{} x &= \log_{10}\left(4y - 5\right) + 8\\
+\implies \log_{10}\left(4y - 5\right) + 8 &= x\\
+\implies \log_{10}\left(4y - 5\right) &= x - 8\\
+\implies 10^{\log_{10}\left(4y - 5\right)} &= 10^{x - 8}
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\left(4x - 5\right) + 8$.
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8\\
+\stackrel{\text{Swap}}{} x &= \log_{10}\left(4y - 5\right) + 8\\
+\implies \log_{10}\left(4y - 5\right) + 8 &= x\\
+\implies \log_{10}\left(4y - 5\right) &= x - 8\\
+\implies 10^{\log_{10}\left(4y - 5\right)} &= 10^{x - 8}\\
+\implies 4y - 5 &= 10^{x - 8}
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\left(4x - 5\right) + 8$.
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8\\
+\stackrel{\text{Swap}}{} x &= \log_{10}\left(4y - 5\right) + 8\\
+\implies \log_{10}\left(4y - 5\right) + 8 &= x\\
+\implies \log_{10}\left(4y - 5\right) &= x - 8\\
+\implies 10^{\log_{10}\left(4y - 5\right)} &= 10^{x - 8}\\
+\implies 4y - 5 &= 10^{x - 8}\\
+\implies 4y &= 10^{x - 8} + 5
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions I
+
+<div style="font-size:17pt">
+
+Since logarithmic functions are one-to-one, they are invertible. Their inverses are exponential functions.
+
+**Strategy:** Swap-and-solve, using exponentiation to undo the logarithm once it has been isolated.
+
+**Example 3:** Find the inverse of $f\left(x\right) = \log\left(4x - 5\right) + 8$.
+
+*Solution.* Recall $\log$ without a base denotes $\log_{10}$.
+
+\begin{align} y &= \log_{10}\!\left(4x - 5\right) + 8\\
+\stackrel{\text{Swap}}{} x &= \log_{10}\left(4y - 5\right) + 8\\
+\implies \log_{10}\left(4y - 5\right) + 8 &= x\\
+\implies \log_{10}\left(4y - 5\right) &= x - 8\\
+\implies 10^{\log_{10}\left(4y - 5\right)} &= 10^{x - 8}\\
+\implies 4y - 5 &= 10^{x - 8}\\
+\implies 4y &= 10^{x - 8} + 5\\
+\implies y &= \frac{10^{x - 8} + 5}{4}
+\end{align}
+
+:::{.fragment}
+
+So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \frac{10^{x - 8} + 5}{4}}~}$.
+
+:::
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+
+:::
+
+:::{.fragment}
+
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}
+\end{align}
+
+:::
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}\\
+\implies \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2} &= x
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}\\
+\implies \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2} &= x\\
+\implies 7 - \ln\left(y - 2\right) &= 2x
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}\\
+\implies \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2} &= x\\
+\implies 7 - \ln\left(y - 2\right) &= 2x\\
+\implies -\ln\left(y - 2\right) &= 2x -7
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}\\
+\implies \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2} &= x\\
+\implies 7 - \ln\left(y - 2\right) &= 2x\\
+\implies -\ln\left(y - 2\right) &= 2x -7\\
+\implies \ln\left(y - 2\right) &= 7 - 2x
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}\\
+\implies \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2} &= x\\
+\implies 7 - \ln\left(y - 2\right) &= 2x\\
+\implies -\ln\left(y - 2\right) &= 2x -7\\
+\implies \ln\left(y - 2\right) &= 7 - 2x\\
+\implies e^{\ln\left(y - 2\right)} &= e^{7 - 2x}
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}\\
+\implies \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2} &= x\\
+\implies 7 - \ln\left(y - 2\right) &= 2x\\
+\implies -\ln\left(y - 2\right) &= 2x -7\\
+\implies \ln\left(y - 2\right) &= 7 - 2x\\
+\implies e^{\ln\left(y - 2\right)} &= e^{7 - 2x}\\
+\implies y - 2 &= e^{7 - 2x}
+\end{align}
+
+</div>
+
+## Inverses of Logarithmic Functions II
+
+<div style="font-size:16pt">
+
+**Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = \frac{5 - \ln\!\left(x - 2\right)}{2} + 1}$.
+
+*Solution.* Simplify first: $g\left(x\right) = \dfrac{7}{2} - \dfrac{\ln\!\left(x-2\right)}{2}$.
+\begin{align} y &= \frac{7}{2} - \frac{\ln\!\left(x - 2\right)}{2}\\
+\stackrel{\text{Swap}}{} x &= \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2}\\
+\implies \frac{7}{2} - \frac{\ln\left(y - 2\right)}{2} &= x\\
+\implies 7 - \ln\left(y - 2\right) &= 2x\\
+\implies -\ln\left(y - 2\right) &= 2x -7\\
+\implies \ln\left(y - 2\right) &= 7 - 2x\\
+\implies e^{\ln\left(y - 2\right)} &= e^{7 - 2x}\\
+\implies y - 2 &= e^{7 - 2x}\\
+\implies y &= e^{7 - 2x} + 2
+\end{align}
+
+:::{.fragment}
+
+So, $\boxed{~\displaystyle{g^{-1}\left(x\right) = e^{7 - 2x} + 2}~}$.
+
+:::
+
+</div>
+
+## Inverses of Logarithmic Functions Practice
+
+<div style="font-size:17pt">
+
+**Try It! 3:** Find the inverse of $f\left(x\right) = \log_3\!\left(x + 2\right) - 4$ from Try It! 1. State the domain of $f^{-1}$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 4:** Find the inverse of $g\left(x\right) = -2\ln\!\left(x - 1\right) + 3$ from Try It! 2. State the domain of $g^{-1}$.
+
+</div>
+
+## Exponential Growth and Decay
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+Many real-world quantities change at a rate proportional to their current size. This produces the model:
+
+$$A = Pe^{rt}$$
+
+where $P$ is the initial quantity, $r$ is the continuous rate of growth ($r > 0$) or decay ($r < 0$), $t$ is time, and $A$ is the quantity at time $t$.
+
+:::
+
+:::{.fragment}
+
+This is the same continuous compounding formula from last class — extended now as a general model for any exponential process.
+
+:::
+
+:::{.fragment}
+
+**Key insight:** Solving for $t$ always requires a logarithm, since $t$ is in the exponent. This is one reason why logarithms are almost always introduced immediately following exponential functions.
+
+:::
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+:::
+
+:::{.fragment}
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}
+\end{align}
+
+:::
+
+::::
+
+:::
+
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}
+\end{align}
+
+:::
+
+::::
+
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730
+\end{align}
+
+:::
+
+::::
+
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}
+\end{align}
+
+:::
+
+::::
+
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}\\
+\implies r &= \frac{-\ln\left(2\right)}{5730}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+Now, solve for $t$ using the discovered decay rate, the initial amount of Carbon-14 and the current amount of Carbon-14.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 12 &= 32e^{-\frac{\ln\left(2\right)}{5730}t}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}\\
+\implies r &= \frac{-\ln\left(2\right)}{5730}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, solve for $t$ using the discovered decay rate, the initial amount of Carbon-14 and the current amount of Carbon-14.
+
+\begin{align} 12 &= 32e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \frac{12}{32} &= e^{-\frac{\ln\left(2\right)}{5730}t}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}\\
+\implies r &= \frac{-\ln\left(2\right)}{5730}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, solve for $t$ using the discovered decay rate, the initial amount of Carbon-14 and the current amount of Carbon-14.
+
+\begin{align} 12 &= 32e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \frac{3}{8} &= e^{-\frac{\ln\left(2\right)}{5730}t}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}\\
+\implies r &= \frac{-\ln\left(2\right)}{5730}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, solve for $t$ using the discovered decay rate, the initial amount of Carbon-14 and the current amount of Carbon-14.
+
+\begin{align} 12 &= 32e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \frac{3}{8} &= e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \ln\left(\frac{3}{8}\right) &= -\frac{\ln\left(2\right)}{5730}t
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}\\
+\implies r &= \frac{-\ln\left(2\right)}{5730}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, solve for $t$ using the discovered decay rate, the initial amount of Carbon-14 and the current amount of Carbon-14.
+
+\begin{align} 12 &= 32e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \frac{3}{8} &= e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \ln\left(\frac{3}{8}\right) &= -\frac{\ln\left(2\right)}{5730}t\\
+\implies -\ln\left(2\right)t &= 5730\ln\left(\frac{3}{8}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}\\
+\implies r &= \frac{-\ln\left(2\right)}{5730}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, solve for $t$ using the discovered decay rate, the initial amount of Carbon-14 and the current amount of Carbon-14.
+
+\begin{align} 12 &= 32e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \frac{3}{8} &= e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \ln\left(\frac{3}{8}\right) &= -\frac{\ln\left(2\right)}{5730}t\\
+\implies -\ln\left(2\right)t &= 5730\ln\left(\frac{3}{8}\right)\\
+\implies t &= -\frac{5730\ln\left(3/8\right)}{\ln\left(2\right)}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Carbon Dating
+
+<div style="font-size:16pt">
+
+**Example 5:** The half-life of Carbon-14 is 5730 years. A fossil contains 12 grams of C-14. If we know it originally contained 32 grams, how old is the fossil?
+
+*Solution.* Using the decay model $A = Pe^{rt}$, first find $r$ from the half-life condition that after 5730 years, half remains.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+\begin{align} \frac{P}{2} &= Pe^{r \cdot 5730}\\
+\implies \frac{1}{2} &= e^{r\cdot 5730}\\
+\implies \ln\left(\frac{1}{2}\right) &= r\cdot 5730\\
+\implies r &= \frac{\ln\left(\frac{1}{2}\right)}{5730}\\
+\implies r &= \frac{-\ln\left(2\right)}{5730}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+Now, solve for $t$ using the discovered decay rate, the initial amount of Carbon-14 and the current amount of Carbon-14.
+
+\begin{align} 12 &= 32e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \frac{3}{8} &= e^{-\frac{\ln\left(2\right)}{5730}t}\\
+\implies \ln\left(\frac{3}{8}\right) &= -\frac{\ln\left(2\right)}{5730}t\\
+\implies -\ln\left(2\right)t &= 5730\ln\left(\frac{3}{8}\right)\\
+\implies t &= -\frac{5730\ln\left(3/8\right)}{\ln\left(2\right)}\\
+\implies t &\approx 8108
+\end{align}
+
+:::
+
+:::{.fragment}
+
+The fossil is approximately 8,108 years old.
+
+:::
+
+::::
+
+</div>
+
+## Application to Drug Dosages
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 6:** A doctor prescribes 125 mg of a drug that decays by about 30% each hour.
+
+$\left(a\right)$ To the nearest hour, what is the half-life of the drug?
+
+$\left(b\right)$ Write an exponential model and find the amount remaining after 3 hours.
+
+$\left(c\right)$ Find and interpret $f\left(10\right)$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(a)** The model is $A = 125\left(0.7\right)^t$ since the concentration decays hourly.
+
+:::
+
+:::{.fragment}
+
+At the time of one half-life, there will be 62.5mg of the drug remaining.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 62.5 &= 125\left(0.7\right)^t
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Application to Drug Dosages
+
+<div style="font-size:16pt">
+
+**Example 6:** A doctor prescribes 125 mg of a drug that decays by about 30% each hour.
+
+$\left(a\right)$ To the nearest hour, what is the half-life of the drug?
+
+$\left(b\right)$ Write an exponential model and find the amount remaining after 3 hours.
+
+$\left(c\right)$ Find and interpret $f\left(10\right)$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)** The model is $A = 125\left(0.7\right)^t$ since the concentration decays hourly.
+
+At the time of one half-life, there will be 62.5mg of the drug remaining.
+
+\begin{align} 62.5 &= 125\left(0.7\right)^t\\
+\implies \frac{1}{2} &= 0.7^t
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Application to Drug Dosages
+
+<div style="font-size:16pt">
+
+**Example 6:** A doctor prescribes 125 mg of a drug that decays by about 30% each hour.
+
+$\left(a\right)$ To the nearest hour, what is the half-life of the drug?
+
+$\left(b\right)$ Write an exponential model and find the amount remaining after 3 hours.
+
+$\left(c\right)$ Find and interpret $f\left(10\right)$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)** The model is $A = 125\left(0.7\right)^t$ since the concentration decays hourly.
+
+At the time of one half-life, there will be 62.5mg of the drug remaining.
+
+\begin{align} 62.5 &= 125\left(0.7\right)^t\\
+\implies \frac{1}{2} &= 0.7^t\\
+\implies t\ln\left(0.7\right) &= \ln\left(0.5\right)
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Application to Drug Dosages
+
+<div style="font-size:16pt">
+
+**Example 6:** A doctor prescribes 125 mg of a drug that decays by about 30% each hour.
+
+$\left(a\right)$ To the nearest hour, what is the half-life of the drug?
+
+$\left(b\right)$ Write an exponential model and find the amount remaining after 3 hours.
+
+$\left(c\right)$ Find and interpret $f\left(10\right)$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)** The model is $A = 125\left(0.7\right)^t$ since the concentration decays hourly.
+
+At the time of one half-life, there will be 62.5mg of the drug remaining.
+
+\begin{align} 62.5 &= 125\left(0.7\right)^t\\
+\implies \frac{1}{2} &= 0.7^t\\
+\implies t\ln\left(0.7\right) &= \ln\left(0.5\right)\\
+\implies t &= \frac{\ln\left(0.5\right)}{\ln\left(0.7\right)}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Application to Drug Dosages
+
+<div style="font-size:16pt">
+
+**Example 6:** A doctor prescribes 125 mg of a drug that decays by about 30% each hour.
+
+$\left(a\right)$ To the nearest hour, what is the half-life of the drug?
+
+$\left(b\right)$ Write an exponential model and find the amount remaining after 3 hours.
+
+$\left(c\right)$ Find and interpret $f\left(10\right)$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)** The model is $A = 125\left(0.7\right)^t$ since the concentration decays hourly.
+
+At the time of one half-life, there will be 62.5mg of the drug remaining.
+
+\begin{align} 62.5 &= 125\left(0.7\right)^t\\
+\implies \frac{1}{2} &= 0.7^t\\
+\implies t\ln\left(0.7\right) &= \ln\left(0.5\right)\\
+\implies t &= \frac{\ln\left(0.5\right)}{\ln\left(0.7\right)}\\
+\implies t &\approx 1.94 \approx 2~\text{hours}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Application to Drug Dosages
+
+<div style="font-size:16pt">
+
+**Example 6:** A doctor prescribes 125 mg of a drug that decays by about 30% each hour.
+
+$\left(a\right)$ To the nearest hour, what is the half-life of the drug?
+
+$\left(b\right)$ Write an exponential model and find the amount remaining after 3 hours.
+
+$\left(c\right)$ Find and interpret $f\left(10\right)$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)** The model is $A = 125\left(0.7\right)^t$ since the concentration decays hourly.
+
+At the time of one half-life, there will be 62.5mg of the drug remaining.
+
+\begin{align} 62.5 &= 125\left(0.7\right)^t\\
+\implies \frac{1}{2} &= 0.7^t\\
+\implies t\ln\left(0.7\right) &= \ln\left(0.5\right)\\
+\implies t &= \frac{\ln\left(0.5\right)}{\ln\left(0.7\right)}\\
+\implies t &\approx 1.94 \approx 2~\text{hours}
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(b)** $f\left(t\right) = 125\left(0.7\right)^t$. 
+
+:::
+
+:::{.fragment}
+
+After 3 hours:
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(3\right) &= 125\left(0.7\right)^3 = 125\left(0.343\right) \approx 43 \text{ mg}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+**(c)**
+
+:::
+
+:::{.fragment}
+
+$\displaystyle{f\left(10\right) = 125\left(0.7\right)^{10} \approx 3.53~\text{mg}}$
+
+:::
+
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(a)**
+
+:::
+
+:::{.fragment}
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)**
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)\\
+&= \frac{2}{3}\log\left(1.4\times 10^{8.6}\right)
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)**
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)\\
+&= \frac{2}{3}\log\left(1.4\times 10^{8.6}\right)\\
+&\approx 5.83
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(b)** Let $E_1$ be the energy released by the $3.9$ magnitude earthquake.
+
+:::
+
+:::{.fragment}
+
+\begin{align} M_2 &= \frac{2}{3}\log\left(\frac{750E_1}{10^{4.4}}\right)
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)**
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)\\
+&= \frac{2}{3}\log\left(1.4\times 10^{8.6}\right)\\
+&\approx 5.83
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+**(b)** Let $E_1$ be the energy released by the $3.9$ magnitude earthquake.
+
+\begin{align} M_2 &= \frac{2}{3}\log\left(\frac{750E_1}{10^{4.4}}\right)\\
+\implies M_2 &= \frac{2}{3}\left(\log\left(750\right) + \log\left(\frac{E_1}{10^{4.4}}\right)\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)**
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)\\
+&= \frac{2}{3}\log\left(1.4\times 10^{8.6}\right)\\
+&\approx 5.83
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+**(b)** Let $E_1$ be the energy released by the $3.9$ magnitude earthquake.
+
+\begin{align} M_2 &= \frac{2}{3}\log\left(\frac{750E_1}{10^{4.4}}\right)\\
+\implies M_2 &= \frac{2}{3}\left(\log\left(750\right) + \log\left(\frac{E_1}{10^{4.4}}\right)\right)\\
+\implies M_2 &= \frac{2}{3}\log\left(750\right) + \frac{2}{3}\log\left(\frac{E_1}{10^{4.4}}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)**
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)\\
+&= \frac{2}{3}\log\left(1.4\times 10^{8.6}\right)\\
+&\approx 5.83
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+**(b)** Let $E_1$ be the energy released by the $3.9$ magnitude earthquake.
+
+\begin{align} M_2 &= \frac{2}{3}\log\left(\frac{750E_1}{10^{4.4}}\right)\\
+&= \frac{2}{3}\left(\log\left(750\right) + \log\left(\frac{E_1}{10^{4.4}}\right)\right)\\
+&= \frac{2}{3}\log\left(750\right) + \frac{2}{3}\log\left(\frac{E_1}{10^{4.4}}\right)\\
+&\approx 1.917 + \frac{2}{3}\log\left(\frac{E_1}{10^{4.4}}\right)
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)**
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)\\
+&= \frac{2}{3}\log\left(1.4\times 10^{8.6}\right)\\
+&\approx 5.83
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+**(b)** Let $E_1$ be the energy released by the $3.9$ magnitude earthquake.
+
+\begin{align} M_2 &= \frac{2}{3}\log\left(\frac{750E_1}{10^{4.4}}\right)\\
+&= \frac{2}{3}\left(\log\left(750\right) + \log\left(\frac{E_1}{10^{4.4}}\right)\right)\\
+&= \frac{2}{3}\log\left(750\right) + \frac{2}{3}\log\left(\frac{E_1}{10^{4.4}}\right)\\
+&\approx 1.917 + \frac{2}{3}\log\left(\frac{E_1}{10^{4.4}}\right)\\
+&= 1.917 + 3.9
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Application to Earthquake Magnitude
+
+<div style="font-size:16pt">
+
+**Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
+
+$\left(a\right)$ Find the magnitude of a quake releasing $1.4 \times 10^{13}$ J.
+
+$\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9 quake. Find its magnitude.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(a)**
+
+\begin{align} M &= \frac{2}{3}\log\left(\frac{1.4 \times 10^{13}}{10^{4.4}}\right)\\
+&= \frac{2}{3}\log\left(1.4\times 10^{8.6}\right)\\
+&\approx 5.83
+\end{align}
+
+:::
+
+:::{.column width="50%"}
+
+**(b)** Let $E_1$ be the energy released by the $3.9$ magnitude earthquake.
+
+\begin{align} M_2 &= \frac{2}{3}\log\left(\frac{750E_1}{10^{4.4}}\right)\\
+&= \frac{2}{3}\left(\log\left(750\right) + \log\left(\frac{E_1}{10^{4.4}}\right)\right)\\
+&= \frac{2}{3}\log\left(750\right) + \frac{2}{3}\log\left(\frac{E_1}{10^{4.4}}\right)\\
+&\approx 1.917 + \frac{2}{3}\log\left(\frac{E_1}{10^{4.4}}\right)\\
+&= 1.917 + 3.9\\
+&\approx 5.82
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Applications Practice
+
+<div style="font-size:17pt">
+
+**Try It! 5:** A bacterial culture starts with 500 cells and grows continuously at a rate of 8% per hour. How many hours does it take for the culture to reach 2{,}000 cells? Leave your answer in exact form, then approximate to the nearest tenth of an hour.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 6:** Two earthquakes occur on the same day. The first has magnitude 4.5 on the MMS scale. The second releases $\frac{1}{200}$ of the energy of the first. Find the magnitude of the second earthquake. Round to the nearest hundredth.
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `18. Logarithmic Functions and Equations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $h\left(x\right) = \ln\!\left(x + 3\right) - 2$.
+
+$\left(a\right)$ State the domain and vertical asymptote.
+
+$\left(b\right)$ Find the $x$-intercept.
+
+$\left(c\right)$ Find $h^{-1}\!\left(x\right)$ and state its domain.
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ $f\left(x\right) = \log_a\!\left(x\right)$ is the inverse of $a^x$. Every feature swaps: domain becomes range, $y$-intercept becomes $x$-intercept, horizontal asymptote becomes vertical.
++ Transformations shift the vertical asymptote and domain, change intercepts, and alter end behavior.
++ The general exponential growth/decay model is $A = Pe^{rt}$. Solving for $t$ always requires a logarithm.
++ Logarithmic scales (like MMS) compress enormous ranges of values into manageable numbers — a difference of 1 on the scale corresponds to a factor of $10^{3/2} \approx 31.6$ in energy.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Our next stop is **trigonometry** — a genuinely new area of mathematics covering angles, circular functions, and periodic behavior.
++ If you deal with angles, objects in motion, items rotating, etc. then you need trigonometry.
++ This is the last major topic of the course, but we'll spend several class meetings on it.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Introduction to Trigonometry</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 11 on MyOpenMath</center>
+
+:::
+
+</div>

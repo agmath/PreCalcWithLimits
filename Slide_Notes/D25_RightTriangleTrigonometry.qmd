@@ -1,0 +1,1376 @@
+---
+title: "MAT 142: Right Triangle Trigonometry"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Last class we studied the graphs of trigonometric functions, inverse trigonometric functions, and solved trigonometric equations. Try the following warm-up problems.
+
+:::
+
+:::{.fragment}
+
+**Problem 1:** Evaluate $\displaystyle{\arccos\!\left(\frac{-1}{2}\right)}$ and $\displaystyle{\arcsin\!\left(\frac{-1}{2}\right)}$.
+
+:::
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+:::{.fragment}
+
+**Problem 2:** Find all solutions to $\displaystyle{\sqrt{3}\tan\!\left(5x - 3\right) + 1 = 0}$.
+
+:::
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today we close the loop. We return to the projectile problem from Day 23 — and now we have everything we need to finish it.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Apply the Pythagorean Theorem to find missing side lengths in right triangles.
++ Use $\sin\left(\right)$, $\cos\left(\right)$, and $\tan\left(\right)$ to relate angles and side lengths in right triangles.
++ Use inverse trigonometric functions to find missing angles.
++ Solve applied problems involving angles of elevation, depression, and right-triangle geometry.
+
+## Right Triangle Labeling Convention
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.5
+
+library(ggplot2)
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  # right angle marker
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  # labels
+  annotate("text", x = 2, y = -0.12, label = "b", size = 6, fontface = "italic") +
+  annotate("text", x = 4.15, y = 1, label = "a", size = 6, fontface = "italic") +
+  annotate("text", x = 1.8, y = 1.15, label = "c (hypotenuse)", size = 5, fontface = "italic") +
+  annotate("text", x = 0.45, y = 0.08, label = "A", size = 6) +
+  annotate("text", x = 3.8, y = 1.75, label = "B", size = 6) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Convention:** $A$ and $B$ denote the two non-right angles. Side $a$ is opposite angle $A$; side $b$ is opposite angle $B$; side $c$ is the hypotenuse.
+
+:::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+:::{.fragment}
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+:::
+
+:::{.fragment}
+
+**Example 1:** Find the missing side length in each case.
+
+:::
+
+:::{.fragment}
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+:::
+
+:::{.fragment}
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+:::
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(1)**
+
+:::
+
+:::{.fragment}
+
+\begin{align} a^2 + b^2 &= c^2
+\end{align}
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2
+\end{align}
+
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2
+\end{align}
+
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2\\
+\implies c^2 &= 74
+\end{align}
+
+
+:::
+
+:::{.column width="50%"}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2\\
+\implies c^2 &= 74\\
+\implies c &= \boxed{~\sqrt{74}~}
+\end{align}
+
+:::{.fragment}
+
+Note that we omit the "$\pm$" here since we know that $c$ is a *length*.
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.fragment}
+
+**(2)**
+
+:::
+
+:::{.fragment}
+
+\begin{align} a^2 + b^2 &= c^2
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2\\
+\implies c^2 &= 74\\
+\implies c &= \boxed{~\sqrt{74}~}
+\end{align}
+
+Note that we omit the "$\pm$" here since we know that $c$ is a *length*.
+
+:::
+
+:::{.column width="50%"}
+
+**(2)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + b^2 &= 10^2
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2\\
+\implies c^2 &= 74\\
+\implies c &= \boxed{~\sqrt{74}~}
+\end{align}
+
+Note that we omit the "$\pm$" here since we know that $c$ is a *length*.
+
+:::
+
+:::{.column width="50%"}
+
+**(2)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + b^2 &= 10^2\\
+\implies 25 + b^2 &= 100
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2\\
+\implies c^2 &= 74\\
+\implies c &= \boxed{~\sqrt{74}~}
+\end{align}
+
+Note that we omit the "$\pm$" here since we know that $c$ is a *length*.
+
+:::
+
+:::{.column width="50%"}
+
+**(2)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + b^2 &= 10^2\\
+\implies 25 + b^2 &= 100\\
+\implies b^2 &= 75
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2\\
+\implies c^2 &= 74\\
+\implies c &= \boxed{~\sqrt{74}~}
+\end{align}
+
+Note that we omit the "$\pm$" here since we know that $c$ is a *length*.
+
+:::
+
+:::{.column width="50%"}
+
+**(2)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + b^2 &= 10^2\\
+\implies 25 + b^2 &= 100\\
+\implies b^2 &= 75\\
+\implies b &= \sqrt{75}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## The Pythagorean Theorem
+
+<div style="font-size:17pt">
+
+**Theorem:** For any right triangle with legs $a$ and $b$ and hypotenuse $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Example 1:** Find the missing side length in each case.
+
+$\left(1\right)$ Legs $a = 5$ and $b = 7$. Find the hypotenuse $c$.
+
+$\left(2\right)$ Leg $a = 5$ and hypotenuse $c = 10$. Find the missing leg $b$.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+**(1)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + 7^2 &= c^2\\
+\implies 25 + 49 &= c^2\\
+\implies c^2 &= 74\\
+\implies c &= \boxed{~\sqrt{74}~}
+\end{align}
+
+Note that we omit the "$\pm$" here since we know that $c$ is a *length*.
+
+:::
+
+:::{.column width="50%"}
+
+**(2)**
+
+\begin{align} a^2 + b^2 &= c^2\\
+\implies 5^2 + b^2 &= 10^2\\
+\implies 25 + b^2 &= 100\\
+\implies b^2 &= 75\\
+\implies b &= \sqrt{75}\\
+\implies b &= ~\boxed{5\sqrt{3}~}
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Trig Ratios in Right Triangles
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+The unit circle definitions of $\sin$, $\cos$, and $\tan$ connect directly to side ratios in any right triangle. For angle $A$:
+
+:::
+
+:::{.fragment}
+
+$$\sin\!\left(A\right) = \frac{\text{opposite}}{\text{hypotenuse}} = \frac{a}{c} \qquad \cos\!\left(A\right) = \frac{\text{adjacent}}{\text{hypotenuse}} = \frac{b}{c} \qquad \tan\!\left(A\right) = \frac{\text{opposite}}{\text{adjacent}} = \frac{a}{b}$$
+
+:::
+
+:::{.fragment}
+
+A useful mnemonic: **SOH-CAH-TOA**.
+
+:::
+
+:::{.fragment}
+
+We can also find angles using the inverse functions:
+
+$$A = \arcsin\!\left(\frac{a}{c}\right) \qquad A = \arccos\!\left(\frac{b}{c}\right) \qquad A = \arctan\!\left(\frac{a}{b}\right)$$
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Returning to Non-Vertical Motion from Day 23
+
+On Day 23, we asked: if a ball is launched at $60°$ with speed $64$ ft/sec, what is the maximum height? Now we can answer. The vertical component of velocity is $64\sin\!\left(60°\right) = 64 \cdot \frac{\sqrt{3}}{2} = 32\sqrt{3}$ ft/sec. Substituting into $h\left(t\right) = -16t^2 + 32\sqrt{3}t$ gives a maximum height of $48$ feet, reached at $t = \frac{\sqrt{3}}{1} \approx 1.73$ seconds.
+
+:::
+
+:::
+
+## Solving Right Triangles I
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 2:** The right triangle below has $a = 8$ and $b = 15$. Find all missing sides and angles.
+
+:::
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  annotate("text", x = 2.25, y = -0.2, label = "15", size = 10) +
+  annotate("text", x = 4.2, y = 1, label = "8", size = 10) +
+  annotate("text", x = 1.9, y = 1.25, label = "c", size = 10) +
+  annotate("text", x = 0.65, y = 0.15, label = "A", size = 10) +
+  annotate("text", x = 3.9, y = 1.75, label = "B", size = 10) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+:::
+
+:::
+
+:::{.column width="60%"}
+
+:::{.fragment}
+
+**Step 1: Find $c$ using the Pythagorean Theorem.**
+
+:::
+
+:::{.fragment}
+
+\begin{align} 8^2 + 15^2 &= c^2
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving Right Triangles I
+
+<div style="font-size:16pt">
+
+**Example 2:** The right triangle below has $a = 8$ and $b = 15$. Find all missing sides and angles.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  annotate("text", x = 2.25, y = -0.2, label = "15", size = 10) +
+  annotate("text", x = 4.2, y = 1, label = "8", size = 10) +
+  annotate("text", x = 1.9, y = 1.25, label = "c", size = 10) +
+  annotate("text", x = 0.65, y = 0.15, label = "A", size = 10) +
+  annotate("text", x = 3.9, y = 1.75, label = "B", size = 10) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+:::
+
+:::{.column width="60%"}
+
+**Step 1: Find $c$ using the Pythagorean Theorem.**
+
+\begin{align} 8^2 + 15^2 &= c^2\\
+\implies 64 + 225 &= c^2
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving Right Triangles I
+
+<div style="font-size:16pt">
+
+**Example 2:** The right triangle below has $a = 8$ and $b = 15$. Find all missing sides and angles.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  annotate("text", x = 2.25, y = -0.2, label = "15", size = 10) +
+  annotate("text", x = 4.2, y = 1, label = "8", size = 10) +
+  annotate("text", x = 1.9, y = 1.25, label = "c", size = 10) +
+  annotate("text", x = 0.65, y = 0.15, label = "A", size = 10) +
+  annotate("text", x = 3.9, y = 1.75, label = "B", size = 10) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+:::
+
+:::{.column width="60%"}
+
+**Step 1: Find $c$ using the Pythagorean Theorem.**
+
+\begin{align} 8^2 + 15^2 &= c^2\\
+\implies 64 + 225 &= c^2\\
+\implies 289 &= c^2\\
+\implies c &= 17
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving Right Triangles I
+
+<div style="font-size:16pt">
+
+**Example 2:** The right triangle below has $a = 8$ and $b = 15$. Find all missing sides and angles.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  annotate("text", x = 2.25, y = -0.2, label = "15", size = 10) +
+  annotate("text", x = 4.2, y = 1, label = "8", size = 10) +
+  annotate("text", x = 1.9, y = 1.25, label = "c", size = 10) +
+  annotate("text", x = 0.65, y = 0.15, label = "A", size = 10) +
+  annotate("text", x = 3.9, y = 1.75, label = "B", size = 10) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+:::
+
+:::{.column width="60%"}
+
+**Step 2: Find angle $A$ using $\sin\!\left(A\right) = \dfrac{a}{c}$.**
+
+:::{.fragment}
+
+\begin{align} \sin\!\left(A\right) &= \frac{8}{17}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving Right Triangles I
+
+<div style="font-size:16pt">
+
+**Example 2:** The right triangle below has $a = 8$ and $b = 15$. Find all missing sides and angles.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  annotate("text", x = 2.25, y = -0.2, label = "15", size = 10) +
+  annotate("text", x = 4.2, y = 1, label = "8", size = 10) +
+  annotate("text", x = 1.9, y = 1.25, label = "c", size = 10) +
+  annotate("text", x = 0.65, y = 0.15, label = "A", size = 10) +
+  annotate("text", x = 3.9, y = 1.75, label = "B", size = 10) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+:::
+
+:::{.column width="60%"}
+
+**Step 2: Find angle $A$ using $\sin\!\left(A\right) = \dfrac{a}{c}$.**
+
+\begin{align} \sin\!\left(A\right) &= \frac{8}{17}\\
+\implies A &= \arcsin\!\left(\frac{8}{17}\right)\\
+\implies A &\approx 28.07°
+\end{align}
+
+:::
+
+::::
+
+</div>
+
+## Solving Right Triangles I
+
+<div style="font-size:16pt">
+
+**Example 2:** The right triangle below has $a = 8$ and $b = 15$. Find all missing sides and angles.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  annotate("text", x = 2.25, y = -0.2, label = "15", size = 10) +
+  annotate("text", x = 4.2, y = 1, label = "8", size = 10) +
+  annotate("text", x = 1.9, y = 1.25, label = "c", size = 10) +
+  annotate("text", x = 0.65, y = 0.15, label = "A", size = 10) +
+  annotate("text", x = 3.9, y = 1.75, label = "B", size = 10) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+:::
+
+:::{.column width="60%"}
+
+**Step 3: Find angle $B$ using the angle sum.**
+
+:::{.fragment}
+
+\begin{align} A + B + 90° &= 180°
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Solving Right Triangles I
+
+<div style="font-size:16pt">
+
+**Example 2:** The right triangle below has $a = 8$ and $b = 15$. Find all missing sides and angles.
+
+::::{.columns}
+
+:::{.column width="40%"}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 2), linewidth = 1.5, color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0, xend = 3.85, yend = 0.15), color = "blue") +
+  geom_segment(aes(x = 3.85, y = 0.15, xend = 4, yend = 0.15), color = "blue") +
+  annotate("text", x = 2.25, y = -0.2, label = "15", size = 10) +
+  annotate("text", x = 4.2, y = 1, label = "8", size = 10) +
+  annotate("text", x = 1.9, y = 1.25, label = "c", size = 10) +
+  annotate("text", x = 0.65, y = 0.15, label = "A", size = 10) +
+  annotate("text", x = 3.9, y = 1.75, label = "B", size = 10) +
+  coord_cartesian(xlim = c(-0.3, 4.8), ylim = c(-0.3, 2.3)) +
+  theme_void()
+```
+
+:::
+
+:::{.column width="60%"}
+
+**Step 3: Find angle $B$ using the angle sum.**
+
+\begin{align} A + B + 90° &= 180°\\
+\implies 28.07° + B + 90° &\approx 180°\\
+\implies B &\approx 61.93°
+\end{align}
+
+:::{.fragment}
+
+The triangle is fully solved: $c = 17$, $A \approx 28.07°$, $B \approx 61.93°$.
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Triangle Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** Find all missing sides and angles for a right triangle with $A = 30°$ and $a = 5$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** Find all missing sides and angles for a right triangle with $B = 50°$ and $c = 7$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 3:** Find all missing sides and angles for a right triangle with $A = 45°$ and $c = 4$.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 4:** Find all missing sides and angles for a right triangle with $a = 5$ and $b = 15$.
+
+</div>
+
+## Applied Example 1: Tree Height
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** An arborist who is $5'8''$ tall stands at the base of a tall tree and walks $40$ feet away. Using an inclinometer, they measure an angle of $57°$ from eye level to the treetop. Estimate the height of the tree.
+
+:::
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  # ground
+  geom_segment(aes(x = 0, y = 0, xend = 5, yend = 0), linewidth = 1, color = "gray50") +
+  # tree
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 4), linewidth = 2, color = "darkgreen") +
+  # person
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 0.6), linewidth = 2, color = "black") +
+  # sight line from eye to treetop
+  geom_segment(aes(x = 5, y = 0.6, xend = 0, yend = 4), linewidth = 1, color = "blue", linetype = "dashed") +
+  # horizontal from eye
+  geom_segment(aes(x = 5, y = 0.6, xend = 0, yend = 0.6), linewidth = 0.8, color = "blue", linetype = "dotted") +
+  # labels
+  annotate("text", x = 2.5, y = -0.3, label = "40 ft", size = 10) +
+  annotate("text", x = -0.3, y = 2, label = "h", size = 10) +
+  annotate("text", x = 3.75, y = 1, label = "57°", size = 10, color = "blue") +
+  annotate("text", x = 5.5, y = 0.3, label = "5'8\"", size = 10) +
+  coord_cartesian(xlim = c(-0.6, 5.8), ylim = c(-0.4, 4.4)) +
+  theme_void()
+```
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+The height from eye level to the treetop uses $\tan$:
+
+:::
+
+:::{.fragment}
+
+\begin{align} \tan\!\left(57°\right) &= \frac{h_{\text{eye}}}{40}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Applied Example 1: Tree Height
+
+<div style="font-size:16pt">
+
+**Problem:** An arborist who is $5'8''$ tall stands at the base of a tall tree and walks $40$ feet away. Using an inclinometer, they measure an angle of $57°$ from eye level to the treetop. Estimate the height of the tree.
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  # ground
+  geom_segment(aes(x = 0, y = 0, xend = 5, yend = 0), linewidth = 1, color = "gray50") +
+  # tree
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 4), linewidth = 2, color = "darkgreen") +
+  # person
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 0.6), linewidth = 2, color = "black") +
+  # sight line from eye to treetop
+  geom_segment(aes(x = 5, y = 0.6, xend = 0, yend = 4), linewidth = 1, color = "blue", linetype = "dashed") +
+  # horizontal from eye
+  geom_segment(aes(x = 5, y = 0.6, xend = 0, yend = 0.6), linewidth = 0.8, color = "blue", linetype = "dotted") +
+  # labels
+  annotate("text", x = 2.5, y = -0.3, label = "40 ft", size = 10) +
+  annotate("text", x = -0.3, y = 2, label = "h", size = 10) +
+  annotate("text", x = 3.75, y = 1, label = "57°", size = 10, color = "blue") +
+  annotate("text", x = 5.5, y = 0.3, label = "5'8\"", size = 10) +
+  coord_cartesian(xlim = c(-0.6, 5.8), ylim = c(-0.4, 4.4)) +
+  theme_void()
+```
+
+:::
+
+:::{.column width="55%"}
+
+The height from eye level to the treetop uses $\tan$:
+
+\begin{align} \tan\!\left(57°\right) &= \frac{h_{\text{eye}}}{40}\\
+\implies h_{\text{eye}} &= 40\tan\!\left(57°\right)\\
+&\approx 61.59~\text{ft}
+\end{align}
+
+:::{.fragment}
+
+Add the arborist's eye height ($5'8'' \approx 5.67$ ft):
+
+:::
+
+:::{.fragment}
+
+\begin{align} h_{\text{tree}} &\approx 61.59 + 5.67 \approx \boxed{~67~\text{ft}~}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Applied Example 2: Antenna Height
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** From a point $300$ ft from the base of a building, the angle of elevation to the top of the building is $40°$ and to the top of a rooftop antenna is $43°$. Find the height of the antenna.
+
+:::
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = 0, xend = 4, yend = 0), linewidth = 1, color = "gray50") +
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 3), linewidth = 2, color = "gray40") +
+  geom_segment(aes(x = 0, y = 3, xend = 0, yend = 3.6), linewidth = 2, color = "darkred") +
+  geom_segment(aes(x = 4, y = 0, xend = 0, yend = 3), linewidth = 1, color = "blue", linetype = "dashed") +
+  geom_segment(aes(x = 4, y = 0, xend = 0, yend = 3.6), linewidth = 1, color = "darkred", linetype = "dashed") +
+  annotate("text", x = 2, y = -0.3, label = "300 ft", size = 10) +
+  annotate("text", x = -0.5, y = 1.5, label = "building", size = 10, color = "gray40") +
+  annotate("text", x = -0.5, y = 3.3, label = "antenna", size = 10, color = "darkred") +
+  annotate("text", x = 3.15, y = 0.35, label = "40°", size = 10, color = "blue") +
+  annotate("text", x = 2.65, y = 0.6, label = "43°", size = 10, color = "darkred") +
+  coord_cartesian(xlim = c(-0.8, 4.5), ylim = c(-0.4, 4.0)) +
+  theme_void()
+```
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+Height of building top:
+
+:::
+
+:::{.fragment}
+
+\begin{align} h_{\text{bldg}} &= 300\tan\!\left(40°\right) \approx 251.73~\text{ft}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+Height of antenna top:
+
+:::
+
+:::{.fragment}
+
+\begin{align} h_{\text{top}} &= 300\tan\!\left(43°\right) \approx 279.75~\text{ft}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+Antenna height:
+
+:::
+
+:::{.fragment}
+
+\begin{align} h_{\text{antenna}} &= 279.75 - 251.73 \approx \boxed{~28~\text{ft}~}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Applied Example 3: Radio Tower
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Problem:** A radio tower is $325$ ft from a building. From a window, the angle of elevation to the top of the tower is $43°$ and the angle of depression to the base is $31°$. How tall is the tower?
+
+:::
+
+::::{.columns}
+
+:::{.column width="45%"}
+
+:::{.fragment}
+
+```{r}
+#| echo: false
+#| fig.height: 3.5
+
+ggplot() +
+  geom_segment(aes(x = 0, y = -1.5, xend = 4, yend = -1.5), linewidth = 1, color = "gray50") +
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = -1.5), linewidth = 2, color = "darkgreen") +
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 2.5), linewidth = 2, color = "darkgreen") +
+  geom_segment(aes(x = 4, y = -1.5, xend = 4, yend = 2.5), color = "black", linewidth = 0.75) +
+  geom_segment(aes(x = 4, y = 0.5, xend = 0, yend = 2.5), linewidth = 1, color = "blue", linetype = "dashed") +
+  geom_segment(aes(x = 4, y = 0.5, xend = 0, yend = -1.5), linewidth = 1, color = "darkred", linetype = "dashed") +
+  geom_segment(aes(x = 4, y = 0.5, xend = 0, yend = 0.5), linewidth = 0.8, color = "black", linetype = "dotted") +
+  geom_point(aes(x = 4, y = 0.5), size = 3, color = "black") +
+  annotate("text", x = 2, y = -1.75, label = "325 ft", size = 10) +
+  annotate("text", x = 2.5, y = 0.9, label = "43°", size = 10, color = "blue") +
+  annotate("text", x = 2.5, y = 0.15, label = "31°", size = 10, color = "darkred") +
+  annotate("text", x = 4.5, y = 0.5, label = "window", size = 10) +
+  annotate("text", x = -0.4, y = 2.5, label = "top", size = 10, color = "darkgreen") +
+  annotate("text", x = -0.4, y = -1.5, label = "base", size = 10, color = "darkgreen") +
+  coord_cartesian(xlim = c(-0.8, 5), ylim = c(-2, 3)) +
+  theme_void()
+```
+
+:::
+
+:::
+
+:::{.column width="55%"}
+
+:::{.fragment}
+
+Height above the window:
+
+:::
+
+:::{.fragment}
+
+\begin{align} h_{\text{above}} &= 325\tan\!\left(43°\right) \approx 303.07~\text{ft}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+Depth below the window:
+
+:::
+
+:::{.fragment}
+
+\begin{align} h_{\text{below}} &= 325\tan\!\left(31°\right) \approx 195.28~\text{ft}
+\end{align}
+
+:::
+
+:::{.fragment}
+
+Total tower height:
+
+:::
+
+:::{.fragment}
+
+\begin{align} h_{\text{tower}} &= 303.07 + 195.28 \approx \boxed{~498~\text{ft}~}
+\end{align}
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `21. Right Triangle Trigonometry`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** A surveyor standing at ground level measures the angle of elevation to the top of a cliff to be $38°$. She then walks $50$ feet closer to the cliff and measures the angle of elevation to be $52°$. How tall is the cliff?
+
+</div>
+
+## Summary and Congratulations
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ In a right triangle, $\sin = \frac{\text{opp}}{\text{hyp}}$, $\cos = \frac{\text{adj}}{\text{hyp}}$, $\tan = \frac{\text{opp}}{\text{adj}}$ — **SOH-CAH-TOA**.
++ Use $\arcsin\left(\right)$, $\arccos\left(\right)$, or $\arctan\left(\right)$ to recover angles from side ratios.
++ The angle sum of a triangle is $180°$; once two angles are known, the third is determined.
++ Angles of elevation and depression create right triangles whose sides correspond to horizontal distances and heights.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ This is the end of our content for MAT 142.
++ The thread from Day 1 to today: we started with rates of change and limits, built up every class of algebraic function, then added a few completely new function classes (exponential, logarithmic, and trigonometric). Right triangle trig brings us back to where we started — ratios and geometry — but now with the full machinery of functions behind us.
+
+:::
+
+::::
+
+:::
+
+:::{.fragment}
+
+<center>**Thank you for a great semester.**</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Complete Homework 12 on MyOpenMath <br/> Prepare for Exams</center>
+
+:::
+
+</div>

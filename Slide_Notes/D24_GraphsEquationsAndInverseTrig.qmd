@@ -1,0 +1,1196 @@
+---
+title: "MAT 142: Trig Functions, Inverses, and Equations"
+author: Dr. Gilbert
+format: 
+  revealjs:
+    smaller: true
+date: today
+date-format: long
+theme: serif
+incremental: true
+---
+
+```{r global-options, include=FALSE}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw(base_size = 16))
+```
+
+```{css}
+code.sourceCode {
+  font-size: 1.3em;
+  /* or try font-size: xx-large; */
+}
+
+a {
+  color: purple;
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+```
+
+## Reminders and Warm-Up
+
+<div style="font-size:16pt">
+
+Last class we introduced angles, radian measure, coterminal angles, and used the unit circle to evaluate $\sin\left(\right)$, $\cos\left(\right)$, and $\tan\left(\right)$. Try the following warm-up problems.
+
+**Problem 1:** Evaluate the following using the unit circle.
+
+$$\left(a\right)~\sin\!\left(\frac{7\pi}{6}\right) \qquad \left(b\right)~\tan\!\left(120°\right) \qquad \left(c\right)~\cos\!\left(330°\right)$$
+
+**Problem 2:** Evaluate the following. Use coterminal angles as needed.
+
+$$\left(a\right)~\tan\!\left(-135°\right) \qquad \left(b\right)~\cos\!\left(\frac{27\pi}{6}\right) \qquad \left(c\right)~\cos\!\left(\frac{-15\pi}{3}\right)$$
+
+</div>
+
+## Objectives
+
+:::{.fragment}
+
+Today we study the graphs of the three primary trigonometric functions, their inverses, and how to solve trigonometric equations.
+
+:::
+
+:::{.fragment}
+
+After today's class meeting, you should be able to:
+
+:::
+
++ Identify key features (period, amplitude, phase shift, vertical shift) of transformed sine and cosine functions.
++ Evaluate inverse trigonometric functions $\arcsin$, $\arccos$, and $\arctan$.
++ Solve trigonometric equations for all solutions using the unit circle.
+
+## The Book Trig Functions
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.5
+
+x_vals <- seq(-3*pi, 3*pi, length.out = 1000)
+
+# Tan segments to avoid vertical asymptotes
+tan_seg <- function(center) seq(center - pi/2 + 0.05, center + pi/2 - 0.05, length.out = 200)
+tan_centers <- c(-2*pi, -pi, 0, pi, 2*pi)
+
+p_sin <- ggplot() +
+  geom_line(aes(x = x_vals, y = sin(x_vals)), color = "blue", linewidth = 1) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  scale_x_continuous(breaks = c(-3*pi, -2*pi, -pi, 0, pi, 2*pi, 3*pi),
+                     labels = c("-3π", "-2π", "-π", "0", "π", "2π", "3π")) +
+  coord_cartesian(ylim = c(-2, 2)) +
+  labs(title = "f(x) = sin(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_cos <- ggplot() +
+  geom_line(aes(x = x_vals, y = cos(x_vals)), color = "darkred", linewidth = 1) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  scale_x_continuous(breaks = c(-3*pi, -2*pi, -pi, 0, pi, 2*pi, 3*pi),
+                     labels = c("-3π", "-2π", "-π", "0", "π", "2π", "3π")) +
+  coord_cartesian(ylim = c(-2, 2)) +
+  labs(title = "g(x) = cos(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+tan_data <- do.call(rbind, lapply(tan_centers, function(c) {
+  xs <- tan_seg(c)
+  data.frame(x = xs, y = tan(xs), grp = c)
+}))
+
+p_tan <- ggplot() +
+  geom_line(data = tan_data, aes(x = x, y = y, group = grp), color = "darkgreen", linewidth = 1) +
+  geom_vline(xintercept = c(-5*pi/2, -3*pi/2, -pi/2, pi/2, 3*pi/2, 5*pi/2),
+             linetype = "dashed", color = "gray50", linewidth = 0.5) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  scale_x_continuous(breaks = c(-3*pi, -2*pi, -pi, 0, pi, 2*pi, 3*pi),
+                     labels = c("-3π", "-2π", "-π", "0", "π", "2π", "3π")) +
+  coord_cartesian(ylim = c(-4, 4)) +
+  labs(title = "h(x) = tan(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+
+p_sin + p_cos + p_tan
+```
+
+## Geography of Sine and Cosine
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+| Feature | $\sin\!\left(x\right)$ | $\cos\!\left(x\right)$ |
+|:--|:--|:--|
+| **Domain** | $\left(-\infty, \infty\right)$ | $\left(-\infty, \infty\right)$ |
+| **Range** | $\left[-1, 1\right]$ | $\left[-1, 1\right]$ |
+| **Period** | $2\pi$ | $2\pi$ |
+| **$y$-intercept** | $\left(0, 0\right)$ | $\left(0, 1\right)$ |
+| **Asymptotes** | None | None |
+
+:::
+
+:::{.fragment}
+
+**Tangent** behaves differently: $\tan\!\left(x\right) = \dfrac{\sin\!\left(x\right)}{\cos\!\left(x\right)}$, so it is undefined whenever $\cos\!\left(x\right) = 0$.
+
+:::
+
++ Domain: all $x \neq \frac{\pi}{2} + \pi k$ for any integer $k$.
++ Period: $\pi$ (half that of sine and cosine).
++ Vertical asymptotes at $x = \frac{\pi}{2} + \pi k$.
+
+</div>
+
+## Transformations of Trig Functions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+The general transformed form is $\displaystyle{f\left(x\right) = A\cdot\text{trig}\!\left(b\left(x - h\right)\right) + k}$, where:
+
+:::
+
+:::{.fragment}
+
+| Parameter | Effect |
+|:--|:--|
+| $\left\|A\right\|$ | **Amplitude** — vertical stretch factor; range becomes $\left[k - \left\|A\right\|,~ k + \left\|A\right\|\right]$ |
+| $A < 0$ | Reflection over the midline |
+| $h$ | **Phase shift** — horizontal shift ($h > 0$ shifts right) |
+| $k$ | **Vertical shift** — midline moves to $y = k$ |
+| $b$ | **Period** — for $\sin$/$\cos$: period $= \dfrac{2\pi}{\left|b\right|}$;<br/> for $\tan$: period $= \dfrac{\pi}{\left|b\right|}$ |
+
+:::
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-note}
+## Always Factor First
+
+If the argument isn't already in the form $b\left(x - h\right)$, factor out $b$ before reading off the phase shift. For example, $\sin\!\left(\frac{1}{2}x - 3\right) = \sin\!\left(\frac{1}{2}\left(x - 6\right)\right)$, so the phase shift is $6$, not $3$.
+
+:::
+
+:::
+
+## Transformations and Graphing
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 1:** For $f\left(x\right) = -3\sin\!\left(\frac{1}{2}x - 3\right) + 2$, identify the amplitude, period, phase shift, and vertical shift. Sketch the graph.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Factor out $b = \frac{1}{2}$ from the argument first.
+
+:::
+
+:::{.fragment}
+
+\begin{align} f\left(x\right) &= -3\sin\!\left(\frac{1}{2}x - 3\right) + 2
+\end{align}
+
+:::
+
+</div>
+
+## Transformations and Graphing
+
+<div style="font-size:16pt">
+
+**Example 1:** For $f\left(x\right) = -3\sin\!\left(\frac{1}{2}x - 3\right) + 2$, identify the amplitude, period, phase shift, and vertical shift. Sketch the graph.
+
+*Solution.* Factor out $b = \frac{1}{2}$ from the argument first.
+
+\begin{align} f\left(x\right) &= -3\sin\!\left(\frac{1}{2}x - 3\right) + 2\\
+&= -3\sin\!\left(\frac{1}{2}\left(x - 6\right)\right) + 2
+\end{align}
+
+</div>
+
+## Transformations and Graphing
+
+<div style="font-size:16pt">
+
+**Example 1:** For $f\left(x\right) = -3\sin\!\left(\frac{1}{2}x - 3\right) + 2$, identify the amplitude, period, phase shift, and vertical shift. Sketch the graph.
+
+*Solution.* Factor out $b = \frac{1}{2}$ from the argument first.
+
+\begin{align} f\left(x\right) &= -3\sin\!\left(\frac{1}{2}x - 3\right) + 2\\
+&= -3\sin\!\left(\frac{1}{2}\left(x - 6\right)\right) + 2
+\end{align}
+
+Now we can read off the parameters directly.
+
++ **Amplitude:** $\left|-3\right| = 3$ (the wave is also reflected over the midline, since $A < 0$)
++ **Phase shift:** $6$ units to the right
++ **Period:** $\dfrac{2\pi}{1/2} = 4\pi$
++ **Vertical shift:** $+2$ (midline at $y = 2$, range $\left[-1, 5\right]$)
+
+</div>
+
+## Transformations and Graphing
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.0
+
+x_vals <- seq(-2*pi, 6*pi + 12, length.out = 1000)
+y_vals <- -3*sin((1/2)*(x_vals - 6)) + 2
+
+ggplot() +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1.2) +
+  annotate("text", x = -5, y = 2.4, label = "y = 2 (midline)", color = "gray40", size = 4) +
+  #geom_hline(yintercept = -1, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #annotate("text", x = -5, y = -1.4, label = "y = -1 (minimum)", color = "gray40", size = 4) +
+  #geom_hline(yintercept = 5, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #annotate("text", x = -5, y = 5.4, label = "y = 5 (maximum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  #geom_errorbarh(aes(xmin = 6, xmax = 6 + 4*pi, y = -1.5), color = "darkred") +
+  #geom_segment(aes(x = 6, y = -1.5, xend = 6, yend = 2),
+   #            linetype = "dotted", color = "darkred") +
+  #geom_segment(aes(x = 6 + 4*pi, y = -1.5, xend = 6 + 4*pi, yend = 2),
+   #            linetype = "dotted", color = "darkred") +
+  #annotate("text", x = 6 + 2*pi, y = -2, label = "One Period (or Cycle)", color = "darkred", size = 4) +
+  #geom_errorbar(aes(x = 24.5, ymin = 2, ymax = 5), color = "darkred") +
+  #annotate("text", x = 22.5, y = 3.5, label = "Amplitude", color = "darkred", size = 4) +
+  scale_x_continuous(breaks = seq(-6, 6*pi + 12, by = pi),
+                     labels = function(x) round(x, 2)) +
+  coord_cartesian(xlim = c(-2*pi, 6*pi + 12), ylim = c(-2, 6)) +
+  labs(title = "f(x) = -3sin((1/2)(x - 6)) + 2") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Vertical shift:** $+2$ (midline at $y = 2$)
++ **Amplitude:** $\left|-3\right| = 3$ (the wave is also reflected over the midline, since $A < 0$)
++ **Range:** $\left[-1, 5\right]$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Phase shift:** $6$ units to the right
++ **Period:** $\dfrac{2\pi}{1/2} = 4\pi$
+
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Transformations and Graphing
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.0
+
+x_vals <- seq(-2*pi, 6*pi + 12, length.out = 1000)
+y_vals <- -3*sin((1/2)*(x_vals - 6)) + 2
+
+ggplot() +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1.2) +
+  annotate("text", x = -5, y = 2.4, label = "y = 2 (midline)", color = "gray40", size = 4) +
+  #geom_hline(yintercept = -1, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #annotate("text", x = -5, y = -1.4, label = "y = -1 (minimum)", color = "gray40", size = 4) +
+  #geom_hline(yintercept = 5, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #annotate("text", x = -5, y = 5.4, label = "y = 5 (maximum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  #geom_errorbarh(aes(xmin = 6, xmax = 6 + 4*pi, y = -1.5), color = "darkred") +
+  #geom_segment(aes(x = 6, y = -1.5, xend = 6, yend = 2),
+  #             linetype = "dotted", color = "darkred") +
+  #geom_segment(aes(x = 6 + 4*pi, y = -1.5, xend = 6 + 4*pi, yend = 2),
+  #             linetype = "dotted", color = "darkred") +
+  #annotate("text", x = 6 + 2*pi, y = -2, label = "One Period (or Cycle)", color = "darkred", size = 4) +
+  geom_errorbar(aes(x = 24.5, ymin = 2, ymax = 5), color = "darkred") +
+  annotate("text", x = 22.5, y = 3.5, label = "Amplitude", color = "darkred", size = 4) +
+  scale_x_continuous(breaks = seq(-6, 6*pi + 12, by = pi),
+                     labels = function(x) round(x, 2)) +
+  coord_cartesian(xlim = c(-2*pi, 6*pi + 12), ylim = c(-2, 6)) +
+  labs(title = "f(x) = -3sin((1/2)(x - 6)) + 2") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Vertical shift:** $+2$ (midline at $y = 2$)
++ **Amplitude:** $\left|-3\right| = 3$ (the wave is also reflected over the midline, since $A < 0$)
++ **Range:** $\left[-1, 5\right]$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Phase shift:** $6$ units to the right
++ **Period:** $\dfrac{2\pi}{1/2} = 4\pi$
+
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Transformations and Graphing
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.0
+
+x_vals <- seq(-2*pi, 6*pi + 12, length.out = 1000)
+y_vals <- -3*sin((1/2)*(x_vals - 6)) + 2
+
+ggplot() +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1.2) +
+  annotate("text", x = -5, y = 2.4, label = "y = 2 (midline)", color = "gray40", size = 4) +
+  geom_hline(yintercept = -1, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  annotate("text", x = -5, y = -1.4, label = "y = -1 (minimum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 5, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  annotate("text", x = -5, y = 5.4, label = "y = 5 (maximum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  #geom_errorbarh(aes(xmin = 6, xmax = 6 + 4*pi, y = -1.5), color = "darkred") +
+  #geom_segment(aes(x = 6, y = -1.5, xend = 6, yend = 2),
+  #             linetype = "dotted", color = "darkred") +
+  #geom_segment(aes(x = 6 + 4*pi, y = -1.5, xend = 6 + 4*pi, yend = 2),
+  #             linetype = "dotted", color = "darkred") +
+  #annotate("text", x = 6 + 2*pi, y = -2, label = "One Period (or Cycle)", color = "darkred", size = 4) +
+  geom_errorbar(aes(x = 24.5, ymin = 2, ymax = 5), color = "darkred") +
+  annotate("text", x = 22.5, y = 3.5, label = "Amplitude", color = "darkred", size = 4) +
+  scale_x_continuous(breaks = seq(-6, 6*pi + 12, by = pi),
+                     labels = function(x) round(x, 2)) +
+  coord_cartesian(xlim = c(-2*pi, 6*pi + 12), ylim = c(-2, 6)) +
+  labs(title = "f(x) = -3sin((1/2)(x - 6)) + 2") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Vertical shift:** $+2$ (midline at $y = 2$)
++ **Amplitude:** $\left|-3\right| = 3$ (the wave is also reflected over the midline, since $A < 0$)
++ **Range:** $\left[-1, 5\right]$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Phase shift:** $6$ units to the right
++ **Period:** $\dfrac{2\pi}{1/2} = 4\pi$
+
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Transformations and Graphing
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.0
+
+x_vals <- seq(-2*pi, 6*pi + 12, length.out = 1000)
+y_vals <- -3*sin((1/2)*(x_vals - 6)) + 2
+
+ggplot() +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  #geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1.2) +
+  annotate("text", x = -5, y = 2.4, label = "y = 2 (midline)", color = "gray40", size = 4) +
+  geom_hline(yintercept = -1, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  annotate("text", x = -5, y = -1.4, label = "y = -1 (minimum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 5, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  annotate("text", x = -5, y = 5.4, label = "y = 5 (maximum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_errorbarh(aes(xmin = 6, xmax = 6 + 4*pi, y = -1.5), color = "darkred") +
+  geom_segment(aes(x = 6, y = -1.5, xend = 6, yend = 2),
+               linetype = "dotted", color = "darkred") +
+  geom_segment(aes(x = 6 + 4*pi, y = -1.5, xend = 6 + 4*pi, yend = 2),
+               linetype = "dotted", color = "darkred") +
+  annotate("text", x = 6 + 2*pi, y = -2, label = "One Period (or Cycle)", color = "darkred", size = 4) +
+  geom_errorbar(aes(x = 24.5, ymin = 2, ymax = 5), color = "darkred") +
+  annotate("text", x = 22.5, y = 3.5, label = "Amplitude", color = "darkred", size = 4) +
+  scale_x_continuous(breaks = seq(-6, 6*pi + 12, by = pi),
+                     labels = function(x) round(x, 2)) +
+  coord_cartesian(xlim = c(-2*pi, 6*pi + 12), ylim = c(-2, 6)) +
+  labs(title = "f(x) = -3sin((1/2)(x - 6)) + 2") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Vertical shift:** $+2$ (midline at $y = 2$)
++ **Amplitude:** $\left|-3\right| = 3$ (the wave is also reflected over the midline, since $A < 0$)
++ **Range:** $\left[-1, 5\right]$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Phase shift:** $6$ units to the right
++ **Period:** $\dfrac{2\pi}{1/2} = 4\pi$
+
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Transformations and Graphing
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 4.0
+
+x_vals <- seq(-2*pi, 6*pi + 12, length.out = 1000)
+y_vals <- -3*sin((1/2)*(x_vals - 6)) + 2
+
+ggplot() +
+  geom_hline(yintercept = 2, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  geom_line(aes(x = x_vals, y = y_vals), color = "blue", linewidth = 1.2) +
+  annotate("text", x = -5, y = 2.4, label = "y = 2 (midline)", color = "gray40", size = 4) +
+  geom_hline(yintercept = -1, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  annotate("text", x = -5, y = -1.4, label = "y = -1 (minimum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 5, linetype = "dashed", color = "gray50", linewidth = 0.7) +
+  annotate("text", x = -5, y = 5.4, label = "y = 5 (maximum)", color = "gray40", size = 4) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_errorbarh(aes(xmin = 6, xmax = 6 + 4*pi, y = -1.5), color = "darkred") +
+  geom_segment(aes(x = 6, y = -1.5, xend = 6, yend = 2),
+               linetype = "dotted", color = "darkred") +
+  geom_segment(aes(x = 6 + 4*pi, y = -1.5, xend = 6 + 4*pi, yend = 2),
+               linetype = "dotted", color = "darkred") +
+  annotate("text", x = 6 + 2*pi, y = -2, label = "One Period (or Cycle)", color = "darkred", size = 4) +
+  geom_errorbar(aes(x = 24.5, ymin = 2, ymax = 5), color = "darkred") +
+  annotate("text", x = 22.5, y = 3.5, label = "Amplitude", color = "darkred", size = 4) +
+  scale_x_continuous(breaks = seq(-6, 6*pi + 12, by = pi),
+                     labels = function(x) round(x, 2)) +
+  coord_cartesian(xlim = c(-2*pi, 6*pi + 12), ylim = c(-2, 6)) +
+  labs(title = "f(x) = -3sin((1/2)(x - 6)) + 2") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Vertical shift:** $+2$ (midline at $y = 2$)
++ **Amplitude:** $\left|-3\right| = 3$ (the wave is also reflected over the midline, since $A < 0$)
++ **Range:** $\left[-1, 5\right]$
+
+:::
+
+:::
+
+:::{.column width="50%"}
+
+:::{.nonincremental}
+
++ **Phase shift:** $6$ units to the right
++ **Period:** $\dfrac{2\pi}{1/2} = 4\pi$
+
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Wave Function Practice
+
+<div style="font-size:17pt">
+
+**Try It! 1:** For $\displaystyle{f\left(x\right) = 5\cos\!\left(2x + 4\right) - \frac{1}{2}}$, identify the amplitude, period, phase shift, and vertical shift.
+
+*Remember:* Factor out $b$ from the argument before reading off the phase shift.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Try It! 2:** A wave function of the form $f\left(x\right) = A\sin\!\left(b\left(x - h\right)\right) + k$ has:
+
+:::{.nonincremental}
+
++ Range $\left[-2, 8\right]$
++ Period $\pi$
++ Passes through the point $\left(0, -2\right)$
+
+:::
+
+Sketch the graph and write down the algebraic definition of $f$.
+
+</div>
+
+## Inverse Trigonometric Functions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Since $\sin\left(\right)$, $\cos\left(\right)$, and $\tan\left(\right)$ fail the horizontal line test, they are not invertible on their full domains. We restrict each to a domain where it is one-to-one, then define the inverse.
+
+:::
+
+:::{.fragment}
+
+```{r}
+#| fig.height: 2.5
+x_vals_full <- seq(-3*pi, 3*pi, length.out = 500)
+x_tan_full_1 <- seq(-5*pi/2+0.001, -3*pi/2-0.001, length.out = 500)
+x_tan_full_2 <- seq(-3*pi/2+0.001, -pi/2-0.001, length.out = 500)
+x_tan_full_3 <- seq(-pi/2+0.001, pi/2-0.001, length.out = 500)
+x_tan_full_4 <- seq(pi/2+0.001, 3*pi/2-0.001, length.out = 500)
+x_tan_full_5 <- seq(3*pi/2+0.001, 5*pi/2-0.001, length.out = 500)
+
+x_inv_st <- seq(-pi/2, pi/2, length.out = 500)
+x_inv_c <- seq(0, pi, length.out = 500)
+
+p_sine <- ggplot() + 
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_line(aes(x = x_vals_full, y = sin(x_vals_full)),
+            color = "blue", alpha = 0.5) + 
+  #geom_line(aes(x = x_inv_st, y = sin(x_inv_st)),
+  #          color = "darkred", linewidth = 1.5) + 
+  labs(title = "Sine",
+       x = "x",
+       y = "y")
+
+p_cosine <- ggplot() + 
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_line(aes(x = x_vals_full, y = cos(x_vals_full)),
+            color = "blue", alpha = 0.5) + 
+  #geom_line(aes(x = x_inv_c, y = cos(x_inv_c)),
+  #          color = "darkred", linewidth = 1.5) +
+  labs(title = "Cosine",
+       x = "x",
+       y = "y")
+
+p_tangent <- ggplot() + 
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_line(aes(x = x_tan_full_1, y = tan(x_tan_full_1)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_2, y = tan(x_tan_full_2)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_3, y = tan(x_tan_full_3)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_4, y = tan(x_tan_full_4)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_5, y = tan(x_tan_full_5)),
+            color = "blue", alpha = 0.5) +
+  #geom_line(aes(x = x_inv_st, y = tan(x_inv_st)),
+  #          color = "darkred", linewidth = 1.5) + 
+  coord_cartesian(ylim = c(-3, 3)) + 
+  labs(
+    title = "Tangent",
+    x = "x",
+    y = "y"
+  )
+
+p_sine + p_cosine + p_tangent
+```
+
+:::
+
+</div>
+
+## Inverse Trigonometric Functions
+
+<div style="font-size:16pt">
+
+Since $\sin\left(\right)$, $\cos\left(\right)$, and $\tan\left(\right)$ fail the horizontal line test, they are not invertible on their full domains. We restrict each to a domain where it is one-to-one, then define the inverse.
+
+```{r}
+#| fig.height: 2.5
+x_vals_full <- seq(-3*pi, 3*pi, length.out = 500)
+x_tan_full_1 <- seq(-5*pi/2+0.001, -3*pi/2-0.001, length.out = 500)
+x_tan_full_2 <- seq(-3*pi/2+0.001, -pi/2-0.001, length.out = 500)
+x_tan_full_3 <- seq(-pi/2+0.001, pi/2-0.001, length.out = 500)
+x_tan_full_4 <- seq(pi/2+0.001, 3*pi/2-0.001, length.out = 500)
+x_tan_full_5 <- seq(3*pi/2+0.001, 5*pi/2-0.001, length.out = 500)
+
+x_inv_st <- seq(-pi/2, pi/2, length.out = 500)
+x_inv_c <- seq(0, pi, length.out = 500)
+
+p_sine <- ggplot() + 
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_line(aes(x = x_vals_full, y = sin(x_vals_full)),
+            color = "blue", alpha = 0.5) + 
+  geom_line(aes(x = x_inv_st, y = sin(x_inv_st)),
+            color = "darkred", linewidth = 1.5) + 
+  labs(title = "Restricted Sine",
+       x = "x",
+       y = "y")
+
+p_cosine <- ggplot() + 
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_line(aes(x = x_vals_full, y = cos(x_vals_full)),
+            color = "blue", alpha = 0.5) + 
+  geom_line(aes(x = x_inv_c, y = cos(x_inv_c)),
+            color = "darkred", linewidth = 1.5) +
+  labs(title = "Restricted Cosine",
+       x = "x",
+       y = "y")
+
+p_tangent <- ggplot() + 
+  geom_hline(yintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_line(aes(x = x_tan_full_1, y = tan(x_tan_full_1)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_2, y = tan(x_tan_full_2)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_3, y = tan(x_tan_full_3)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_4, y = tan(x_tan_full_4)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_tan_full_5, y = tan(x_tan_full_5)),
+            color = "blue", alpha = 0.5) +
+  geom_line(aes(x = x_inv_st, y = tan(x_inv_st)),
+            color = "darkred", linewidth = 1.5) + 
+  coord_cartesian(ylim = c(-3, 3)) + 
+  labs(
+    title = "Restricted Tangent",
+    x = "x",
+    y = "y"
+  )
+
+p_sine + p_cosine + p_tangent
+```
+
+:::{.fragment}
+
+| Function | Restricted domain | Inverse | Permissible Inputs | Output range |
+|:--|:--|:--|:--|:--|
+| $\sin\!\left(x\right)$ | $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ | $\arcsin\!\left(x\right)$ | $\left[-1, 1\right]$ | $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ |
+| $\cos\!\left(x\right)$ | $\left[0, \pi\right]$ | $\arccos\!\left(x\right)$ | $\left[-1, 1\right]$ | $\left[0, \pi\right]$ |
+| $\tan\!\left(x\right)$ | $\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$ | $\arctan\!\left(x\right)$ | $\left(-\infty, \infty\right)$ | $\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$ |
+
+:::
+
+:::{.fragment}
+
+**Reading inverse trig:** $\arcsin\!\left(x\right)$ asks *"what angle in $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ has sine equal to $x$?"* The other two functions work the same way within their respective output ranges.
+
+:::
+
+:::{.fragment}
+
+Both notations $\arcsin\!\left(x\right)$ and $\sin^{-1}\!\left(x\right)$ mean the same thing.
+
+:::
+
+</div>
+
+## Evaluating Inverse Trig Functions
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 2:** Evaluate each of the following.
+
+$$\left(a\right)~\arccos\!\left(\frac{-1}{2}\right) \qquad \left(b\right)~\sin^{-1}\!\left(\frac{\sqrt{3}}{2}\right) \qquad \left(c\right)~\arctan\!\left(-1\right)$$
+
+:::
+
+::::{.columns}
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(a)** $\displaystyle{\arccos\left(\frac{-1}{2}\right)}$
+
+:::
+
+:::{.fragment}
+
+Ask: what angle $\theta \in \left[0, \pi\right]$ satisfies $\cos\!\left(\theta\right) = \dfrac{-1}{2}$?
+
+:::
+
+:::{.fragment}
+
+From the unit circle, $\cos\!\left(\frac{2\pi}{3}\right) = -\frac{1}{2}$ and $\frac{2\pi}{3} \in \left[0, \pi\right]$.
+
+:::
+
+:::{.fragment}
+
+$$\arccos\!\left(\frac{-1}{2}\right) = \boxed{~\frac{2\pi}{3}~}$$
+
+:::
+
+:::
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(b)** $\displaystyle{\sin^{-1}\left(\frac{\sqrt{3}}{2}\right)}$
+
+:::
+
+:::{.fragment}
+
+Ask: what angle $\theta \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ satisfies $\sin\!\left(\theta\right) = \dfrac{\sqrt{3}}{2}$?
+
+:::
+
+:::{.fragment}
+
+From the unit circle, $\sin\!\left(\frac{\pi}{3}\right) = \frac{\sqrt{3}}{2}$ and $\frac{\pi}{3} \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$.
+
+:::
+
+:::{.fragment}
+
+$$\sin^{-1}\!\left(\frac{\sqrt{3}}{2}\right) = \boxed{~\frac{\pi}{3}~}$$
+
+:::
+
+:::
+
+:::{.column width="33%"}
+
+:::{.fragment}
+
+**(c)** $\displaystyle{\arctan\left(-1\right)}$
+
+:::
+
+:::{.fragment}
+
+Ask: what angle $\theta \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$ satisfies $\tan\!\left(\theta\right) = -1$?
+
+:::
+
+:::{.fragment}
+
+From the unit circle, $\tan\!\left(\frac{-\pi}{4}\right) = -1$ and $\frac{-\pi}{4} \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$.
+
+:::
+
+:::{.fragment}
+
+$$\arctan\!\left(-1\right) = \boxed{~\frac{-\pi}{4}~}$$
+
+:::
+
+:::
+
+::::
+
+</div>
+
+## Inverse Trig Practice
+
+<div style="font-size:17pt">
+
+**Try It! 3:** Evaluate each of the following inverse trigonometric functions.
+
+<br/>
+
+$$\left(a\right)~\arccos\!\left(\frac{\sqrt{2}}{2}\right) \qquad \left(b\right)~\arcsin\!\left(-1\right) \qquad \left(c\right)~\tan^{-1}\!\left(\frac{1}{\sqrt{3}}\right)$$
+
+<br/>
+
+$$\left(d\right)~\cos^{-1}\!\left(0\right) \qquad \left(e\right)~\sin^{-1}\!\left(\frac{-\sqrt{3}}{2}\right) \qquad \left(f\right)~\tan^{-1}\!\left(-\sqrt{3}\right)$$
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+Trigonometric equations typically have **infinitely many solutions** because $\sin$, $\cos$, and $\tan$ are periodic. The general strategy is:
+
+:::
+
+1. Isolate the trigonometric function.
+2. Use $\arcsin$, $\arccos$, or $\arctan$ to find the reference angle — this gives the principal solution.
+3. Use the unit circle to find **all** angles in $\left[0, 2\pi\right)$ where the equation holds.
+4. Write the **general solution** by adding integer multiples of the period.
+
+</div>
+
+:::{.fragment}
+
+:::{.callout-warning}
+## Always Give All Solutions
+
+Unless the problem restricts the domain, trigonometric equations have infinitely many solutions. Always append $+ 2\pi k$ (or $+ \pi k$ for tangent) where $k$ is an integer immediately after using the inverse trigonometric function to "*unlock*" the argument.
+
+:::
+
+:::
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+:::{.fragment}
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* Isolate the trigonometric function first.
+
+:::
+
+:::{.fragment}
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0
+\end{align}
+
+:::
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}
+\end{align}
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}\\
+\implies \sin\!\left(2x\right) &= \frac{-\sqrt{3}}{2}
+\end{align}
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first. Then apply the appropriate inverse trigonometric function to "*unlock*" the variable expression.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}\\
+\implies \sin\!\left(2x\right) &= \frac{-\sqrt{3}}{2}
+\end{align}
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first. Then apply the appropriate inverse trigonometric function to "*unlock*" the variable expression.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}\\
+\implies \sin\!\left(2x\right) &= \frac{-\sqrt{3}}{2}\\
+\implies \arcsin\left(\sin\left(2x\right)\right) &= \arcsin\left(\frac{-\sqrt{3}}{2}\right)
+\end{align}
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first. Then apply the appropriate inverse trigonometric function to "*unlock*" the variable expression.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}\\
+\implies \sin\!\left(2x\right) &= \frac{-\sqrt{3}}{2}\\
+\implies \arcsin\left(\sin\left(2x\right)\right) &= \arcsin\left(\frac{-\sqrt{3}}{2}\right)\\
+\implies 2x &= \arcsin\left(\frac{-\sqrt{3}}{2}\right) + 2\pi k
+\end{align}
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first. Then apply the appropriate inverse trigonometric function to "*unlock*" the variable expression.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}\\
+\implies \sin\!\left(2x\right) &= \frac{-\sqrt{3}}{2}\\
+\implies \arcsin\left(\sin\left(2x\right)\right) &= \arcsin\left(\frac{-\sqrt{3}}{2}\right)\\
+\implies 2x &= \arcsin\left(\frac{-\sqrt{3}}{2}\right) + 2\pi k
+\end{align}
+
+Now evaluate $\displaystyle{\arcsin\left(\frac{-\sqrt{3}}{2}\right)}$ by finding all angles $\theta$ where $\displaystyle{\sin\left(\theta\right) = \frac{-\sqrt{3}}{2}}$. 
+
+:::{.fragment}
+
+There are two possible solution angles -- one in QIII and the other in QIV.
+
+:::
+
+:::{.fragment}
+
+The angle in QIV is $\displaystyle{\frac{-\pi}{3}}$ (since $\displaystyle{\sin\left(\frac{-\pi}{3}\right) = \frac{\sqrt{3}}{2}}$).
+
+:::
+
+:::{.fragment}
+
+The angle in QIII is $\displaystyle{\frac{-2\pi}{3}}$
+
+:::
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first. Then apply the appropriate inverse trigonometric function to "*unlock*" the variable expression.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}\\
+\implies \sin\!\left(2x\right) &= \frac{-\sqrt{3}}{2}\\
+\implies \arcsin\left(\sin\left(2x\right)\right) &= \arcsin\left(\frac{-\sqrt{3}}{2}\right)\\
+\implies 2x &= \arcsin\left(\frac{-\sqrt{3}}{2}\right) + 2\pi k\\
+\implies 2x = \frac{-2\pi}{3} + 2\pi k &\text{ or } 2x = \frac{-\pi}{3} + 2\pi k
+\end{align}
+
+</div>
+
+## Solving Trigonometric Equations
+
+<div style="font-size:16pt">
+
+**Example 3:** Solve $2\sin\!\left(2x\right) + \sqrt{3} = 0$.
+
+*Solution.* Isolate the trigonometric function first. Then apply the appropriate inverse trigonometric function to "*unlock*" the variable expression.
+
+\begin{align} 2\sin\!\left(2x\right) + \sqrt{3} &= 0\\
+\implies 2\sin\!\left(2x\right) &= -\sqrt{3}\\
+\implies \sin\!\left(2x\right) &= \frac{-\sqrt{3}}{2}\\
+\implies \arcsin\left(\sin\left(2x\right)\right) &= \arcsin\left(\frac{-\sqrt{3}}{2}\right)\\
+\implies 2x &= \arcsin\left(\frac{-\sqrt{3}}{2}\right) + 2\pi k\\
+\implies 2x = \frac{-2\pi}{3} + 2\pi k &\text{ or } 2x = \frac{-\pi}{3} + 2\pi k\\
+\implies \boxed{~x = \frac{-\pi}{3} + \pi k~} &\text{ or } \boxed{~x = \frac{-\pi}{6} + \pi k~} \text{    for any integer $k$}
+\end{align}
+
+</div>
+
+## Trigonometric Equation Practice
+
+<div style="font-size:17pt">
+
+**Try It! 4:** Solve each of the following trigonometric equations. Give all solutions.
+
+<br/>
+<br/>
+
+$\left(a\right)~\displaystyle{2\cos\!\left(5x - 4\right) - \sqrt{3} = 0}$
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+$\left(b\right)~\displaystyle{\tan\!\left(x - 3\right) + \sqrt{3} = 0}$
+
+</div>
+
+## Exit Ticket Task
+
+::::{.columns}
+
+:::{.column width="75%"}
+
+Navigate to [our MAT142 Exit Ticket Form](https://docs.google.com/forms/d/e/1FAIpQLSeUo4K9WBH8xFAVjt3VbJAtkSMimu9DGD7Jv6zPLhZhifCIfQ/viewform?usp=dialog), answer the questions, and complete the *task* below.
+
+<br/>
+
+*Note.* Today's discussion is listed as `20. Trigonometric Functions and Equations`
+
+:::
+
+:::{.column width="25%"}
+
+![](MAT142_ExitTicket_QR.png)
+
+:::
+
+::::
+
+<div style="font-size:17pt">
+
+**Task:** Consider $f\left(x\right) = 2\sin\!\left(3x + \pi\right) - 1$.
+
+$\left(a\right)$ Identify the amplitude, period, phase shift, and vertical shift.
+
+$\left(b\right)$ Solve $f\left(x\right) = 0$ for all $x$. *(Hint: isolate $\sin\left(\cdots\right)$, then find all solutions.)*
+
+</div>
+
+## Summary and Next Time...
+
+<div style="font-size:17pt">
+
+:::{.nonincremental}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>**Ideas From Today**</center>
+
++ $\sin\left(\right)$ and $\cos\left(\right)$ have period $2\pi$, amplitude $1$, domain all reals, range $\left[-1, 1\right]$. $\tan\left(\right)$ has period $\pi$ and vertical asymptotes at $x = \frac{\pi}{2} + \pi k$.
++ For $A\cdot\text{trig}\!\left(b\left(x-h\right)\right)+k$: amplitude $= \left|A\right|$, period $= \frac{2\pi}{b}$ (or $\frac{\pi}{b}$ for tangent), phase shift $= h$, midline $y = k$.
++ **Always factor out $b$ first** before reading the phase shift.
++ $\arcsin\left(\right)$, $\arccos\left(\right)$, $\arctan\left(\right)$ invert the trig functions on their restricted domains. Outputs are angles, not positional values.
++ Trig equations have infinitely many solutions. Obtain the general solution by adding $+2\pi k$ (for sine and cosine) or $+\pi k$ (for tangent) once you've applied the inverse trigonometric functions.
+
+:::
+
+:::{.column width="50%"}
+
+<center>**Looking Ahead**</center>
+
++ Next class is our final new content day — we apply trigonometry to right triangles and see how $\sin\left(\right)$ and $\cos\left(\right)$ connect to the ratios of sides that motivated the subject at the start of the unit.
++ This is also where we return to the projectile problem from Day 23 and finish what we started.
+
+:::{.fragment}
+
+<center>**Next Time:** <br/> Right Triangle Trigonometry and Applications</center>
+
+:::
+
+:::{.fragment}
+
+<center>**Homework:** <br/> Continue Homework 12 on MyOpenMath</center>
+
+:::
+
+:::
+
+::::
+
+:::
+
+</div>

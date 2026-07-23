@@ -1401,7 +1401,7 @@ p_rat +
 
 :::{.fragment}
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 Let's compare the goals from our current course (PreCalculus) to the look-ahead in Calculus and see how these ideas will align or benefit us moving forward.
 
@@ -1539,11 +1539,11 @@ p_poly +
 
 :::
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 + In Calculus, those extreme values occur when a function stops increasing and starts decreasing (or vice-versa).
     + This is where the function's *slope* is zero (or undefined).
-+ In PreCalculus, functions transition from positive to negative at *roots* / x-intercepts or at domain restrictions.
++ In PreCalculus, functions may transition from positive to negative at *roots* / x-intercepts or at domain restrictions.
     + This is where the function's output values are $0$ or *undefined*.
 + Being able to identify intervals of *positivity* or *negativity* in PreCalculus will prepare you to identify intervals where functions are *increasing* or *decreasing* in Calculus.
 + *Limits* are tools that will aid you in defining the "slope" of a non-linear function in Calculus -- we'll use them to examine function behavior in PreCalculus.
@@ -1592,8 +1592,8 @@ First and foremost...everything is free!
     + Assignments due on Sundays at 11:59pm
     + *Late Passes*: You get three free (no penalty) late passes to open up assignments again until the end of the semester. No additional late passes will be provided though. Please plan ahead.
 + **Exams:** We'll have four exams during the semester. Unfortunately, time does not permit for us to have dedicated *review* class meetings, but I'm always happy to review with people during office hours.
-    + $\bigstar$ I Need to Miss an Exam! $\bigstar$ Thigs come up -- you may be sick, have an emergency, or simply not feel ready to take an exam. In any of these cases, you'll notify me that you are unable to complete the exam. That exam weight will be shifted to the final exams, where you'll be required to complete the corresponding optional component of the final exam. No make-up exams will be given.
-+ **Final Exams:** The final exams are optional and correspond to Exams I - III earlier in our semester. You may complete any or all of those exams to replace earlier exam grades (with the average of the original score and the score on the corresponding final exam). If you miss an exam, then you'll be required to complete the corresponding final exam and that score will count as the entire exam grade.
+    + $\bigstar$ I Need to Miss an Exam! $\bigstar$ Things come up -- you may be sick, have an emergency, or simply not feel ready to take an exam. In any of these cases, you'll notify me that you are unable to complete the exam. That exam weight will be shifted to the final exams, where you'll be required to complete the corresponding optional component of the final exam. No make-up exams will be given.
++ **Final Exams:** The final exams are optional and correspond to Exams I - IV earlier in our semester. You may complete any or all of those exams to replace earlier exam grades (with the average of the original score and the score on the corresponding final exam). If you miss an exam, then you'll be required to complete the corresponding final exam and that score will count as the entire exam grade.
 
 
 </div>
@@ -1648,6 +1648,9 @@ My goal in this course is for all of you to leave with the foundation and skills
     v. Use limits to analyse behavior near domain restrictions. 
     vi. Use limits to analyse end behavior.
     vii. Synthesize results from the analyses above to describe the range and graph the function.
+    viii. Determine whether the function is invertible.
+    ix. Find the inverse of the function, if it exists.
+    x. Solve equations involving expressions from that particular function class.
 
 </div>
 

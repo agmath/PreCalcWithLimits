@@ -1579,8 +1579,9 @@ First and foremost...everything is free!
   <center> 
   Grade Item                     | Value
   -------------------------------|---------
-  Homework (~12)                 | 20%
-  Exams (x4)                     | 80%
+  Participation/Exit Tickets (~20) | 10%
+  Homework (~13)                 | 30%
+  Exams (x4)                     | 60%
   Final Exams                    | Optional
   </center>
 

@@ -712,7 +712,7 @@ $$\left(a\right)~\left(x^2 y^{-3}\right)^2 x y^5 \qquad \left(b\right)~\left(\fr
 <br/>
 <br/>
 
-**Try It! 3:** Simplify $\displaystyle{\left(x^{-1/2}y^2\right)^4\cdot\left(x^3y^{-1}\right)^{-2}\right)}$. Write your answer using only positive exponents.
+**Try It! 3:** Simplify $\displaystyle{\left(x^{-1/2}y^2\right)^4\cdot\left(x^3y^{-1}\right)^{-2}}$. Write your answer using only positive exponents.
 
 </div>
 

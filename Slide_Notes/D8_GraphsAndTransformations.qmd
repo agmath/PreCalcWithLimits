@@ -659,7 +659,7 @@ For any function, we want to be able to identify:
 ```{r}
 #| echo: false
 #| message: false
-#| fig.height: 3
+#| fig.height: 2.75
 
 x_vals <- seq(-5, 5, length.out = 500)
 f_vals <- (x_vals - 4)*(x_vals - 3)*(x_vals - 1)*(x_vals + 2)*(x_vals + 4)
@@ -690,7 +690,7 @@ ggplot() +
 ```{r}
 #| echo: false
 #| message: false
-#| fig.height: 3
+#| fig.height: 2.75
 
 x_vals <- seq(-5, 5, length.out = 500)
 f_vals <- (x_vals - 4)*(x_vals - 3)*(x_vals - 1)*(x_vals + 2)*(x_vals + 4)

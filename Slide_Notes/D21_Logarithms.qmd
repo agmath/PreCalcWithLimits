@@ -3077,7 +3077,7 @@ $\displaystyle{f\left(10\right) = 125\left(0.7\right)^{10} \approx 3.53~\text{mg
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 
@@ -3118,7 +3118,7 @@ $\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
 
@@ -3148,7 +3148,7 @@ $\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
 
@@ -3192,7 +3192,7 @@ $\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
 
@@ -3229,7 +3229,7 @@ $\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
 
@@ -3267,7 +3267,7 @@ $\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
 
@@ -3306,7 +3306,7 @@ $\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
 
@@ -3346,7 +3346,7 @@ $\left(b\right)$ A second earthquake has 750 times the energy of a magnitude-3.9
 
 ## Application to Earthquake Magnitude
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 7:** The Moment-Magnitude Scale (MMS) gives earthquake magnitude as $\displaystyle{M = \frac{2}{3}\log\!\left(\frac{E}{E_0}\right)}$, where $E$ is energy released (joules) and $E_0 = 10^{4.4}$ J.
 

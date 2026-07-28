@@ -114,11 +114,11 @@ After today's class meeting, you should be able to:
 
 ## Method III: Completing the Square
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 :::{.fragment}
 
-**Key Idea:** A *perfect square trinomial* has the form $x^2 + bx + \left(\frac{b}{2}\right)^2$ because it can be factored into $\displaystyle{\left(x + \frac{b}{2}\right)^2}$.
+**Key Idea:** A *perfect square trinomial* has the form $x^2 + bx + \left(\frac{b}{2}\right)^2$ because it can be factored into $\displaystyle{\left(x + \frac{b}{2}\right)^2}$
 
 :::
 

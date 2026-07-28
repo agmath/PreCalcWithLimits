@@ -982,7 +982,7 @@ Both of these discontinuities result in vertical asymptotes, represented by the 
 
 :::{.fragment}
 
-*Solution.
+*Solution.*
 
 :::
 
@@ -1009,7 +1009,7 @@ Both of these discontinuities result in vertical asymptotes, represented by the 
 
 :::{.column width="60%"}
 
-*Solution.
+*Solution.*
 
 \begin{align} \lim_{x\to -\infty} \frac{2x^2 - 8x + 6}{x^2 - x - 20} &= \lim_{x\to -\infty}{\frac{\frac{2x^2}{x^2} - \frac{8x}{x^2} + \frac{6}{x^2}}{\frac{x^2}{x^2} - \frac{x}{x^2} - \frac{20}{x^2}}}
 \end{align}

@@ -1301,7 +1301,7 @@ After $10$ minutes: $A\left(r\left(10\right)\right) = \pi\left(4\left(100\right)
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 :::{.fragment}
 
@@ -1338,7 +1338,7 @@ $\left(b\right)$ Find the time (to two decimal places) when the bacteria count r
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Applied Problem 2:** The number of bacteria in a refrigerated food product is given by
 
@@ -1360,7 +1360,7 @@ $\left(b\right)$ Find the time (to two decimal places) when the bacteria count r
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Applied Problem 2:** The number of bacteria in a refrigerated food product is given by
 
@@ -1383,7 +1383,7 @@ $\left(b\right)$ Find the time (to two decimal places) when the bacteria count r
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Applied Problem 2:** The number of bacteria in a refrigerated food product is given by
 
@@ -1407,7 +1407,7 @@ $\left(b\right)$ Find the time (to two decimal places) when the bacteria count r
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
 
@@ -1426,7 +1426,7 @@ As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c 
 
 :::
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 :::{.fragment}
 
@@ -1439,7 +1439,7 @@ As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c 
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
 
@@ -1454,7 +1454,7 @@ As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c 
 
 :::
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 \begin{align} 575t^2 + 65t - 31.25 &= 6752\\
 \implies 575t^2 + 65t - 6783.25 &= 0
@@ -1464,7 +1464,7 @@ As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c 
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
 
@@ -1479,7 +1479,7 @@ As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c 
 
 :::
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 \begin{align} 575t^2 + 65t - 31.25 &= 6752\\
 \implies 575t^2 + 65t - 6783.25 &= 0\\
@@ -1490,7 +1490,7 @@ As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c 
 
 ## Applied Problems (Cont'd)
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Applied Problem 2 (Cont'd):** Find the time when $N\left(T\left(t\right)\right) = 6{,}752$.
 
@@ -1505,7 +1505,7 @@ As a reminder, one way to solve a quadratic equation of the form $ax^2 + bx + c 
 
 :::
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 \begin{align} 575t^2 + 65t - 31.25 &= 6752\\
 \implies 575t^2 + 65t - 6783.25 &= 0\\

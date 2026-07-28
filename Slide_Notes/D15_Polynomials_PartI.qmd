@@ -1114,8 +1114,4 @@ $\left(c\right)$ Determine $\displaystyle{\lim_{x\to -\infty}{f\left(x\right)}}$
 
 ::::
 
-:::
-
-
-
 </div>

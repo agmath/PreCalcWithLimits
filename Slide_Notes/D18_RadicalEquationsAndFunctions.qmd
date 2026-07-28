@@ -3251,12 +3251,6 @@ $\left(c\right)$ Sketch a rough graph.
 + The inverse relationship between exponentials and logarithms connects directly back to our Day 9 discussion on inverse functions.
     + Take a look back at that discussion for a refresher.
 
-:::
-
-::::
-
-:::
-
 :::{.fragment}
 
 <center>**Next Time:** <br/> Basics of Exponentials and Logarithms</center>
@@ -3268,5 +3262,12 @@ $\left(c\right)$ Sketch a rough graph.
 <center>**Homework:** <br/> Complete Homework 10 on MyOpenMath</center>
 
 :::
+
+:::
+
+::::
+
+:::
+
 
 </div>

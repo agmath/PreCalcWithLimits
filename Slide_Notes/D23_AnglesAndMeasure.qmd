@@ -483,7 +483,7 @@ $\left(d\right)$ Convert $\displaystyle{-\frac{\pi}{5}}$ rad to degrees.
 
 ## The Six Trigonometric Functions
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 
@@ -1470,7 +1470,7 @@ $\left(c\right)~\displaystyle{\frac{24\pi}{11}}$ rad
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 :::{.fragment}
 
@@ -1508,7 +1508,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1545,7 +1545,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1579,7 +1579,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1614,7 +1614,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1650,7 +1650,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1687,7 +1687,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1725,7 +1725,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1769,7 +1769,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1816,7 +1816,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1860,7 +1860,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1910,7 +1910,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -1963,7 +1963,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -2013,7 +2013,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -2064,7 +2064,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 
@@ -2116,7 +2116,7 @@ $$\left(a\right)~\sin\!\left(\frac{-11\pi}{4}\right) \qquad \left(b\right)~\cos\
 
 ## Trig via Coterminal Angles
 
-<div style="font-size:15pt">
+<div style="font-size:14pt">
 
 **Example 4:** Use coterminal angles to evaluate each of the following.
 

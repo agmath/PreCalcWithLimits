@@ -1502,7 +1502,7 @@ ggplot() +
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 
@@ -1539,7 +1539,7 @@ ggplot() +
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1565,7 +1565,7 @@ ggplot() +
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1592,7 +1592,7 @@ ggplot() +
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1620,7 +1620,7 @@ ggplot() +
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1645,7 +1645,7 @@ ggplot() +
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1689,7 +1689,7 @@ The comparison function undergoes the following transformations.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1735,7 +1735,7 @@ $\displaystyle{g\left(0\right)}$
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1777,7 +1777,7 @@ $\displaystyle{g\left(0\right)= 8\left(2^{2\left(0 - 5\right)}\right) - 1}$
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1819,7 +1819,7 @@ $\displaystyle{g\left(0\right)= 8\left(2^{2\left(0 - 5\right)}\right) - 1 = 8\le
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1865,7 +1865,7 @@ The comparison function undergoes the following transformations.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1907,7 +1907,7 @@ The comparison function undergoes the following transformations.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -1968,7 +1968,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2018,7 +2018,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2069,7 +2069,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2121,7 +2121,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2174,7 +2174,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2224,7 +2224,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2275,7 +2275,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2327,7 +2327,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2377,7 +2377,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2428,7 +2428,7 @@ We'll solve $g\left(x\right) = 0$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2479,7 +2479,7 @@ The comparison function undergoes the following transformations.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2531,7 +2531,7 @@ The comparison function exhibited exponential growth.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2585,7 +2585,7 @@ The end behavior to the left approaches the horizontal asymptote at $y = -1$.
 
 ## Analysis of Exponential Functions II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** For $g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1$, identify the $y$-intercept, horizontal asymptote, range, and end behavior. Sketch an approximate graph.
 
@@ -2700,7 +2700,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 
@@ -2725,7 +2725,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
 
@@ -2739,7 +2739,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
 
@@ -2754,7 +2754,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
 
@@ -2770,7 +2770,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
 
@@ -2787,7 +2787,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
 
@@ -2805,7 +2805,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
 
@@ -2824,7 +2824,7 @@ Since exponential functions are one-to-one (they pass both the vertical and hori
 
 ## Finding the Inverse of an Exponential Function I
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 3:** Find the inverse of $\displaystyle{f\left(x\right) = -2e^{x+3} + 4}$.
 
@@ -2850,7 +2850,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 
@@ -2879,7 +2879,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -2901,7 +2901,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -2924,7 +2924,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -2948,7 +2948,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -2973,7 +2973,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -2999,7 +2999,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -3037,7 +3037,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -3072,7 +3072,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 
@@ -3108,7 +3108,7 @@ So $\boxed{~\displaystyle{f^{-1}\left(x\right) = \ln\left(\frac{4 - x}{2}\right)
 
 ## Finding the Inverse of an Exponential Function II
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Example 4:** Find the inverse of $\displaystyle{g\left(x\right) = 8\left(\frac{1}{2}\right)^{10-2x} - 1}$.
 

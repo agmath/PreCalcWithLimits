@@ -849,7 +849,7 @@ We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
 
 <center>**Conduct Sign Analysis:**</center>
 
-Either evaluate the sign (positive/negative) using $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
+Can either evaluate the sign (positive/negative) from $x^2 - 5x - 14$ or $\left(x - 7\right)\left(x + 2\right)$.
 
 :::{.fragment}
 

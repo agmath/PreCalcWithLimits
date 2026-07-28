@@ -1141,7 +1141,7 @@ This is not the case for all function classes though.
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1200,7 +1200,7 @@ ggplot() +
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1253,7 +1253,7 @@ ggplot() +
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1326,7 +1326,7 @@ $\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1395,7 +1395,7 @@ $\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1463,7 +1463,7 @@ $\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1531,7 +1531,7 @@ $\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1599,7 +1599,7 @@ $\displaystyle{r\left(-5\right) = \frac{2\left(-5\right)^2 - 8\left(-5\right) + 
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1675,7 +1675,7 @@ $\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1747,7 +1747,7 @@ $\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1819,7 +1819,7 @@ $\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1891,7 +1891,7 @@ $\displaystyle{r\left(6\right) = \frac{2\left(6\right)^2 - 8\left(6\right) + 6}{
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 
@@ -1973,7 +1973,7 @@ Now we draw an approximate graph respecting all asymptotes and reference points.
 
 ## Sketching the Complete Graph
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 We now know a great deal about $\displaystyle{r\left(x\right) = \frac{2x^2 - 8x + 6}{x^2 - x - 20}}$. It has...
 

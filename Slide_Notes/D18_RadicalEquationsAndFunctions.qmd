@@ -239,7 +239,7 @@ Since the order of the root is odd (it is a *seventh* root), the domain consists
 
 ## Domain of Radical Functions Practice
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 Before encountering a comprehensive example, let's build intuition for domains. Find the domain of each function:
 
@@ -294,7 +294,7 @@ The function can only change sign at its roots, so one test point per interval i
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 :::{.fragment}
 
@@ -345,7 +345,7 @@ We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -373,7 +373,7 @@ We'll start by finding the boundary values where $x^2 - 5x - 14 = 0$.
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -436,7 +436,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -507,7 +507,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -570,7 +570,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -633,7 +633,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -696,7 +696,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -759,7 +759,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -822,7 +822,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 3:** Find the domain of the radical function $\displaystyle{f\left(x\right) = \left(x^2 -5x - 14\right)^{1/8}}$
 
@@ -891,7 +891,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 :::{.fragment}
 
@@ -955,7 +955,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -995,7 +995,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1036,7 +1036,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1077,7 +1077,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1119,7 +1119,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1161,7 +1161,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1203,7 +1203,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1246,7 +1246,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1289,7 +1289,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1332,7 +1332,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1376,7 +1376,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1421,7 +1421,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1466,7 +1466,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 
@@ -1512,7 +1512,7 @@ ggplot() +
 
 ## More Domains of Radical Functions
 
-<div style="font-size:17pt">
+<div style="font-size:16pt">
 
 **Example 4:** Find the domain of the radical function $\displaystyle{g\left(x\right) = \left(\left(x + 5\right)\left(x + 1\right)\left(x - 2\right)^2\left(x - 6\right)\right)^{1/2}}$
 

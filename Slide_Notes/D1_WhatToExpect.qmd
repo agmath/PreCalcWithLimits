@@ -1565,6 +1565,41 @@ p_poly +
       + Mondays 9:00am - 10:30am
       + Thursdays 9:00am - 10:30am
       + Fridays 11:00am - 1:00pm
+      
+## Class Embedded Tutors and Availability
+
+<div style="font-size:17pt">
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+  + Embedded Tutor: Baba Cisse
+  
+    + e-mail address: [baba.cisse@snhu.edu](mailto:baba.cisse@snhu.edu)
+    + Drop-In Location: Library, Room 205
+    + Drop-In Hours (please visit!): 
+    
+      + Mondays 12:30pm - 2:30pm
+      + Tuesdays 12:30pm - 1:45pm
+      + Wednesdays 11:00am - 12:15pm
+      + Thursdays 2:00pm - 5:00pm
+
+:::
+
+:::{.column width="50%"}
+
+  + Embedded Tutor: Mazie Burt
+    
+    + e-mail address: [mazie.burt@snhu.edu](mailto:mazie.burt@snhu.edu)
+    + Drop-In Location: TBD
+    + Drop-In Hours (please visit!): TBD
+    
+:::
+
+::::
+
+</div>
 
 ## Required Resources
 

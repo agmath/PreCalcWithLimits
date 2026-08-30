@@ -1592,8 +1592,12 @@ p_poly +
   + Embedded Tutor: Mazie Burt
     
     + e-mail address: [mazie.burt@snhu.edu](mailto:mazie.burt@snhu.edu)
-    + Drop-In Location: TBD
-    + Drop-In Hours (please visit!): TBD
+    + Drop-In Location: Library, Room 205
+    + Drop-In Hours (please visit!): 
+    
+      + Mondays 11:00am - 12:15pm
+      + Tuesdays 11:00am - 12:15pm
+      + Thursdays 2:00pm - 4:00pm
     
 :::
 

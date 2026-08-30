@@ -2046,7 +2046,7 @@ We'll try just a single example here, but you can [see more examples in this vid
 
 *Solution.*
 
-\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1
+\begin{align} x^2 - 2x + 1 &\stackrel{\substack{x = 5\\ \to}}{=} \left(5\right)^2 - 2\left(5\right) + 1
 \end{align}
 
 ## Evaluating Expressions
@@ -2059,7 +2059,7 @@ We'll try just a single example here, but you can [see more examples in this vid
 
 *Solution.*
 
-\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
+\begin{align} x^2 - 2x + 1 &\stackrel{\substack{x = 5\\ \to}}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
 &= 25 - 10 + 1
 \end{align}
 
@@ -2073,7 +2073,7 @@ We'll try just a single example here, but you can [see more examples in this vid
 
 *Solution.*
 
-\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
+\begin{align} x^2 - 2x + 1 &\stackrel{\substack{x = 5\\ \to}}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
 &= 25 - 10 + 1\\
 &= 15 + 1
 \end{align}
@@ -2088,7 +2088,7 @@ We'll try just a single example here, but you can [see more examples in this vid
 
 *Solution.*
 
-\begin{align} x^2 - 2x + 1 &\stackrel{x = 5}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
+\begin{align} x^2 - 2x + 1 &\stackrel{\substack{x = 5\\ \to}}{=} \left(5\right)^2 - 2\left(5\right) + 1\\
 &= 25 - 10 + 1\\
 &= 15 + 1\\ 
 &= \boxed{~16~}

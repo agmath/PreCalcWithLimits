@@ -1809,11 +1809,29 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 ## Like Terms and Order of Operations
 
+:::{.fragment}
+
+**Problem 1:** Use distribution to expand the expression $5\left(2x^2 + 3x -8\right)$.
+
+:::
+
+:::{.fragment}
+
+*Solution.* 
+
+\begin{align} 5\left(2x^2 + 3x - 8\right) &= 5\left(2x^2 +3x + \left(-8\right)\right)
+\end{align}
+
+:::
+
+## Like Terms and Order of Operations
+
 **Problem 1:** Use distribution to expand the expression $5\left(2x^2 + 3x -8\right)$.
 
 *Solution.* 
 
-\begin{align} \color{blue}{5}\left(2x^2 + 3x - 8\right) &= \color{blue}{5}\left(2x^2\right) + \color{blue}{5}\left(3x\right) - \color{blue}{5}\left(8\right)
+\begin{align} 5\left(2x^2 + 3x - 8\right)  &= \color{blue}{5}\left(2x^2 +3x + \left(-8\right)\right)\\
+&= \color{blue}{5}\left(2x^2\right) + \color{blue}{5}\left(3x\right) + \color{blue}{5}\left(-8\right)
 \end{align}
 
 ## Like Terms and Order of Operations
@@ -1822,7 +1840,8 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.* 
 
-\begin{align} 5\left(2x^2 + 3x - 8\right) &= 5\left(2x^2\right) + 5\left(3x\right) - 5\left(8\right)\\
+\begin{align} 5\left(2x^2 + 3x - 8\right)  &= 5\left(2x^2 +3x + \left(-8\right)\right)\\
+&= 5\left(2x^2\right) + 5\left(3x\right) + 5\left(-8\right)\\
 &= \boxed{~10x^2 + 15x - 40~}
 \end{align}
 
@@ -1849,7 +1868,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3 - x^5 + 5x^4\right)
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3 + \left(-x^5\right) + 5x^4\right)
 \end{align}
 
 ## Like Terms and Order of Operations
@@ -1858,7 +1877,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3 - x^5 + 5x^4\right)\\
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3 + \left(-x^5\right) + 5x^4\right)\\
 &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3\right) + \color{blue}{\left(-3\right)}\left(-x^5\right) + \color{blue}{\left(-3\right)}\left(5x^4\right)
 \end{align}
 
@@ -1868,7 +1887,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 + \left(-x^5\right) + 5x^4\right)\\
 &= 3x^5 - 5x^3 + \color{blue}{\left(-3\right)}\left(2x^3\right) + \color{blue}{\left(-3\right)}\left(-x^5\right) + \color{blue}{\left(-3\right)}\left(5x^4\right)\\
 &= 3x^5 - 5x^3 \color{blue}{- 6x^3 + 3x^5 - 15x^4}
 \end{align}
@@ -1879,7 +1898,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 + \left(-x^5\right) + 5x^4\right)\\
 &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
 &= \color{blue}{3x^5} - 5x^3 - 6x^3 + \color{blue}{3x^5} - 15x^4
 \end{align}
@@ -1890,7 +1909,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 + \left(-x^5\right) + 5x^4\right)\\
 &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
 &= \color{blue}{3x^5} - 5x^3 - 6x^3 + \color{blue}{3x^5} - 15x^4\\
 &= \color{blue}{6x^5} -5x^3 - 6x^3 - 15x^4
@@ -1902,7 +1921,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 + \left(-x^5\right) + 5x^4\right)\\
 &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
 &= 3x^5 - 5x^3 - 6x^3 + 3x^5 - 15x^4\\
 &= 6x^5 \color{blue}{- 5x^3 - 6x^3} - 15x^4
@@ -1914,7 +1933,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 + \left(-x^5\right) + 5x^4\right)\\
 &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
 &= 3x^5 - 5x^3 - 6x^3 + 3x^5 - 15x^4\\
 &= 6x^5 \color{blue}{- 5x^3 - 6x^3} - 15x^4\\
@@ -1927,7 +1946,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 - x^5 + 5x^4\right)\\
+\begin{align} 3x^5 - 5x^3 - 3\left(2x^3 - x^5 + 5x^4\right) &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3 + \left(-x^5\right) + 5x^4\right)\\
 &= 3x^5 - 5x^3 + \left(-3\right)\left(2x^3\right) + \left(-3\right)\left(-x^5\right) + \left(-3\right)\left(5x^4\right)\\
 &= 3x^5 - 5x^3 - 6x^3 + 3x^5 - 15x^4\\
 &= 6x^5 - 5x^3 - 6x^3 - 15x^4\\

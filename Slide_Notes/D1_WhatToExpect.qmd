@@ -1958,7 +1958,7 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x + 4y\right) + \left(-5\right)\left(x + \left(-2y\right)\right)
 \end{align}
 
 ## Like Terms and Order of Operations
@@ -1967,8 +1967,8 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
-&= 6x + 8y + \left(-5x\right) - \left(-10y\right)
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x + 4y\right) + \left(-5\right)\left(x + \left(-2y\right)\right)\\
+&= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x + \left(-5\right)\left(-2y\right)
 \end{align}
 
 ## Like Terms and Order of Operations
@@ -1977,8 +1977,20 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
-&= 6x + 8y + \left(-5x\right) - \left(-10y\right)\\
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x + 4y\right) + \left(-5\right)\left(x + \left(-2y\right)\right)\\
+&= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x + \left(-5\right)\left(-2y\right)\\
+&= 6x + 8y + \left(-5x\right) + \left(10y\right)
+\end{align}
+
+## Like Terms and Order of Operations
+
+**Problem 3:** Simplify the expression $2\left(3x + 4y\right) - 5\left(x - 2y\right)$ to include as few terms as possible.
+
+*Solution.*
+
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x + 4y\right) + \left(-5\right)\left(x + \left(-2y\right)\right)\\
+&= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x + \left(-5\right)\left(-2y\right)\\
+&= 6x + 8y + \left(-5x\right) + \left(10y\right)\\
 &= 6x + 8y - 5x + 10y
 \end{align}
 
@@ -1988,8 +2000,9 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
-&= 6x + 8y + \left(-5x\right) - \left(-10y\right)\\
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x + 4y\right) + \left(-5\right)\left(x + \left(-2y\right)\right)\\
+&= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x + \left(-5\right)\left(-2y\right)\\
+&= 6x + 8y + \left(-5x\right) + \left(10y\right)\\
 &= 6x + 8y - 5x + 10y\\
 &= x + 8y + 10y
 \end{align}
@@ -2000,8 +2013,9 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 *Solution.*
 
-\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x - \left(-5\right)\left(2y\right)\\
-&= 6x + 8y + \left(-5x\right) - \left(-10y\right)\\
+\begin{align} 2\left(3x + 4y\right) - 5\left(x - 2y\right) &= 2\left(3x + 4y\right) + \left(-5\right)\left(x + \left(-2y\right)\right)\\
+&= 2\left(3x\right) + 2\left(4y\right) + \left(-5\right)x + \left(-5\right)\left(-2y\right)\\
+&= 6x + 8y + \left(-5x\right) + \left(10y\right)\\
 &= 6x + 8y - 5x + 10y\\
 &= x + 8y + 10y\\
 &= \boxed{~x + 18y~}
@@ -2196,7 +2210,7 @@ As with evaluating expressions, we'll see just a single example here, but you ca
 \begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2} &= \frac{x^2 y^{-3}z^5 y^2}{x^6y^2z^6}\\
 &= \frac{x^2z^5y^2}{y^3\left(x^6y^2z^6\right)}\\
 &= \frac{x^2z^5y^2}{x^6y^5z^6}\\
-&= \frac{x^2z^5y^2}{x^2z^5y^2\left(x^2zy^3\right)}
+&= \frac{x^2z^5y^2}{x^2z^5y^2\left(x^4y^3z\right)}
 \end{align}
 
 </div>
@@ -2216,8 +2230,8 @@ As with evaluating expressions, we'll see just a single example here, but you ca
 \begin{align} \frac{x^2 y^{-3}z^5 y^2}{\left(x^3yz^3\right)^2} &= \frac{x^2 y^{-3}z^5 y^2}{x^6y^2z^6}\\
 &= \frac{x^2z^5y^2}{y^3\left(x^6y^2z^6\right)}\\
 &= \frac{x^2z^5y^2}{x^6y^5z^6}\\
-&= \frac{x^2z^5y^2}{x^2z^5y^2\left(x^2zy^3\right)}\\
-&= \boxed{~\frac{1}{\left(x^2zy^3\right)}~}
+&= \frac{x^2z^5y^2}{x^2z^5y^2\left(x^4y^3z\right)}\\
+&= \boxed{~\frac{1}{\left(x^4y^3z\right)}~}
 \end{align}
 
 </div>

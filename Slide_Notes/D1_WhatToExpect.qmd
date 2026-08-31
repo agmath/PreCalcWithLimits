@@ -1397,7 +1397,7 @@ p_rat +
   coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 10))
 ```
 
-## What Are We Here For
+## What Are We Here For?
 
 :::{.fragment}
 

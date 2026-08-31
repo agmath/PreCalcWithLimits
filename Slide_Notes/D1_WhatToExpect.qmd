@@ -1809,20 +1809,12 @@ Distribute with multiplication $2\left(x + y\right) = 2x + 2y$, and expand with 
 
 ## Like Terms and Order of Operations
 
-:::{.fragment}
-
 **Problem 1:** Use distribution to expand the expression $5\left(2x^2 + 3x -8\right)$.
-
-:::
-
-:::{.fragment}
 
 *Solution.* 
 
 \begin{align} 5\left(2x^2 + 3x - 8\right) &= 5\left(2x^2 +3x + \left(-8\right)\right)
 \end{align}
-
-:::
 
 ## Like Terms and Order of Operations
 

@@ -1116,7 +1116,7 @@ For example, we can write $y = 5x + 4$ as $f\left(x\right) = 5x + 4$.
 
 :::{.fragment}
 
-This notation is compact and informative -- $f\left(x\right) = 5x + 4$ tells us exactly what happens to the input: *multiply by 5, then add 4*.
+This notation is compact and informative since $f\left(x\right) = 5x + 4$ tells us exactly what happens to the input: *multiply by 5, then add 4*.
 
 :::
 

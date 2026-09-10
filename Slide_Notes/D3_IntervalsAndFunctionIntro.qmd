@@ -1252,6 +1252,8 @@ $$\left(a\right)~f\left(2\right) \qquad \left(b\right)~f\left(0\right) \qquad \l
 &= \boxed{~x^2 + 2xh + h^2 - 4x - 4h + 3~}
 \end{align}
 
+</div>
+
 :::{.fragment}
 
 :::{.callout-note}
@@ -1264,8 +1266,6 @@ We'll preview the *difference quotient* later in our course.
 :::
 
 :::
-
-</div>
 
 ## Piecewise-Defined Functions
 

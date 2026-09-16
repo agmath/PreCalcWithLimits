@@ -186,17 +186,17 @@ Today's class has two connected halves.
 
 :::{.fragment}
 
-**Definition (Limit):** We say that the limit of $f\left(x\right)$ as $x$ approaches $a$ is equal to $L$, and write
+**Definition (Limit):** We say that the limit of $f\left(x\right)$ as $x$ approaches $c$ is equal to $L$, and write
 
-$$\lim_{x \to a}{f\left(x\right)} = L$$
+$$\lim_{x \to c}{f\left(x\right)} = L$$
 
-if the output values of $f\left(x\right)$ get **arbitrarily close to $L$** as $x$ gets close to $a$.
+if the output values of $f\left(x\right)$ get **arbitrarily close to $L$** as $x$ gets close to $c$.
 
 :::
 
 :::{.fragment}
 
-A key feature of limits: we care about what the function is *approaching*, not what it equals *exactly* at $x = a$.
+A key feature of limits: we care about what the function is *approaching*, not what it equals *exactly* at $x = c$.
 
 :::
 
@@ -223,7 +223,7 @@ Demo 4 shows what it looks like when a limit does not exist.
 
 ## Completed Example 1
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 
@@ -295,7 +295,7 @@ ggplot() +
 
 ## Completed Example 1
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
 
@@ -365,7 +365,7 @@ ggplot() +
 
 ## Completed Example 1
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
 
@@ -432,7 +432,7 @@ ggplot() +
 
 ## Completed Example 1
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 **Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
 
@@ -569,12 +569,12 @@ ggplot() +
 
 :::
 
-+ The **left-hand limit** $\displaystyle{\lim_{x\to a^{-}}{f\left(x\right)}}$ describes what $f\left(x\right)$ approaches as $x$ approaches $a$ from values *less than* $a$.
-+ The **right-hand limit** $\displaystyle{\lim_{x\to a^{+}}{f\left(x\right)}}$ describes what $f\left(x\right)$ approaches as $x$ approaches $a$ from values *greater than* $a$.
++ The **left-hand limit** $\displaystyle{\lim_{x\to c^{-}}{f\left(x\right)}}$ describes what $f\left(x\right)$ approaches as $x$ approaches $c$ from values *less than* $c$.
++ The **right-hand limit** $\displaystyle{\lim_{x\to c^{+}}{f\left(x\right)}}$ describes what $f\left(x\right)$ approaches as $x$ approaches $c$ from values *greater than* $c$.
 
 :::{.fragment}
 
-**Key connection:** The two-sided limit $\displaystyle{\lim_{x\to a}{f\left(x\right)}}$ exists if and only if the left- and right-hand limits both exist *and are equal*.
+**Key connection:** The two-sided limit $\displaystyle{\lim_{x\to c}{f\left(x\right)}}$ exists if and only if the left- and right-hand limits both exist *and are equal*.
 
 :::
 
@@ -852,13 +852,13 @@ ggplot() +
 
 :::{.fragment}
 
-**Strategy:** To evaluate $\displaystyle{\lim_{x\to a}{f\left(x\right)}}$ algebraically (for non-piecewise functions).
+**Strategy:** To evaluate $\displaystyle{\lim_{x\to c}{f\left(x\right)}}$ algebraically (for non-piecewise functions).
 
 :::
 
-1. **Try direct substitution.** Plug $x = a$ into $f\left(x\right)$. If the result is defined, that's the limit.
+1. **Try direct substitution.** Plug $x = c$ into $f\left(x\right)$. If the result is defined, that's the limit.
 2. **If substitution gives $\frac{0}{0}$**, try factoring and reducing to eliminate the discontinuity.
-    + If this works, $f$ has a **removable discontinuity** (a hole) at $x = a$, and the limit equals the reduced form evaluated at $x = a$.
+    + If this works, $f$ has a **removable discontinuity** (a hole) at $x = c$, and the limit equals the limit of the reduced form evaluated at $x = c$.
     + If factoring doesn't help, more tools are needed (we'll develop them later).
 
 ## Completed Example 3
@@ -1058,7 +1058,7 @@ We don't yet have the tools to evaluate this limit. Graphing $\displaystyle{f\le
 
 :::{.nonincremental}
 
-+ Direct substitution works when $f$ is well-behaved at $x = a$.
++ Direct substitution works when $f$ is well-behaved at $x = c$.
 + When substitution gives $\frac{0}{0}$, factor and reduce -- this reveals a removable discontinuity.
 + When the denominator is $0$ but the numerator is not, we have a non-removable discontinuity. More tools will come later in our course.
 
@@ -1338,7 +1338,7 @@ Use [this interactive Desmos plot](https://www.desmos.com/calculator/tlgj1efdki)
 
 :::{.fragment}
 
-As $h \to 0$, the secant line approaches the *tangent line* to the curve at $x = a$. This is a line that just "touches" the function at the single point $\left(A, f\left(a\right)\right)$. Its slope is the *instantaneous rate of change*, or *derivative*, of $f$ at $x = a$.
+As $h \to 0$, the secant line approaches the *tangent line* to the curve at $x = a$. This is a line that just "touches" the function at the single point $\left(a, f\left(a\right)\right)$. Its slope is the *instantaneous rate of change*, or *derivative*, of $f$ at $x = a$.
 
 :::
 

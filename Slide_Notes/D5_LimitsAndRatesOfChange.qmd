@@ -429,9 +429,675 @@ ggplot() +
 
 *Solution.*
 
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)}}$
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = -4.1, xmax = -3.9, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = -4.1, xmax = -3.9, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
 + $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
-+ $\displaystyle{\lim_{x\to -2}{f\left(x\right)}}~~\boxed{~\text{Does Not Exist}~}$ -- as $x \to -2$ from the left, $f\left(x\right) \to 3$; from the right, $f\left(x\right) \to 0$. These disagree.
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  #geom_rect(aes(xmin = -4.1, xmax = -3.9, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to - 2}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = -2.1, xmax = -1.9, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to - 2}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = -2.1, xmax = -1.9, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to - 2}{f\left(x\right)}~~\boxed{~\text{Does Not Exist}~}}$ -- as $x\to -2$ from the left, $f\left(x\right) \to 3$; from the right, $f\left(x\right)\to 0$. These disagree.
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  #geom_rect(aes(xmin = -2.1, xmax = -1.9, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to - 2}{f\left(x\right)}~~\boxed{~\text{Does Not Exist}~}}$ -- as $x\to -2$ from the left, $f\left(x\right) \to 3$; from the right, $f\left(x\right)\to 0$. These disagree.
++ $\displaystyle{\lim_{x\to 0}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = -0.1, xmax = 0.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to - 2}{f\left(x\right)}~~\boxed{~\text{Does Not Exist}~}}$ -- as $x\to -2$ from the left, $f\left(x\right) \to 3$; from the right, $f\left(x\right)\to 0$. These disagree.
++ $\displaystyle{\lim_{x\to 0}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = -0.1, xmax = 0.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to - 2}{f\left(x\right)}~~\boxed{~\text{Does Not Exist}~}}$ -- as $x\to -2$ from the left, $f\left(x\right) \to 3$; from the right, $f\left(x\right)\to 0$. These disagree.
 + $\displaystyle{\lim_{x\to 0}{f\left(x\right)} = \boxed{~4~}}$ -- no different than evaluating $f\left(0\right)$.
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  #geom_rect(aes(xmin = -0.1, xmax = 0.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+*Solution.*
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to -4}{f\left(x\right)} = \boxed{~6~}}$ -- no different than evaluating $f\left(-4\right)$ since $f$ is defined and well-behaved there.
++ $\displaystyle{\lim_{x\to - 2}{f\left(x\right)}~~\boxed{~\text{Does Not Exist}~}}$ -- as $x\to -2$ from the left, $f\left(x\right) \to 3$; from the right, $f\left(x\right)\to 0$. These disagree.
++ $\displaystyle{\lim_{x\to 0}{f\left(x\right)} = \boxed{~4~}}$ -- no different than evaluating $f\left(0\right)$.
+
+:::
 
 </div>
 
@@ -497,8 +1163,437 @@ ggplot() +
   theme(axis.line = element_blank(), axis.title = element_blank())
 ```
 
-+ $\displaystyle{\lim_{x\to 3}{f\left(x\right)} = \boxed{~7~}}$ -- as $x \to 3$ from either side, $f\left(x\right) \to 7$, even though $f\left(3\right)$ is undefined. If we could assign $f\left(3\right) = 7$, the function would be *fixed* there.
-+ $\displaystyle{\lim_{x\to 5}{f\left(x\right)} = \boxed{~-1~}}$ -- as $x \to 5$ from either side, $f\left(x\right) \to -1$, even though $f\left(5\right) = 4$. The limit does not ask what happens *at* $x = 5$, only *near* it.
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)}}$
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = 2.9, xmax = 3.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = 2.9, xmax = 3.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)} = \boxed{~7~}}$ -- as $x\to 3$ from either side, $f\left(x\right)\to 7$, even though $f\left(3\right)$ is undefined. If we could assign $f\left(3\right) = 7$, the function would be "*fixed*" there.
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  #geom_rect(aes(xmin = 2.9, xmax = 3.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)} = \boxed{~7~}}$ -- as $x\to 3$ from either side, $f\left(x\right)\to 7$, even though $f\left(3\right)$ is undefined. If we could assign $f\left(3\right) = 7$, the function would be "*fixed*" there.
++ $\displaystyle{\lim_{x\to 5}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = 4.9, xmax = 5.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)} = \boxed{~7~}}$ -- as $x\to 3$ from either side, $f\left(x\right)\to 7$, even though $f\left(3\right)$ is undefined. If we could assign $f\left(3\right) = 7$, the function would be "*fixed*" there.
++ $\displaystyle{\lim_{x\to 5}{f\left(x\right)}}$
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  geom_rect(aes(xmin = 4.9, xmax = 5.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)} = \boxed{~7~}}$ -- as $x\to 3$ from either side, $f\left(x\right)\to 7$, even though $f\left(3\right)$ is undefined. If we could assign $f\left(3\right) = 7$, the function would be "*fixed*" there.
++ $\displaystyle{\lim_{x\to 5}{f\left(x\right)} = \boxed{~-1~}}$ -- as $x\to 5$ from either side, $f\left(x\right) \to -1$ even though $f\left(5\right) = 4$. The limit does not ask what happens *at* $x = 5$, only *near* it.
+
+:::
+
+</div>
+
+## Completed Example 1
+
+<div style="font-size:15pt">
+
+**Problem:** Consider the function $f\left(x\right)$ whose graph appears below. Determine each of the following limits, if they exist.
+
+$$\left(a\right)~\lim_{x\to -4}{f\left(x\right)} \qquad \left(b\right)~\lim_{x\to -2}{f\left(x\right)} \qquad \left(c\right)~\lim_{x\to 0}{f\left(x\right)} \qquad \left(d\right)~\lim_{x\to 3}{f\left(x\right)} \qquad \left(e\right)~\lim_{x\to 5}{f\left(x\right)}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 2.75
+
+x_vals_1 <- seq(-6, -4, length.out = 100)
+x_vals_2 <- seq(-4, -2.1, length.out = 100)
+x_vals_3 <- seq(-2, 0, length.out = 100)
+x_vals_4 <- seq(0, 2.9, length.out = 100)
+x_vals_5 <- seq(3.1, 4.97, length.out = 100)
+x_vals_6 <- seq(5.1, 6, length.out = 100)
+
+f1 <- function(x) -(3/2)*x
+f2 <- function(x) -(3/2)*x
+f3 <- function(x) (x + 2)^2
+f4 <- function(x) x + 4
+f5 <- function(x) 7 - (x - 3)^3
+f6 <- function(x) (3*(x - 5))^2 - 1
+
+open_pts <- data.frame(
+  x = c(-2, 3, 5),
+  y = c(f1(-2), f4(3), f5(5))
+)
+closed_pts <- data.frame(
+  x = c(-2, 0, 5),
+  y = c(f3(-2), f3(0), 4)
+)
+
+ggplot() +
+  geom_line(aes(x = x_vals_1, y = f1(x_vals_1)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_2, y = f2(x_vals_2)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_3, y = f3(x_vals_3)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_4, y = f4(x_vals_4)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_5, y = f5(x_vals_5)), color = "blue", linewidth = 1) +
+  geom_line(aes(x = x_vals_6, y = f6(x_vals_6)), color = "blue", linewidth = 1) +
+  geom_point(data = open_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "white", color = "blue") +
+  geom_point(data = closed_pts, aes(x = x, y = y),
+             shape = 21, size = 3, fill = "blue", color = "blue") +
+  annotate("segment",
+           x = -6, xend = 6, y = 0, yend = 0,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  annotate("segment",
+           x = 0, xend = 0, y = -2, yend = 10,
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
+           linewidth = 0.5) +
+  #geom_rect(aes(xmin = 4.9, xmax = 5.1, ymin = -Inf, ymax = Inf)) +
+  scale_x_continuous(breaks = seq(-6, 6, by = 1)) +
+  scale_y_continuous(breaks = c(-2, 0, 2, 4, 6, 8, 10)) +
+  coord_cartesian(xlim = c(-6, 6), ylim = c(-2, 10)) +
+  labs(title = "A Graph of f(x)") +
+  theme(axis.line = element_blank(), axis.title = element_blank())
+```
+
+:::{.nonincremental}
+
++ $\displaystyle{\lim_{x\to 3}{f\left(x\right)} = \boxed{~7~}}$ -- as $x\to 3$ from either side, $f\left(x\right)\to 7$, even though $f\left(3\right)$ is undefined. If we could assign $f\left(3\right) = 7$, the function would be "*fixed*" there.
++ $\displaystyle{\lim_{x\to 5}{f\left(x\right)} = \boxed{~-1~}}$ -- as $x\to 5$ from either side, $f\left(x\right) \to -1$ even though $f\left(5\right) = 4$. The limit does not ask what happens *at* $x = 5$, only *near* it. Similarly, if we could re-define $f\left(5\right) = -1$, the function would be "*fixed*" here.
+
+:::
 
 </div>
 

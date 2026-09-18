@@ -528,7 +528,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -549,7 +549,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -618,7 +618,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -639,7 +639,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -702,7 +702,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -723,7 +723,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -786,7 +786,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -807,7 +807,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -870,7 +870,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -891,7 +891,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -954,7 +954,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -975,7 +975,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -1038,7 +1038,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -1059,7 +1059,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -1122,7 +1122,7 @@ p_f <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 8, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 8, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 8)) +
   labs(title = "A Graph of f(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -1143,7 +1143,7 @@ p_g <- ggplot() +
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"),
            linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-4, 4, by = 1)) +
-  scale_y_continuous(breaks = seq(-6, 12, by = 2)) +
+  scale_y_continuous(breaks = seq(-6, 12, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-4, 4), ylim = c(-6, 12)) +
   labs(title = "A Graph of g(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -1195,7 +1195,7 @@ pp <- ggplot() +
   annotate("segment", x = 0, xend = 0, y = -4, yend = 5,
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
-  scale_y_continuous(breaks = seq(-4, 4, by = 1)) +
+  scale_y_continuous(breaks = seq(-4, 4, by = 1), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-5, 5), ylim = c(-4, 4)) +
   labs(title = "A Graph of p(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())
@@ -1210,7 +1210,7 @@ pq <- ggplot() +
   annotate("segment", x = 0, xend = 0, y = -10, yend = 5,
            arrow = arrow(length = unit(0.3, "cm"), type = "closed"), linewidth = 0.5) +
   scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
-  scale_y_continuous(breaks = seq(-10, 4, by = 2)) +
+  scale_y_continuous(breaks = seq(-10, 4, by = 2), sec.axis = dup_axis()) +
   coord_cartesian(xlim = c(-5, 5), ylim = c(-10, 4)) +
   labs(title = "A Graph of q(x)") +
   theme(axis.line = element_blank(), axis.title = element_blank())

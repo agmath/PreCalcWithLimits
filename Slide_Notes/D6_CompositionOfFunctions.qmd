@@ -1226,7 +1226,7 @@ pp + pq
 
 :::{.fragment}
 
-**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing according to $r\left(t\right) = 2t + 1$ (feet, with $t$ in minutes).
 
 :::
 
@@ -1251,7 +1251,7 @@ Express the **area burned** as a function of time $t$, and find the total area b
 
 <div style="font-size:17pt">
 
-**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing according to $r\left(t\right) = 2t + 1$ (feet, with $t$ in minutes).
 
 Express the **area burned** as a function of time $t$, and find the total area burned after 10 minutes.
 
@@ -1267,7 +1267,7 @@ Express the **area burned** as a function of time $t$, and find the total area b
 
 <div style="font-size:17pt">
 
-**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at according to $r\left(t\right) = 2t + 1$ (feet, with $t$ in minutes).
 
 Express the **area burned** as a function of time $t$, and find the total area burned after 10 minutes.
 
@@ -1284,7 +1284,7 @@ Express the **area burned** as a function of time $t$, and find the total area b
 
 <div style="font-size:17pt">
 
-**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing at rate $r\left(t\right) = 2t + 1$ (feet, $t$ in minutes).
+**Applied Problem 1:** A forest fire leaves behind an expanding circular burn. The radius is increasing according to $r\left(t\right) = 2t + 1$ (feet, with $t$ in minutes).
 
 Express the **area burned** as a function of time $t$, and find the total area burned after 10 minutes.
 

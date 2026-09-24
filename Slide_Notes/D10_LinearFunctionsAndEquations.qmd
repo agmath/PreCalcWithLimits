@@ -930,6 +930,132 @@ $$\boxed{~y - 12 = -\frac{1}{3}\left(x + 5\right)~}$$
 
 </div>
 
+## Limits and End-Behavior
+
+:::{.fragment}
+
+The *end-behavior* of a function $f\left(x\right)$ describes the behavior of the function as $x$ tends towards positive or negative infinity.
+
+:::
+
+:::{.fragment}
+
+Mathematically, we can examine end-behavior via the following two limits:
+
+:::
+
+:::{.fragment}
+
+$$\lim_{x\to -\infty}{f\left(x\right)}~~~~~\text{and}~~~~~\lim_{x\to\infty}{f\left(x\right)}$$
+
+:::
+
+:::{.fragment}
+
+**Example:** Determine the end-behavior of the linear function $f\left(x\right) = 3x + 4$.
+
+:::
+
+:::{.fragment}
+
+*Solution.*
+
+:::
+
+:::{.fragment}
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\displaystyle{\lim_{x\to -\infty}{3x + 4}}$
+
+:::
+
+:::{.column width="50%"}
+
+$\displaystyle{\lim_{x\to \infty}{3x + 4}}$
+
+:::
+
+::::
+
+:::
+
+## Limits and End-Behavior
+
+The *end-behavior* of a function $f\left(x\right)$ describes the behavior of the function as $x$ tends towards positive or negative infinity.
+
+Mathematically, we can examine end-behavior via the following two limits:
+
+$$\lim_{x\to -\infty}{f\left(x\right)}~~~~~\text{and}~~~~~\lim_{x\to\infty}{f\left(x\right)}$$
+
+**Example:** Determine the end-behavior of the linear function $f\left(x\right) = 3x + 4$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\displaystyle{\lim_{x\to -\infty}{3x + 4} = -\infty}$
+
+:::
+
+:::{.column width="50%"}
+
+$\displaystyle{\lim_{x\to \infty}{3x + 4}}$
+
+:::
+
+::::
+
+## Limits and End-Behavior
+
+The *end-behavior* of a function $f\left(x\right)$ describes the behavior of the function as $x$ tends towards positive or negative infinity.
+
+Mathematically, we can examine end-behavior via the following two limits:
+
+$$\lim_{x\to -\infty}{f\left(x\right)}~~~~~\text{and}~~~~~\lim_{x\to\infty}{f\left(x\right)}$$
+
+**Example:** Determine the end-behavior of the linear function $f\left(x\right) = 3x + 4$.
+
+*Solution.*
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+$\displaystyle{\lim_{x\to -\infty}{3x + 4} = -\infty}$
+
+:::
+
+:::{.column width="50%"}
+
+$\displaystyle{\lim_{x\to \infty}{3x + 4} = \infty}$
+
+:::
+
+::::
+
+:::{.fragment}
+
+```{r}
+#| fig.height: 2
+
+x_vals <- seq(-5,5,length.out = 250)
+ggplot() +
+  geom_line(aes(x = x_vals, y = 3*x_vals + 4), color = "blue", lwd = 1.5) +
+  geom_hline(yintercept = 0, color = "black") + 
+  geom_vline(xintercept = 0, color = "black") +
+  labs(
+    title = "The Graph of f(x) = 3x + 4",
+    x = "x",
+    y = "y")
+```
+
+:::
+
 ## Equations of Lines Practice
 
 <div style="font-size:17pt">

@@ -137,8 +137,8 @@ For a polynomial $a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0$:
 
 :::
 
-+ The **leading term** is $a_nx^n$ -- the term with the highest power.
-+ The **leading coefficient** is $a_n$ -- the coefficient on the highest power.
++ The **leading term** is $a_nx^n$ -- the term with the highest power on the variable.
++ The **leading coefficient** is $a_n$ -- the coefficient on the highest power on the variable.
 + The **degree** is $n$ -- the highest power of $x$.
 
 :::{.fragment}

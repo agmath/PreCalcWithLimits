@@ -50,7 +50,7 @@ At our last meeting, we encountered and utilized two tools for working with poly
 
 + The **Rational Roots Theorem** narrowed down candidates for rational roots.
 + **Polynomial long division** was used to factor out a known root $r$ of $p\left(x\right)$, rewriting $p\left(x\right) = \left(x - r\right)q\left(x\right)$ where $q\left(x\right)$ is of lower degree than $p\left(x\right)$.
-+ Together, these tools let us factor any polynomial into *linear* and *quadratic* factors, ultimately permitting us to find all of its roots.
++ Together, these tools can help us factor a polynomial into *linear* and *quadratic* factors, ultimately permitting us to find all of its roots.
 
 :::{.fragment}
 

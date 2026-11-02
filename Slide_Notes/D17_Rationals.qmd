@@ -2080,7 +2080,7 @@ Now we draw an approximate graph respecting all asymptotes and reference points.
 
 ## The Full Strategy
 
-<div style="font-size:16pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 

@@ -42,13 +42,19 @@ a:visited {
 
 :::{.fragment}
 
+**Problem 1:** Examine the end-behavior for the function $\displaystyle{f\left(x\right) = \frac{x^3 - 4x + 8}{x^5 + 3x^2}}$ and determine what the limit tells you about the function.
+
+:::
+
+:::{.fragment}
+
 Last class we studied rational functions. Before moving on, let's practice solving a **rational equation** — and encounter a trap that will reappear today.
 
 :::
 
 :::{.fragment}
 
-**Problem 1:** Solve $\displaystyle{\frac{3}{x} + 2 = \frac{5}{x}}$.
+**Problem 2:** Solve $\displaystyle{\frac{3}{x} + 2 = \frac{5}{x}}$.
 
 :::
 
@@ -60,7 +66,7 @@ Last class we studied rational functions. Before moving on, let's practice solvi
 
 :::{.fragment}
 
-**Problem 2:** Solve $\displaystyle{\frac{6}{x^2 - 9} + \frac{1}{x + 3} = \frac{2}{x - 3}}$.
+**Problem 3:** Solve $\displaystyle{\frac{6}{x^2 - 9} + \frac{1}{x + 3} = \frac{2}{x - 3}}$.
 
 :::
 
@@ -83,7 +89,7 @@ An *extraneous solution* is an algebraically valid result that fails when substi
 
 :::
 
-<div style="font-size:17pt">
+<div style="font-size:15pt">
 
 :::{.fragment}
 
